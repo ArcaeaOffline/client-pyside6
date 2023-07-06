@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arcaea-offline-pyside-ui"
+version = "0.1.0"
+authors = [{ name = "283375", email = "log_283375@163.com" }]
+description = "No description."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "arcaea-offline==0.1.0",
+  "arcaea-offline-ocr==0.1.0",
+  "exif==1.6.0",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/283375/arcaea-offline-pyside-ui"
+"Bug Tracker" = "https://github.com/283375/arcaea-offline-pyside-ui/issues"
+
+[tool.black]
+force-exclude = '''
+(
+  ui/designer
+  | .*_rc.py
+)
+'''
+
+[tool.isort]
+profile = "black"
+extend_skip = ["ui/designer"]
+extend_skip_glob = ["*_rc.py"]
+
+[tool.pyright]
+ignore = ["**/__debug*.*"]

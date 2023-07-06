@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>601</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">Arcaea Offline</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="TabOverview" name="tab_overview">
+       <attribute name="title">
+        <string>tab.overview</string>
+       </attribute>
+      </widget>
+      <widget class="TabInputScore" name="tab_input">
+       <attribute name="title">
+        <string>tab.input</string>
+       </attribute>
+      </widget>
+      <widget class="TabDbEntry" name="tab_db">
+       <attribute name="title">
+        <string>tab.db</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_ocr">
+       <attribute name="title">
+        <string>tab.ocr</string>
+       </attribute>
+      </widget>
+      <widget class="TabSettings" name="tab_settings">
+       <attribute name="title">
+        <string>tab.settings</string>
+       </attribute>
+      </widget>
+      <widget class="TabAbout" name="tab_about">
+       <attribute name="title">
+        <string>tab.about</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TabInputScore</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabInputScore</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabOverview</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabOverview</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabSettings</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabSettings</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabAbout</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabAbout</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabDbEntry</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabDbEntry</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

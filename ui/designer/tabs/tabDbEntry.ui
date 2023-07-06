@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TabDbEntry</class>
+ <widget class="QWidget" name="TabDbEntry">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>648</width>
+    <height>579</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">TabDbEntry</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="TabDb_Manage" name="tab_manage">
+      <attribute name="title">
+       <string>tab.manage</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TabDb_Manage</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabDb.tabDb_Manage</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
