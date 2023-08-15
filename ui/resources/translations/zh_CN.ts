@@ -209,24 +209,77 @@
     </message>
 </context>
 <context>
+    <name>OcrQueue</name>
+    <message>
+        <location filename="../../designer/components/ocrQueue.ui" line="14"/>
+        <source>OcrQueue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueue.ui" line="20"/>
+        <source>ocr.queue.title</source>
+        <translation>队列</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueue.ui" line="26"/>
+        <source>ocr.queue.addImageButton</source>
+        <translation>添加图像文件</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueue.ui" line="36"/>
+        <source>ocr.queue.removeSelected</source>
+        <translation>移除选中</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueue.ui" line="46"/>
+        <source>ocr.queue.removeAll</source>
+        <translation>移除所有</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueue.ui" line="66"/>
+        <source>ocr.queue.startOcrButton</source>
+        <translation>开始 OCR</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueue.ui" line="118"/>
+        <source>ocr.results</source>
+        <translation>结果</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueue.ui" line="127"/>
+        <source>ocr.results.acceptSelectedButton</source>
+        <translation>提交选中</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueue.ui" line="134"/>
+        <source>ocr.results.acceptAllButton</source>
+        <translation>提交所有</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueue.ui" line="154"/>
+        <source>ocr.results.ignoreValidate</source>
+        <translation>忽略验证</translation>
+    </message>
+</context>
+<context>
     <name>OcrTableModel</name>
     <message>
-        <location filename="../../extends/tabs/tabOcr.py" line="298"/>
+        <location filename="../../extends/components/ocrQueue/__init__.py" line="281"/>
         <source>horizontalHeader.title.select</source>
         <translation>选择</translation>
     </message>
     <message>
-        <location filename="../../extends/tabs/tabOcr.py" line="299"/>
+        <location filename="../../extends/components/ocrQueue/__init__.py" line="282"/>
         <source>horizontalHeader.title.imagePreview</source>
         <translation>图像预览</translation>
     </message>
     <message>
-        <location filename="../../extends/tabs/tabOcr.py" line="300"/>
+        <location filename="../../extends/components/ocrQueue/__init__.py" line="283"/>
         <source>horizontalHeader.title.chart</source>
         <translation>谱面</translation>
     </message>
     <message>
-        <location filename="../../extends/tabs/tabOcr.py" line="301"/>
+        <location filename="../../extends/components/ocrQueue/__init__.py" line="284"/>
         <source>horizontalHeader.title.score</source>
         <translation>分数</translation>
     </message>
@@ -393,59 +446,24 @@
         <translation>选择设备</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="42"/>
+        <location filename="../../designer/tabs/tabOcr.ui" line="63"/>
+        <source>knnModelSelector.title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr.ui" line="94"/>
         <source>tesseractSelector.title</source>
         <translation>选择 tesseract 路径</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="54"/>
+        <location filename="../../designer/tabs/tabOcr.ui" line="122"/>
+        <source>siftDatabaseSelector.title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr.ui" line="147"/>
         <source>ocr.title</source>
         <translation>OCR</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="60"/>
-        <source>ocr.queue.title</source>
-        <translation>队列</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="66"/>
-        <source>ocr.queue.addImageButton</source>
-        <translation>添加图像文件</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="76"/>
-        <source>ocr.queue.removeSelected</source>
-        <translation>移除选中</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="86"/>
-        <source>ocr.queue.removeAll</source>
-        <translation>移除所有</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="106"/>
-        <source>ocr.queue.startOcrButton</source>
-        <translation>开始 OCR</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="135"/>
-        <source>ocr.results</source>
-        <translation>结果</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="144"/>
-        <source>ocr.results.acceptSelectedButton</source>
-        <translation>提交选中</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="151"/>
-        <source>ocr.results.acceptAllButton</source>
-        <translation>提交所有</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="171"/>
-        <source>ocr.results.ignoreValidate</source>
-        <translation>忽略验证</translation>
     </message>
 </context>
 <context>
@@ -453,7 +471,7 @@
     <message>
         <location filename="../../designer/tabs/tabOcrDisabled.ui" line="81"/>
         <source>ocrDisabled.title</source>
-        <translation type="unfinished"></translation>
+        <translation>OCR 已禁用</translation>
     </message>
 </context>
 </TS>
