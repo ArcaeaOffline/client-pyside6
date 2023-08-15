@@ -25,13 +25,9 @@ class Ui_OcrQueue(object):
         if not OcrQueue.objectName():
             OcrQueue.setObjectName(u"OcrQueue")
         OcrQueue.resize(741, 372)
-        self.verticalLayout = QVBoxLayout(OcrQueue)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.groupBox_2 = QGroupBox(OcrQueue)
-        self.groupBox_2.setObjectName(u"groupBox_2")
-        self.horizontalLayout = QHBoxLayout(self.groupBox_2)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.groupBox_3 = QGroupBox(self.groupBox_2)
+        self.horizontalLayout_2 = QHBoxLayout(OcrQueue)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.groupBox_3 = QGroupBox(OcrQueue)
         self.groupBox_3.setObjectName(u"groupBox_3")
         self.verticalLayout_2 = QVBoxLayout(self.groupBox_3)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -62,11 +58,11 @@ class Ui_OcrQueue(object):
         self.verticalLayout_2.addWidget(self.ocr_startButton)
 
 
-        self.horizontalLayout.addWidget(self.groupBox_3)
+        self.horizontalLayout_2.addWidget(self.groupBox_3)
 
         self.verticalLayout_3 = QVBoxLayout()
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.tableView = QTableView(self.groupBox_2)
+        self.tableView = QTableView(OcrQueue)
         self.tableView.setObjectName(u"tableView")
         self.tableView.setEditTriggers(QAbstractItemView.DoubleClicked|QAbstractItemView.EditKeyPressed)
         self.tableView.setSelectionMode(QAbstractItemView.MultiSelection)
@@ -76,7 +72,7 @@ class Ui_OcrQueue(object):
 
         self.verticalLayout_3.addWidget(self.tableView)
 
-        self.progressBar = QProgressBar(self.groupBox_2)
+        self.progressBar = QProgressBar(OcrQueue)
         self.progressBar.setObjectName(u"progressBar")
         self.progressBar.setMinimum(0)
         self.progressBar.setMaximum(0)
@@ -87,9 +83,9 @@ class Ui_OcrQueue(object):
         self.verticalLayout_3.addWidget(self.progressBar)
 
 
-        self.horizontalLayout.addLayout(self.verticalLayout_3)
+        self.horizontalLayout_2.addLayout(self.verticalLayout_3)
 
-        self.groupBox_5 = QGroupBox(self.groupBox_2)
+        self.groupBox_5 = QGroupBox(OcrQueue)
         self.groupBox_5.setObjectName(u"groupBox_5")
         self.verticalLayout_4 = QVBoxLayout(self.groupBox_5)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -114,10 +110,7 @@ class Ui_OcrQueue(object):
         self.verticalLayout_4.addWidget(self.ocr_ignoreValidateCheckBox)
 
 
-        self.horizontalLayout.addWidget(self.groupBox_5)
-
-
-        self.verticalLayout.addWidget(self.groupBox_2)
+        self.horizontalLayout_2.addWidget(self.groupBox_5)
 
 
         self.retranslateUi(OcrQueue)
@@ -127,7 +120,6 @@ class Ui_OcrQueue(object):
 
     def retranslateUi(self, OcrQueue):
         OcrQueue.setWindowTitle(QCoreApplication.translate("OcrQueue", u"OcrQueue", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("OcrQueue", u"ocr.title", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("OcrQueue", u"ocr.queue.title", None))
         self.ocr_addImageButton.setText(QCoreApplication.translate("OcrQueue", u"ocr.queue.addImageButton", None))
         self.ocr_removeSelectedButton.setText(QCoreApplication.translate("OcrQueue", u"ocr.queue.removeSelected", None))
