@@ -18,7 +18,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QGroupBox, QHBoxLayout, QPushButton,
     QSizePolicy, QStackedWidget, QVBoxLayout, QWidget)
 
-from ui.implements.components import (DevicesComboBox, FileSelector, OcrQueue)
+from ui.implements.components.devicesComboBox import DevicesComboBox
+from ui.implements.components.fileSelector import FileSelector
+from ui.implements.components.ocrQueue import OcrQueue
 
 class Ui_TabOcr(object):
     def setupUi(self, TabOcr):

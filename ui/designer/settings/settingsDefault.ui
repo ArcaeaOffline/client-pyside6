@@ -160,7 +160,7 @@
   <customwidget>
    <class>DevicesComboBox</class>
    <extends>QComboBox</extends>
-   <header>ui.implements.components</header>
+   <header>ui.implements.components.devicesComboBox</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -159,18 +159,18 @@
   <customwidget>
    <class>FileSelector</class>
    <extends>QWidget</extends>
-   <header>ui.implements.components</header>
+   <header>ui.implements.components.fileSelector</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>DevicesComboBox</class>
    <extends>QComboBox</extends>
-   <header>ui.implements.components</header>
+   <header>ui.implements.components.devicesComboBox</header>
   </customwidget>
   <customwidget>
    <class>OcrQueue</class>
    <extends>QWidget</extends>
-   <header>ui.implements.components</header>
+   <header>ui.implements.components.ocrQueue</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

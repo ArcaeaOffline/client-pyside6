@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'settingsDefault.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.0
+## Created by: Qt User Interface Compiler version 6.5.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -18,7 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QFormLayout, QHBoxLayout, QLabel,
     QPushButton, QSizePolicy, QSpacerItem, QWidget)
 
-from ui.implements.components import DevicesComboBox
+from ui.implements.components.devicesComboBox import DevicesComboBox
 from ui.implements.components.fileSelector import FileSelector
 
 class Ui_SettingsDefault(object):
