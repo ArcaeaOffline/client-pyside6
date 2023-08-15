@@ -55,125 +55,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QGroupBox" name="groupBox_3">
-        <property name="title">
-         <string>ocr.queue.title</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <widget class="QPushButton" name="ocr_addImageButton">
-           <property name="text">
-            <string>ocr.queue.addImageButton</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="ocr_removeSelectedButton">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="text">
-            <string>ocr.queue.removeSelected</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="ocr_removeAllButton">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="text">
-            <string>ocr.queue.removeAll</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="ocr_startButton">
-           <property name="text">
-            <string>ocr.queue.startOcrButton</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QTableView" name="tableView">
-        <property name="editTriggers">
-         <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
-        </property>
-        <property name="selectionMode">
-         <enum>QAbstractItemView::MultiSelection</enum>
-        </property>
-        <property name="selectionBehavior">
-         <enum>QAbstractItemView::SelectRows</enum>
-        </property>
-        <property name="verticalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-        <property name="horizontalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="groupBox_5">
-        <property name="title">
-         <string>ocr.results</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <item>
-          <widget class="QPushButton" name="ocr_acceptSelectedButton">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="text">
-            <string>ocr.results.acceptSelectedButton</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="ocr_acceptAllButton">
-           <property name="text">
-            <string>ocr.results.acceptAllButton</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="verticalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="ocr_ignoreValidateCheckBox">
-           <property name="text">
-            <string>ocr.results.ignoreValidate</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       <widget class="OcrQueue" name="ocrQueue" native="true"/>
       </item>
      </layout>
     </widget>
@@ -191,6 +73,12 @@
    <class>DevicesComboBox</class>
    <extends>QComboBox</extends>
    <header>ui.implements.components</header>
+  </customwidget>
+  <customwidget>
+   <class>OcrQueue</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.components</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -1,4 +1,4 @@
-from arcaea_offline_ocr.device import Device
+from arcaea_offline_ocr.device.v1.definition import DeviceV1
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QComboBox
 
@@ -13,7 +13,7 @@ class DevicesComboBox(QComboBox):
         super().__init__(parent)
         self.setItemDelegate(DescriptionDelegate(self))
 
-    def setDevices(self, devices: list[Device]):
+    def setDevices(self, devices: list[DeviceV1]):
         self.clear()
         for device in devices:
             self.addItem(f"{device.name} ({device.uuid})", device)

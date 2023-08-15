@@ -126,6 +126,8 @@ class ScoreDelegate(TextSegmentDelegate):
                 ]
             ]
 
+        score_str = str(score.score).rjust(8, "0")
+        score_str = f"{score_str[:-6]}'{score_str[-6:-3]}'{score_str[-3:]}"
         score_font = QFont(option.font)
         score_font.setPointSize(12)
         score_grade_font = QFont(score_font)
@@ -140,7 +142,7 @@ class ScoreDelegate(TextSegmentDelegate):
                     self.FontRole: score_grade_font,
                 },
                 {self.TextRole: " | "},
-                {self.TextRole: str(score.score), self.FontRole: score_font},
+                {self.TextRole: score_str, self.FontRole: score_font},
             ],
             [
                 {

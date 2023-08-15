@@ -4,3 +4,4 @@ from .elidedLabel import ElidedLabel
 from .fileSelector import FileSelector
 from .ratingClassRadioButton import RatingClassRadioButton
 from .scoreEditor import ScoreEditor
+from .ocrQueue import OcrQueue

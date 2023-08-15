@@ -1,16 +1,24 @@
 try:
     import json
 
-    from arcaea_offline_ocr.device import Device
+    from arcaea_offline_ocr.device.v1.definition import DeviceV1
+    from arcaea_offline_ocr.device.v2.definition import DeviceV2
 
-    def load_devices_json(filepath: str) -> list[Device]:
+    def load_devices_json(filepath: str) -> list[DeviceV1]:
         with open(filepath, "r", encoding="utf-8") as f:
             file_content = f.read()
             if len(file_content) == 0:
                 return []
             content = json.loads(file_content)
             assert isinstance(content, list)
-            return [Device.from_json_object(item) for item in content]
+            devices = []
+            for item in content:
+                version = item["version"]
+                if version == 1:
+                    devices.append(DeviceV1(**item))
+                elif version == 2:
+                    devices.append(DeviceV2(**item))
+            return devices
 
 except Exception:
 
