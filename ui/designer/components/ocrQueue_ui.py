@@ -25,6 +25,7 @@ class Ui_OcrQueue(object):
         if not OcrQueue.objectName():
             OcrQueue.setObjectName(u"OcrQueue")
         OcrQueue.resize(741, 372)
+        OcrQueue.setWindowTitle(u"OcrQueue")
         self.horizontalLayout_2 = QHBoxLayout(OcrQueue)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.groupBox_3 = QGroupBox(OcrQueue)
@@ -119,7 +120,6 @@ class Ui_OcrQueue(object):
     # setupUi
 
     def retranslateUi(self, OcrQueue):
-        OcrQueue.setWindowTitle(QCoreApplication.translate("OcrQueue", u"OcrQueue", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("OcrQueue", u"ocr.queue.title", None))
         self.ocr_addImageButton.setText(QCoreApplication.translate("OcrQueue", u"ocr.queue.addImageButton", None))
         self.ocr_removeSelectedButton.setText(QCoreApplication.translate("OcrQueue", u"ocr.queue.removeSelected", None))
@@ -129,5 +129,6 @@ class Ui_OcrQueue(object):
         self.ocr_acceptSelectedButton.setText(QCoreApplication.translate("OcrQueue", u"ocr.results.acceptSelectedButton", None))
         self.ocr_acceptAllButton.setText(QCoreApplication.translate("OcrQueue", u"ocr.results.acceptAllButton", None))
         self.ocr_ignoreValidateCheckBox.setText(QCoreApplication.translate("OcrQueue", u"ocr.results.ignoreValidate", None))
+        pass
     # retranslateUi
 

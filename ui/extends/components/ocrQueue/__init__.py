@@ -1,9 +1,10 @@
 import logging
-from typing import Any, Callable
+from typing import Any, Callable, Optional, overload
 
 from arcaea_offline.calculate import calculate_score_range
 from arcaea_offline.database import Database
 from arcaea_offline.models import Chart, ScoreInsert
+from arcaea_offline_ocr.b30.shared import B30OcrResultItem
 from arcaea_offline_ocr.device.shared import DeviceOcrResult
 from PySide6.QtCore import (
     QAbstractListModel,
@@ -30,7 +31,7 @@ logger = logging.getLogger(__name__)
 class OcrRunnableSignals(QObject):
     rowId: int = -1
 
-    resultReady = Signal(DeviceOcrResult)
+    resultReady = Signal("QVariant")
     finished = Signal()
 
 
@@ -45,7 +46,7 @@ class OcrQueueModel(QAbstractListModel):
     ImageQImageRole = Qt.ItemDataRole.UserRole + 2
     ImagePixmapRole = Qt.ItemDataRole.UserRole + 3
 
-    DeviceOcrResultRole = Qt.ItemDataRole.UserRole + 10
+    OcrResultRole = Qt.ItemDataRole.UserRole + 10
     ScoreInsertRole = Qt.ItemDataRole.UserRole + 11
     ChartRole = Qt.ItemDataRole.UserRole + 12
     ScoreValidateOkRole = Qt.ItemDataRole.UserRole + 13
@@ -97,55 +98,86 @@ class OcrQueueModel(QAbstractListModel):
         item = self.__items[index.row()]
         updateRole = None
 
-        if role == self.DeviceOcrResultRole and isinstance(value, DeviceOcrResult):
-            item[self.DeviceOcrResultRole] = value
-            self.updateRole = role
+        if role == self.OcrResultRole:
+            item[self.OcrResultRole] = value
+            updateRole = role
 
         if role == self.ChartRole and isinstance(value, Chart):
             item[self.ChartRole] = value
             self.updateScoreValidateOk(index.row())
-            self.updateRole = role
+            updateRole = role
 
         if role == self.ScoreInsertRole and isinstance(value, ScoreInsert):
             item[self.ScoreInsertRole] = value
             self.updateScoreValidateOk(index.row())
-            self.updateRole = role
+            updateRole = role
 
         if role == self.ScoreValidateOkRole and isinstance(value, bool):
             item[self.ScoreValidateOkRole] = value
-            self.updateRole = role
+            updateRole = role
 
         if role == self.OcrRunnableRole and isinstance(value, OcrRunnable):
             item[self.OcrRunnableRole] = value
-            self.updateRole = role
+            updateRole = role
 
         if role == self.ProcessOcrResultFuncRole and callable(value):
             item[self.ProcessOcrResultFuncRole] = value
-            self.updateRole = role
+            updateRole = role
 
         if updateRole is not None:
             self.dataChanged.emit(index, index, [updateRole])
             return True
         else:
+            logger.warning(
+                f"{repr(self)} setData at row {index.row()} with role {role} and value {value} rejected."
+            )
             return False
+
+    @overload
+    def addItem(
+        self,
+        image: str,
+        runnable: OcrRunnable = None,
+        process_func: Callable[[Optional[str], QImage, Any], ScoreInsert] = None,
+    ):
+        ...
+
+    @overload
+    def addItem(
+        self,
+        image: QImage,
+        runnable: OcrRunnable = None,
+        process_func: Callable[[Optional[str], QImage, Any], ScoreInsert] = None,
+    ):
+        ...
 
     def addItem(
         self,
-        imagePath: str,
-        runnable: OcrRunnable = None,
-        process_func: Callable = None,
+        image,
+        runnable=None,
+        process_func=None,
     ):
-        if imagePath in self.imagePaths or not QFileInfo(imagePath).exists():
-            logger.warning(f"Attempting to add an invalid file {imagePath}")
-            return
+        if isinstance(image, str):
+            if image in self.imagePaths or not QFileInfo(image).exists():
+                logger.warning(f"Attempting to add an invalid file {image}")
+                return
+            imagePath = image
+            qImage = QImage(image)
+            qPixmap = QPixmap(image)
+        elif isinstance(image, QImage):
+            imagePath = None
+            qImage = image.copy()
+            qPixmap = QPixmap(qImage)
+        else:
+            raise ValueError("Unsupported type for `image`")
 
         self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
         self.__items.append(
             {
                 self.ImagePathRole: imagePath,
-                self.ImageQImageRole: QImage(imagePath),
-                self.ImagePixmapRole: QPixmap(imagePath),
-                self.DeviceOcrResultRole: None,
+                self.ImageQImageRole: qImage,
+                self.ImagePixmapRole: qPixmap,
+                self.OcrResultRole: None,
                 self.ScoreInsertRole: None,
                 self.ChartRole: None,
                 self.ScoreValidateOkRole: False,
@@ -155,19 +187,19 @@ class OcrQueueModel(QAbstractListModel):
         )
         self.endInsertRows()
 
-    def updateOcrResult(self, row: int, result: DeviceOcrResult) -> bool:
-        if not 0 <= row < self.rowCount() or not isinstance(result, DeviceOcrResult):
+    def updateOcrResult(self, row: int, result: Any) -> bool:
+        if not 0 <= row < self.rowCount():
             return False
 
         index = self.index(row, 0)
         imagePath: str = index.data(self.ImagePathRole)
+        qImage: QImage = index.data(self.ImageQImageRole)
+        print(row, result)
         processOcrResultFunc = index.data(self.ProcessOcrResultFuncRole)
 
-        chart, scoreInsert = processOcrResultFunc(imagePath, result)
+        chart, scoreInsert = processOcrResultFunc(imagePath, qImage, result)
 
-        # song_id = self.__db.fuzzy_search_song_id(result.title)[0][0]
-
-        self.setData(index, result, self.DeviceOcrResultRole)
+        self.setData(index, result, self.OcrResultRole)
         self.setData(index, chart, self.ChartRole)
         self.setData(index, scoreInsert, self.ScoreInsertRole)
         return True
@@ -175,7 +207,6 @@ class OcrQueueModel(QAbstractListModel):
     @Slot(DeviceOcrResult)
     def ocrTaskReady(self, result: DeviceOcrResult):
         row = self.sender().rowId
-        print(row)
         self.updateOcrResult(row, result)
 
     @Slot()
@@ -184,7 +215,6 @@ class OcrQueueModel(QAbstractListModel):
         self.progress.emit(self.__taskFinishedNum)
         if self.__taskFinishedNum == self.__taskNum:
             self.finished.emit()
-            print("model finished")
 
     def startQueue(self):
         self.__taskNum = self.rowCount()
@@ -266,11 +296,11 @@ class OcrQueueTableProxyModel(QAbstractTableModel):
                 OcrQueueModel.ImagePixmapRole,
             ],
             [
-                OcrQueueModel.DeviceOcrResultRole,
+                OcrQueueModel.OcrResultRole,
                 OcrQueueModel.ChartRole,
             ],
             [
-                OcrQueueModel.DeviceOcrResultRole,
+                OcrQueueModel.OcrResultRole,
                 OcrQueueModel.ScoreInsertRole,
                 OcrQueueModel.ChartRole,
                 OcrQueueModel.ScoreValidateOkRole,
@@ -333,9 +363,9 @@ class OcrQueueTableProxyModel(QAbstractTableModel):
 
     def setData(self, index, value, role):
         if index.column() == 2 and role == OcrQueueModel.ChartRole:
-            return self.sourceModel().setItemChart(index.row(), value)
+            return self.sourceModel().setData(index, value, role)
         if index.column() == 3 and role == OcrQueueModel.ScoreInsertRole:
-            return self.sourceModel().setItemScore(index.row(), value)
+            return self.sourceModel().setData(index, value, role)
         return False
 
     def flags(self, index: QModelIndex) -> Qt.ItemFlag:
@@ -365,9 +395,7 @@ class OcrChartDelegate(ChartDelegate):
         return index.data(OcrQueueModel.ChartRole)
 
     def paintWarningBackground(self, index: QModelIndex) -> bool:
-        return isinstance(
-            index.data(OcrQueueModel.DeviceOcrResultRole), DeviceOcrResult
-        )
+        return isinstance(index.data(OcrQueueModel.OcrResultRole), DeviceOcrResult)
 
     def setModelData(self, editor, model: OcrQueueTableProxyModel, index):
         if editor.validate():
@@ -385,9 +413,13 @@ class OcrScoreDelegate(ScoreDelegate):
         return index.data(OcrQueueModel.ScoreValidateOkRole)
 
     def paintWarningBackground(self, index: QModelIndex) -> bool:
-        return isinstance(
-            index.data(OcrQueueModel.DeviceOcrResultRole), DeviceOcrResult
-        )
+        return True
+        # return isinstance(self.getChart(index), Chart) and isinstance(
+        #     self.getScore(index), ScoreInsert
+        # )
+        # return isinstance(
+        #     index.data(OcrQueueModel.OcrResultRole), (DeviceOcrResult, B30OcrResultItem)
+        # )
 
     def setModelData(self, editor, model: OcrQueueTableProxyModel, index):
         if super().confirmSetModelData(editor):

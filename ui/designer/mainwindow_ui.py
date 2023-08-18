@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'mainwindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.0
+## Created by: Qt User Interface Compiler version 6.5.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -21,6 +21,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QSizePolicy, QTabWidge
 from ui.implements.tabs.tabAbout import TabAbout
 from ui.implements.tabs.tabDbEntry import TabDbEntry
 from ui.implements.tabs.tabInputScore import TabInputScore
+from ui.implements.tabs.tabOcrEntry import TabOcrEntry
 from ui.implements.tabs.tabOverview import TabOverview
 from ui.implements.tabs.tabSettings import TabSettings
 
@@ -45,7 +46,7 @@ class Ui_MainWindow(object):
         self.tab_db = TabDbEntry()
         self.tab_db.setObjectName(u"tab_db")
         self.tabWidget.addTab(self.tab_db, "")
-        self.tab_ocr = QWidget()
+        self.tab_ocr = TabOcrEntry()
         self.tab_ocr.setObjectName(u"tab_ocr")
         self.tabWidget.addTab(self.tab_ocr, "")
         self.tab_settings = TabSettings()

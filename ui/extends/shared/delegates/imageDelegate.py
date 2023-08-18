@@ -51,7 +51,10 @@ class ImageDelegate(QStyledItemDelegate):
             label.setWindowFlag(Qt.WindowType.WindowMinimizeButtonHint, False)
             label.setWindowFlag(Qt.WindowType.WindowMaximizeButtonHint, False)
             label.setWindowFlag(Qt.WindowType.WindowCloseButtonHint, True)
-            label.setWindowTitle(QFileInfo(self.getImagePath(index)).fileName())
+            imagePath = self.getImagePath(index)
+            label.setWindowTitle(
+                QFileInfo(imagePath).fileName() if imagePath else "Preview"
+            )
             pixmap = pixmap.scaled(
                 800,
                 800,

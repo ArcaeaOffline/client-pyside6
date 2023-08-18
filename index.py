@@ -7,10 +7,10 @@ from PySide6.QtCore import QLibraryInfo, QLocale, QTranslator
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QDialog, QMessageBox
 
-from ui.startup.databaseChecker import DatabaseChecker
-from ui.implements.mainwindow import MainWindow
 import ui.resources.images.images_rc
 import ui.resources.translations.translations_rc
+from ui.implements.mainwindow import MainWindow
+from ui.startup.databaseChecker import DatabaseChecker
 
 logging.basicConfig(level=logging.INFO, stream=sys.stdout, force=True)
 

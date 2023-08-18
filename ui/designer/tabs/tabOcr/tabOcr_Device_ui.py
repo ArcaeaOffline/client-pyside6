@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'tabOcr.ui'
+## Form generated from reading UI file 'tabOcr_Device.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -22,20 +22,20 @@ from ui.implements.components.devicesComboBox import DevicesComboBox
 from ui.implements.components.fileSelector import FileSelector
 from ui.implements.components.ocrQueue import OcrQueue
 
-class Ui_TabOcr(object):
-    def setupUi(self, TabOcr):
-        if not TabOcr.objectName():
-            TabOcr.setObjectName(u"TabOcr")
-        TabOcr.resize(632, 527)
-        TabOcr.setWindowTitle(u"TabOcr")
-        self.verticalLayout_3 = QVBoxLayout(TabOcr)
+class Ui_TabOcr_Device(object):
+    def setupUi(self, TabOcr_Device):
+        if not TabOcr_Device.objectName():
+            TabOcr_Device.setObjectName(u"TabOcr_Device")
+        TabOcr_Device.resize(632, 527)
+        TabOcr_Device.setWindowTitle(u"TabOcr_Device")
+        self.verticalLayout_3 = QVBoxLayout(TabOcr_Device)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.openWizardButton = QPushButton(TabOcr)
+        self.openWizardButton = QPushButton(TabOcr_Device)
         self.openWizardButton.setObjectName(u"openWizardButton")
 
         self.verticalLayout_3.addWidget(self.openWizardButton)
 
-        self.groupBox = QGroupBox(TabOcr)
+        self.groupBox = QGroupBox(TabOcr_Device)
         self.groupBox.setObjectName(u"groupBox")
         self.verticalLayout = QVBoxLayout(self.groupBox)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -52,7 +52,7 @@ class Ui_TabOcr(object):
 
         self.verticalLayout_3.addWidget(self.groupBox)
 
-        self.horizontalWidget = QWidget(TabOcr)
+        self.horizontalWidget = QWidget(TabOcr_Device)
         self.horizontalWidget.setObjectName(u"horizontalWidget")
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
@@ -118,39 +118,31 @@ class Ui_TabOcr(object):
 
         self.verticalLayout_3.addWidget(self.horizontalWidget)
 
-        self.groupBox_2 = QGroupBox(TabOcr)
-        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.ocrQueue = OcrQueue(TabOcr_Device)
+        self.ocrQueue.setObjectName(u"ocrQueue")
         sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
-        self.groupBox_2.setSizePolicy(sizePolicy1)
-        self.horizontalLayout = QHBoxLayout(self.groupBox_2)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.ocrQueue = OcrQueue(self.groupBox_2)
-        self.ocrQueue.setObjectName(u"ocrQueue")
+        sizePolicy1.setHeightForWidth(self.ocrQueue.sizePolicy().hasHeightForWidth())
+        self.ocrQueue.setSizePolicy(sizePolicy1)
 
-        self.horizontalLayout.addWidget(self.ocrQueue)
+        self.verticalLayout_3.addWidget(self.ocrQueue)
 
 
-        self.verticalLayout_3.addWidget(self.groupBox_2)
-
-
-        self.retranslateUi(TabOcr)
+        self.retranslateUi(TabOcr_Device)
 
         self.deviceDependenciesStackedWidget.setCurrentIndex(0)
 
 
-        QMetaObject.connectSlotsByName(TabOcr)
+        QMetaObject.connectSlotsByName(TabOcr_Device)
     # setupUi
 
-    def retranslateUi(self, TabOcr):
-        self.openWizardButton.setText(QCoreApplication.translate("TabOcr", u"openWizardButton", None))
-        self.groupBox.setTitle(QCoreApplication.translate("TabOcr", u"deviceSelector.title", None))
-        self.groupBox_6.setTitle(QCoreApplication.translate("TabOcr", u"knnModelSelector.title", None))
-        self.groupBox_4.setTitle(QCoreApplication.translate("TabOcr", u"tesseractSelector.title", None))
-        self.groupBox_5.setTitle(QCoreApplication.translate("TabOcr", u"siftDatabaseSelector.title", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("TabOcr", u"ocr.title", None))
+    def retranslateUi(self, TabOcr_Device):
+        self.openWizardButton.setText(QCoreApplication.translate("TabOcr_Device", u"openWizardButton", None))
+        self.groupBox.setTitle(QCoreApplication.translate("TabOcr_Device", u"deviceSelector.title", None))
+        self.groupBox_6.setTitle(QCoreApplication.translate("TabOcr_Device", u"knnModelSelector.title", None))
+        self.groupBox_4.setTitle(QCoreApplication.translate("TabOcr_Device", u"tesseractSelector.title", None))
+        self.groupBox_5.setTitle(QCoreApplication.translate("TabOcr_Device", u"siftDatabaseSelector.title", None))
         pass
     # retranslateUi
 

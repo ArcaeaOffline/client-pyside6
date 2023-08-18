@@ -35,7 +35,7 @@
         <string>tab.db</string>
        </attribute>
       </widget>
-      <widget class="QWidget" name="tab_ocr">
+      <widget class="TabOcrEntry" name="tab_ocr">
        <attribute name="title">
         <string>tab.ocr</string>
        </attribute>
@@ -84,6 +84,12 @@
    <class>TabDbEntry</class>
    <extends>QWidget</extends>
    <header>ui.implements.tabs.tabDbEntry</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabOcrEntry</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabOcrEntry</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TabOcrEntry</class>
+ <widget class="QWidget" name="TabOcrEntry">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>478</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">TabOcrEntry</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="TabOcr_Device" name="tab">
+      <attribute name="title">
+       <string>tab.device</string>
+      </attribute>
+     </widget>
+     <widget class="TabOcr_B30" name="tab_2">
+      <attribute name="title">
+       <string>tab.b30</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TabOcr_Device</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabOcr.tabOcr_Device</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabOcr_B30</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabOcr.tabOcr_B30</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

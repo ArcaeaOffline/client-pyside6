@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TabOcr</class>
- <widget class="QWidget" name="TabOcr">
+ <class>TabOcr_Device</class>
+ <widget class="QWidget" name="TabOcr_Device">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string notr="true">TabOcr</string>
+   <string notr="true">TabOcr_Device</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
@@ -136,21 +136,13 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_2">
+    <widget class="OcrQueue" name="ocrQueue" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="title">
-      <string>ocr.title</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="OcrQueue" name="ocrQueue" native="true"/>
-      </item>
-     </layout>
     </widget>
    </item>
   </layout>

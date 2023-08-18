@@ -8,13 +8,16 @@ from arcaea_offline_ocr.sift_db import SIFTDatabase
 from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QFileDialog, QWidget
 
-from ui.designer.tabs.tabOcr_ui import Ui_TabOcr
+from ui.designer.tabs.tabOcr.tabOcr_Device_ui import Ui_TabOcr_Device
 from ui.extends.components.ocrQueue import OcrQueueModel
 from ui.extends.settings import Settings
-from ui.extends.tabs.tabOcr import ScoreInsertConverter, TabDeviceV2OcrRunnable
+from ui.extends.tabs.tabOcr.tabOcr_Device import (
+    ScoreInsertConverter,
+    TabDeviceV2OcrRunnable,
+)
 
 
-class TabOcr(Ui_TabOcr, QWidget):
+class TabOcr_Device(Ui_TabOcr_Device, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
