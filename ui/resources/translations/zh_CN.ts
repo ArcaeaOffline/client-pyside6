@@ -211,11 +211,6 @@
 <context>
     <name>OcrQueue</name>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="14"/>
-        <source>OcrQueue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../designer/components/ocrQueue.ui" line="20"/>
         <source>ocr.queue.title</source>
         <translation>队列</translation>
@@ -264,22 +259,22 @@
 <context>
     <name>OcrTableModel</name>
     <message>
-        <location filename="../../extends/components/ocrQueue/__init__.py" line="281"/>
+        <location filename="../../extends/components/ocrQueue/__init__.py" line="313"/>
         <source>horizontalHeader.title.select</source>
         <translation>选择</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue/__init__.py" line="282"/>
+        <location filename="../../extends/components/ocrQueue/__init__.py" line="314"/>
         <source>horizontalHeader.title.imagePreview</source>
         <translation>图像预览</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue/__init__.py" line="283"/>
+        <location filename="../../extends/components/ocrQueue/__init__.py" line="315"/>
         <source>horizontalHeader.title.chart</source>
         <translation>谱面</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue/__init__.py" line="284"/>
+        <location filename="../../extends/components/ocrQueue/__init__.py" line="316"/>
         <source>horizontalHeader.title.score</source>
         <translation>分数</translation>
     </message>
@@ -419,6 +414,16 @@
         <source>syncArcSongDb.description</source>
         <translation>将谱面信息写入数据库</translation>
     </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="37"/>
+        <source>importSt3Button</source>
+        <translation>导入本地存档数据库</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="44"/>
+        <source>importSt3.description</source>
+        <translation>遏卡抑五年，天降飞龙，姿容极度美艳。白衣仙女以妙法擒之，与之相恋。&lt;br&gt;来年，恶人携联结万邦之力来袭，仙女龙妃以根源之术，呼唤神通叁式之威，退敌千里，永护宝库安宁。</translation>
+    </message>
 </context>
 <context>
     <name>TabInputScore</name>
@@ -434,44 +439,80 @@
     </message>
 </context>
 <context>
-    <name>TabOcr</name>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="20"/>
-        <source>openWizardButton</source>
-        <translation>打开设备创建向导</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="27"/>
-        <source>deviceSelector.title</source>
-        <translation>选择设备</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="63"/>
-        <source>knnModelSelector.title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="94"/>
-        <source>tesseractSelector.title</source>
-        <translation>选择 tesseract 路径</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="122"/>
-        <source>siftDatabaseSelector.title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="147"/>
-        <source>ocr.title</source>
-        <translation>OCR</translation>
-    </message>
-</context>
-<context>
     <name>TabOcrDisabled</name>
     <message>
         <location filename="../../designer/tabs/tabOcrDisabled.ui" line="81"/>
         <source>ocrDisabled.title</source>
         <translation>OCR 已禁用</translation>
+    </message>
+</context>
+<context>
+    <name>TabOcrEntry</name>
+    <message>
+        <location filename="../../designer/tabs/tabOcrEntry.ui" line="24"/>
+        <source>tab.device</source>
+        <translation>截图</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcrEntry.ui" line="29"/>
+        <source>tab.b30</source>
+        <translation>B30</translation>
+    </message>
+</context>
+<context>
+    <name>TabOcr_B30</name>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="20"/>
+        <source>b30type</source>
+        <translation>B30 图片类型</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="34"/>
+        <source>knnModelSelector.title</source>
+        <translation>选择 KNearest 模型</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="46"/>
+        <source>b30KnnModelSelector.title</source>
+        <translation>选择 B30 特别版 KNearest 模型</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="62"/>
+        <source>siftDatabaseSelector.title</source>
+        <translation>选择图像 SIFT 特征值数据库</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="74"/>
+        <source>imageSelector.title</source>
+        <translation>选择图片</translation>
+    </message>
+</context>
+<context>
+    <name>TabOcr_Device</name>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="20"/>
+        <source>openWizardButton</source>
+        <translation>打开设备创建向导</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="27"/>
+        <source>deviceSelector.title</source>
+        <translation>选择设备</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="63"/>
+        <source>knnModelSelector.title</source>
+        <translation>选择 KNearest 模型</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="94"/>
+        <source>tesseractSelector.title</source>
+        <translation>选择 tesseract 路径</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="122"/>
+        <source>siftDatabaseSelector.title</source>
+        <translation>选择图像 SIFT 特征值数据库</translation>
     </message>
 </context>
 </TS>

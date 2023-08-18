@@ -211,11 +211,6 @@
 <context>
     <name>OcrQueue</name>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="14"/>
-        <source>OcrQueue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../designer/components/ocrQueue.ui" line="20"/>
         <source>ocr.queue.title</source>
         <translation>Queue</translation>
@@ -265,22 +260,22 @@ validation</translation>
 <context>
     <name>OcrTableModel</name>
     <message>
-        <location filename="../../extends/components/ocrQueue/__init__.py" line="281"/>
+        <location filename="../../extends/components/ocrQueue/__init__.py" line="313"/>
         <source>horizontalHeader.title.select</source>
         <translation>Select</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue/__init__.py" line="282"/>
+        <location filename="../../extends/components/ocrQueue/__init__.py" line="314"/>
         <source>horizontalHeader.title.imagePreview</source>
         <translation>Image Preview</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue/__init__.py" line="283"/>
+        <location filename="../../extends/components/ocrQueue/__init__.py" line="315"/>
         <source>horizontalHeader.title.chart</source>
         <translation>Chart</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue/__init__.py" line="284"/>
+        <location filename="../../extends/components/ocrQueue/__init__.py" line="316"/>
         <source>horizontalHeader.title.score</source>
         <translation>Score</translation>
     </message>
@@ -420,6 +415,16 @@ validation</translation>
         <source>syncArcSongDb.description</source>
         <translation>Write chart info to database</translation>
     </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="37"/>
+        <source>importSt3Button</source>
+        <translation>Import Score Database</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="44"/>
+        <source>importSt3.description</source>
+        <translation>Import your local score database</translation>
+    </message>
 </context>
 <context>
     <name>TabInputScore</name>
@@ -435,44 +440,80 @@ validation</translation>
     </message>
 </context>
 <context>
-    <name>TabOcr</name>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="20"/>
-        <source>openWizardButton</source>
-        <translation>Open Device Creation Wizard</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="27"/>
-        <source>deviceSelector.title</source>
-        <translation>Select Device</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="63"/>
-        <source>knnModelSelector.title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="94"/>
-        <source>tesseractSelector.title</source>
-        <translation>Select tesseract Path</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="122"/>
-        <source>siftDatabaseSelector.title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr.ui" line="147"/>
-        <source>ocr.title</source>
-        <translation>OCR</translation>
-    </message>
-</context>
-<context>
     <name>TabOcrDisabled</name>
     <message>
         <location filename="../../designer/tabs/tabOcrDisabled.ui" line="81"/>
         <source>ocrDisabled.title</source>
         <translation>OCR disabled</translation>
+    </message>
+</context>
+<context>
+    <name>TabOcrEntry</name>
+    <message>
+        <location filename="../../designer/tabs/tabOcrEntry.ui" line="24"/>
+        <source>tab.device</source>
+        <translation>Screenshot</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcrEntry.ui" line="29"/>
+        <source>tab.b30</source>
+        <translation>B30</translation>
+    </message>
+</context>
+<context>
+    <name>TabOcr_B30</name>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="20"/>
+        <source>b30type</source>
+        <translation>B30 Image Type</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="34"/>
+        <source>knnModelSelector.title</source>
+        <translation>Select KNearest Model</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="46"/>
+        <source>b30KnnModelSelector.title</source>
+        <translation>Select B30 specialized KNearest Model</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="62"/>
+        <source>siftDatabaseSelector.title</source>
+        <translation>Select Image SIFT Database</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="74"/>
+        <source>imageSelector.title</source>
+        <translation>Select Image</translation>
+    </message>
+</context>
+<context>
+    <name>TabOcr_Device</name>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="20"/>
+        <source>openWizardButton</source>
+        <translation>Open Device Creation Wizard</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="27"/>
+        <source>deviceSelector.title</source>
+        <translation>Select Device</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="63"/>
+        <source>knnModelSelector.title</source>
+        <translation>Select KNearest Model</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="94"/>
+        <source>tesseractSelector.title</source>
+        <translation>Select tesseract Path</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="122"/>
+        <source>siftDatabaseSelector.title</source>
+        <translation>Select Image SIFT Database</translation>
     </message>
 </context>
 </TS>
