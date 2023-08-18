@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'tabDb_Manage.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.0
+## Created by: Qt User Interface Compiler version 6.5.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -37,6 +37,16 @@ class Ui_TabDb_Manage(object):
 
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.label)
 
+        self.importSt3Button = QPushButton(TabDb_Manage)
+        self.importSt3Button.setObjectName(u"importSt3Button")
+
+        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.importSt3Button)
+
+        self.label_2 = QLabel(TabDb_Manage)
+        self.label_2.setObjectName(u"label_2")
+
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.label_2)
+
 
         self.retranslateUi(TabDb_Manage)
 
@@ -46,6 +56,8 @@ class Ui_TabDb_Manage(object):
     def retranslateUi(self, TabDb_Manage):
         self.syncArcSongDbButton.setText(QCoreApplication.translate("TabDb_Manage", u"syncArcSongDbButton", None))
         self.label.setText(QCoreApplication.translate("TabDb_Manage", u"syncArcSongDb.description", None))
+        self.importSt3Button.setText(QCoreApplication.translate("TabDb_Manage", u"importSt3Button", None))
+        self.label_2.setText(QCoreApplication.translate("TabDb_Manage", u"importSt3.description", None))
         pass
     # retranslateUi
 
