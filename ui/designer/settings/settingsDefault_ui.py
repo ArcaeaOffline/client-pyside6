@@ -82,6 +82,7 @@ class Ui_SettingsDefault(object):
 
         self.label = QLabel(SettingsDefault)
         self.label.setObjectName(u"label")
+        self.label.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.label, 3, 0, 1, 1)
 
@@ -96,6 +97,7 @@ class Ui_SettingsDefault(object):
 
         self.label_5 = QLabel(SettingsDefault)
         self.label_5.setObjectName(u"label_5")
+        self.label_5.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.label_5, 4, 0, 1, 1)
 

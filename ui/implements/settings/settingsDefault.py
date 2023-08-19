@@ -25,6 +25,8 @@ class SettingsDefault(Ui_SettingsDefault, QWidget):
         self.devicesJsonFileSelector.selectFile(devicesJsonPath)
         tesseractPath = self.settings.tesseractPath()
         self.tesseractFileSelector.selectFile(tesseractPath)
+        self.knnModelFileSelector.selectFile(self.settings.knnModelFile())
+        self.siftDatabaseFileSelector.selectFile(self.settings.siftDatabaseFile())
 
         self.devicesJsonFileSelector.accepted.connect(
             self.on_devicesJsonFileSelector_accepted
