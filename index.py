@@ -12,7 +12,14 @@ import ui.resources.translations.translations_rc
 from ui.implements.mainwindow import MainWindow
 from ui.startup.databaseChecker import DatabaseChecker
 
-logging.basicConfig(level=logging.INFO, stream=sys.stdout, force=True)
+logging.basicConfig(
+    level=logging.INFO,
+    stream=sys.stdout,
+    force=True,
+    format="[{levelname}]{asctime}|{name}: {msg}",
+    datefmt="%m-%d %H:%M:%S",
+    style="{",
+)
 
 if __name__ == "__main__":
     QCoreApplication.setApplicationName("Arcaea Offline")
