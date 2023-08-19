@@ -50,6 +50,34 @@
     </message>
 </context>
 <context>
+    <name>DB30TableModel</name>
+    <message>
+        <location filename="../../extends/shared/models/tables/b30.py" line="21"/>
+        <source>horizontalHeader.tableId</source>
+        <translation>序号</translation>
+    </message>
+    <message>
+        <location filename="../../extends/shared/models/tables/b30.py" line="22"/>
+        <source>horizontalHeader.id</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <location filename="../../extends/shared/models/tables/b30.py" line="23"/>
+        <source>horizontalHeader.chart</source>
+        <translation>谱面</translation>
+    </message>
+    <message>
+        <location filename="../../extends/shared/models/tables/b30.py" line="24"/>
+        <source>horizontalHeader.score</source>
+        <translation>分数</translation>
+    </message>
+    <message>
+        <location filename="../../extends/shared/models/tables/b30.py" line="25"/>
+        <source>horizontalHeader.potential</source>
+        <translation>单曲 PTT</translation>
+    </message>
+</context>
+<context>
     <name>DatabaseChecker</name>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="23"/>
@@ -259,22 +287,22 @@
 <context>
     <name>OcrTableModel</name>
     <message>
-        <location filename="../../extends/components/ocrQueue/__init__.py" line="313"/>
+        <location filename="../../extends/components/ocrQueue.py" line="313"/>
         <source>horizontalHeader.title.select</source>
         <translation>选择</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue/__init__.py" line="314"/>
+        <location filename="../../extends/components/ocrQueue.py" line="314"/>
         <source>horizontalHeader.title.imagePreview</source>
         <translation>图像预览</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue/__init__.py" line="315"/>
+        <location filename="../../extends/components/ocrQueue.py" line="315"/>
         <source>horizontalHeader.title.chart</source>
         <translation>谱面</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue/__init__.py" line="316"/>
+        <location filename="../../extends/components/ocrQueue.py" line="316"/>
         <source>horizontalHeader.title.score</source>
         <translation>分数</translation>
     </message>
@@ -411,9 +439,14 @@
         <translation>管理</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDbEntry.py" line="15"/>
+        <location filename="../../implements/tabs/tabDbEntry.py" line="16"/>
         <source>tab.scoreTableViewer</source>
         <translation>表 [分数]</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDbEntry.py" line="20"/>
+        <source>tab.b30TableViewer</source>
+        <translation>表 [B30]</translation>
     </message>
 </context>
 <context>
