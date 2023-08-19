@@ -2,7 +2,7 @@ from PySide6.QtCore import Slot
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QGraphicsColorizeEffect, QRadioButton
 
-from ui.extends.color import mix_color
+from ui.extends.shared.color import mix_color
 
 STYLESHEET = """
 QRadioButton {{

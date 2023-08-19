@@ -12,7 +12,7 @@ from PySide6.QtWidgets import QFileDialog, QWidget
 
 from ui.designer.tabs.tabOcr.tabOcr_Device_ui import Ui_TabOcr_Device
 from ui.extends.components.ocrQueue import OcrQueueModel
-from ui.extends.settings import Settings
+from ui.extends.shared.settings import Settings
 from ui.extends.tabs.tabOcr.tabOcr_Device import (
     ScoreInsertConverter,
     TabDeviceV2OcrRunnable,

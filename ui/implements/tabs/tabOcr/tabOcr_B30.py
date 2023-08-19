@@ -12,7 +12,7 @@ from PySide6.QtWidgets import QWidget
 
 from ui.designer.tabs.tabOcr.tabOcr_B30_ui import Ui_TabOcr_B30
 from ui.extends.components.ocrQueue import OcrQueueModel
-from ui.extends.settings import Settings
+from ui.extends.shared.settings import Settings
 from ui.extends.shared.cv2_utils import cv2BgrMatToQImage, qImageToCvMatBgr
 from ui.extends.tabs.tabOcr.tabOcr_B30 import (
     ChieriV4OcrRunnable,

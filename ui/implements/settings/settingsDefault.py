@@ -5,7 +5,7 @@ from PySide6.QtWidgets import QWidget
 
 from ui.designer.settings.settingsDefault_ui import Ui_SettingsDefault
 from ui.extends.ocr import load_devices_json
-from ui.extends.settings import *
+from ui.extends.shared.settings import *
 
 logger = logging.getLogger(__name__)
 

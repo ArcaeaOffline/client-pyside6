@@ -4,7 +4,7 @@ from arcaea_offline.database import Database
 from PySide6.QtCore import QDir, QFile, Qt, QTimer, Slot
 from PySide6.QtWidgets import QDialog, QMessageBox
 
-from ui.extends.settings import Settings
+from ui.extends.shared.settings import Settings
 
 from .databaseChecker_ui import Ui_DatabaseChecker
 
