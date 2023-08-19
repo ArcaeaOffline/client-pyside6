@@ -3,7 +3,7 @@ import sys
 import traceback
 
 from arcaea_offline.database import Database
-from PySide6.QtCore import QLibraryInfo, QLocale, QTranslator
+from PySide6.QtCore import QCoreApplication, QLibraryInfo, QLocale, QTranslator
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QDialog, QMessageBox
 
@@ -15,6 +15,8 @@ from ui.startup.databaseChecker import DatabaseChecker
 logging.basicConfig(level=logging.INFO, stream=sys.stdout, force=True)
 
 if __name__ == "__main__":
+    QCoreApplication.setApplicationName("Arcaea Offline")
+
     locale = QLocale.system()
     translator = QTranslator()
     translator_load_success = translator.load(QLocale.system(), "", "", ":/lang/")

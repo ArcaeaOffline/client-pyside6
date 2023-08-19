@@ -27,7 +27,7 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
 
         try:
             Database().update_arcsong_db(dbFile)
-            QMessageBox.information(self, "OK", "OK")
+            QMessageBox.information(self, None, "OK")
         except Exception as e:
             logging.exception("Sync arcsong.db error")
             QMessageBox.critical(
@@ -47,7 +47,7 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
                 f"Got {len(scores)} items from {dbFile}, writing into database..."
             )
             Database().import_external(scores)
-            QMessageBox.information(self, "OK", "OK")
+            QMessageBox.information(self, None, "OK")
         except Exception as e:
             logging.exception("import st3 error")
             QMessageBox.critical(
