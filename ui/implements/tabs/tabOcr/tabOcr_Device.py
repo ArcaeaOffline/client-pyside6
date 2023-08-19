@@ -1,3 +1,5 @@
+import logging
+
 import cv2
 import pytesseract
 
@@ -15,6 +17,8 @@ from ui.extends.tabs.tabOcr.tabOcr_Device import (
     ScoreInsertConverter,
     TabDeviceV2OcrRunnable,
 )
+
+logger = logging.getLogger(__name__)
 
 
 class TabOcr_Device(Ui_TabOcr_Device, QWidget):
@@ -35,9 +39,12 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
         self.siftDatabaseSelector.filesSelected.connect(self.siftDatabaseFileSelected)
 
         settings = Settings()
+        logger.info("Applying default settings...")
         self.deviceFileSelector.selectFile(settings.devicesJsonFile())
         self.tesseractFileSelector.selectFile(settings.tesseractPath())
         self.deviceComboBox.selectDevice(settings.deviceUuid())
+        self.knnModelSelector.selectFile(settings.knnModelFile())
+        self.siftDatabaseSelector.selectFile(settings.siftDatabaseFile())
 
         self.ocrQueueModel = OcrQueueModel(self)
         self.ocrQueue.setModel(self.ocrQueueModel)

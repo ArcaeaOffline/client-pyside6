@@ -5,6 +5,8 @@ __all__ = [
     "DEVICES_JSON_FILE",
     "DEVICE_UUID",
     "TESSERACT_FILE",
+    "KNN_MODEL_FILE",
+    "SIFT_DATABASE_FILE",
     "Settings",
 ]
 
@@ -13,6 +15,8 @@ DATABASE_PATH = "General/DatabasePath"
 DEVICES_JSON_FILE = "Ocr/DevicesJsonFile"
 DEVICE_UUID = "Ocr/DeviceUuid"
 TESSERACT_FILE = "Ocr/TesseractFile"
+KNN_MODEL_FILE = "Ocr/KnnModelFile"
+SIFT_DATABASE_FILE = "Ocr/SiftDatabaseFile"
 
 
 class Settings(QSettings):
@@ -54,4 +58,26 @@ class Settings(QSettings):
 
     def resetTesseractPath(self):
         self.setValue(TESSERACT_FILE, None)
+        self.sync()
+
+    def knnModelFile(self) -> str | None:
+        return self.value(KNN_MODEL_FILE, None, str)
+
+    def setKnnModelFile(self, path: str):
+        self.setValue(KNN_MODEL_FILE, path)
+        self.sync()
+
+    def resetKnnModelFile(self):
+        self.setValue(KNN_MODEL_FILE, None)
+        self.sync()
+
+    def siftDatabaseFile(self) -> str | None:
+        return self.value(SIFT_DATABASE_FILE, None, str)
+
+    def setSiftDatabaseFile(self, path: str):
+        self.setValue(SIFT_DATABASE_FILE, path)
+        self.sync()
+
+    def resetSiftDatabaseFile(self):
+        self.setValue(SIFT_DATABASE_FILE, None)
         self.sync()

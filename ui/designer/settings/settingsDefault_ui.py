@@ -15,8 +15,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFormLayout, QHBoxLayout, QLabel,
-    QPushButton, QSizePolicy, QSpacerItem, QWidget)
+from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QPushButton,
+    QSizePolicy, QSpacerItem, QWidget)
 
 from ui.implements.components.devicesComboBox import DevicesComboBox
 from ui.implements.components.fileSelector import FileSelector
@@ -27,92 +27,89 @@ class Ui_SettingsDefault(object):
             SettingsDefault.setObjectName(u"SettingsDefault")
         SettingsDefault.resize(682, 493)
         SettingsDefault.setWindowTitle(u"SettingsDefault")
-        self.formLayout = QFormLayout(SettingsDefault)
-        self.formLayout.setObjectName(u"formLayout")
-        self.formLayout.setFieldGrowthPolicy(QFormLayout.ExpandingFieldsGrow)
-        self.formLayout.setRowWrapPolicy(QFormLayout.DontWrapRows)
-        self.formLayout.setLabelAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-        self.label_2 = QLabel(SettingsDefault)
-        self.label_2.setObjectName(u"label_2")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.MinimumExpanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy)
+        self.gridLayout = QGridLayout(SettingsDefault)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.devicesComboBox = DevicesComboBox(SettingsDefault)
+        self.devicesComboBox.setObjectName(u"devicesComboBox")
+        self.devicesComboBox.setMinimumSize(QSize(200, 0))
 
-        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label_2)
-
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.devicesJsonFileSelector = FileSelector(SettingsDefault)
-        self.devicesJsonFileSelector.setObjectName(u"devicesJsonFileSelector")
-        sizePolicy1 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.devicesJsonFileSelector.sizePolicy().hasHeightForWidth())
-        self.devicesJsonFileSelector.setSizePolicy(sizePolicy1)
-        self.devicesJsonFileSelector.setMinimumSize(QSize(200, 0))
-
-        self.horizontalLayout_2.addWidget(self.devicesJsonFileSelector)
-
-        self.devicesJsonFileResetButton = QPushButton(SettingsDefault)
-        self.devicesJsonFileResetButton.setObjectName(u"devicesJsonFileResetButton")
-
-        self.horizontalLayout_2.addWidget(self.devicesJsonFileResetButton)
-
-
-        self.formLayout.setLayout(0, QFormLayout.FieldRole, self.horizontalLayout_2)
+        self.gridLayout.addWidget(self.devicesComboBox, 1, 1, 1, 1)
 
         self.label_3 = QLabel(SettingsDefault)
         self.label_3.setObjectName(u"label_3")
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
         self.label_3.setSizePolicy(sizePolicy)
+        self.label_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_3)
-
-        self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.devicesComboBox = DevicesComboBox(SettingsDefault)
-        self.devicesComboBox.setObjectName(u"devicesComboBox")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.devicesComboBox.sizePolicy().hasHeightForWidth())
-        self.devicesComboBox.setSizePolicy(sizePolicy2)
-        self.devicesComboBox.setMinimumSize(QSize(200, 0))
-
-        self.horizontalLayout.addWidget(self.devicesComboBox)
-
-        self.deviceUuidResetButton = QPushButton(SettingsDefault)
-        self.deviceUuidResetButton.setObjectName(u"deviceUuidResetButton")
-
-        self.horizontalLayout.addWidget(self.deviceUuidResetButton)
-
-
-        self.formLayout.setLayout(1, QFormLayout.FieldRole, self.horizontalLayout)
+        self.gridLayout.addWidget(self.label_3, 1, 0, 1, 1)
 
         self.label_4 = QLabel(SettingsDefault)
         self.label_4.setObjectName(u"label_4")
         sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
         self.label_4.setSizePolicy(sizePolicy)
+        self.label_4.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.label_4)
+        self.gridLayout.addWidget(self.label_4, 2, 0, 1, 1)
 
         self.tesseractFileSelector = FileSelector(SettingsDefault)
         self.tesseractFileSelector.setObjectName(u"tesseractFileSelector")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.tesseractFileSelector.sizePolicy().hasHeightForWidth())
-        self.tesseractFileSelector.setSizePolicy(sizePolicy3)
+        self.tesseractFileSelector.setEnabled(False)
         self.tesseractFileSelector.setMinimumSize(QSize(200, 0))
 
-        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.tesseractFileSelector)
+        self.gridLayout.addWidget(self.tesseractFileSelector, 2, 1, 1, 1)
+
+        self.devicesJsonFileSelector = FileSelector(SettingsDefault)
+        self.devicesJsonFileSelector.setObjectName(u"devicesJsonFileSelector")
+        self.devicesJsonFileSelector.setMinimumSize(QSize(200, 0))
+
+        self.gridLayout.addWidget(self.devicesJsonFileSelector, 0, 1, 1, 1)
+
+        self.label_2 = QLabel(SettingsDefault)
+        self.label_2.setObjectName(u"label_2")
+        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy)
+        self.label_2.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
+
+        self.deviceUuidResetButton = QPushButton(SettingsDefault)
+        self.deviceUuidResetButton.setObjectName(u"deviceUuidResetButton")
+
+        self.gridLayout.addWidget(self.deviceUuidResetButton, 1, 2, 1, 1)
+
+        self.label = QLabel(SettingsDefault)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout.addWidget(self.label, 3, 0, 1, 1)
+
+        self.devicesJsonFileResetButton = QPushButton(SettingsDefault)
+        self.devicesJsonFileResetButton.setObjectName(u"devicesJsonFileResetButton")
+
+        self.gridLayout.addWidget(self.devicesJsonFileResetButton, 0, 2, 1, 1)
 
         self.verticalSpacer = QSpacerItem(20, 500000, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.formLayout.setItem(5, QFormLayout.FieldRole, self.verticalSpacer)
+        self.gridLayout.addItem(self.verticalSpacer, 5, 1, 1, 1)
 
+        self.label_5 = QLabel(SettingsDefault)
+        self.label_5.setObjectName(u"label_5")
+
+        self.gridLayout.addWidget(self.label_5, 4, 0, 1, 1)
+
+        self.knnModelFileSelector = FileSelector(SettingsDefault)
+        self.knnModelFileSelector.setObjectName(u"knnModelFileSelector")
+
+        self.gridLayout.addWidget(self.knnModelFileSelector, 3, 1, 1, 1)
+
+        self.siftDatabaseFileSelector = FileSelector(SettingsDefault)
+        self.siftDatabaseFileSelector.setObjectName(u"siftDatabaseFileSelector")
+
+        self.gridLayout.addWidget(self.siftDatabaseFileSelector, 4, 1, 1, 1)
+
+        self.gridLayout.setColumnStretch(1, 1)
 
         self.retranslateUi(SettingsDefault)
 
@@ -120,11 +117,13 @@ class Ui_SettingsDefault(object):
     # setupUi
 
     def retranslateUi(self, SettingsDefault):
-        self.label_2.setText(QCoreApplication.translate("SettingsDefault", u"devicesJsonFile", None))
-        self.devicesJsonFileResetButton.setText(QCoreApplication.translate("SettingsDefault", u"devicesJsonPath.resetButton", None))
         self.label_3.setText(QCoreApplication.translate("SettingsDefault", u"deviceUuid", None))
-        self.deviceUuidResetButton.setText(QCoreApplication.translate("SettingsDefault", u"defaultDevice.resetButton", None))
         self.label_4.setText(QCoreApplication.translate("SettingsDefault", u"tesseractFile", None))
+        self.label_2.setText(QCoreApplication.translate("SettingsDefault", u"devicesJsonFile", None))
+        self.deviceUuidResetButton.setText(QCoreApplication.translate("SettingsDefault", u"resetButton", None))
+        self.label.setText(QCoreApplication.translate("SettingsDefault", u"knnModelFile", None))
+        self.devicesJsonFileResetButton.setText(QCoreApplication.translate("SettingsDefault", u"resetButton", None))
+        self.label_5.setText(QCoreApplication.translate("SettingsDefault", u"siftDatabaseFile", None))
         pass
     # retranslateUi
 

@@ -12,6 +12,7 @@ from PySide6.QtWidgets import QWidget
 
 from ui.designer.tabs.tabOcr.tabOcr_B30_ui import Ui_TabOcr_B30
 from ui.extends.components.ocrQueue import OcrQueueModel
+from ui.extends.settings import Settings
 from ui.extends.shared.cv2_utils import cv2BgrMatToQImage, qImageToCvMatBgr
 from ui.extends.tabs.tabOcr.tabOcr_B30 import (
     ChieriV4OcrRunnable,
@@ -53,6 +54,11 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
         self.ocr = None
 
         self.tryPrepareOcr.connect(self.prepareOcr)
+
+        settings = Settings()
+        logger.info("Applying default settings...")
+        self.knnModelSelector.selectFile(settings.knnModelFile())
+        self.siftDatabaseSelector.selectFile(settings.siftDatabaseFile())
 
         self.ocrQueueModel = OcrQueueModel(self)
         self.ocrQueue.setModel(self.ocrQueueModel)

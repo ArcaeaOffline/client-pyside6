@@ -280,6 +280,14 @@
     </message>
 </context>
 <context>
+    <name>ResettableItem</name>
+    <message>
+        <location filename="../../designer/components/settings/resettableItem.ui" line="32"/>
+        <source>resetButton</source>
+        <translation>重置</translation>
+    </message>
+</context>
+<context>
     <name>ScoreEditor</name>
     <message>
         <location filename="../../designer/components/scoreEditor.ui" line="26"/>
@@ -356,29 +364,35 @@
 <context>
     <name>SettingsDefault</name>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="35"/>
+        <location filename="../../designer/settings/settingsDefault.ui" line="91"/>
         <source>devicesJsonFile</source>
         <translation>默认设备文件</translation>
     </message>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="75"/>
+        <location filename="../../designer/settings/settingsDefault.ui" line="36"/>
         <source>deviceUuid</source>
         <translation>默认设备</translation>
     </message>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="115"/>
+        <location filename="../../designer/settings/settingsDefault.ui" line="52"/>
         <source>tesseractFile</source>
         <translation>tesseract 路径</translation>
     </message>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="100"/>
-        <source>defaultDevice.resetButton</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../designer/settings/settingsDefault.ui" line="101"/>
+        <location filename="../../designer/settings/settingsDefault.ui" line="115"/>
+        <source>resetButton</source>
+        <translation>重置</translation>
     </message>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="60"/>
-        <source>devicesJsonPath.resetButton</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../designer/settings/settingsDefault.ui" line="108"/>
+        <source>knnModelFile</source>
+        <translation>默认 KNearest 模型</translation>
+    </message>
+    <message>
+        <location filename="../../designer/settings/settingsDefault.ui" line="138"/>
+        <source>siftDatabaseFile</source>
+        <translation>默认 SIFT 特征值数据库</translation>
     </message>
 </context>
 <context>

@@ -281,6 +281,14 @@ validation</translation>
     </message>
 </context>
 <context>
+    <name>ResettableItem</name>
+    <message>
+        <location filename="../../designer/components/settings/resettableItem.ui" line="32"/>
+        <source>resetButton</source>
+        <translation>Reset</translation>
+    </message>
+</context>
+<context>
     <name>ScoreEditor</name>
     <message>
         <location filename="../../designer/components/scoreEditor.ui" line="26"/>
@@ -357,29 +365,35 @@ validation</translation>
 <context>
     <name>SettingsDefault</name>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="35"/>
+        <location filename="../../designer/settings/settingsDefault.ui" line="91"/>
         <source>devicesJsonFile</source>
         <translation>Default devices.json</translation>
     </message>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="75"/>
+        <location filename="../../designer/settings/settingsDefault.ui" line="36"/>
         <source>deviceUuid</source>
         <translation>Default Device</translation>
     </message>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="115"/>
+        <location filename="../../designer/settings/settingsDefault.ui" line="52"/>
         <source>tesseractFile</source>
         <translation>tesseract Path</translation>
     </message>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="100"/>
-        <source>defaultDevice.resetButton</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../designer/settings/settingsDefault.ui" line="101"/>
+        <location filename="../../designer/settings/settingsDefault.ui" line="115"/>
+        <source>resetButton</source>
+        <translation>Reset</translation>
     </message>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="60"/>
-        <source>devicesJsonPath.resetButton</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../designer/settings/settingsDefault.ui" line="108"/>
+        <source>knnModelFile</source>
+        <translation>Default KNearest Model</translation>
+    </message>
+    <message>
+        <location filename="../../designer/settings/settingsDefault.ui" line="138"/>
+        <source>siftDatabaseFile</source>
+        <translation>Default SIFT Database File</translation>
     </message>
 </context>
 <context>

@@ -1,10 +1,13 @@
-from arcaea_offline.database import Database
+import logging
+
 from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QWidget
 
 from ui.designer.settings.settingsDefault_ui import Ui_SettingsDefault
 from ui.extends.ocr import load_devices_json
 from ui.extends.settings import *
+
+logger = logging.getLogger(__name__)
 
 
 class SettingsDefault(Ui_SettingsDefault, QWidget):
@@ -29,6 +32,12 @@ class SettingsDefault(Ui_SettingsDefault, QWidget):
         self.tesseractFileSelector.accepted.connect(
             self.on_tesseractFileSelector_accepted
         )
+        self.knnModelFileSelector.accepted.connect(
+            self.on_knnModelFileSelector_accepted
+        )
+        self.siftDatabaseFileSelector.accepted.connect(
+            self.on_siftDatabaseFileSelector_accepted
+        )
 
     def setDevicesJsonFile(self):
         try:
@@ -37,7 +46,7 @@ class SettingsDefault(Ui_SettingsDefault, QWidget):
             assert isinstance(devices, list)
             self.settings.setDevicesJsonFile(filename)
         except Exception as e:
-            print(e)
+            logger.exception("set deviceJsonFile error")
             # QMessageBox
             return
 
@@ -71,3 +80,17 @@ class SettingsDefault(Ui_SettingsDefault, QWidget):
 
     def on_tesseractFileSelector_accepted(self):
         self.setTesseractFile()
+
+    def setKnnModelFile(self):
+        file = self.knnModelFileSelector.selectedFiles()[0]
+        self.settings.setKnnModelFile(file)
+
+    def on_knnModelFileSelector_accepted(self):
+        self.setKnnModelFile()
+
+    def setSiftDatabaseFile(self):
+        file = self.siftDatabaseFileSelector.selectedFiles()[0]
+        self.settings.setSiftDatabaseFile(file)
+
+    def on_siftDatabaseFileSelector_accepted(self):
+        self.setSiftDatabaseFile()
