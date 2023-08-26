@@ -28,7 +28,7 @@ class DbB30TableModel(DbTableModel):
         self.__items.clear()
 
         results = self._db.conn.execute(
-            'SELECT * FROM calculated ORDER BY "potential" DESC LIMIT 40'
+            'SELECT * FROM calculated GROUP BY "potential" ORDER BY "potential" DESC LIMIT 40'
         ).fetchall()
 
         songIds = [r[0] for r in results]
