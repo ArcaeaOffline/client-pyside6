@@ -1,10 +1,11 @@
+import re
 from typing import Literal
 
 from arcaea_offline.database import Database
-from arcaea_offline.models import Chart, Package
-from arcaea_offline.utils import rating_class_to_text
+from arcaea_offline.models import Chart, Pack
+from arcaea_offline.utils.rating import rating_class_to_text
 from PySide6.QtCore import QModelIndex, Qt, Signal, Slot
-from PySide6.QtGui import QColor
+from PySide6.QtGui import QColor, QShowEvent
 from PySide6.QtWidgets import QCompleter, QWidget
 
 from ui.designer.components.chartSelector_ui import Ui_ChartSelector
@@ -19,7 +20,6 @@ class ChartSelector(Ui_ChartSelector, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.db = Database()
-        self.db.register_update_hook(self.fillPackageComboBox)
         self.setupUi(self)
 
         self.pstButton.setColors(QColor("#399bb2"), QColor("#f0f8fa"))
@@ -107,19 +107,28 @@ class ChartSelector(Ui_ChartSelector, QWidget):
         ratingClass = self.selectedRatingClass()
 
         if packageId and songId and isinstance(ratingClass, int):
-            return Chart.from_db_row(self.db.get_chart(songId, ratingClass))
+            return self.db.get_chart(songId, ratingClass)
         return None
+
+    def showEvent(self, event: QShowEvent):
+        # update database results when widget visible
+        self.fillPackageComboBox()
+        return super().showEvent(event)
 
     @Slot()
     def updateResultLabel(self):
         chart = self.value()
         if isinstance(chart, Chart):
-            package = Package.from_db_row(
-                self.db.get_package_by_package_id(chart.package_id)
-            )
+            pack = self.db.get_pack_by_id(chart.set)
             texts = [
-                [package.name, chart.name_en, rating_class_to_text(chart.rating_class)],
-                [package.id, chart.song_id, str(chart.rating_class)],
+                [
+                    pack.name,
+                    chart.title,
+                    f"{rating_class_to_text(chart.rating_class)} "
+                    f"{chart.rating}{'+' if chart.rating_plus else ''}"
+                    f"({chart.constant / 10})",
+                ],
+                [pack.id, chart.song_id, str(chart.rating_class)],
             ]
             texts = [" | ".join(t) for t in texts]
             text = f'{texts[0]}<br><font color="gray">{texts[1]}</font>'
@@ -129,37 +138,41 @@ class ChartSelector(Ui_ChartSelector, QWidget):
 
     def fillPackageComboBox(self):
         self.packageComboBox.clear()
-        packages = [Package.from_db_row(dbRow) for dbRow in self.db.get_packages()]
-        for package in packages:
-            self.packageComboBox.addItem(f"{package.name} ({package.id})", package.id)
+        packs = self.db.get_packs()
+        for pack in packs:
+            isAppendPack = re.search(r"_append_.*$", pack.id)
+            if isAppendPack:
+                basePackId = re.sub(r"_append_.*$", "", pack.id)
+                basePackName = self.db.get_pack_by_id(basePackId).name
+                packName = f"{basePackName} - {pack.name}"
+            else:
+                packName = pack.name
+            self.packageComboBox.addItem(f"{packName} ({pack.id})", pack.id)
             row = self.packageComboBox.count() - 1
             self.packageComboBox.setItemData(
-                row, package.name, DescriptionDelegate.MainTextRole
+                row, packName, DescriptionDelegate.MainTextRole
             )
             self.packageComboBox.setItemData(
-                row, package.id, DescriptionDelegate.DescriptionTextRole
+                row, pack.id, DescriptionDelegate.DescriptionTextRole
             )
 
         self.packageComboBox.setCurrentIndex(-1)
 
     def fillSongIdComboBox(self):
         self.songIdComboBox.clear()
-        packageId = self.packageComboBox.currentData()
-        if packageId:
-            charts = [
-                Chart.from_db_row(dbRow)
-                for dbRow in self.db.get_charts_by_package_id(packageId)
-            ]
+        packId = self.packageComboBox.currentData()
+        if packId:
+            charts = self.db.get_charts_by_pack_id(packId)
             inserted_song_ids = []
             for chart in charts:
                 if chart.song_id not in inserted_song_ids:
                     self.songIdComboBox.addItem(
-                        f"{chart.name_en} ({chart.song_id})", chart.song_id
+                        f"{chart.title} ({chart.song_id})", chart.song_id
                     )
                     inserted_song_ids.append(chart.song_id)
                     row = self.songIdComboBox.count() - 1
                     self.songIdComboBox.setItemData(
-                        row, chart.name_en, DescriptionDelegate.MainTextRole
+                        row, chart.title, DescriptionDelegate.MainTextRole
                     )
                     self.songIdComboBox.setItemData(
                         row, chart.song_id, DescriptionDelegate.DescriptionTextRole
@@ -174,12 +187,7 @@ class ChartSelector(Ui_ChartSelector, QWidget):
     def on_songIdComboBox_currentIndexChanged(self, index: int):
         rating_classes = []
         if index > -1:
-            charts = [
-                Chart.from_db_row(dbRow)
-                for dbRow in self.db.get_charts_by_song_id(
-                    self.songIdComboBox.currentData()
-                )
-            ]
+            charts = self.db.get_charts_by_song_id(self.songIdComboBox.currentData())
             rating_classes = [chart.rating_class for chart in charts]
         self.updateRatingClassButtonsEnabled(rating_classes)
 
@@ -196,7 +204,7 @@ class ChartSelector(Ui_ChartSelector, QWidget):
             self.fuzzySearchCompleterModel.clear()
 
     def selectChart(self, chart: Chart):
-        packageIdIndex = self.packageComboBox.findData(chart.package_id)
+        packageIdIndex = self.packageComboBox.findData(chart.set)
         if packageIdIndex > -1:
             self.packageComboBox.setCurrentIndex(packageIdIndex)
         else:

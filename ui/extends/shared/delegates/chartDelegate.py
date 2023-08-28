@@ -1,9 +1,7 @@
-from typing import Union
-
 from arcaea_offline.models import Chart
-from arcaea_offline.utils import rating_class_to_short_text, rating_class_to_text
-from PySide6.QtCore import QDateTime, QModelIndex, Qt, Signal
-from PySide6.QtGui import QBrush, QColor
+from arcaea_offline.utils.rating import rating_class_to_short_text, rating_class_to_text
+from PySide6.QtCore import QModelIndex, Qt, Signal
+from PySide6.QtGui import QColor
 from PySide6.QtWidgets import (
     QFrame,
     QHBoxLayout,

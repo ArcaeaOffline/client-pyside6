@@ -3,7 +3,7 @@ from typing import Any, Callable, Optional, overload
 
 from arcaea_offline.calculate import calculate_score_range
 from arcaea_offline.database import Database
-from arcaea_offline.models import Chart, ScoreInsert
+from arcaea_offline.models import Chart, Score
 from arcaea_offline_ocr.b30.shared import B30OcrResultItem
 from arcaea_offline_ocr.device.shared import DeviceOcrResult
 from PySide6.QtCore import (
@@ -47,14 +47,14 @@ class OcrQueueModel(QAbstractListModel):
     ImagePixmapRole = Qt.ItemDataRole.UserRole + 3
 
     OcrResultRole = Qt.ItemDataRole.UserRole + 10
-    ScoreInsertRole = Qt.ItemDataRole.UserRole + 11
+    ScoreRole = Qt.ItemDataRole.UserRole + 11
     ChartRole = Qt.ItemDataRole.UserRole + 12
     ScoreValidateOkRole = Qt.ItemDataRole.UserRole + 13
 
     OcrRunnableRole = Qt.ItemDataRole.UserRole + 20
     ProcessOcrResultFuncRole = (
         Qt.ItemDataRole.UserRole + 21
-    )  # Callable[[imageStr, DeviceOcrResult], tuple[Chart, ScoreInsert]]
+    )  # Callable[[imageStr, DeviceOcrResult], tuple[Chart, Score]]
 
     started = Signal()
     progress = Signal(int)
@@ -107,8 +107,8 @@ class OcrQueueModel(QAbstractListModel):
             self.updateScoreValidateOk(index.row())
             updateRole = role
 
-        if role == self.ScoreInsertRole and isinstance(value, ScoreInsert):
-            item[self.ScoreInsertRole] = value
+        if role == self.ScoreRole and isinstance(value, Score):
+            item[self.ScoreRole] = value
             self.updateScoreValidateOk(index.row())
             updateRole = role
 
@@ -138,7 +138,7 @@ class OcrQueueModel(QAbstractListModel):
         self,
         image: str,
         runnable: OcrRunnable = None,
-        process_func: Callable[[Optional[str], QImage, Any], ScoreInsert] = None,
+        process_func: Callable[[Optional[str], QImage, Any], Score] = None,
     ):
         ...
 
@@ -147,7 +147,7 @@ class OcrQueueModel(QAbstractListModel):
         self,
         image: QImage,
         runnable: OcrRunnable = None,
-        process_func: Callable[[Optional[str], QImage, Any], ScoreInsert] = None,
+        process_func: Callable[[Optional[str], QImage, Any], Score] = None,
     ):
         ...
 
@@ -178,7 +178,7 @@ class OcrQueueModel(QAbstractListModel):
                 self.ImageQImageRole: qImage,
                 self.ImagePixmapRole: qPixmap,
                 self.OcrResultRole: None,
-                self.ScoreInsertRole: None,
+                self.ScoreRole: None,
                 self.ChartRole: None,
                 self.ScoreValidateOkRole: False,
                 self.OcrRunnableRole: runnable,
@@ -201,7 +201,7 @@ class OcrQueueModel(QAbstractListModel):
 
         self.setData(index, result, self.OcrResultRole)
         self.setData(index, chart, self.ChartRole)
-        self.setData(index, scoreInsert, self.ScoreInsertRole)
+        self.setData(index, scoreInsert, self.ScoreRole)
         return True
 
     @Slot(DeviceOcrResult)
@@ -234,8 +234,8 @@ class OcrQueueModel(QAbstractListModel):
 
         index = self.index(row, 0)
         chart = index.data(self.ChartRole)
-        score = index.data(self.ScoreInsertRole)
-        if isinstance(chart, Chart) and isinstance(score, ScoreInsert):
+        score = index.data(self.ScoreRole)
+        if isinstance(chart, Chart) and isinstance(score, Score):
             scoreRange = calculate_score_range(chart, score.pure, score.far)
             scoreValidateOk = scoreRange[0] <= score.score <= scoreRange[1]
             self.setData(index, scoreValidateOk, self.ScoreValidateOkRole)
@@ -247,8 +247,8 @@ class OcrQueueModel(QAbstractListModel):
             return
 
         item = self.__items[row]
-        score = item[self.ScoreInsertRole]
-        if not isinstance(score, ScoreInsert) or (
+        score = item[self.ScoreRole]
+        if not isinstance(score, Score) or (
             not item[self.ScoreValidateOkRole] and not ignoreValidate
         ):
             return
@@ -301,7 +301,7 @@ class OcrQueueTableProxyModel(QAbstractTableModel):
             ],
             [
                 OcrQueueModel.OcrResultRole,
-                OcrQueueModel.ScoreInsertRole,
+                OcrQueueModel.ScoreRole,
                 OcrQueueModel.ChartRole,
                 OcrQueueModel.ScoreValidateOkRole,
             ],
@@ -364,7 +364,7 @@ class OcrQueueTableProxyModel(QAbstractTableModel):
     def setData(self, index, value, role):
         if index.column() == 2 and role == OcrQueueModel.ChartRole:
             return self.sourceModel().setData(index, value, role)
-        if index.column() == 3 and role == OcrQueueModel.ScoreInsertRole:
+        if index.column() == 3 and role == OcrQueueModel.ScoreRole:
             return self.sourceModel().setData(index, value, role)
         return False
 
@@ -403,8 +403,8 @@ class OcrChartDelegate(ChartDelegate):
 
 
 class OcrScoreDelegate(ScoreDelegate):
-    def getScoreInsert(self, index: QModelIndex):
-        return index.data(OcrQueueModel.ScoreInsertRole)
+    def getScore(self, index: QModelIndex):
+        return index.data(OcrQueueModel.ScoreRole)
 
     def getChart(self, index: QModelIndex):
         return index.data(OcrQueueModel.ChartRole)
@@ -415,7 +415,7 @@ class OcrScoreDelegate(ScoreDelegate):
     def paintWarningBackground(self, index: QModelIndex) -> bool:
         return True
         # return isinstance(self.getChart(index), Chart) and isinstance(
-        #     self.getScore(index), ScoreInsert
+        #     self.getScore(index), Score
         # )
         # return isinstance(
         #     index.data(OcrQueueModel.OcrResultRole), (DeviceOcrResult, B30OcrResultItem)
@@ -423,4 +423,4 @@ class OcrScoreDelegate(ScoreDelegate):
 
     def setModelData(self, editor, model: OcrQueueTableProxyModel, index):
         if super().confirmSetModelData(editor):
-            model.setData(index, editor.value(), OcrQueueModel.ScoreInsertRole)
+            model.setData(index, editor.value(), OcrQueueModel.ScoreRole)

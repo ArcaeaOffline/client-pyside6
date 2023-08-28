@@ -1,7 +1,7 @@
-from PySide6.QtCore import QDir, QSettings
+from PySide6.QtCore import QDir, QSettings, QUrl
 
 __all__ = [
-    "DATABASE_PATH",
+    "DATABASE_URL",
     "DEVICES_JSON_FILE",
     "DEVICE_UUID",
     "TESSERACT_FILE",
@@ -10,7 +10,7 @@ __all__ = [
     "Settings",
 ]
 
-DATABASE_PATH = "General/DatabasePath"
+DATABASE_URL = "General/DatabaseUrl"
 
 DEVICES_JSON_FILE = "Ocr/DevicesJsonFile"
 DEVICE_UUID = "Ocr/DeviceUuid"
@@ -26,6 +26,13 @@ class Settings(QSettings):
             QSettings.Format.IniFormat,
             parent,
         )
+
+    def databaseUrl(self) -> str | None:
+        return self.value(DATABASE_URL, None, str)
+
+    def setDatabaseUrl(self, value: str):
+        self.setValue(DATABASE_URL, value)
+        self.sync()
 
     def devicesJsonFile(self) -> str | None:
         return self.value(DEVICES_JSON_FILE, None, str)

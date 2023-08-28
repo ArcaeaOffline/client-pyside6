@@ -3,7 +3,7 @@ import logging
 from typing import Tuple
 
 from arcaea_offline.database import Database
-from arcaea_offline.models import Chart, ScoreInsert
+from arcaea_offline.models import Chart, Score
 from arcaea_offline_ocr.device.shared import DeviceOcrResult
 from arcaea_offline_ocr.device.v2.ocr import DeviceV2Ocr
 from arcaea_offline_ocr.device.v2.rois import DeviceV2Rois
@@ -52,9 +52,7 @@ def getImageDate(imagePath: str) -> QDateTime:
 
 class ScoreInsertConverter:
     @staticmethod
-    def deviceV2(
-        imagePath: str, _, result: DeviceOcrResult
-    ) -> Tuple[Chart, ScoreInsert]:
+    def deviceV2(imagePath: str, _, result: DeviceOcrResult) -> Tuple[Chart, Score]:
         db = Database()
         scoreInsert = ScoreInsert(
             song_id=result.song_id,

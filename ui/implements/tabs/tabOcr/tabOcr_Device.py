@@ -1,7 +1,6 @@
 import logging
 
 import cv2
-import pytesseract
 
 # from arcaea_offline_ocr_device_creation_wizard.implements.wizard import Wizard
 from arcaea_offline_ocr.device.v1.definition import DeviceV1

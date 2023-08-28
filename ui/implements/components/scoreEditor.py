@@ -2,7 +2,7 @@ from enum import IntEnum
 from typing import Optional
 
 from arcaea_offline.calculate import calculate_score_range
-from arcaea_offline.models import Chart, Score, ScoreInsert
+from arcaea_offline.models import Chart, Score
 from PySide6.QtCore import QCoreApplication, QDateTime, Signal, Slot
 from PySide6.QtWidgets import QMessageBox, QWidget
 
@@ -37,9 +37,9 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
         self.valueChanged.connect(self.validateScore)
         self.valueChanged.connect(self.updateValidateLabel)
 
-        self.clearTypeComboBox.addItem("HARD LOST", -1)
         self.clearTypeComboBox.addItem("TRACK LOST", 0)
         self.clearTypeComboBox.addItem("TRACK COMPLETE", 1)
+        self.clearTypeComboBox.addItem("HARD LOST", 2)
         self.clearTypeComboBox.setCurrentIndex(-1)
 
     def setValidateBeforeAccept(self, __bool: bool):
@@ -159,33 +159,33 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
 
     def value(self):
         if isinstance(self.__chart, Chart):
-            return ScoreInsert(
+            return Score(
                 song_id=self.__chart.song_id,
                 rating_class=self.__chart.rating_class,
                 score=self.score(),
                 pure=self.pureSpinBox.value(),
                 far=self.farSpinBox.value(),
                 lost=self.lostSpinBox.value(),
-                time=self.dateTimeEdit.dateTime().toSecsSinceEpoch(),
+                date=self.dateTimeEdit.dateTime().toSecsSinceEpoch(),
                 max_recall=self.maxRecallSpinBox.value()
                 if self.maxRecallSpinBox.value() > -1
                 else None,
-                clear_type=None,
+                r10_clear_type=None,
             )
 
-    def setValue(self, score: Score | ScoreInsert):
-        if isinstance(score, (Score, ScoreInsert)):
+    def setValue(self, score: Score):
+        if isinstance(score, Score):
             scoreText = str(score.score)
             scoreText = scoreText.rjust(8, "0")
             self.scoreLineEdit.setText(scoreText)
             self.pureSpinBox.setValue(score.pure)
             self.farSpinBox.setValue(score.far)
             self.lostSpinBox.setValue(score.lost)
-            self.dateTimeEdit.setDateTime(QDateTime.fromSecsSinceEpoch(score.time))
+            self.dateTimeEdit.setDateTime(QDateTime.fromSecsSinceEpoch(score.date))
             if score.max_recall is not None:
                 self.maxRecallSpinBox.setValue(score.max_recall)
-            if score.clear_type is not None:
-                self.clearTypeComboBox.setCurrentIndex(score.clear_type)
+            if score.r10_clear_type is not None:
+                self.clearTypeComboBox.setCurrentIndex(score.r10_clear_type)
 
     def reset(self):
         self.setChart(None)

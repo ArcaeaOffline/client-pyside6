@@ -1,5 +1,5 @@
-from arcaea_offline.calculate import calculate_score
-from arcaea_offline.models import Chart, Score, ScoreInsert
+# from arcaea_offline.calculate import calculate_score
+from arcaea_offline.models import Chart, Score
 from PySide6.QtCore import QCoreApplication, QModelIndex, QSortFilterProxyModel, Qt
 
 from .base import DbTableModel

@@ -1,4 +1,3 @@
-from arcaea_offline.models import ScoreInsert
 from PySide6.QtCore import QModelIndex, Qt, Slot
 from PySide6.QtGui import QColor, QPalette
 from PySide6.QtWidgets import QMessageBox
@@ -21,7 +20,7 @@ class TableScoreDelegate(ScoreDelegate):
     def getChart(self, index):
         return index.data(DbB30TableModel.ChartRole)
 
-    def getScoreInsert(self, index: QModelIndex) -> ScoreInsert | None:
+    def getScoreInsert(self, index: QModelIndex):
         return super().getScoreInsert(index)
 
     def getScore(self, index):

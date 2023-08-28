@@ -2,7 +2,8 @@ import logging
 import traceback
 
 from arcaea_offline.database import Database
-from arcaea_offline.external import St3ScoreSource
+from arcaea_offline.external.arcaea.st3 import St3ScoreParser
+from arcaea_offline.external.arcsong import ArcsongDbParser
 from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QFileDialog, QMessageBox, QWidget
 
@@ -26,7 +27,11 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
             return
 
         try:
-            Database().update_arcsong_db(dbFile)
+            db = Database()
+            parser = ArcsongDbParser(dbFile)
+            with db.sessionmaker() as session:
+                parser.write_database(session)
+                session.commit()
             QMessageBox.information(self, None, "OK")
         except Exception as e:
             logging.exception("Sync arcsong.db error")
@@ -42,11 +47,14 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
             return
 
         try:
-            scores = St3ScoreSource(dbFile).get_score_items()
+            db = Database()
+            parser = St3ScoreParser(dbFile)
             logger.info(
-                f"Got {len(scores)} items from {dbFile}, writing into database..."
+                f"Got {len(parser.parse())} items from {dbFile}, writing into database..."
             )
-            Database().import_external(scores)
+            with db.sessionmaker() as session:
+                parser.write_database(session)
+                session.commit()
             QMessageBox.information(self, None, "OK")
         except Exception as e:
             logging.exception("import st3 error")

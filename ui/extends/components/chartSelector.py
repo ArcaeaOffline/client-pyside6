@@ -1,6 +1,6 @@
 from arcaea_offline.database import Database
 from arcaea_offline.models import Chart
-from arcaea_offline.utils import rating_class_to_short_text
+from arcaea_offline.utils.rating import rating_class_to_short_text
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QStandardItem, QStandardItemModel
 

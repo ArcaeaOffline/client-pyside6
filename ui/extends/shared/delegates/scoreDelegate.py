@@ -1,16 +1,12 @@
 from typing import Union
 
 from arcaea_offline.calculate import calculate_score_range
-from arcaea_offline.models import Chart, Score, ScoreInsert
-from arcaea_offline.utils import (
-    rating_class_to_text,
-    score_to_grade_text,
-    zip_score_grade,
-)
+from arcaea_offline.models import Chart, Score
+from arcaea_offline.utils.rating import rating_class_to_text
+from arcaea_offline.utils.score import score_to_grade_text, zip_score_grade
 from PySide6.QtCore import QAbstractItemModel, QDateTime, QModelIndex, Qt, Signal
 from PySide6.QtGui import QColor, QFont, QLinearGradient
 from PySide6.QtWidgets import (
-    QAbstractItemDelegate,
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -53,7 +49,7 @@ class ScoreEditorDelegateWrapper(ScoreEditor):
 
         self.formLayout.insertRow(0, self.delegateHeader)
 
-    def setText(self, score: Score | ScoreInsert, _extra: str = None):
+    def setText(self, score: Score, _extra: str = None):
         text = "Editing "
         text += _extra or ""
         text += f"score {score.score}"
@@ -91,22 +87,14 @@ class ScoreDelegate(TextSegmentDelegate):
     def getScore(self, index: QModelIndex) -> Score | None:
         return None
 
-    def getScoreInsert(self, index: QModelIndex) -> ScoreInsert | None:
-        return None
-
-    def _getScore(self, index: QModelIndex):
-        score = self.getScore(index)
-        scoreInsert = self.getScoreInsert(index)
-        return scoreInsert if score is None else score
-
     def getChart(self, index: QModelIndex) -> Chart | None:
         return None
 
     def getScoreValidateOk(self, index: QModelIndex) -> bool | None:
-        score = self._getScore(index)
+        score = self.getScore(index)
         chart = self.getChart(index)
 
-        if isinstance(score, (Score, ScoreInsert)) and isinstance(chart, Chart):
+        if isinstance(score, Score) and isinstance(chart, Chart):
             scoreRange = calculate_score_range(chart, score.pure, score.far)
             return scoreRange[0] <= score.score <= scoreRange[1]
 
@@ -114,9 +102,9 @@ class ScoreDelegate(TextSegmentDelegate):
         return zip_score_grade(score, self.GradeGradientsWrappers)
 
     def getTextSegments(self, index, option):
-        score = self._getScore(index)
+        score = self.getScore(index)
         chart = self.getChart(index)
-        if not (isinstance(score, (Score, ScoreInsert)) and isinstance(chart, Chart)):
+        if not (isinstance(score, Score) and isinstance(chart, Chart)):
             return [
                 [
                     {
@@ -176,10 +164,10 @@ class ScoreDelegate(TextSegmentDelegate):
 
     def paint(self, painter, option, index):
         # draw scoreMismatch warning background
-        score = self._getScore(index)
+        score = self.getScore(index)
         chart = self.getChart(index)
         if (
-            isinstance(score, (Score, ScoreInsert))
+            isinstance(score, Score)
             and isinstance(chart, Chart)
             and self.paintWarningBackground(index)
         ):
@@ -206,16 +194,16 @@ class ScoreDelegate(TextSegmentDelegate):
         self.closeEditor.emit(editor)
 
     def createEditor(self, parent, option, index) -> ScoreEditorDelegateWrapper:
-        score = self._getScore(index)
+        score = self.getScore(index)
         chart = self.getChart(index)
-        if isinstance(score, (Score, ScoreInsert)) and isinstance(chart, Chart):
+        if isinstance(score, Score) and isinstance(chart, Chart):
             editor = ScoreEditorDelegateWrapper(parent)
             editor.setWindowFlag(Qt.WindowType.Sheet, True)
             editor.setWindowFlag(Qt.WindowType.FramelessWindowHint, True)
             editor.setWindowTitle(
                 f"{chart.name_en}({chart.song_id}) | {rating_class_to_text(chart.rating_class)} | {chart.package_id}"
             )
-            editor.setText(self._getScore(index))
+            editor.setText(self.getScore(index))
             editor.setValidateBeforeAccept(False)
             editor.move(parent.mapToGlobal(parent.pos()))
             editor.accepted.connect(self._commitEditor)
@@ -231,9 +219,9 @@ class ScoreDelegate(TextSegmentDelegate):
         keepWidgetInScreen(editor)
 
     def setEditorData(self, editor: ScoreEditorDelegateWrapper, index) -> None:
-        score = self._getScore(index)
+        score = self.getScore(index)
         chart = self.getChart(index)
-        if isinstance(score, (Score, ScoreInsert)) and isinstance(chart, Chart):
+        if isinstance(score, Score) and isinstance(chart, Chart):
             editor.setChart(chart)
             editor.setValue(score)
 
