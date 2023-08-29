@@ -1,4 +1,4 @@
-from PySide6.QtCore import Qt
+from PySide6.QtCore import QSize, Qt
 from PySide6.QtWidgets import QLabel
 
 
@@ -25,6 +25,11 @@ class ElidedLabel(QLabel):
     def resizeEvent(self, event):
         super().resizeEvent(event)
         self.__cachedText = ""
+
+    def minimumSizeHint(self) -> QSize:
+        size = super().sizeHint()
+        size.setWidth(100)
+        return size
 
     def paintEvent(self, event) -> None:
         if self.__elideMode == Qt.TextElideMode.ElideNone:
