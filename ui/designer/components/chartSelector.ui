@@ -138,71 +138,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="RatingClassRadioButton" name="pstButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string notr="true">PAST</string>
-        </property>
-        <property name="autoExclusive">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="RatingClassRadioButton" name="prsButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string notr="true">PRESENT</string>
-        </property>
-        <property name="autoExclusive">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="RatingClassRadioButton" name="ftrButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string notr="true">FUTURE</string>
-        </property>
-        <property name="autoExclusive">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="RatingClassRadioButton" name="bydButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string notr="true">BEYOND</string>
-        </property>
-        <property name="autoExclusive">
-         <bool>false</bool>
-        </property>
-       </widget>
+       <widget class="RatingClassSelector" name="ratingClassSelector" native="true"/>
       </item>
      </layout>
     </widget>
@@ -238,14 +174,12 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>RatingClassRadioButton</class>
-   <extends>QRadioButton</extends>
-   <header>ui.implements.components.ratingClassRadioButton</header>
+   <class>RatingClassSelector</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.components.ratingClassSelector</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>bydButton</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

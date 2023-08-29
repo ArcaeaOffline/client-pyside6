@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'chartSelector.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.0
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -19,7 +19,7 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QGroupBox, QHBoxLayout,
     QLabel, QLineEdit, QPushButton, QSizePolicy,
     QSpacerItem, QVBoxLayout, QWidget)
 
-from ui.implements.components.ratingClassRadioButton import RatingClassRadioButton
+from ui.implements.components.ratingClassSelector import RatingClassSelector
 
 class Ui_ChartSelector(object):
     def setupUi(self, ChartSelector):
@@ -104,45 +104,10 @@ class Ui_ChartSelector(object):
         self.horizontalLayout_2 = QHBoxLayout(self.ratingClassGroupBox)
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.pstButton = RatingClassRadioButton(self.ratingClassGroupBox)
-        self.pstButton.setObjectName(u"pstButton")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.pstButton.sizePolicy().hasHeightForWidth())
-        self.pstButton.setSizePolicy(sizePolicy1)
-        self.pstButton.setText(u"PAST")
-        self.pstButton.setAutoExclusive(False)
+        self.ratingClassSelector = RatingClassSelector(self.ratingClassGroupBox)
+        self.ratingClassSelector.setObjectName(u"ratingClassSelector")
 
-        self.horizontalLayout_2.addWidget(self.pstButton)
-
-        self.prsButton = RatingClassRadioButton(self.ratingClassGroupBox)
-        self.prsButton.setObjectName(u"prsButton")
-        sizePolicy1.setHeightForWidth(self.prsButton.sizePolicy().hasHeightForWidth())
-        self.prsButton.setSizePolicy(sizePolicy1)
-        self.prsButton.setText(u"PRESENT")
-        self.prsButton.setAutoExclusive(False)
-
-        self.horizontalLayout_2.addWidget(self.prsButton)
-
-        self.ftrButton = RatingClassRadioButton(self.ratingClassGroupBox)
-        self.ftrButton.setObjectName(u"ftrButton")
-        sizePolicy1.setHeightForWidth(self.ftrButton.sizePolicy().hasHeightForWidth())
-        self.ftrButton.setSizePolicy(sizePolicy1)
-        self.ftrButton.setText(u"FUTURE")
-        self.ftrButton.setAutoExclusive(False)
-
-        self.horizontalLayout_2.addWidget(self.ftrButton)
-
-        self.bydButton = RatingClassRadioButton(self.ratingClassGroupBox)
-        self.bydButton.setObjectName(u"bydButton")
-        self.bydButton.setEnabled(False)
-        sizePolicy1.setHeightForWidth(self.bydButton.sizePolicy().hasHeightForWidth())
-        self.bydButton.setSizePolicy(sizePolicy1)
-        self.bydButton.setText(u"BEYOND")
-        self.bydButton.setAutoExclusive(False)
-
-        self.horizontalLayout_2.addWidget(self.bydButton)
+        self.horizontalLayout_2.addWidget(self.ratingClassSelector)
 
 
         self.mainVerticalLayout.addWidget(self.ratingClassGroupBox)
@@ -151,11 +116,11 @@ class Ui_ChartSelector(object):
         self.resultsHorizontalLayout.setObjectName(u"resultsHorizontalLayout")
         self.resultLabel = QLabel(ChartSelector)
         self.resultLabel.setObjectName(u"resultLabel")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.resultLabel.sizePolicy().hasHeightForWidth())
-        self.resultLabel.setSizePolicy(sizePolicy2)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.resultLabel.sizePolicy().hasHeightForWidth())
+        self.resultLabel.setSizePolicy(sizePolicy1)
         self.resultLabel.setText(u"...")
         self.resultLabel.setTextFormat(Qt.RichText)
 

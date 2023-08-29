@@ -22,23 +22,6 @@ class ChartSelector(Ui_ChartSelector, QWidget):
         self.db = Database()
         self.setupUi(self)
 
-        self.pstButton.setColors(QColor("#399bb2"), QColor("#f0f8fa"))
-        self.prsButton.setColors(QColor("#809955"), QColor("#f7f9f4"))
-        self.ftrButton.setColors(QColor("#702d60"), QColor("#f7ebf4"))
-        self.bydButton.setColors(QColor("#710f25"), QColor("#f9ced8"))
-        self.__RATING_CLASS_BUTTONS = [
-            self.pstButton,
-            self.prsButton,
-            self.ftrButton,
-            self.bydButton,
-        ]
-        self.pstButton.clicked.connect(self.selectRatingClass)
-        self.prsButton.clicked.connect(self.selectRatingClass)
-        self.ftrButton.clicked.connect(self.selectRatingClass)
-        self.bydButton.clicked.connect(self.selectRatingClass)
-        self.deselectAllRatingClassButtons()
-        self.updateRatingClassButtonsEnabled([])
-
         self.previousPackageButton.clicked.connect(
             lambda: self.quickSwitchSelection("previous", "package")
         )
@@ -71,10 +54,7 @@ class ChartSelector(Ui_ChartSelector, QWidget):
         self.packageComboBox.setItemDelegate(DescriptionDelegate(self.packageComboBox))
         self.songIdComboBox.setItemDelegate(DescriptionDelegate(self.songIdComboBox))
 
-        self.pstButton.toggled.connect(self.valueChanged)
-        self.prsButton.toggled.connect(self.valueChanged)
-        self.ftrButton.toggled.connect(self.valueChanged)
-        self.bydButton.toggled.connect(self.valueChanged)
+        self.ratingClassSelector.valueChanged.connect(self.valueChanged)
         self.packageComboBox.currentIndexChanged.connect(self.valueChanged)
         self.songIdComboBox.currentIndexChanged.connect(self.valueChanged)
 
@@ -104,7 +84,7 @@ class ChartSelector(Ui_ChartSelector, QWidget):
     def value(self):
         packageId = self.packageComboBox.currentData()
         songId = self.songIdComboBox.currentData()
-        ratingClass = self.selectedRatingClass()
+        ratingClass = self.ratingClassSelector.value()
 
         if packageId and songId and isinstance(ratingClass, int):
             return self.db.get_chart(songId, ratingClass)
@@ -185,11 +165,11 @@ class ChartSelector(Ui_ChartSelector, QWidget):
 
     @Slot(int)
     def on_songIdComboBox_currentIndexChanged(self, index: int):
-        rating_classes = []
+        ratingClasses = []
         if index > -1:
             charts = self.db.get_charts_by_song_id(self.songIdComboBox.currentData())
-            rating_classes = [chart.rating_class for chart in charts]
-        self.updateRatingClassButtonsEnabled(rating_classes)
+            ratingClasses = [chart.rating_class for chart in charts]
+        self.ratingClassSelector.setButtonsEnabled(ratingClasses)
 
     @Slot()
     def on_resetButton_clicked(self):
@@ -219,7 +199,7 @@ class ChartSelector(Ui_ChartSelector, QWidget):
             # QMessageBox
             return
 
-        self.selectRatingClass(chart.rating_class)
+        self.ratingClassSelector.select(chart.rating_class)
 
     @Slot(QModelIndex)
     def fuzzySearchCompleterSetSelection(self, index: QModelIndex):
@@ -228,35 +208,3 @@ class ChartSelector(Ui_ChartSelector, QWidget):
 
         self.fuzzySearchLineEdit.clear()
         self.fuzzySearchLineEdit.clearFocus()
-
-    def ratingClassButtons(self):
-        return self.__RATING_CLASS_BUTTONS
-
-    def selectedRatingClass(self):
-        for i, button in enumerate(self.__RATING_CLASS_BUTTONS):
-            if button.isChecked():
-                return i
-
-    def updateRatingClassButtonsEnabled(self, rating_classes: list[int]):
-        for i, button in enumerate(self.__RATING_CLASS_BUTTONS):
-            if i in rating_classes:
-                button.setEnabled(True)
-            else:
-                button.setChecked(False)
-                button.setEnabled(False)
-
-    def deselectAllRatingClassButtons(self):
-        [button.setChecked(False) for button in self.__RATING_CLASS_BUTTONS]
-
-    @Slot()
-    def selectRatingClass(self, rating_class: int | None = None):
-        if type(rating_class) == int and rating_class in range(4):
-            self.deselectAllRatingClassButtons()
-            button = self.__RATING_CLASS_BUTTONS[rating_class]
-            if button.isEnabled():
-                button.setChecked(True)
-        else:
-            button = self.sender()
-            if isinstance(button, RatingClassRadioButton) and button.isEnabled():
-                self.deselectAllRatingClassButtons()
-                button.setChecked(True)
