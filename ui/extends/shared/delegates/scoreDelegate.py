@@ -95,7 +95,7 @@ class ScoreDelegate(TextSegmentDelegate):
         chart = self.getChart(index)
 
         if isinstance(score, Score) and isinstance(chart, Chart):
-            scoreRange = calculate_score_range(chart, score.pure, score.far)
+            scoreRange = calculate_score_range(chart.note, score.pure, score.far)
             return scoreRange[0] <= score.score <= scoreRange[1]
 
     def getScoreGradeGradientWrapper(self, score: int):
@@ -152,9 +152,11 @@ class ScoreDelegate(TextSegmentDelegate):
             ],
             [
                 {
-                    self.TextRole: QDateTime.fromSecsSinceEpoch(score.time).toString(
+                    self.TextRole: QDateTime.fromSecsSinceEpoch(score.date).toString(
                         "yyyy-MM-dd hh:mm:ss"
                     )
+                    if score.date
+                    else "-- No Date --"
                 }
             ],
         ]

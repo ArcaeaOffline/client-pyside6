@@ -12,10 +12,7 @@ from PySide6.QtWidgets import QFileDialog, QWidget
 from ui.designer.tabs.tabOcr.tabOcr_Device_ui import Ui_TabOcr_Device
 from ui.extends.components.ocrQueue import OcrQueueModel
 from ui.extends.shared.settings import Settings
-from ui.extends.tabs.tabOcr.tabOcr_Device import (
-    ScoreInsertConverter,
-    TabDeviceV2OcrRunnable,
-)
+from ui.extends.tabs.tabOcr.tabOcr_Device import ScoreConverter, TabDeviceV2OcrRunnable
 
 logger = logging.getLogger(__name__)
 
@@ -104,7 +101,7 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
             self.ocrQueueModel.setData(index, runnable, OcrQueueModel.OcrRunnableRole)
             self.ocrQueueModel.setData(
                 index,
-                ScoreInsertConverter.deviceV2,
+                ScoreConverter.deviceV2,
                 OcrQueueModel.ProcessOcrResultFuncRole,
             )
         self.ocrQueueModel.startQueue()

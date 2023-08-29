@@ -132,7 +132,7 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
 
         score = self.value()
 
-        score_range = calculate_score_range(self.__chart, score.pure, score.far)
+        score_range = calculate_score_range(self.__chart.note, score.pure, score.far)
         score_in_range = score_range[0] <= score.score <= score_range[1]
         note_in_range = score.pure + score.far + score.lost <= self.__chart.note
         if not score_in_range or not note_in_range:

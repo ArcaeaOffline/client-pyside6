@@ -1,4 +1,4 @@
-# from arcaea_offline.calculate import calculate_score
+from arcaea_offline.calculate import calculate_potential
 from arcaea_offline.models import Chart, Score
 from PySide6.QtCore import QCoreApplication, QModelIndex, QSortFilterProxyModel, Qt
 
@@ -27,19 +27,15 @@ class DbScoreTableModel(DbTableModel):
         ]
 
     def syncDb(self):
-        newScores = [Score.from_db_row(dbRow) for dbRow in self._db.get_scores()]
+        newScores = self._db.get_scores()
         newScores = sorted(newScores, key=lambda x: x.id)
         newCharts = [
-            Chart.from_db_row(dbRow)
-            for dbRow in [
-                self._db.get_chart(score.song_id, score.rating_class)
-                for score in newScores
-            ]
+            self._db.get_chart(score.song_id, score.rating_class) for score in newScores
         ]
         newPtts = []
         for chart, score in zip(newCharts, newScores):
             if isinstance(chart, Chart) and isinstance(score, Score):
-                newPtts.append(calculate_score(chart, score).potential)
+                newPtts.append(calculate_potential(chart.constant / 10, score.score))
             else:
                 newPtts.append(None)
 
@@ -117,11 +113,7 @@ class DbScoreTableModel(DbTableModel):
         if not (index.isValid() and self.checkIndex(index)):
             return False
 
-        if (
-            index.column() == 2
-            and isinstance(value, ScoreInsert)
-            and role == self.ScoreRole
-        ):
+        if index.column() == 2 and isinstance(value, Score) and role == self.ScoreRole:
             self._db.update_score(self.__items[index.row()][self.IdRole], value)
             self.syncDb()
             return True
@@ -189,7 +181,12 @@ class DbScoreTableSortFilterProxyModel(QSortFilterProxyModel):
                 if self.sortRole() == self.Sort_C2_ScoreRole:
                     return score_left.score < score_right.score
                 elif self.sortRole() == self.Sort_C2_TimeRole:
-                    return score_left.time < score_right.time
+                    if score_left.date and score_right.date:
+                        return score_left.date < score_right.date
+                    elif score_left.date:
+                        return False
+                    else:
+                        return True
         elif column == 3:
             return source_left.data(DbScoreTableModel.PttRole) < source_right.data(
                 DbScoreTableModel.PttRole

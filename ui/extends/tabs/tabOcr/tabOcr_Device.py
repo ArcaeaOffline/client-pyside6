@@ -50,22 +50,22 @@ def getImageDate(imagePath: str) -> QDateTime:
     return datetime
 
 
-class ScoreInsertConverter:
+class ScoreConverter:
     @staticmethod
     def deviceV2(imagePath: str, _, result: DeviceOcrResult) -> Tuple[Chart, Score]:
         db = Database()
-        scoreInsert = ScoreInsert(
+        score = Score(
             song_id=result.song_id,
             rating_class=result.rating_class,
             score=result.score,
             pure=result.pure,
             far=result.far,
             lost=result.lost,
-            time=getImageDate(imagePath).toSecsSinceEpoch(),
+            date=getImageDate(imagePath).toSecsSinceEpoch(),
             max_recall=result.max_recall,
-            clear_type=None,
+            r10_clear_type=None,
+            comment=f"OCR {QFileInfo(imagePath).fileName()}",
         )
-        chart = Chart.from_db_row(
-            db.get_chart(scoreInsert.song_id, scoreInsert.rating_class)
-        )
-        return (chart, scoreInsert)
+        print(f"OCR {QFileInfo(imagePath).fileName()}")
+        chart = db.get_chart(score.song_id, score.rating_class)
+        return (chart, score)

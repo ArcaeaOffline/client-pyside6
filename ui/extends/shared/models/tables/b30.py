@@ -1,5 +1,6 @@
-from arcaea_offline.models import Chart, Score
+from arcaea_offline.models import Chart, Score, ScoreBest
 from PySide6.QtCore import QCoreApplication, QModelIndex, QSortFilterProxyModel, Qt
+from sqlalchemy import select
 
 from .base import DbTableModel
 
@@ -27,18 +28,19 @@ class DbB30TableModel(DbTableModel):
     def syncDb(self):
         self.__items.clear()
 
-        results = self._db.conn.execute(
-            'SELECT * FROM calculated GROUP BY "potential" ORDER BY "potential" DESC LIMIT 40'
-        ).fetchall()
+        with self._db.sessionmaker() as session:
+            results = list(
+                session.scalars(
+                    select(ScoreBest).order_by(ScoreBest.potential.desc()).limit(40)
+                )
+            )
 
-        songIds = [r[0] for r in results]
-        ptts = [r[-1] for r in results]
+        songIds = [r.id for r in results]
+        ptts = [r.potential for r in results]
 
         for scoreId, ptt in zip(songIds, ptts):
-            score = Score.from_db_row(self._db.get_scores(score_id=scoreId)[0])
-            chart = Chart.from_db_row(
-                self._db.get_chart(score.song_id, score.rating_class)
-            )
+            score = self._db.get_score_by_id(scoreId)
+            chart = self._db.get_chart(score.song_id, score.rating_class)
 
             self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
             self.__items.append(
@@ -131,7 +133,12 @@ class DbB30TableSortFilterProxyModel(QSortFilterProxyModel):
                 if self.sortRole() == self.Sort_C2_ScoreRole:
                     return score_left.score < score_right.score
                 elif self.sortRole() == self.Sort_C2_TimeRole:
-                    return score_left.time < score_right.time
+                    if score_left.date and score_right.date:
+                        return score_left.date < score_right.date
+                    elif score_left.date:
+                        return False
+                    else:
+                        return True
         elif column == 3:
             return source_left.data(DbB30TableModel.PttRole) < source_right.data(
                 DbB30TableModel.PttRole

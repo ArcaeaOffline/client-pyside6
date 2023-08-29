@@ -20,9 +20,9 @@ from .base import TextSegmentDelegate
 
 def chartToRichText(chart: Chart):
     if isinstance(chart, Chart):
-        text = f"{chart.name_en} [{rating_class_to_short_text(chart.rating_class)}]"
+        text = f"{chart.title} [{rating_class_to_short_text(chart.rating_class)}]"
         text += "<br>"
-        text += f'<font color="gray">({chart.song_id}, {chart.package_id})</font>'
+        text += f'<font color="gray">({chart.song_id}, {chart.set})</font>'
     else:
         text = "(unknown chart)"
     return text
@@ -94,7 +94,7 @@ class ChartDelegate(TextSegmentDelegate):
 
         return [
             [
-                {self.TextRole: f"{chart.name_en}"},
+                {self.TextRole: f"{chart.title}"},
             ],
             [
                 {
@@ -104,7 +104,7 @@ class ChartDelegate(TextSegmentDelegate):
             ],
             [
                 {
-                    self.TextRole: f"({chart.song_id}, {chart.package_id})",
+                    self.TextRole: f"({chart.song_id}, {chart.set})",
                     self.ColorRole: option.widget.palette().placeholderText().color(),
                 },
             ],
