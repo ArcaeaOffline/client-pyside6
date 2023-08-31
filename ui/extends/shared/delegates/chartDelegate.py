@@ -15,6 +15,7 @@ from PySide6.QtWidgets import (
 
 from ui.implements.components.chartSelector import ChartSelector
 
+from ..utils import keepWidgetInScreen
 from .base import TextSegmentDelegate
 
 
@@ -164,6 +165,8 @@ class ChartDelegate(TextSegmentDelegate):
     def updateEditorGeometry(self, editor: QWidget, option, index: QModelIndex) -> None:
         editor.move(editor.pos() + option.rect.topLeft())
         editor.setMaximumWidth(option.rect.width())
+        
+        keepWidgetInScreen(editor)
 
     def setEditorData(self, editor: ChartSelectorDelegateWrapper, index: QModelIndex):
         if self.checkIsEditor(editor) and isinstance(self.getChart(index), Chart):

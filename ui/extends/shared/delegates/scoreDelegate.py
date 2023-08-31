@@ -27,11 +27,11 @@ class ScoreEditorDelegateWrapper(ScoreEditor):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.hLine = QFrame(self)
-        self.hLine.setFrameShape(QFrame.Shape.HLine)
-        self.hLine.setFrameShadow(QFrame.Shadow.Plain)
-        self.hLine.setFixedHeight(5)
-        self.formLayout.insertRow(0, self.hLine)
+        # self.hLine = QFrame(self)
+        # self.hLine.setFrameShape(QFrame.Shape.HLine)
+        # self.hLine.setFrameShadow(QFrame.Shadow.Plain)
+        # self.hLine.setFixedHeight(5)
+        # self.gridLayout.addWidget(self.hLine, self.gridLayout.rowCount(), 0, -1, -1)
 
         self.delegateHeader = QWidget(self)
         self.delegateHeaderHBoxLayout = QHBoxLayout(self.delegateHeader)
@@ -47,7 +47,9 @@ class ScoreEditorDelegateWrapper(ScoreEditor):
         self.editorDiscardButton.clicked.connect(self.rejected)
         self.delegateHeaderHBoxLayout.addWidget(self.editorDiscardButton)
 
-        self.formLayout.insertRow(0, self.delegateHeader)
+        self.gridLayout.addWidget(
+            self.delegateHeader, self.gridLayout.rowCount(), 0, -1, -1
+        )
 
     def setText(self, score: Score, _extra: str = None):
         text = "Editing "
