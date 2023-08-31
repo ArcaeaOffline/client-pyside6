@@ -87,7 +87,8 @@ class OcrQueue(Ui_OcrQueue, QWidget):
             self.__firstResizeDone = True
 
     def ocrStarted(self):
-        self.setOcrButtonsEnabled(False)
+        if self.model().rowCount() > 0:
+            self.setOcrButtonsEnabled(False)
 
     def updateProgressBarMaximum(self):
         self.progressBar.setMaximum(self.model().rowCount())
