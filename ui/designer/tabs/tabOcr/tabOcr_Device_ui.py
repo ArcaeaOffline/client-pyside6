@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'tabOcr_Device.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.1
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -15,8 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGroupBox, QHBoxLayout, QPushButton,
-    QSizePolicy, QStackedWidget, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QGroupBox, QHBoxLayout,
+    QPushButton, QSizePolicy, QStackedWidget, QVBoxLayout,
+    QWidget)
 
 from ui.implements.components.devicesComboBox import DevicesComboBox
 from ui.implements.components.fileSelector import FileSelector
@@ -39,6 +40,11 @@ class Ui_TabOcr_Device(object):
         self.groupBox.setObjectName(u"groupBox")
         self.verticalLayout = QVBoxLayout(self.groupBox)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.deviceUseAutoFactorCheckBox = QCheckBox(self.groupBox)
+        self.deviceUseAutoFactorCheckBox.setObjectName(u"deviceUseAutoFactorCheckBox")
+
+        self.verticalLayout.addWidget(self.deviceUseAutoFactorCheckBox)
+
         self.deviceFileSelector = FileSelector(self.groupBox)
         self.deviceFileSelector.setObjectName(u"deviceFileSelector")
 
@@ -140,6 +146,7 @@ class Ui_TabOcr_Device(object):
     def retranslateUi(self, TabOcr_Device):
         self.openWizardButton.setText(QCoreApplication.translate("TabOcr_Device", u"openWizardButton", None))
         self.groupBox.setTitle(QCoreApplication.translate("TabOcr_Device", u"deviceSelector.title", None))
+        self.deviceUseAutoFactorCheckBox.setText(QCoreApplication.translate("TabOcr_Device", u"deviceSelector.useAutoFactor", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("TabOcr_Device", u"knnModelSelector.title", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("TabOcr_Device", u"tesseractSelector.title", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("TabOcr_Device", u"siftDatabaseSelector.title", None))

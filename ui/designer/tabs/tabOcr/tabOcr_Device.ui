@@ -28,6 +28,13 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
+       <widget class="QCheckBox" name="deviceUseAutoFactorCheckBox">
+        <property name="text">
+         <string>deviceSelector.useAutoFactor</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="FileSelector" name="deviceFileSelector" native="true"/>
       </item>
       <item>
