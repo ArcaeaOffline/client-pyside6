@@ -26,8 +26,6 @@ class FuzzySearchCompleterModel(QStandardItemModel):
             item = QStandardItem(kw)
             item.setData(kw)
             item.setData(displayText, Qt.ItemDataRole.UserRole + 75)
-            item.setData(
-                f"{chart.song_id}, {chart.package_id}", Qt.ItemDataRole.UserRole + 76
-            )
+            item.setData(f"{chart.song_id}, {chart.set}", Qt.ItemDataRole.UserRole + 76)
             item.setData(chart, Qt.ItemDataRole.UserRole + 10)
             self.appendRow(item)

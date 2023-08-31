@@ -14,10 +14,7 @@ from ui.designer.tabs.tabOcr.tabOcr_B30_ui import Ui_TabOcr_B30
 from ui.extends.components.ocrQueue import OcrQueueModel
 from ui.extends.shared.cv2_utils import cv2BgrMatToQImage, qImageToCvMatBgr
 from ui.extends.shared.settings import Settings
-from ui.extends.tabs.tabOcr.tabOcr_B30 import (
-    ChieriV4OcrRunnable,
-    b30ResultToScoreInsert,
-)
+from ui.extends.tabs.tabOcr.tabOcr_B30 import ChieriV4OcrRunnable, b30ResultToScore
 
 logger = logging.getLogger(__name__)
 
@@ -161,7 +158,7 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
             self.ocrQueueModel.setData(index, runnable, OcrQueueModel.OcrRunnableRole)
             self.ocrQueueModel.setData(
                 index,
-                b30ResultToScoreInsert,
+                b30ResultToScore,
                 OcrQueueModel.ProcessOcrResultFuncRole,
             )
         self.ocrQueueModel.startQueue()

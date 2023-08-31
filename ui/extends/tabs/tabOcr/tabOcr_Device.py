@@ -6,7 +6,7 @@ from arcaea_offline.database import Database
 from arcaea_offline.models import Chart, Score
 from arcaea_offline_ocr.device.shared import DeviceOcrResult
 from arcaea_offline_ocr.device.v2.ocr import DeviceV2Ocr
-from arcaea_offline_ocr.device.v2.rois import DeviceV2Rois
+from arcaea_offline_ocr.device.v2.rois import DeviceV2AutoRois, DeviceV2Rois
 from arcaea_offline_ocr.utils import imread_unicode
 from PySide6.QtCore import QDateTime, QFileInfo
 
@@ -37,6 +37,25 @@ class TabDeviceV2OcrRunnable(OcrRunnable):
             self.signals.finished.emit()
 
 
+class TabDeviceV2AutoRoisOcrRunnable(OcrRunnable):
+    def __init__(self, imagePath, knnModel, siftDb):
+        super().__init__()
+        self.imagePath = imagePath
+        self.knnModel = knnModel
+        self.siftDb = siftDb
+
+    def run(self):
+        try:
+            rois = DeviceV2AutoRois(imread_unicode(self.imagePath))
+            ocr = DeviceV2Ocr(self.knnModel, self.siftDb)
+            result = ocr.ocr(rois)
+            self.signals.resultReady.emit(result)
+        except Exception:
+            logger.exception(f"DeviceV2AutoRois ocr {self.imagePath} error")
+        finally:
+            self.signals.finished.emit()
+
+
 def getImageDate(imagePath: str) -> QDateTime:
     datetime = None
     with contextlib.suppress(Exception):
@@ -63,9 +82,7 @@ class ScoreConverter:
             lost=result.lost,
             date=getImageDate(imagePath).toSecsSinceEpoch(),
             max_recall=result.max_recall,
-            r10_clear_type=None,
             comment=f"OCR {QFileInfo(imagePath).fileName()}",
         )
-        print(f"OCR {QFileInfo(imagePath).fileName()}")
         chart = db.get_chart(score.song_id, score.rating_class)
         return (chart, score)

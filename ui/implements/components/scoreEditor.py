@@ -105,10 +105,10 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
 
     def setLimits(self, chart: Chart):
         self.setMinimums()
-        self.pureSpinBox.setMaximum(chart.note)
-        self.farSpinBox.setMaximum(chart.note)
-        self.lostSpinBox.setMaximum(chart.note)
-        self.maxRecallSpinBox.setMaximum(chart.note)
+        self.pureSpinBox.setMaximum(chart.notes)
+        self.farSpinBox.setMaximum(chart.notes)
+        self.lostSpinBox.setMaximum(chart.notes)
+        self.maxRecallSpinBox.setMaximum(chart.notes)
 
     def resetLimits(self):
         self.setMinimums()
@@ -132,9 +132,9 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
 
         score = self.value()
 
-        score_range = calculate_score_range(self.__chart.note, score.pure, score.far)
+        score_range = calculate_score_range(self.__chart.notes, score.pure, score.far)
         score_in_range = score_range[0] <= score.score <= score_range[1]
-        note_in_range = score.pure + score.far + score.lost <= self.__chart.note
+        note_in_range = score.pure + score.far + score.lost <= self.__chart.notes
         if not score_in_range or not note_in_range:
             return ScoreValidateResult.ScoreMismatch
         if score.score == 0:
@@ -170,7 +170,6 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
                 max_recall=self.maxRecallSpinBox.value()
                 if self.maxRecallSpinBox.value() > -1
                 else None,
-                r10_clear_type=None,
             )
 
     def setValue(self, score: Score):
@@ -184,8 +183,6 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
             self.dateTimeEdit.setDateTime(QDateTime.fromSecsSinceEpoch(score.date))
             if score.max_recall is not None:
                 self.maxRecallSpinBox.setValue(score.max_recall)
-            if score.r10_clear_type is not None:
-                self.clearTypeComboBox.setCurrentIndex(score.r10_clear_type)
 
     def reset(self):
         self.setChart(None)

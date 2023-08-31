@@ -95,7 +95,7 @@ class ScoreDelegate(TextSegmentDelegate):
         chart = self.getChart(index)
 
         if isinstance(score, Score) and isinstance(chart, Chart):
-            scoreRange = calculate_score_range(chart.note, score.pure, score.far)
+            scoreRange = calculate_score_range(chart.notes, score.pure, score.far)
             return scoreRange[0] <= score.score <= scoreRange[1]
 
     def getScoreGradeGradientWrapper(self, score: int):
@@ -203,7 +203,7 @@ class ScoreDelegate(TextSegmentDelegate):
             editor.setWindowFlag(Qt.WindowType.Sheet, True)
             editor.setWindowFlag(Qt.WindowType.FramelessWindowHint, True)
             editor.setWindowTitle(
-                f"{chart.name_en}({chart.song_id}) | {rating_class_to_text(chart.rating_class)} | {chart.package_id}"
+                f"{chart.title}({chart.song_id}) | {rating_class_to_text(chart.rating_class)} | {chart.set}"
             )
             editor.setText(self.getScore(index))
             editor.setValidateBeforeAccept(False)

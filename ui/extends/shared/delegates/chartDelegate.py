@@ -98,7 +98,7 @@ class ChartDelegate(TextSegmentDelegate):
             ],
             [
                 {
-                    self.TextRole: f"{rating_class_to_text(chart.rating_class)} {chart.rating / 10:.1f}",
+                    self.TextRole: f"{rating_class_to_text(chart.rating_class)} {chart.constant / 10:.1f}",
                     self.ColorRole: self.RatingClassColors[chart.rating_class],
                 },
             ],
