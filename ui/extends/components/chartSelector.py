@@ -1,27 +1,35 @@
 from arcaea_offline.database import Database
 from arcaea_offline.models import Chart
+from arcaea_offline.searcher import Searcher
 from arcaea_offline.utils.rating import rating_class_to_short_text
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QStandardItem, QStandardItemModel
 
 
-class FuzzySearchCompleterModel(QStandardItemModel):
-    def fillDbFuzzySearchResults(self, db: Database, kw: str):
+class SearchCompleterModel(QStandardItemModel):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.searcher = Searcher()
+        self.db = Database()
+
+    def updateSearcherSongs(self):
+        with self.db.sessionmaker() as session:
+            self.searcher.import_songs(session)
+
+    def getSearchResult(self, kw: str):
         self.clear()
 
-        results = db.fuzzy_search_song_id(kw, limit=10)
-        results = sorted(results, key=lambda r: r.confidence, reverse=True)
-        songIds = [r.song_id for r in results]
+        songIds = self.searcher.search(kw)
+
         charts: list[Chart] = []
         for songId in songIds:
-            dbChartRows = db.get_charts_by_song_id(songId)
-            _charts = [Chart.from_db_row(dbRow) for dbRow in dbChartRows]
+            _charts = self.db.get_charts_by_song_id(songId)
             _charts = sorted(_charts, key=lambda c: c.rating_class, reverse=True)
             charts += _charts
 
         for chart in charts:
             displayText = (
-                f"{chart.name_en} [{rating_class_to_short_text(chart.rating_class)}]"
+                f"{chart.title} [{rating_class_to_short_text(chart.rating_class)}]"
             )
             item = QStandardItem(kw)
             item.setData(kw)

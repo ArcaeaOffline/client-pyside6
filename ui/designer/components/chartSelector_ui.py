@@ -25,7 +25,7 @@ class Ui_ChartSelector(object):
     def setupUi(self, ChartSelector):
         if not ChartSelector.objectName():
             ChartSelector.setObjectName(u"ChartSelector")
-        ChartSelector.resize(671, 295)
+        ChartSelector.resize(476, 347)
         ChartSelector.setWindowTitle(u"ChartSelector")
         self.mainVerticalLayout = QVBoxLayout(ChartSelector)
         self.mainVerticalLayout.setObjectName(u"mainVerticalLayout")
@@ -36,29 +36,60 @@ class Ui_ChartSelector(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.songIdSelectorGroupBox.sizePolicy().hasHeightForWidth())
         self.songIdSelectorGroupBox.setSizePolicy(sizePolicy)
-        self.horizontalLayout = QHBoxLayout(self.songIdSelectorGroupBox)
+        self.verticalLayout_3 = QVBoxLayout(self.songIdSelectorGroupBox)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.songIdSelectorQuickActionsGroupBox = QGroupBox(self.songIdSelectorGroupBox)
+        self.songIdSelectorQuickActionsGroupBox.setObjectName(u"songIdSelectorQuickActionsGroupBox")
+        self.horizontalLayout = QHBoxLayout(self.songIdSelectorQuickActionsGroupBox)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.nextPackageButton = QPushButton(self.songIdSelectorQuickActionsGroupBox)
+        self.nextPackageButton.setObjectName(u"nextPackageButton")
+        self.nextPackageButton.setMinimumSize(QSize(100, 0))
+
+        self.horizontalLayout.addWidget(self.nextPackageButton)
+
+        self.nextSongIdButton = QPushButton(self.songIdSelectorQuickActionsGroupBox)
+        self.nextSongIdButton.setObjectName(u"nextSongIdButton")
+        self.nextSongIdButton.setMinimumSize(QSize(100, 0))
+
+        self.horizontalLayout.addWidget(self.nextSongIdButton)
+
+        self.previousSongIdButton = QPushButton(self.songIdSelectorQuickActionsGroupBox)
+        self.previousSongIdButton.setObjectName(u"previousSongIdButton")
+        self.previousSongIdButton.setMinimumSize(QSize(100, 0))
+
+        self.horizontalLayout.addWidget(self.previousSongIdButton)
+
+        self.previousPackageButton = QPushButton(self.songIdSelectorQuickActionsGroupBox)
+        self.previousPackageButton.setObjectName(u"previousPackageButton")
+        self.previousPackageButton.setMinimumSize(QSize(100, 0))
+
+        self.horizontalLayout.addWidget(self.previousPackageButton)
+
+
+        self.verticalLayout_3.addWidget(self.songIdSelectorQuickActionsGroupBox)
+
         self.widget = QWidget(self.songIdSelectorGroupBox)
         self.widget.setObjectName(u"widget")
         self.widget.setMinimumSize(QSize(300, 0))
         self.verticalLayout = QVBoxLayout(self.widget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.fuzzySearchLineEdit = QLineEdit(self.widget)
-        self.fuzzySearchLineEdit.setObjectName(u"fuzzySearchLineEdit")
-        self.fuzzySearchLineEdit.setFrame(True)
-        self.fuzzySearchLineEdit.setClearButtonEnabled(True)
+        self.searchLineEdit = QLineEdit(self.widget)
+        self.searchLineEdit.setObjectName(u"searchLineEdit")
+        self.searchLineEdit.setFrame(True)
+        self.searchLineEdit.setClearButtonEnabled(True)
 
-        self.verticalLayout.addWidget(self.fuzzySearchLineEdit)
+        self.verticalLayout.addWidget(self.searchLineEdit)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer)
 
-        self.packageComboBox = QComboBox(self.widget)
-        self.packageComboBox.setObjectName(u"packageComboBox")
+        self.packComboBox = QComboBox(self.widget)
+        self.packComboBox.setObjectName(u"packComboBox")
 
-        self.verticalLayout.addWidget(self.packageComboBox)
+        self.verticalLayout.addWidget(self.packComboBox)
 
         self.songIdComboBox = QComboBox(self.widget)
         self.songIdComboBox.setObjectName(u"songIdComboBox")
@@ -66,51 +97,15 @@ class Ui_ChartSelector(object):
         self.verticalLayout.addWidget(self.songIdComboBox)
 
 
-        self.horizontalLayout.addWidget(self.widget)
-
-        self.songIdSelectorQuickActionsGroupBox = QGroupBox(self.songIdSelectorGroupBox)
-        self.songIdSelectorQuickActionsGroupBox.setObjectName(u"songIdSelectorQuickActionsGroupBox")
-        self.verticalLayout_2 = QVBoxLayout(self.songIdSelectorQuickActionsGroupBox)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.previousPackageButton = QPushButton(self.songIdSelectorQuickActionsGroupBox)
-        self.previousPackageButton.setObjectName(u"previousPackageButton")
-
-        self.verticalLayout_2.addWidget(self.previousPackageButton)
-
-        self.previousSongIdButton = QPushButton(self.songIdSelectorQuickActionsGroupBox)
-        self.previousSongIdButton.setObjectName(u"previousSongIdButton")
-
-        self.verticalLayout_2.addWidget(self.previousSongIdButton)
-
-        self.nextSongIdButton = QPushButton(self.songIdSelectorQuickActionsGroupBox)
-        self.nextSongIdButton.setObjectName(u"nextSongIdButton")
-
-        self.verticalLayout_2.addWidget(self.nextSongIdButton)
-
-        self.nextPackageButton = QPushButton(self.songIdSelectorQuickActionsGroupBox)
-        self.nextPackageButton.setObjectName(u"nextPackageButton")
-
-        self.verticalLayout_2.addWidget(self.nextPackageButton)
-
-
-        self.horizontalLayout.addWidget(self.songIdSelectorQuickActionsGroupBox)
+        self.verticalLayout_3.addWidget(self.widget)
 
 
         self.mainVerticalLayout.addWidget(self.songIdSelectorGroupBox)
 
-        self.ratingClassGroupBox = QGroupBox(ChartSelector)
-        self.ratingClassGroupBox.setObjectName(u"ratingClassGroupBox")
-        self.ratingClassGroupBox.setMinimumSize(QSize(200, 0))
-        self.horizontalLayout_2 = QHBoxLayout(self.ratingClassGroupBox)
-        self.horizontalLayout_2.setSpacing(0)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.ratingClassSelector = RatingClassSelector(self.ratingClassGroupBox)
+        self.ratingClassSelector = RatingClassSelector(ChartSelector)
         self.ratingClassSelector.setObjectName(u"ratingClassSelector")
 
-        self.horizontalLayout_2.addWidget(self.ratingClassSelector)
-
-
-        self.mainVerticalLayout.addWidget(self.ratingClassGroupBox)
+        self.mainVerticalLayout.addWidget(self.ratingClassSelector)
 
         self.resultsHorizontalLayout = QHBoxLayout()
         self.resultsHorizontalLayout.setObjectName(u"resultsHorizontalLayout")
@@ -142,13 +137,12 @@ class Ui_ChartSelector(object):
 
     def retranslateUi(self, ChartSelector):
         self.songIdSelectorGroupBox.setTitle(QCoreApplication.translate("ChartSelector", u"songIdSelector.title", None))
-        self.fuzzySearchLineEdit.setPlaceholderText(QCoreApplication.translate("ChartSelector", u"fuzzySearch.lineEdit.placeholder", None))
         self.songIdSelectorQuickActionsGroupBox.setTitle(QCoreApplication.translate("ChartSelector", u"songIdSelector.quickActions", None))
-        self.previousPackageButton.setText(QCoreApplication.translate("ChartSelector", u"songIdSelector.quickActions.previousPackageButton", None))
-        self.previousSongIdButton.setText(QCoreApplication.translate("ChartSelector", u"songIdSelector.quickActions.previousSongIdButton", None))
-        self.nextSongIdButton.setText(QCoreApplication.translate("ChartSelector", u"songIdSelector.quickActions.nextSongIdButton", None))
         self.nextPackageButton.setText(QCoreApplication.translate("ChartSelector", u"songIdSelector.quickActions.nextPackageButton", None))
-        self.ratingClassGroupBox.setTitle(QCoreApplication.translate("ChartSelector", u"ratingClassSelector.title", None))
+        self.nextSongIdButton.setText(QCoreApplication.translate("ChartSelector", u"songIdSelector.quickActions.nextSongIdButton", None))
+        self.previousSongIdButton.setText(QCoreApplication.translate("ChartSelector", u"songIdSelector.quickActions.previousSongIdButton", None))
+        self.previousPackageButton.setText(QCoreApplication.translate("ChartSelector", u"songIdSelector.quickActions.previousPackageButton", None))
+        self.searchLineEdit.setPlaceholderText(QCoreApplication.translate("ChartSelector", u"search.lineEdit.placeholder", None))
         self.resetButton.setText(QCoreApplication.translate("ChartSelector", u"resetButton", None))
         pass
     # retranslateUi

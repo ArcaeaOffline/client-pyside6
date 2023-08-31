@@ -1,17 +1,19 @@
+import logging
 import re
 from typing import Literal
 
 from arcaea_offline.database import Database
-from arcaea_offline.models import Chart, Pack
+from arcaea_offline.models import Chart
 from arcaea_offline.utils.rating import rating_class_to_text
 from PySide6.QtCore import QModelIndex, Qt, Signal, Slot
-from PySide6.QtGui import QColor, QShowEvent
+from PySide6.QtGui import QShowEvent
 from PySide6.QtWidgets import QCompleter, QWidget
 
 from ui.designer.components.chartSelector_ui import Ui_ChartSelector
-from ui.extends.components.chartSelector import FuzzySearchCompleterModel
+from ui.extends.components.chartSelector import SearchCompleterModel
 from ui.extends.shared.delegates.descriptionDelegate import DescriptionDelegate
-from ui.implements.components.ratingClassRadioButton import RatingClassRadioButton
+
+logger = logging.getLogger(__name__)
 
 
 class ChartSelector(Ui_ChartSelector, QWidget):
@@ -37,25 +39,25 @@ class ChartSelector(Ui_ChartSelector, QWidget):
 
         self.valueChanged.connect(self.updateResultLabel)
 
-        self.fillPackageComboBox()
-        self.packageComboBox.setCurrentIndex(-1)
+        self.fillPackComboBox()
+        self.packComboBox.setCurrentIndex(-1)
         self.songIdComboBox.setCurrentIndex(-1)
 
-        self.fuzzySearchCompleterModel = FuzzySearchCompleterModel()
-        self.fuzzySearchCompleter = QCompleter(self.fuzzySearchCompleterModel)
-        self.fuzzySearchCompleter.popup().setItemDelegate(
-            DescriptionDelegate(self.fuzzySearchCompleter.popup())
+        self.searchCompleterModel = SearchCompleterModel()
+        self.searchCompleter = QCompleter(self.searchCompleterModel)
+        self.searchCompleter.popup().setItemDelegate(
+            DescriptionDelegate(self.searchCompleter.popup())
         )
-        self.fuzzySearchCompleter.activated[QModelIndex].connect(
-            self.fuzzySearchCompleterSetSelection
+        self.searchCompleter.activated[QModelIndex].connect(
+            self.searchCompleterSetSelection
         )
-        self.fuzzySearchLineEdit.setCompleter(self.fuzzySearchCompleter)
+        self.searchLineEdit.setCompleter(self.searchCompleter)
 
-        self.packageComboBox.setItemDelegate(DescriptionDelegate(self.packageComboBox))
+        self.packComboBox.setItemDelegate(DescriptionDelegate(self.packComboBox))
         self.songIdComboBox.setItemDelegate(DescriptionDelegate(self.songIdComboBox))
 
         self.ratingClassSelector.valueChanged.connect(self.valueChanged)
-        self.packageComboBox.currentIndexChanged.connect(self.valueChanged)
+        self.packComboBox.currentIndexChanged.connect(self.valueChanged)
         self.songIdComboBox.currentIndexChanged.connect(self.valueChanged)
 
     def quickSwitchSelection(
@@ -65,12 +67,12 @@ class ChartSelector(Ui_ChartSelector, QWidget):
     ):
         minIndex = 0
         if model == "package":
-            maxIndex = self.packageComboBox.count() - 1
-            currentIndex = self.packageComboBox.currentIndex() + (
+            maxIndex = self.packComboBox.count() - 1
+            currentIndex = self.packComboBox.currentIndex() + (
                 1 if direction == "next" else -1
             )
             currentIndex = max(min(maxIndex, currentIndex), minIndex)
-            self.packageComboBox.setCurrentIndex(currentIndex)
+            self.packComboBox.setCurrentIndex(currentIndex)
         elif model == "songId":
             maxIndex = self.songIdComboBox.count() - 1
             currentIndex = self.songIdComboBox.currentIndex() + (
@@ -82,17 +84,31 @@ class ChartSelector(Ui_ChartSelector, QWidget):
             return
 
     def value(self):
-        packageId = self.packageComboBox.currentData()
+        packId = self.packComboBox.currentData()
         songId = self.songIdComboBox.currentData()
         ratingClass = self.ratingClassSelector.value()
 
-        if packageId and songId and isinstance(ratingClass, int):
+        if packId and songId and isinstance(ratingClass, int):
             return self.db.get_chart(songId, ratingClass)
         return None
 
     def showEvent(self, event: QShowEvent):
         # update database results when widget visible
-        self.fillPackageComboBox()
+        self.searchCompleterModel.updateSearcherSongs()
+
+        # remember selection and restore later
+        pack = self.packComboBox.currentData()
+        songId = self.songIdComboBox.currentData()
+        ratingClass = self.ratingClassSelector.value()
+
+        self.fillPackComboBox()
+
+        if pack:
+            self.selectPack(pack)
+        if songId:
+            self.selectSongId(songId)
+        if ratingClass is not None:
+            self.ratingClassSelector.select(ratingClass)
         return super().showEvent(event)
 
     @Slot()
@@ -116,8 +132,8 @@ class ChartSelector(Ui_ChartSelector, QWidget):
         else:
             self.resultLabel.setText("...")
 
-    def fillPackageComboBox(self):
-        self.packageComboBox.clear()
+    def fillPackComboBox(self):
+        self.packComboBox.clear()
         packs = self.db.get_packs()
         for pack in packs:
             isAppendPack = re.search(r"_append_.*$", pack.id)
@@ -127,20 +143,20 @@ class ChartSelector(Ui_ChartSelector, QWidget):
                 packName = f"{basePackName} - {pack.name}"
             else:
                 packName = pack.name
-            self.packageComboBox.addItem(f"{packName} ({pack.id})", pack.id)
-            row = self.packageComboBox.count() - 1
-            self.packageComboBox.setItemData(
+            self.packComboBox.addItem(f"{packName} ({pack.id})", pack.id)
+            row = self.packComboBox.count() - 1
+            self.packComboBox.setItemData(
                 row, packName, DescriptionDelegate.MainTextRole
             )
-            self.packageComboBox.setItemData(
+            self.packComboBox.setItemData(
                 row, pack.id, DescriptionDelegate.DescriptionTextRole
             )
 
-        self.packageComboBox.setCurrentIndex(-1)
+        self.packComboBox.setCurrentIndex(-1)
 
     def fillSongIdComboBox(self):
         self.songIdComboBox.clear()
-        packId = self.packageComboBox.currentData()
+        packId = self.packComboBox.currentData()
         if packId:
             charts = self.db.get_charts_by_pack_id(packId)
             inserted_song_ids = []
@@ -160,7 +176,7 @@ class ChartSelector(Ui_ChartSelector, QWidget):
         self.songIdComboBox.setCurrentIndex(-1)
 
     @Slot()
-    def on_packageComboBox_activated(self):
+    def on_packComboBox_activated(self):
         self.fillSongIdComboBox()
 
     @Slot(int)
@@ -173,38 +189,49 @@ class ChartSelector(Ui_ChartSelector, QWidget):
 
     @Slot()
     def on_resetButton_clicked(self):
-        self.packageComboBox.setCurrentIndex(-1)
+        self.packComboBox.setCurrentIndex(-1)
         self.songIdComboBox.setCurrentIndex(-1)
 
     @Slot(str)
-    def on_fuzzySearchLineEdit_textChanged(self, text: str):
+    def on_searchLineEdit_textChanged(self, text: str):
         if text:
-            self.fuzzySearchCompleterModel.fillDbFuzzySearchResults(self.db, text)
+            self.searchCompleterModel.getSearchResult(text)
         else:
-            self.fuzzySearchCompleterModel.clear()
+            self.searchCompleterModel.clear()
 
-    def selectChart(self, chart: Chart):
-        packageIdIndex = self.packageComboBox.findData(chart.set)
-        if packageIdIndex > -1:
-            self.packageComboBox.setCurrentIndex(packageIdIndex)
+    def selectPack(self, packId: str) -> bool:
+        packIdIndex = self.packComboBox.findData(packId)
+        if packIdIndex > -1:
+            self.packComboBox.setCurrentIndex(packIdIndex)
+            self.fillSongIdComboBox()
+            return True
         else:
-            # QMessageBox
-            return
+            logger.warning(f'Attempting to select an unknown pack "{packId}"')
+            return False
 
-        self.fillSongIdComboBox()
-        songIdIndex = self.songIdComboBox.findData(chart.song_id)
+    def selectSongId(self, songId: str) -> bool:
+        songIdIndex = self.songIdComboBox.findData(songId)
         if songIdIndex > -1:
             self.songIdComboBox.setCurrentIndex(songIdIndex)
+            return True
         else:
-            # QMessageBox
-            return
+            logger.warning(
+                f'Attempting to select an unknown song "{songId}", maybe try selecting a pack first?'
+            )
+            return False
 
+    def selectChart(self, chart: Chart):
+        if not self.selectPack(chart.set):
+            return False
+        if not self.selectSongId(chart.song_id):
+            return False
         self.ratingClassSelector.select(chart.rating_class)
+        return True
 
     @Slot(QModelIndex)
-    def fuzzySearchCompleterSetSelection(self, index: QModelIndex):
+    def searchCompleterSetSelection(self, index: QModelIndex):
         chart = index.data(Qt.ItemDataRole.UserRole + 10)  # type: Chart
         self.selectChart(chart)
 
-        self.fuzzySearchLineEdit.clear()
-        self.fuzzySearchLineEdit.clearFocus()
+        self.searchLineEdit.clear()
+        self.searchLineEdit.clearFocus()

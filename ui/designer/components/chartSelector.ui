@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>671</width>
-    <height>295</height>
+    <width>476</width>
+    <height>347</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,7 +25,68 @@
      <property name="title">
       <string>songIdSelector.title</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QGroupBox" name="songIdSelectorQuickActionsGroupBox">
+        <property name="title">
+         <string>songIdSelector.quickActions</string>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="nextPackageButton">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>songIdSelector.quickActions.nextPackageButton</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="nextSongIdButton">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>songIdSelector.quickActions.nextSongIdButton</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="previousSongIdButton">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>songIdSelector.quickActions.previousSongIdButton</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="previousPackageButton">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>songIdSelector.quickActions.previousPackageButton</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
       <item>
        <widget class="QWidget" name="widget" native="true">
         <property name="minimumSize">
@@ -48,12 +109,12 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QLineEdit" name="fuzzySearchLineEdit">
+          <widget class="QLineEdit" name="searchLineEdit">
            <property name="frame">
             <bool>true</bool>
            </property>
            <property name="placeholderText">
-            <string>fuzzySearch.lineEdit.placeholder</string>
+            <string>search.lineEdit.placeholder</string>
            </property>
            <property name="clearButtonEnabled">
             <bool>true</bool>
@@ -74,47 +135,10 @@
           </spacer>
          </item>
          <item>
-          <widget class="QComboBox" name="packageComboBox"/>
+          <widget class="QComboBox" name="packComboBox"/>
          </item>
          <item>
           <widget class="QComboBox" name="songIdComboBox"/>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="songIdSelectorQuickActionsGroupBox">
-        <property name="title">
-         <string>songIdSelector.quickActions</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <widget class="QPushButton" name="previousPackageButton">
-           <property name="text">
-            <string>songIdSelector.quickActions.previousPackageButton</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="previousSongIdButton">
-           <property name="text">
-            <string>songIdSelector.quickActions.previousSongIdButton</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="nextSongIdButton">
-           <property name="text">
-            <string>songIdSelector.quickActions.nextSongIdButton</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="nextPackageButton">
-           <property name="text">
-            <string>songIdSelector.quickActions.nextPackageButton</string>
-           </property>
-          </widget>
          </item>
         </layout>
        </widget>
@@ -123,25 +147,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="ratingClassGroupBox">
-     <property name="minimumSize">
-      <size>
-       <width>200</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="title">
-      <string>ratingClassSelector.title</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="RatingClassSelector" name="ratingClassSelector" native="true"/>
-      </item>
-     </layout>
-    </widget>
+    <widget class="RatingClassSelector" name="ratingClassSelector" native="true"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="resultsHorizontalLayout">
