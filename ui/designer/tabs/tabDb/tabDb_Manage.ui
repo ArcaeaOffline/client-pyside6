@@ -45,6 +45,27 @@
      </property>
     </widget>
    </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="exportScoresButton">
+     <property name="text">
+      <string>exportScoresButton</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>exportScores.description</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>

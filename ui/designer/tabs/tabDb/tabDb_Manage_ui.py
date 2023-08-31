@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'tabDb_Manage.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.1
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -15,8 +15,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFormLayout, QLabel, QPushButton,
-    QSizePolicy, QWidget)
+from PySide6.QtWidgets import (QApplication, QFormLayout, QFrame, QLabel,
+    QPushButton, QSizePolicy, QWidget)
 
 class Ui_TabDb_Manage(object):
     def setupUi(self, TabDb_Manage):
@@ -47,6 +47,23 @@ class Ui_TabDb_Manage(object):
 
         self.formLayout.setWidget(1, QFormLayout.FieldRole, self.label_2)
 
+        self.line = QFrame(TabDb_Manage)
+        self.line.setObjectName(u"line")
+        self.line.setFrameShape(QFrame.HLine)
+        self.line.setFrameShadow(QFrame.Sunken)
+
+        self.formLayout.setWidget(2, QFormLayout.SpanningRole, self.line)
+
+        self.exportScoresButton = QPushButton(TabDb_Manage)
+        self.exportScoresButton.setObjectName(u"exportScoresButton")
+
+        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.exportScoresButton)
+
+        self.label_3 = QLabel(TabDb_Manage)
+        self.label_3.setObjectName(u"label_3")
+
+        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.label_3)
+
 
         self.retranslateUi(TabDb_Manage)
 
@@ -58,6 +75,8 @@ class Ui_TabDb_Manage(object):
         self.label.setText(QCoreApplication.translate("TabDb_Manage", u"syncArcSongDb.description", None))
         self.importSt3Button.setText(QCoreApplication.translate("TabDb_Manage", u"importSt3Button", None))
         self.label_2.setText(QCoreApplication.translate("TabDb_Manage", u"importSt3.description", None))
+        self.exportScoresButton.setText(QCoreApplication.translate("TabDb_Manage", u"exportScoresButton", None))
+        self.label_3.setText(QCoreApplication.translate("TabDb_Manage", u"exportScores.description", None))
         pass
     # retranslateUi
 

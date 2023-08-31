@@ -1,10 +1,11 @@
+import json
 import logging
 import traceback
 
 from arcaea_offline.database import Database
 from arcaea_offline.external.arcaea.st3 import St3ScoreParser
 from arcaea_offline.external.arcsong import ArcsongDbParser
-from PySide6.QtCore import Slot
+from PySide6.QtCore import QDir, Slot
 from PySide6.QtWidgets import QFileDialog, QMessageBox, QWidget
 
 from ui.designer.tabs.tabDb.tabDb_Manage_ui import Ui_TabDb_Manage
@@ -61,3 +62,18 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
             QMessageBox.critical(
                 self, "Import Error", "\n".join(traceback.format_exception(e))
             )
+
+    @Slot()
+    def on_exportScoresButton_clicked(self):
+        scores = Database().export_scores()
+        version = Database().version()
+        content = json.dumps(scores, ensure_ascii=False)
+
+        exportLocation, _filter = QFileDialog.getSaveFileName(
+            self,
+            "Save your scores to...",
+            QDir.current().filePath(f"arcaea-offline-scores-v{version}.json"),
+            "JSON (*.json);;*",
+        )
+        with open(exportLocation, "w", encoding="utf-8") as f:
+            f.write(content)
