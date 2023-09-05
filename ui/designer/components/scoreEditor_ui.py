@@ -232,6 +232,23 @@ class Ui_ScoreEditor(object):
 
         self.gridLayout.addWidget(self.idLabel, 0, 1, 1, 1)
 
+        QWidget.setTabOrder(self.scoreLineEdit, self.pureSpinBox)
+        QWidget.setTabOrder(self.pureSpinBox, self.pureNoneCheckBox)
+        QWidget.setTabOrder(self.pureNoneCheckBox, self.farSpinBox)
+        QWidget.setTabOrder(self.farSpinBox, self.farNoneCheckBox)
+        QWidget.setTabOrder(self.farNoneCheckBox, self.lostSpinBox)
+        QWidget.setTabOrder(self.lostSpinBox, self.lostNoneCheckBox)
+        QWidget.setTabOrder(self.lostNoneCheckBox, self.dateTimeEdit)
+        QWidget.setTabOrder(self.dateTimeEdit, self.dateNoneCheckBox)
+        QWidget.setTabOrder(self.dateNoneCheckBox, self.maxRecallSpinBox)
+        QWidget.setTabOrder(self.maxRecallSpinBox, self.maxRecallNoneCheckBox)
+        QWidget.setTabOrder(self.maxRecallNoneCheckBox, self.modifierComboBox)
+        QWidget.setTabOrder(self.modifierComboBox, self.modifierNoneCheckBox)
+        QWidget.setTabOrder(self.modifierNoneCheckBox, self.clearTypeComboBox)
+        QWidget.setTabOrder(self.clearTypeComboBox, self.clearTypeNoneCheckBox)
+        QWidget.setTabOrder(self.clearTypeNoneCheckBox, self.commentLineEdit)
+        QWidget.setTabOrder(self.commentLineEdit, self.commentNoneCheckBox)
+        QWidget.setTabOrder(self.commentNoneCheckBox, self.commitButton)
 
         self.retranslateUi(ScoreEditor)
         self.pureNoneCheckBox.toggled.connect(self.pureSpinBox.setDisabled)

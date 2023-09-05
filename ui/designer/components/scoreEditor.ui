@@ -345,6 +345,26 @@
    <header>ui.implements.components.focusSelectAllLineEdit</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>scoreLineEdit</tabstop>
+  <tabstop>pureSpinBox</tabstop>
+  <tabstop>pureNoneCheckBox</tabstop>
+  <tabstop>farSpinBox</tabstop>
+  <tabstop>farNoneCheckBox</tabstop>
+  <tabstop>lostSpinBox</tabstop>
+  <tabstop>lostNoneCheckBox</tabstop>
+  <tabstop>dateTimeEdit</tabstop>
+  <tabstop>dateNoneCheckBox</tabstop>
+  <tabstop>maxRecallSpinBox</tabstop>
+  <tabstop>maxRecallNoneCheckBox</tabstop>
+  <tabstop>modifierComboBox</tabstop>
+  <tabstop>modifierNoneCheckBox</tabstop>
+  <tabstop>clearTypeComboBox</tabstop>
+  <tabstop>clearTypeNoneCheckBox</tabstop>
+  <tabstop>commentLineEdit</tabstop>
+  <tabstop>commentNoneCheckBox</tabstop>
+  <tabstop>commitButton</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
