@@ -2,7 +2,7 @@ from typing import Type
 
 from PySide6.QtCore import Signal
 from PySide6.QtGui import QColor
-from PySide6.QtWidgets import QHBoxLayout, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QHBoxLayout, QSizePolicy, QVBoxLayout, QWidget
 
 from ui.implements.components.ratingClassRadioButton import RatingClassRadioButton
 
@@ -11,34 +11,32 @@ class RatingClassSelector(QWidget):
     valueChanged = Signal()
     selected = Signal(int)
 
-    def __init__(
-        self, parent=None, layout: Type[QHBoxLayout] | Type[QVBoxLayout] = QHBoxLayout
-    ):
+    def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.preferredLayout = layout(self)
+        self.preferredLayout = QHBoxLayout(self)
         self.preferredLayout.setSpacing(0)
 
         self.pstButton = RatingClassRadioButton(self)
-        self.pstButton.setObjectName("self.pstButton")
+        self.pstButton.setObjectName("pstButton")
         self.pstButton.setText("PAST")
         self.pstButton.setAutoExclusive(False)
         self.preferredLayout.addWidget(self.pstButton)
 
         self.prsButton = RatingClassRadioButton(self)
-        self.prsButton.setObjectName("self.prsButton")
+        self.prsButton.setObjectName("prsButton")
         self.prsButton.setText("PRESENT")
         self.prsButton.setAutoExclusive(False)
         self.preferredLayout.addWidget(self.prsButton)
 
         self.ftrButton = RatingClassRadioButton(self)
-        self.ftrButton.setObjectName("self.ftrButton")
+        self.ftrButton.setObjectName("ftrButton")
         self.ftrButton.setText("FUTURE")
         self.ftrButton.setAutoExclusive(False)
         self.preferredLayout.addWidget(self.ftrButton)
 
         self.bydButton = RatingClassRadioButton(self)
-        self.bydButton.setObjectName("self.bydButton")
+        self.bydButton.setObjectName("bydButton")
         self.bydButton.setText("BEYOND")
         self.bydButton.setAutoExclusive(False)
         self.preferredLayout.addWidget(self.bydButton)
@@ -55,6 +53,28 @@ class RatingClassSelector(QWidget):
         self.bydButton.clicked.connect(self.select)
         self.reset()
         self.setButtonsEnabled([])
+
+    def setLayout(self, layoutType: Type[QVBoxLayout] | Type[QHBoxLayout]):
+        while self.preferredLayout.takeAt(0):
+            ...
+        self.preferredLayout.destroyed.connect(lambda: self.__setLayout(layoutType))
+        self.preferredLayout.deleteLater()
+
+    def __setLayout(self, layoutType: Type[QVBoxLayout] | Type[QHBoxLayout]):
+        self.preferredLayout = layoutType(self)
+        self.preferredLayout.setSpacing(0)
+        for button in self.buttons:
+            if layoutType == QVBoxLayout:
+                sizePolicy = QSizePolicy(
+                    QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding
+                )
+            else:
+                sizePolicy = QSizePolicy(
+                    QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred
+                )
+            button.setSizePolicy(sizePolicy)
+            self.preferredLayout.addWidget(button)
+        self.update()
 
     def value(self):
         for i, button in enumerate(self.buttons):
