@@ -6,75 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>470</width>
-    <height>350</height>
+    <width>350</width>
+    <height>250</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string notr="true">SongIdSelector</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
-   <item>
-    <widget class="QGroupBox" name="songIdSelectorQuickActionsGroupBox">
-     <property name="title">
-      <string>songIdSelector.quickActions</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QPushButton" name="nextPackageButton">
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>songIdSelector.quickActions.nextPackageButton</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="nextSongIdButton">
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>songIdSelector.quickActions.nextSongIdButton</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="previousSongIdButton">
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>songIdSelector.quickActions.previousSongIdButton</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="previousPackageButton">
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>songIdSelector.quickActions.previousPackageButton</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item>
     <widget class="QLineEdit" name="searchLineEdit">
      <property name="frame">
@@ -102,10 +41,84 @@
     </spacer>
    </item>
    <item>
-    <widget class="QComboBox" name="packComboBox"/>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="previousPackageButton">
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>previous</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="packComboBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="nextPackageButton">
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>next</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
-    <widget class="QComboBox" name="songIdComboBox"/>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="previousSongIdButton">
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>previous</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="songIdComboBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="nextSongIdButton">
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>next</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
