@@ -40,6 +40,11 @@
         <string>tab.ocr</string>
        </attribute>
       </widget>
+      <widget class="TabToolsEntry" name="tab_tools">
+       <attribute name="title">
+        <string>tab.tools</string>
+       </attribute>
+      </widget>
       <widget class="TabSettings" name="tab_settings">
        <attribute name="title">
         <string>tab.settings</string>
@@ -90,6 +95,12 @@
    <class>TabOcrEntry</class>
    <extends>QWidget</extends>
    <header>ui.implements.tabs.tabOcrEntry</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabToolsEntry</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabToolsEntry</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

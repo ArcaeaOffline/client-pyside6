@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'mainwindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.1
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -24,6 +24,7 @@ from ui.implements.tabs.tabInputScore import TabInputScore
 from ui.implements.tabs.tabOcrEntry import TabOcrEntry
 from ui.implements.tabs.tabOverview import TabOverview
 from ui.implements.tabs.tabSettings import TabSettings
+from ui.implements.tabs.tabToolsEntry import TabToolsEntry
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -49,6 +50,9 @@ class Ui_MainWindow(object):
         self.tab_ocr = TabOcrEntry()
         self.tab_ocr.setObjectName(u"tab_ocr")
         self.tabWidget.addTab(self.tab_ocr, "")
+        self.tab_tools = TabToolsEntry()
+        self.tab_tools.setObjectName(u"tab_tools")
+        self.tabWidget.addTab(self.tab_tools, "")
         self.tab_settings = TabSettings()
         self.tab_settings.setObjectName(u"tab_settings")
         self.tabWidget.addTab(self.tab_settings, "")
@@ -73,6 +77,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_input), QCoreApplication.translate("MainWindow", u"tab.input", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_db), QCoreApplication.translate("MainWindow", u"tab.db", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_ocr), QCoreApplication.translate("MainWindow", u"tab.ocr", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_tools), QCoreApplication.translate("MainWindow", u"tab.tools", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_settings), QCoreApplication.translate("MainWindow", u"tab.settings", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_about), QCoreApplication.translate("MainWindow", u"tab.about", None))
         pass
