@@ -152,15 +152,15 @@ class ChartDelegate(TextSegmentDelegate):
     def createEditor(
         self, parent: QWidget, option: QStyleOptionViewItem, index: QModelIndex
     ) -> ChartSelectorDelegateWrapper:
+        editor = ChartSelectorDelegateWrapper(parent)
+        editor.setWindowFlag(Qt.WindowType.Sheet, True)
+        editor.setWindowFlag(Qt.WindowType.FramelessWindowHint, True)
         if isinstance(self.getChart(index), Chart):
-            editor = ChartSelectorDelegateWrapper(parent)
-            editor.setWindowFlag(Qt.WindowType.Sheet, True)
-            editor.setWindowFlag(Qt.WindowType.FramelessWindowHint, True)
             editor.setText(self.getChart(index))
-            editor.move(parent.mapToGlobal(parent.pos()))
-            editor.accepted.connect(self._commitEditor)
-            editor.rejected.connect(self._closeEditor)
-            return editor
+        editor.move(parent.mapToGlobal(parent.pos()))
+        editor.accepted.connect(self._commitEditor)
+        editor.rejected.connect(self._closeEditor)
+        return editor
 
     def updateEditorGeometry(self, editor: QWidget, option, index: QModelIndex) -> None:
         editor.move(editor.pos() + option.rect.topLeft())

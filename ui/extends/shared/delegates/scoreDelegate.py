@@ -198,23 +198,28 @@ class ScoreDelegate(TextSegmentDelegate):
         self.closeEditor.emit(editor)
 
     def createEditor(self, parent, option, index) -> ScoreEditorDelegateWrapper:
-        score = self.getScore(index)
+        editor = ScoreEditorDelegateWrapper(parent)
+        editor.setWindowFlag(Qt.WindowType.Sheet, True)
+        editor.setWindowFlag(Qt.WindowType.FramelessWindowHint, True)
+
         chart = self.getChart(index)
-        if isinstance(score, Score) and isinstance(chart, Chart):
-            editor = ScoreEditorDelegateWrapper(parent)
-            editor.setWindowFlag(Qt.WindowType.Sheet, True)
-            editor.setWindowFlag(Qt.WindowType.FramelessWindowHint, True)
+        score = self.getScore(index)
+        if isinstance(chart, Chart):
             editor.setWindowTitle(
                 f"{chart.title}({chart.song_id}) | {rating_class_to_text(chart.rating_class)} | {chart.set}"
             )
-            editor.setText(self.getScore(index))
-            editor.setValidateBeforeAccept(False)
-            editor.move(parent.mapToGlobal(parent.pos()))
-            editor.accepted.connect(self._commitEditor)
-            editor.rejected.connect(self._closeEditor)
-            editor.show()
-            return editor
-        return super().createEditor(parent, option, index)
+        else:
+            editor.setWindowTitle("-")
+
+        if isinstance(score, Score):
+            editor.setText(score)
+
+        editor.setValidateBeforeAccept(False)
+        editor.move(parent.mapToGlobal(parent.pos()))
+        editor.accepted.connect(self._commitEditor)
+        editor.rejected.connect(self._closeEditor)
+        editor.show()
+        return editor
 
     def updateEditorGeometry(self, editor, option, index):
         editor.setMaximumWidth(option.rect.width())
@@ -225,8 +230,9 @@ class ScoreDelegate(TextSegmentDelegate):
     def setEditorData(self, editor: ScoreEditorDelegateWrapper, index) -> None:
         score = self.getScore(index)
         chart = self.getChart(index)
-        if isinstance(score, Score) and isinstance(chart, Chart):
+        if isinstance(chart, Chart):
             editor.setChart(chart)
+        if isinstance(score, Score):
             editor.setValue(score)
 
     def confirmSetModelData(self, editor: ScoreEditorDelegateWrapper):
