@@ -165,7 +165,7 @@ class ChartDelegate(TextSegmentDelegate):
     def updateEditorGeometry(self, editor: QWidget, option, index: QModelIndex) -> None:
         editor.move(editor.pos() + option.rect.topLeft())
         editor.setMaximumWidth(option.rect.width())
-        
+
         keepWidgetInScreen(editor)
 
     def setEditorData(self, editor: ChartSelectorDelegateWrapper, index: QModelIndex):

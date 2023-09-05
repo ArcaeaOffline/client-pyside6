@@ -46,7 +46,7 @@ class ChartSelector(Ui_ChartSelector, QWidget):
     def updateResultLabel(self):
         chart = self.value()
         if isinstance(chart, Chart):
-            pack = self.db.get_pack_by_id(chart.set)
+            pack = self.db.get_pack(chart.set)
             texts = [
                 [
                     pack.name,

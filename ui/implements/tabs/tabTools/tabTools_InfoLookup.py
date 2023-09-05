@@ -77,8 +77,8 @@ class TabTools_InfoLookup(Ui_TabTools_InfoLookup, QWidget):
             self.resetPackLabels()
             return
 
-        pack = self.db.get_pack_by_id(packId)
-        packLocalized = self.db.get_pack_localized_by_id(packId)
+        pack = self.db.get_pack(packId)
+        packLocalized = self.db.get_pack_localized(packId)
 
         name = self.getLocalizedItem(pack, packLocalized, "name")
         description = self.getLocalizedItem(pack, packLocalized, "description")
@@ -98,8 +98,8 @@ class TabTools_InfoLookup(Ui_TabTools_InfoLookup, QWidget):
             self.resetSongLabels()
             return
 
-        song = self.db.get_song_by_id(songId)
-        songLocalized = self.db.get_song_localized_by_id(songId)
+        song = self.db.get_song(songId)
+        songLocalized = self.db.get_song_localized(songId)
 
         title = self.getLocalizedItem(song, songLocalized, "title")
         bgSideTexts = []

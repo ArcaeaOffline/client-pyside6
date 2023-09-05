@@ -112,7 +112,7 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
             isAppendPack = re.search(r"_append_.*$", pack.id)
             if isAppendPack:
                 basePackId = re.sub(r"_append_.*$", "", pack.id)
-                basePackName = self.db.get_pack_by_id(basePackId).name
+                basePackName = self.db.get_pack(basePackId).name
                 packName = f"{basePackName} - {pack.name}"
             else:
                 packName = pack.name

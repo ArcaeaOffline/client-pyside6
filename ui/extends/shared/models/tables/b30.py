@@ -39,7 +39,7 @@ class DbB30TableModel(DbTableModel):
         ptts = [r.potential for r in results]
 
         for scoreId, ptt in zip(songIds, ptts):
-            score = self._db.get_score_by_id(scoreId)
+            score = self._db.get_score(scoreId)
             chart = self._db.get_chart(score.song_id, score.rating_class)
 
             self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())

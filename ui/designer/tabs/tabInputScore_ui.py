@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'tabInputScore.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.0
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -31,11 +31,6 @@ class Ui_TabInputScore(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.groupBox = QGroupBox(TabInputScore)
         self.groupBox.setObjectName(u"groupBox")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
-        self.groupBox.setSizePolicy(sizePolicy)
         self.verticalLayout_2 = QVBoxLayout(self.groupBox)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
