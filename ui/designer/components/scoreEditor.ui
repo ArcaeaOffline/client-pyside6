@@ -6,28 +6,79 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
-    <height>350</height>
+    <width>625</width>
+    <height>250</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string notr="true">ScoreEditor</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="2">
-    <widget class="QCheckBox" name="pureNoneCheckBox">
-     <property name="text">
-      <string>setNone</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="0">
+   <item row="2" column="3">
     <widget class="QLabel" name="label_7">
      <property name="text">
       <string notr="true">Modifier</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="4">
+    <widget class="QComboBox" name="clearTypeComboBox">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>0</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="idLabel">
+     <property name="text">
+      <string>idAutoInsert</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QCheckBox" name="lostNoneCheckBox">
+     <property name="text">
+      <string>setNone</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="FocusSelectAllLineEdit" name="scoreLineEdit">
+     <property name="inputMask">
+      <string notr="true">B9'999'999;_</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="3">
+    <widget class="QLabel" name="label_9">
+     <property name="text">
+      <string>formLabel.comment</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QCheckBox" name="farNoneCheckBox">
+     <property name="text">
+      <string>setNone</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="4">
+    <widget class="QLineEdit" name="commentLineEdit">
+     <property name="enabled">
+      <bool>false</bool>
      </property>
     </widget>
    </item>
@@ -44,23 +95,36 @@
      </property>
     </widget>
    </item>
-   <item row="10" column="2">
-    <widget class="QCheckBox" name="clearTypeNoneCheckBox">
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_5">
      <property name="text">
-      <string>setNone</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string notr="true">PURE</string>
+      <string>formLabel.date</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QLabel" name="label_8">
+     <property name="text">
+      <string notr="true">Clear Type</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QSpinBox" name="farSpinBox">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximum">
+      <number>0</number>
      </property>
     </widget>
    </item>
@@ -74,59 +138,67 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="2">
-    <widget class="QCheckBox" name="dateNoneCheckBox">
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>setNone</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="1">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="12" column="1">
-    <widget class="QLabel" name="validateLabel">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string notr="true">...</string>
+      <string notr="true">PURE</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>
-   <item row="10" column="1">
-    <widget class="QComboBox" name="clearTypeComboBox">
-     <property name="enabled">
-      <bool>false</bool>
+   <item row="1" column="3">
+    <widget class="QLabel" name="label_6">
+     <property name="text">
+      <string notr="true">MAX RECALL</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QSpinBox" name="lostSpinBox">
      <property name="minimumSize">
       <size>
        <width>100</width>
        <height>0</height>
       </size>
      </property>
+     <property name="maximum">
+      <number>0</number>
+     </property>
     </widget>
    </item>
-   <item row="10" column="0">
-    <widget class="QLabel" name="label_8">
+   <item row="2" column="2">
+    <widget class="QCheckBox" name="pureNoneCheckBox">
      <property name="text">
-      <string notr="true">Clear Type</string>
+      <string>setNone</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_10">
+     <property name="text">
+      <string>ID</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4">
+    <widget class="QComboBox" name="modifierComboBox">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>formLabel.score</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -143,17 +215,7 @@
      </property>
     </widget>
    </item>
-   <item row="8" column="0">
-    <widget class="QLabel" name="label_6">
-     <property name="text">
-      <string notr="true">MAX RECALL</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="1">
+   <item row="1" column="4">
     <widget class="QSpinBox" name="maxRecallSpinBox">
      <property name="enabled">
       <bool>false</bool>
@@ -175,14 +237,77 @@
      </property>
     </widget>
    </item>
-   <item row="9" column="1">
-    <widget class="QComboBox" name="modifierComboBox">
-     <property name="enabled">
-      <bool>false</bool>
+   <item row="1" column="5">
+    <widget class="QCheckBox" name="maxRecallNoneCheckBox">
+     <property name="text">
+      <string>setNone</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="5" column="1">
+   <item row="2" column="5">
+    <widget class="QCheckBox" name="modifierNoneCheckBox">
+     <property name="text">
+      <string>setNone</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="5">
+    <widget class="QCheckBox" name="clearTypeNoneCheckBox">
+     <property name="text">
+      <string>setNone</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="5">
+    <widget class="QCheckBox" name="commentNoneCheckBox">
+     <property name="text">
+      <string>setNone</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="5">
+    <widget class="QPushButton" name="commitButton">
+     <property name="text">
+      <string>commitButton</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="0" colspan="5">
+    <widget class="QLabel" name="validateLabel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string notr="true">...</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="5">
+    <widget class="QCheckBox" name="dateNoneCheckBox">
+     <property name="text">
+      <string>setNone</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1" colspan="4">
     <widget class="QDateTimeEdit" name="dateTimeEdit">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -198,144 +323,6 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="1">
-    <widget class="QSpinBox" name="lostSpinBox">
-     <property name="minimumSize">
-      <size>
-       <width>100</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximum">
-      <number>0</number>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="2">
-    <widget class="QCheckBox" name="lostNoneCheckBox">
-     <property name="text">
-      <string>setNone</string>
-     </property>
-    </widget>
-   </item>
-   <item row="11" column="1">
-    <widget class="QLineEdit" name="commentLineEdit">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="2">
-    <widget class="QCheckBox" name="modifierNoneCheckBox">
-     <property name="text">
-      <string>setNone</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="11" column="2">
-    <widget class="QCheckBox" name="commentNoneCheckBox">
-     <property name="text">
-      <string>setNone</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>formLabel.date</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="12" column="2">
-    <widget class="QPushButton" name="commitButton">
-     <property name="text">
-      <string>commitButton</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="FocusSelectAllLineEdit" name="scoreLineEdit">
-     <property name="inputMask">
-      <string notr="true">B9'999'999;_</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="2">
-    <widget class="QCheckBox" name="maxRecallNoneCheckBox">
-     <property name="text">
-      <string>setNone</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="QSpinBox" name="farSpinBox">
-     <property name="minimumSize">
-      <size>
-       <width>100</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximum">
-      <number>0</number>
-     </property>
-    </widget>
-   </item>
-   <item row="11" column="0">
-    <widget class="QLabel" name="label_9">
-     <property name="text">
-      <string>formLabel.comment</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>formLabel.score</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="2">
-    <widget class="QCheckBox" name="farNoneCheckBox">
-     <property name="text">
-      <string>setNone</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label_10">
-     <property name="text">
-      <string>ID</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLabel" name="idLabel">
-     <property name="text">
-      <string>idAutoInsert</string>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -345,6 +332,26 @@
    <header>ui.implements.components.focusSelectAllLineEdit</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>scoreLineEdit</tabstop>
+  <tabstop>pureSpinBox</tabstop>
+  <tabstop>pureNoneCheckBox</tabstop>
+  <tabstop>farSpinBox</tabstop>
+  <tabstop>farNoneCheckBox</tabstop>
+  <tabstop>lostSpinBox</tabstop>
+  <tabstop>lostNoneCheckBox</tabstop>
+  <tabstop>dateTimeEdit</tabstop>
+  <tabstop>dateNoneCheckBox</tabstop>
+  <tabstop>maxRecallSpinBox</tabstop>
+  <tabstop>maxRecallNoneCheckBox</tabstop>
+  <tabstop>modifierComboBox</tabstop>
+  <tabstop>modifierNoneCheckBox</tabstop>
+  <tabstop>clearTypeComboBox</tabstop>
+  <tabstop>clearTypeNoneCheckBox</tabstop>
+  <tabstop>commentLineEdit</tabstop>
+  <tabstop>commentNoneCheckBox</tabstop>
+  <tabstop>commitButton</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
