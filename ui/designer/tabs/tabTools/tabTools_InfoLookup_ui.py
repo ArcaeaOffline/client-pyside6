@@ -216,11 +216,11 @@ class Ui_TabTools_InfoLookup(object):
 
         self.gridLayout.addWidget(self.songIdLabel, 0, 1, 1, 1)
 
-        self.songDateVersionLabel = QLabel(self.songInfoGroupBox)
-        self.songDateVersionLabel.setObjectName(u"songDateVersionLabel")
-        self.songDateVersionLabel.setText(u"...")
+        self.songAddedInLabel = QLabel(self.songInfoGroupBox)
+        self.songAddedInLabel.setObjectName(u"songAddedInLabel")
+        self.songAddedInLabel.setText(u"...")
 
-        self.gridLayout.addWidget(self.songDateVersionLabel, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.songAddedInLabel, 1, 1, 1, 1)
 
         self.songBgDayNightLabel = QLabel(self.songInfoGroupBox)
         self.songBgDayNightLabel.setObjectName(u"songBgDayNightLabel")
@@ -435,11 +435,11 @@ class Ui_TabTools_InfoLookup(object):
 
         self.gridLayout_4.addWidget(self.label_41, 3, 3, 1, 1)
 
-        self.difficultyDateVersionLabel = QLabel(self.groupBox_4)
-        self.difficultyDateVersionLabel.setObjectName(u"difficultyDateVersionLabel")
-        self.difficultyDateVersionLabel.setText(u"...")
+        self.difficultyAddedInLabel = QLabel(self.groupBox_4)
+        self.difficultyAddedInLabel.setObjectName(u"difficultyAddedInLabel")
+        self.difficultyAddedInLabel.setText(u"...")
 
-        self.gridLayout_4.addWidget(self.difficultyDateVersionLabel, 0, 4, 1, 1)
+        self.gridLayout_4.addWidget(self.difficultyAddedInLabel, 0, 4, 1, 1)
 
         self.label_26 = QLabel(self.groupBox_4)
         self.label_26.setObjectName(u"label_26")
@@ -519,7 +519,7 @@ class Ui_TabTools_InfoLookup(object):
         self.label_11.setText(QCoreApplication.translate("TabTools_InfoLookup", u"song.artist", None))
         self.label_19.setText(QCoreApplication.translate("TabTools_InfoLookup", u"song.bgSide", None))
         self.label_3.setText(QCoreApplication.translate("TabTools_InfoLookup", u"song.id", None))
-        self.label_15.setText(QCoreApplication.translate("TabTools_InfoLookup", u"song.date&version", None))
+        self.label_15.setText(QCoreApplication.translate("TabTools_InfoLookup", u"song.addedIn", None))
         self.label_6.setText(QCoreApplication.translate("TabTools_InfoLookup", u"song.title", None))
         self.label_14.setText(QCoreApplication.translate("TabTools_InfoLookup", u"song.bpm", None))
         self.label_25.setText(QCoreApplication.translate("TabTools_InfoLookup", u"song.source", None))
@@ -528,7 +528,7 @@ class Ui_TabTools_InfoLookup(object):
         self.label_2.setText(QCoreApplication.translate("TabTools_InfoLookup", u"chart.constant", None))
         self.label_8.setText(QCoreApplication.translate("TabTools_InfoLookup", u"chart.notes", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("TabTools_InfoLookup", u"difficultyInfo", None))
-        self.label_18.setText(QCoreApplication.translate("TabTools_InfoLookup", u"difficulty.date&version", None))
+        self.label_18.setText(QCoreApplication.translate("TabTools_InfoLookup", u"difficulty.addedIn", None))
         self.label_31.setText(QCoreApplication.translate("TabTools_InfoLookup", u"difficulty.artist", None))
         self.label_13.setText(QCoreApplication.translate("TabTools_InfoLookup", u"difficulty.rating", None))
         self.label_33.setText(QCoreApplication.translate("TabTools_InfoLookup", u"difficulty.bg", None))

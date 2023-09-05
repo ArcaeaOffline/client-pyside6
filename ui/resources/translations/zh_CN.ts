@@ -4,47 +4,12 @@
 <context>
     <name>ChartSelector</name>
     <message>
-        <location filename="../../designer/components/chartSelector.ui" line="56"/>
-        <source>fuzzySearch.lineEdit.placeholder</source>
-        <translation>在此输入……</translation>
-    </message>
-    <message>
         <location filename="../../designer/components/chartSelector.ui" line="26"/>
         <source>songIdSelector.title</source>
         <translation>选择曲目</translation>
     </message>
     <message>
-        <location filename="../../designer/components/chartSelector.ui" line="88"/>
-        <source>songIdSelector.quickActions</source>
-        <translation>快速操作</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/chartSelector.ui" line="94"/>
-        <source>songIdSelector.quickActions.previousPackageButton</source>
-        <translation>上一曲包</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/chartSelector.ui" line="101"/>
-        <source>songIdSelector.quickActions.previousSongIdButton</source>
-        <translation>上一曲目</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/chartSelector.ui" line="108"/>
-        <source>songIdSelector.quickActions.nextSongIdButton</source>
-        <translation>下一曲目</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/chartSelector.ui" line="115"/>
-        <source>songIdSelector.quickActions.nextPackageButton</source>
-        <translation>下一曲包</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/chartSelector.ui" line="134"/>
-        <source>ratingClassSelector.title</source>
-        <translation>难度选择</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/chartSelector.ui" line="231"/>
+        <location filename="../../designer/components/chartSelector.ui" line="71"/>
         <source>resetButton</source>
         <translation>重置</translation>
     </message>
@@ -53,26 +18,21 @@
     <name>DB30TableModel</name>
     <message>
         <location filename="../../extends/shared/models/tables/b30.py" line="21"/>
-        <source>horizontalHeader.tableId</source>
-        <translation>序号</translation>
-    </message>
-    <message>
-        <location filename="../../extends/shared/models/tables/b30.py" line="22"/>
         <source>horizontalHeader.id</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="../../extends/shared/models/tables/b30.py" line="23"/>
+        <location filename="../../extends/shared/models/tables/b30.py" line="22"/>
         <source>horizontalHeader.chart</source>
         <translation>谱面</translation>
     </message>
     <message>
-        <location filename="../../extends/shared/models/tables/b30.py" line="24"/>
+        <location filename="../../extends/shared/models/tables/b30.py" line="23"/>
         <source>horizontalHeader.score</source>
         <translation>分数</translation>
     </message>
     <message>
-        <location filename="../../extends/shared/models/tables/b30.py" line="25"/>
+        <location filename="../../extends/shared/models/tables/b30.py" line="24"/>
         <source>horizontalHeader.potential</source>
         <translation>单曲 PTT</translation>
     </message>
@@ -81,39 +41,49 @@
     <name>DatabaseChecker</name>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="23"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="130"/>
+        <location filename="../../startup/databaseChecker_ui.py" line="162"/>
         <source>dbPathLabel</source>
         <translation>数据库路径</translation>
     </message>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="33"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="133"/>
+        <location filename="../../startup/databaseChecker_ui.py" line="165"/>
+        <source>dbFilenameLabel</source>
+        <translation>数据库文件名</translation>
+    </message>
+    <message>
+        <location filename="../../startup/databaseChecker.ui" line="64"/>
+        <location filename="../../startup/databaseChecker_ui.py" line="168"/>
+        <source>confirmDbPathButton</source>
+        <translation>确认</translation>
+    </message>
+    <message>
+        <location filename="../../startup/databaseChecker.ui" line="117"/>
+        <location filename="../../startup/databaseChecker_ui.py" line="177"/>
         <source>dbVersionLabel</source>
         <translation>数据库版本</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.ui" line="47"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="136"/>
-        <source>dbInitLabel</source>
-        <translation>初始化</translation>
-    </message>
-    <message>
-        <location filename="../../startup/databaseChecker.ui" line="54"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="139"/>
+        <location filename="../../startup/databaseChecker.ui" line="93"/>
+        <location filename="../../startup/databaseChecker_ui.py" line="171"/>
         <source>dbCheckConnLabel</source>
         <translation>数据库连接</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.ui" line="61"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="142"/>
-        <source>dbInitButton</source>
-        <translation>初始化数据库</translation>
-    </message>
-    <message>
-        <location filename="../../startup/databaseChecker.ui" line="91"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="145"/>
+        <location filename="../../startup/databaseChecker.ui" line="110"/>
+        <location filename="../../startup/databaseChecker_ui.py" line="174"/>
         <source>continueButton</source>
         <translation>继续</translation>
+    </message>
+    <message>
+        <location filename="../../startup/databaseChecker.py" line="80"/>
+        <source>dialog.confirmNewDatabase</source>
+        <translation>数据库文件不存在，是否创建？</translation>
+    </message>
+    <message>
+        <location filename="../../startup/databaseChecker.py" line="100"/>
+        <source>dialog.tryInit</source>
+        <translation>现有的数据库似乎没有正确初始化，是否尝试再次初始化？</translation>
     </message>
 </context>
 <context>
@@ -227,11 +197,16 @@
     </message>
     <message>
         <location filename="../../designer/mainwindow.ui" line="45"/>
+        <source>tab.tools</source>
+        <translation>小工具</translation>
+    </message>
+    <message>
+        <location filename="../../designer/mainwindow.ui" line="50"/>
         <source>tab.settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../designer/mainwindow.ui" line="50"/>
+        <location filename="../../designer/mainwindow.ui" line="55"/>
         <source>tab.about</source>
         <translation>关于</translation>
     </message>
@@ -318,73 +293,95 @@
 <context>
     <name>ScoreEditor</name>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="26"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="20"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="50"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="80"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="217"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="231"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="241"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="275"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="318"/>
+        <source>setNone</source>
+        <translation>置空</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/scoreEditor.ui" line="251"/>
+        <source>formLabel.date</source>
+        <translation>时间</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/scoreEditor.ui" line="298"/>
+        <source>formLabel.comment</source>
+        <translation>注释</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/scoreEditor.ui" line="308"/>
         <source>formLabel.score</source>
         <translation>分数</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="100"/>
-        <source>formLabel.time</source>
-        <translation>时间</translation>
+        <location filename="../../designer/components/scoreEditor.ui" line="335"/>
+        <source>idAutoInsert</source>
+        <translation>（自动插入）</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="191"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="261"/>
         <source>commitButton</source>
         <translation>提交</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="200"/>
-        <source>formLabel.clearType</source>
-        <translation>通关状态</translation>
-    </message>
-    <message>
-        <location filename="../../implements/components/scoreEditor.py" line="77"/>
+        <location filename="../../implements/components/scoreEditor.py" line="106"/>
         <source>emptyScoreDialog.title</source>
         <translation>分数为空</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="78"/>
+        <location filename="../../implements/components/scoreEditor.py" line="107"/>
         <source>emptyScoreDialog.content</source>
         <translation>确定提交空分数吗？</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="57"/>
-        <location filename="../../implements/components/scoreEditor.py" line="58"/>
+        <location filename="../../implements/components/scoreEditor.py" line="86"/>
+        <location filename="../../implements/components/scoreEditor.py" line="87"/>
         <source>chartInvalidDialog.title</source>
         <translation>谱面无效</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="66"/>
+        <location filename="../../implements/components/scoreEditor.py" line="95"/>
         <source>scoreMismatchDialog.title</source>
         <translation>分数可能有误</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="67"/>
+        <location filename="../../implements/components/scoreEditor.py" line="96"/>
         <source>scoreMismatchDialog.content</source>
         <translation>输入的分数不在理论计算范围内。是否确认提交？</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="149"/>
+        <location filename="../../implements/components/scoreEditor.py" line="181"/>
         <source>validate.ok</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="151"/>
+        <location filename="../../implements/components/scoreEditor.py" line="183"/>
         <source>validate.chartInvalid</source>
         <translation>谱面无效</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="153"/>
+        <location filename="../../implements/components/scoreEditor.py" line="185"/>
         <source>validate.scoreMismatch</source>
         <translation>分数可能有误</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="155"/>
+        <location filename="../../implements/components/scoreEditor.py" line="187"/>
         <source>validate.scoreEmpty</source>
         <translation>分数为空</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="158"/>
+        <location filename="../../implements/components/scoreEditor.py" line="189"/>
+        <source>validate.scoreIncomplete</source>
+        <translation>分数不完整，无法验证</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="192"/>
         <source>validate.unknownState</source>
         <translation>未知</translation>
     </message>
@@ -408,7 +405,7 @@
     </message>
     <message>
         <location filename="../../designer/settings/settingsDefault.ui" line="101"/>
-        <location filename="../../designer/settings/settingsDefault.ui" line="115"/>
+        <location filename="../../designer/settings/settingsDefault.ui" line="118"/>
         <source>resetButton</source>
         <translation>重置</translation>
     </message>
@@ -418,9 +415,29 @@
         <translation>默认 KNearest 模型</translation>
     </message>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="138"/>
+        <location filename="../../designer/settings/settingsDefault.ui" line="141"/>
         <source>siftDatabaseFile</source>
         <translation>默认 SIFT 特征值数据库</translation>
+    </message>
+</context>
+<context>
+    <name>SongIdSelector</name>
+    <message>
+        <location filename="../../designer/components/songIdSelector.ui" line="23"/>
+        <source>search.lineEdit.placeholder</source>
+        <translation>搜索……</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/songIdSelector.ui" line="54"/>
+        <location filename="../../designer/components/songIdSelector.ui" line="94"/>
+        <source>previous</source>
+        <translation>上一个</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/songIdSelector.ui" line="77"/>
+        <location filename="../../designer/components/songIdSelector.ui" line="117"/>
+        <source>next</source>
+        <translation>下一个</translation>
     </message>
 </context>
 <context>
@@ -471,16 +488,26 @@
         <source>importSt3.description</source>
         <translation>遏卡抑五年，天降飞龙，姿容极度美艳。白衣仙女以妙法擒之，与之相恋。&lt;br&gt;来年，恶人携联结万邦之力来袭，仙女龙妃以根源之术，呼唤神通叁式之威，退敌千里，永护宝库安宁。</translation>
     </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="58"/>
+        <source>exportScoresButton</source>
+        <translation>导出分数</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="65"/>
+        <source>exportScores.description</source>
+        <translation>将所有分数导出为 JSON 文件</translation>
+    </message>
 </context>
 <context>
     <name>TabInputScore</name>
     <message>
-        <location filename="../../designer/tabs/tabInputScore.ui" line="26"/>
+        <location filename="../../designer/tabs/tabInputScore.ui" line="20"/>
         <source>tab.selectChart</source>
         <translation>谱面选择</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabInputScore.ui" line="50"/>
+        <location filename="../../designer/tabs/tabInputScore.ui" line="44"/>
         <source>tab.scoreEdit</source>
         <translation>分数编辑</translation>
     </message>
@@ -547,19 +574,200 @@
         <translation>选择设备</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="63"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="33"/>
+        <source>deviceSelector.useAutoFactor</source>
+        <translation>自动确定 factor</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="70"/>
         <source>knnModelSelector.title</source>
         <translation>选择 KNearest 模型</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="94"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="101"/>
         <source>tesseractSelector.title</source>
         <translation>选择 tesseract 路径</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="122"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="129"/>
         <source>siftDatabaseSelector.title</source>
         <translation>选择图像 SIFT 特征值数据库</translation>
+    </message>
+</context>
+<context>
+    <name>TabToolsEntry</name>
+    <message>
+        <location filename="../../designer/tabs/tabToolsEntry.ui" line="24"/>
+        <source>tab.infoLookup</source>
+        <translation>查询谱面信息</translation>
+    </message>
+</context>
+<context>
+    <name>TabTools_InfoLookup</name>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="22"/>
+        <source>langSelect.label</source>
+        <translation>语言</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="47"/>
+        <source>songSelect</source>
+        <translation>选择一首曲目</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="65"/>
+        <source>packInfo</source>
+        <translation>曲包信息</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="74"/>
+        <source>pack.description</source>
+        <translation>描述</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="94"/>
+        <source>pack.id</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="129"/>
+        <source>pack.name</source>
+        <translation>名称</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="157"/>
+        <source>songInfo</source>
+        <translation>曲目信息</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="166"/>
+        <source>song.bgDayNight</source>
+        <translation>日/夜背景</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="179"/>
+        <source>song.audioPreview</source>
+        <translation>曲目预览段</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="206"/>
+        <source>song.artist</source>
+        <translation>曲师</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="233"/>
+        <source>song.bgSide</source>
+        <translation>曲目背景</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="246"/>
+        <source>song.id</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="259"/>
+        <source>song.addedIn</source>
+        <translation>添加于</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="443"/>
+        <source>difficulty.addedIn</source>
+        <translation>添加于</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="300"/>
+        <source>song.title</source>
+        <translation>标题</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="313"/>
+        <source>song.bpm</source>
+        <translation>BPM</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="326"/>
+        <source>song.source</source>
+        <translation>来源</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="355"/>
+        <source>chartSelect</source>
+        <translation>选择一个难度</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="379"/>
+        <source>chartInfo</source>
+        <translation>谱面信息</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="402"/>
+        <source>chart.constant</source>
+        <translation>定数</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="415"/>
+        <source>chart.notes</source>
+        <translation>note 数</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="434"/>
+        <source>difficultyInfo</source>
+        <translation>难度信息</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="484"/>
+        <source>difficulty.artist</source>
+        <translation>曲师</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="497"/>
+        <source>difficulty.rating</source>
+        <translation>标级</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="510"/>
+        <source>difficulty.bg</source>
+        <translation>背景</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="544"/>
+        <source>difficulty.jacketOverride</source>
+        <translation>替换封面</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="557"/>
+        <source>difficulty.chartDesigner</source>
+        <translation>谱师</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="577"/>
+        <source>difficulty.audioOverride</source>
+        <translation>替换音频</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="590"/>
+        <source>difficulty.bpm</source>
+        <translation>BPM</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="603"/>
+        <source>difficulty.bgInverse</source>
+        <translation>反转背景</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="623"/>
+        <source>difficulty.jacketDesigner</source>
+        <translation>封面</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="636"/>
+        <source>difficulty.jacketNight</source>
+        <translation>夜晚封面</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="649"/>
+        <source>difficulty.title</source>
+        <translation>标题</translation>
     </message>
 </context>
 </TS>

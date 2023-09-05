@@ -120,7 +120,7 @@ class TabTools_InfoLookup(Ui_TabTools_InfoLookup, QWidget):
         self.songTitleLabel.setText(title)
         self.songArtistLabel.setText(song.artist)
         self.songBpmLabel.setText(f"{song.bpm_base} ({song.bpm})")
-        self.songDateVersionLabel.setText(f"v{song.version}, {dateTimeStr}")
+        self.songAddedInLabel.setText(f"v{song.version}, {dateTimeStr}")
         self.songBgSideLabel.setText(bgSideText)
         self.songBgDayNightLabel.setText(f"{song.bg_day or '-'}/{song.bg_night or '-'}")
         self.songSourceLabel.setText(source)
@@ -162,7 +162,7 @@ class TabTools_InfoLookup(Ui_TabTools_InfoLookup, QWidget):
         self.difficultyRatingLabel.setText(
             f"{difficulty.rating}{'+' if difficulty.rating_plus else ''}"
         )
-        self.difficultyDateVersionLabel.setText(versionDateStr)
+        self.difficultyAddedInLabel.setText(versionDateStr)
         self.difficultyChartDesignerLabel.setText(difficulty.chart_designer or "-")
         self.difficultyJacketDesignerLabel.setText(difficulty.jacket_desginer or "-")
         self.difficultyTitleLabel.setText(title or "-")

@@ -140,6 +140,7 @@ class Ui_ScoreEditor(object):
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.dateTimeEdit.sizePolicy().hasHeightForWidth())
         self.dateTimeEdit.setSizePolicy(sizePolicy1)
+        self.dateTimeEdit.setDisplayFormat(u"yyyy/MM/dd HH:mm:ss")
         self.dateTimeEdit.setCalendarPopup(False)
 
         self.gridLayout.addWidget(self.dateTimeEdit, 5, 1, 1, 1)
@@ -223,6 +224,7 @@ class Ui_ScoreEditor(object):
 
         self.label_10 = QLabel(ScoreEditor)
         self.label_10.setObjectName(u"label_10")
+        self.label_10.setText(u"ID")
         self.label_10.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.label_10, 0, 0, 1, 1)
@@ -267,7 +269,6 @@ class Ui_ScoreEditor(object):
         self.pureNoneCheckBox.setText(QCoreApplication.translate("ScoreEditor", u"setNone", None))
         self.clearTypeNoneCheckBox.setText(QCoreApplication.translate("ScoreEditor", u"setNone", None))
         self.dateNoneCheckBox.setText(QCoreApplication.translate("ScoreEditor", u"setNone", None))
-        self.dateTimeEdit.setDisplayFormat(QCoreApplication.translate("ScoreEditor", u"yyyy/M/d HH:mm:ss", None))
         self.lostNoneCheckBox.setText(QCoreApplication.translate("ScoreEditor", u"setNone", None))
         self.modifierNoneCheckBox.setText(QCoreApplication.translate("ScoreEditor", u"setNone", None))
         self.commentNoneCheckBox.setText(QCoreApplication.translate("ScoreEditor", u"setNone", None))
@@ -277,7 +278,6 @@ class Ui_ScoreEditor(object):
         self.label_9.setText(QCoreApplication.translate("ScoreEditor", u"formLabel.comment", None))
         self.label.setText(QCoreApplication.translate("ScoreEditor", u"formLabel.score", None))
         self.farNoneCheckBox.setText(QCoreApplication.translate("ScoreEditor", u"setNone", None))
-        self.label_10.setText(QCoreApplication.translate("ScoreEditor", u"ID", None))
         self.idLabel.setText(QCoreApplication.translate("ScoreEditor", u"idAutoInsert", None))
         pass
     # retranslateUi

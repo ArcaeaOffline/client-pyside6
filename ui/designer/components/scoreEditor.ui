@@ -191,7 +191,7 @@
       </sizepolicy>
      </property>
      <property name="displayFormat">
-      <string>yyyy/M/d HH:mm:ss</string>
+      <string notr="true">yyyy/MM/dd HH:mm:ss</string>
      </property>
      <property name="calendarPopup">
       <bool>false</bool>
@@ -322,7 +322,7 @@
    <item row="0" column="0">
     <widget class="QLabel" name="label_10">
      <property name="text">
-      <string>ID</string>
+      <string notr="true">ID</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

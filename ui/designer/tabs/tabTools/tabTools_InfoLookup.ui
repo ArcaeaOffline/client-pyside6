@@ -256,7 +256,7 @@
             <string notr="true">QLabel { color: gray; }</string>
            </property>
            <property name="text">
-            <string>song.date&amp;version</string>
+            <string>song.addedIn</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -278,7 +278,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLabel" name="songDateVersionLabel">
+          <widget class="QLabel" name="songAddedInLabel">
            <property name="text">
             <string notr="true">...</string>
            </property>
@@ -440,7 +440,7 @@
               <string notr="true">QLabel { color: gray; }</string>
              </property>
              <property name="text">
-              <string>difficulty.date&amp;version</string>
+              <string>difficulty.addedIn</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -608,7 +608,7 @@
             </widget>
            </item>
            <item row="0" column="4">
-            <widget class="QLabel" name="difficultyDateVersionLabel">
+            <widget class="QLabel" name="difficultyAddedInLabel">
              <property name="text">
               <string notr="true">...</string>
              </property>
