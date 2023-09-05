@@ -79,7 +79,10 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
         else:
             return
 
-    def value(self):
+    def packId(self):
+        return self.packComboBox.currentData()
+
+    def songId(self):
         return self.songIdComboBox.currentData()
 
     def reset(self):
