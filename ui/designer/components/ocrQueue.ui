@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>741</width>
-    <height>372</height>
+    <width>650</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,13 +17,46 @@
    <item>
     <widget class="QGroupBox" name="groupBox_3">
      <property name="title">
-      <string>ocr.queue.title</string>
+      <string>queue.title</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string>iccOptionsGroupBox</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QRadioButton" name="iccIgnoreRadioButton">
+           <property name="text">
+            <string>icc.ignore</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="iccUsePILRadioButton">
+           <property name="text">
+            <string>icc.usePIL</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="iccTryFixRadioButton">
+           <property name="text">
+            <string>icc.tryFix</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="ocr_addImageButton">
         <property name="text">
-         <string>ocr.queue.addImageButton</string>
+         <string>queue.addImageButton</string>
         </property>
        </widget>
       </item>
@@ -33,7 +66,7 @@
          <bool>true</bool>
         </property>
         <property name="text">
-         <string>ocr.queue.removeSelected</string>
+         <string>queue.removeSelected</string>
         </property>
        </widget>
       </item>
@@ -43,7 +76,7 @@
          <bool>true</bool>
         </property>
         <property name="text">
-         <string>ocr.queue.removeAll</string>
+         <string>queue.removeAll</string>
         </property>
        </widget>
       </item>
@@ -63,7 +96,7 @@
       <item>
        <widget class="QPushButton" name="ocr_startButton">
         <property name="text">
-         <string>ocr.queue.startOcrButton</string>
+         <string>queue.startOcrButton</string>
         </property>
        </widget>
       </item>
@@ -115,7 +148,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox_5">
      <property name="title">
-      <string>ocr.results</string>
+      <string>results</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
@@ -124,14 +157,14 @@
          <bool>true</bool>
         </property>
         <property name="text">
-         <string>ocr.results.acceptSelectedButton</string>
+         <string>results.acceptSelectedButton</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="ocr_acceptAllButton">
         <property name="text">
-         <string>ocr.results.acceptAllButton</string>
+         <string>results.acceptAllButton</string>
         </property>
        </widget>
       </item>
@@ -151,7 +184,7 @@
       <item>
        <widget class="QCheckBox" name="ocr_ignoreValidateCheckBox">
         <property name="text">
-         <string>ocr.results.ignoreValidate</string>
+         <string>results.ignoreValidate</string>
         </property>
        </widget>
       </item>

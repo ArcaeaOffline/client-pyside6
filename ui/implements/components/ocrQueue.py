@@ -2,7 +2,7 @@ from typing import Optional
 
 from PySide6.QtCore import Qt, QTimer, Slot
 from PySide6.QtGui import QColor, QPalette
-from PySide6.QtWidgets import QWidget
+from PySide6.QtWidgets import QButtonGroup, QWidget
 
 from ui.designer.components.ocrQueue_ui import Ui_OcrQueue
 from ui.extends.components.ocrQueue import (
@@ -35,6 +35,13 @@ class OcrQueue(Ui_OcrQueue, QWidget):
         highlightColor.setAlpha(25)
         tableViewPalette.setColor(QPalette.ColorRole.Highlight, highlightColor)
         self.tableView.setPalette(tableViewPalette)
+
+        self.iccOptionButtonGroup = QButtonGroup(self)
+        self.iccOptionButtonGroup.buttonToggled.connect(self.updateIccOption)
+        self.iccOptionButtonGroup.addButton(self.iccIgnoreRadioButton, 0)
+        self.iccOptionButtonGroup.addButton(self.iccUsePILRadioButton, 1)
+        self.iccOptionButtonGroup.addButton(self.iccTryFixRadioButton, 2)
+        self.updateIccOption()
 
     def model(self):
         return self.__model
@@ -76,6 +83,10 @@ class OcrQueue(Ui_OcrQueue, QWidget):
         self.ocr_acceptSelectedButton.setEnabled(__bool)
         self.ocr_acceptAllButton.setEnabled(__bool)
         self.ocr_ignoreValidateCheckBox.setEnabled(__bool)
+
+    def updateIccOption(self):
+        if self.model():
+            self.model().iccOption = self.iccOptionButtonGroup.checkedId()
 
     def resizeTableView(self):
         self.tableView.resizeRowsToContents()

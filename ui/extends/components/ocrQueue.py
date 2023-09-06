@@ -1,4 +1,5 @@
 import logging
+from enum import IntEnum
 from typing import Any, Callable, Optional, overload
 
 from arcaea_offline.calculate import calculate_score_range
@@ -6,6 +7,9 @@ from arcaea_offline.database import Database
 from arcaea_offline.models import Chart, Score
 from arcaea_offline_ocr.b30.shared import B30OcrResultItem
 from arcaea_offline_ocr.device.shared import DeviceOcrResult
+from arcaea_offline_ocr.utils import convert_to_srgb
+from PIL import Image
+from PIL.ImageQt import ImageQt
 from PySide6.QtCore import (
     QAbstractListModel,
     QAbstractTableModel,
@@ -41,6 +45,12 @@ class OcrRunnable(QRunnable):
         self.signals = OcrRunnableSignals()
 
 
+class IccOption(IntEnum):
+    Ignore = 0
+    UsePIL = 1
+    TryFix = 2
+
+
 class OcrQueueModel(QAbstractListModel):
     ImagePathRole = Qt.ItemDataRole.UserRole + 1
     ImageQImageRole = Qt.ItemDataRole.UserRole + 2
@@ -64,6 +74,7 @@ class OcrQueueModel(QAbstractListModel):
         super().__init__(parent)
         self.__db = Database()
         self.__items: list[dict[int, Any]] = []
+        self.__iccOption = IccOption.UsePIL
 
         self.__taskFinishedNum = 0
 
@@ -133,6 +144,14 @@ class OcrQueueModel(QAbstractListModel):
             )
             return False
 
+    @property
+    def iccOption(self):
+        return self.__iccOption
+
+    @iccOption.setter
+    def iccOption(self, opt: IccOption):
+        self.__iccOption = opt
+
     @overload
     def addItem(
         self,
@@ -162,8 +181,17 @@ class OcrQueueModel(QAbstractListModel):
                 logger.warning(f"Attempting to add an invalid file {image}")
                 return
             imagePath = image
-            qImage = QImage(image)
-            qPixmap = QPixmap(image)
+            if self.iccOption == IccOption.TryFix:
+                img = Image.open(image)
+                img = convert_to_srgb(img)
+                qImage = ImageQt(img)
+            elif self.iccOption == IccOption.UsePIL:
+                img = Image.open(image)
+                qImage = ImageQt(img)
+            else:
+                qImage = QImage(image)
+
+            qPixmap = QPixmap(qImage)
         elif isinstance(image, QImage):
             imagePath = None
             qImage = image.copy()
