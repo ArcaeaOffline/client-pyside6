@@ -11,6 +11,7 @@ from PySide6.QtWidgets import QCompleter, QWidget
 from ui.designer.components.songIdSelector_ui import Ui_SongIdSelector
 from ui.extends.components.songIdSelector import SearchCompleterModel
 from ui.extends.shared.delegates.descriptionDelegate import DescriptionDelegate
+from ui.extends.shared.language import LanguageChangeEventFilter
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +23,9 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
         super().__init__(parent)
         self.db = Database()
         self.setupUi(self)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
 
         self.previousPackageButton.clicked.connect(
             lambda: self.quickSwitchSelection("previous", "package")

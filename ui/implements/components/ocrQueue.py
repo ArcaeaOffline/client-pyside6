@@ -12,12 +12,17 @@ from ui.extends.components.ocrQueue import (
     OcrQueueTableProxyModel,
     OcrScoreDelegate,
 )
+from ui.extends.shared.language import LanguageChangeEventFilter
 
 
 class OcrQueue(Ui_OcrQueue, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
+
         self.__model: Optional[OcrQueueModel] = None
         self.__tableProxyModel: Optional[OcrQueueTableProxyModel] = None
 

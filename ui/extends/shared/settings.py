@@ -1,5 +1,6 @@
 import sys
-from PySide6.QtCore import QSettings, QFileInfo
+
+from PySide6.QtCore import QFileInfo, QSettings
 
 __all__ = [
     "DATABASE_URL",
@@ -8,11 +9,14 @@ __all__ = [
     "TESSERACT_FILE",
     "KNN_MODEL_FILE",
     "SIFT_DATABASE_FILE",
+    "ANDREAL_FOLDER",
+    "ANDREAL_EXECUTABLE",
     "Settings",
 ]
 
 # a key without slashes will appear in the "General" section
 # see https://doc.qt.io/qt-6/qsettings.html#Format-enum for details
+LANGUAGE = "Language"
 DATABASE_URL = "DatabaseUrl"
 
 DEVICES_JSON_FILE = "Ocr/DevicesJsonFile"
@@ -21,7 +25,7 @@ TESSERACT_FILE = "Ocr/TesseractFile"
 KNN_MODEL_FILE = "Ocr/KnnModelFile"
 SIFT_DATABASE_FILE = "Ocr/SiftDatabaseFile"
 
-ANDREAL_PATH = "Andreal/AndrealFolderPath"
+ANDREAL_FOLDER = "Andreal/AndrealFolder"
 ANDREAL_EXECUTABLE = "Andreal/AndrealExecutable"
 
 
@@ -43,6 +47,12 @@ class Settings(QSettings):
     def _resetStrItem(self, key: str):
         self.setValue(key, None)
         self.sync()
+
+    def language(self):
+        return self._strItem(LANGUAGE)
+
+    def setLanguage(self, value: str):
+        self._setStrItem(LANGUAGE, value)
 
     def databaseUrl(self):
         return self._strItem(DATABASE_URL)
@@ -94,3 +104,21 @@ class Settings(QSettings):
 
     def resetSiftDatabaseFile(self):
         self._resetStrItem(SIFT_DATABASE_FILE)
+
+    def andrealFolder(self):
+        return self._strItem(ANDREAL_FOLDER)
+
+    def setAndrealFolder(self, value: str):
+        self._setStrItem(ANDREAL_FOLDER, value)
+
+    def resetAndrealFolder(self):
+        self._resetStrItem(ANDREAL_FOLDER)
+
+    def andrealExecutable(self):
+        return self._strItem(ANDREAL_EXECUTABLE)
+
+    def setAndrealExecutable(self, value: str):
+        self._setStrItem(ANDREAL_EXECUTABLE, value)
+
+    def resetAndrealExecutable(self):
+        self._resetStrItem(ANDREAL_EXECUTABLE)

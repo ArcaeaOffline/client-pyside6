@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'tabSettings.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.0
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -18,8 +18,6 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QHBoxLayout,
     QListWidget, QListWidgetItem, QSizePolicy, QStackedWidget,
     QWidget)
-
-from ui.implements.settings.settingsDefault import SettingsDefault
 
 class Ui_TabSettings(object):
     def setupUi(self, TabSettings):
@@ -40,6 +38,7 @@ class Ui_TabSettings(object):
         self.listWidget.setBaseSize(QSize(100, 0))
         self.listWidget.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
         self.listWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.listWidget.setDefaultDropAction(Qt.IgnoreAction)
         self.listWidget.setAlternatingRowColors(True)
         self.listWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
 
@@ -52,9 +51,6 @@ class Ui_TabSettings(object):
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.stackedWidget.sizePolicy().hasHeightForWidth())
         self.stackedWidget.setSizePolicy(sizePolicy1)
-        self.page_default = SettingsDefault()
-        self.page_default.setObjectName(u"page_default")
-        self.stackedWidget.addWidget(self.page_default)
 
         self.horizontalLayout.addWidget(self.stackedWidget)
 

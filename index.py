@@ -3,12 +3,14 @@ import sys
 import traceback
 
 from arcaea_offline.database import Database
-from PySide6.QtCore import QCoreApplication, QLibraryInfo, QLocale, QTranslator
+from PySide6.QtCore import QCoreApplication, QLocale
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QDialog, QMessageBox
 
 import ui.resources.images.images_rc
 import ui.resources.translations.translations_rc
+from ui.extends.shared.language import changeAppLanguage
+from ui.extends.shared.settings import Settings
 from ui.implements.mainwindow import MainWindow
 from ui.startup.databaseChecker import DatabaseChecker
 
@@ -24,22 +26,11 @@ logging.basicConfig(
 if __name__ == "__main__":
     QCoreApplication.setApplicationName("Arcaea Offline")
 
-    locale = QLocale.system()
-    translator = QTranslator()
-    translator_load_success = translator.load(QLocale.system(), "", "", ":/lang/")
-    if not translator_load_success:
-        translator.load(":/lang/en_US.qm")
-    baseTranslator = QTranslator()
-    baseTranslator.load(
-        QLocale.system(),
-        "qt",
-        "_",
-        QLibraryInfo.path(QLibraryInfo.LibraryPath.TranslationsPath),
-    )
     app = QApplication(sys.argv)
-
-    app.installTranslator(translator)
-    app.installTranslator(baseTranslator)
+    locale = (
+        QLocale(Settings().language()) if Settings().language() else QLocale.system()
+    )
+    changeAppLanguage(locale)
 
     databaseChecker = DatabaseChecker()
     result = databaseChecker.exec()

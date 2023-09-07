@@ -15,6 +15,7 @@ from PySide6.QtWidgets import (
 )
 
 from ui.designer.components.scoreEditor_ui import Ui_ScoreEditor
+from ui.extends.shared.language import LanguageChangeEventFilter
 
 
 class ScoreValidateResult(IntEnum):
@@ -32,6 +33,9 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
 
         self.__validateBeforeAccept = True
         self.__chart = None

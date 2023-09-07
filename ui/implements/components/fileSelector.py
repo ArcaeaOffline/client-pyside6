@@ -2,6 +2,7 @@ from PySide6.QtCore import QDir, QFileInfo, QMetaObject, Qt, Signal, Slot
 from PySide6.QtWidgets import QFileDialog, QWidget
 
 from ui.designer.components.fileSelector_ui import Ui_FileSelector
+from ui.extends.shared.language import LanguageChangeEventFilter
 
 
 class FileSelector(Ui_FileSelector, QWidget):
@@ -12,6 +13,9 @@ class FileSelector(Ui_FileSelector, QWidget):
         super().__init__(parent)
         self.setupUi(self)
         self.reset()
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
 
         self.elidedLabel.setElideMode(Qt.TextElideMode.ElideMiddle)
 

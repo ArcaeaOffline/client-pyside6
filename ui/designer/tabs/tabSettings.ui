@@ -40,6 +40,9 @@
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
      </property>
+     <property name="defaultDropAction">
+      <enum>Qt::IgnoreAction</enum>
+     </property>
      <property name="alternatingRowColors">
       <bool>true</bool>
      </property>
@@ -56,19 +59,10 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <widget class="SettingsDefault" name="page_default"/>
     </widget>
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>SettingsDefault</class>
-   <extends>QWidget</extends>
-   <header>ui.implements.settings.settingsDefault</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

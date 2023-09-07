@@ -8,6 +8,7 @@ from PySide6.QtGui import QShowEvent
 from PySide6.QtWidgets import QWidget
 
 from ui.designer.components.chartSelector_ui import Ui_ChartSelector
+from ui.extends.shared.language import LanguageChangeEventFilter
 
 logger = logging.getLogger(__name__)
 
@@ -19,6 +20,9 @@ class ChartSelector(Ui_ChartSelector, QWidget):
         super().__init__(parent)
         self.db = Database()
         self.setupUi(self)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
 
         self.valueChanged.connect(self.updateResultLabel)
         self.songIdSelector.valueChanged.connect(self.updateRatingClassEnabled)

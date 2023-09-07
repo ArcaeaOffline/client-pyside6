@@ -214,67 +214,67 @@
 <context>
     <name>OcrQueue</name>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="20"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="22"/>
         <source>queue.title</source>
         <translation>队列</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="26"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="28"/>
         <source>iccOptionsGroupBox</source>
         <translation>ICC 文件选项</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="32"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="34"/>
         <source>icc.ignore</source>
         <translation>忽略</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="39"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="41"/>
         <source>icc.usePIL</source>
         <translation>使用 PIL 读取</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="49"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="51"/>
         <source>icc.tryFix</source>
         <translation>尝试修复</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="59"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="61"/>
         <source>queue.addImageButton</source>
         <translation>添加图像文件</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="69"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="71"/>
         <source>queue.removeSelected</source>
         <translation>移除选中</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="79"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="81"/>
         <source>queue.removeAll</source>
         <translation>移除所有</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="99"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="101"/>
         <source>queue.startOcrButton</source>
         <translation>开始 OCR</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="151"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="153"/>
         <source>results</source>
         <translation>结果</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="160"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="162"/>
         <source>results.acceptSelectedButton</source>
         <translation>提交选中</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="167"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="169"/>
         <source>results.acceptAllButton</source>
         <translation>提交所有</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="187"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="189"/>
         <source>results.ignoreValidate</source>
         <translation>忽略验证</translation>
     </message>
@@ -407,36 +407,81 @@
     </message>
 </context>
 <context>
-    <name>SettingsDefault</name>
+    <name>Settings</name>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="91"/>
-        <source>devicesJsonFile</source>
-        <translation>默认设备文件</translation>
+        <location filename="../../implements/settings/settingsAndreal.py" line="76"/>
+        <source>andreal.title</source>
+        <translation>Andreal</translation>
     </message>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="36"/>
-        <source>deviceUuid</source>
-        <translation>默认设备</translation>
+        <location filename="../../implements/settings/settingsAndreal.py" line="78"/>
+        <source>andreal.andrealFolder.label</source>
+        <translation>Andreal 文件夹</translation>
     </message>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="52"/>
-        <source>tesseractFile</source>
-        <translation>tesseract 路径</translation>
-    </message>
-    <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="101"/>
-        <location filename="../../designer/settings/settingsDefault.ui" line="118"/>
+        <location filename="../../implements/settings/settingsAndreal.py" line="79"/>
+        <location filename="../../implements/settings/settingsAndreal.py" line="82"/>
+        <location filename="../../implements/settings/settingsGeneral.py" line="105"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="137"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="140"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="143"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="146"/>
         <source>resetButton</source>
         <translation>重置</translation>
     </message>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="108"/>
-        <source>knnModelFile</source>
+        <location filename="../../implements/settings/settingsAndreal.py" line="81"/>
+        <source>andreal.andrealExecutable.label</source>
+        <translation>Andreal 可执行文件</translation>
+    </message>
+    <message>
+        <location filename="../../implements/settings/settingsGeneral.py" line="76"/>
+        <source>general.dbUrlResetWarning</source>
+        <translation>即将删除该设置项并关闭应用，手动重启后即可再次指定数据库路径。是否继续？</translation>
+    </message>
+    <message>
+        <location filename="../../implements/settings/settingsGeneral.py" line="99"/>
+        <source>general.title</source>
+        <translation>通用</translation>
+    </message>
+    <message>
+        <location filename="../../implements/settings/settingsGeneral.py" line="101"/>
+        <source>general.language.label</source>
+        <translation>语言</translation>
+    </message>
+    <message>
+        <location filename="../../implements/settings/settingsGeneral.py" line="102"/>
+        <source>general.language.followSystem</source>
+        <translation>跟随系统</translation>
+    </message>
+    <message>
+        <location filename="../../implements/settings/settingsGeneral.py" line="104"/>
+        <source>general.dbUrl.label</source>
+        <translation>数据库 URL</translation>
+    </message>
+    <message>
+        <location filename="../../implements/settings/settingsOcr.py" line="134"/>
+        <source>ocr.title</source>
+        <translation>OCR</translation>
+    </message>
+    <message>
+        <location filename="../../implements/settings/settingsOcr.py" line="136"/>
+        <source>ocr.devicesJson.label</source>
+        <translation>默认设备定义文件</translation>
+    </message>
+    <message>
+        <location filename="../../implements/settings/settingsOcr.py" line="139"/>
+        <source>ocr.deviceUuid.label</source>
+        <translation>默认设备</translation>
+    </message>
+    <message>
+        <location filename="../../implements/settings/settingsOcr.py" line="142"/>
+        <source>ocr.knnModelFile.label</source>
         <translation>默认 KNearest 模型</translation>
     </message>
     <message>
-        <location filename="../../designer/settings/settingsDefault.ui" line="141"/>
-        <source>siftDatabaseFile</source>
+        <location filename="../../implements/settings/settingsOcr.py" line="145"/>
+        <source>ocr.siftDatabaseFile.label</source>
         <translation>默认 SIFT 特征值数据库</translation>
     </message>
 </context>
@@ -620,6 +665,79 @@
         <location filename="../../designer/tabs/tabToolsEntry.ui" line="24"/>
         <source>tab.infoLookup</source>
         <translation>查询谱面信息</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabToolsEntry.ui" line="29"/>
+        <source>tab.andreal</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TabTools_Andreal</name>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="23"/>
+        <source>andrealPathSelector</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="40"/>
+        <source>andrealExecutableSelector</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="50"/>
+        <source>imageType</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="60"/>
+        <source>imageVersion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="98"/>
+        <source>exportJsonButton</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="105"/>
+        <source>generateButton</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="127"/>
+        <source>previewImage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="149"/>
+        <source>imageType.recent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="156"/>
+        <source>imageType.best</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="163"/>
+        <source>imageType.best30</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="172"/>
+        <source>imageFormat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="220"/>
+        <source>chart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="227"/>
+        <source>imageQuality</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
