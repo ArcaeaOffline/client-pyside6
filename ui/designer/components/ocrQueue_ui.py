@@ -16,9 +16,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QGroupBox,
-    QHBoxLayout, QHeaderView, QProgressBar, QPushButton,
-    QRadioButton, QSizePolicy, QSpacerItem, QTableView,
-    QVBoxLayout, QWidget)
+    QHBoxLayout, QHeaderView, QLabel, QProgressBar,
+    QPushButton, QRadioButton, QSizePolicy, QSpacerItem,
+    QTableView, QVBoxLayout, QWidget)
 
 class Ui_OcrQueue(object):
     def setupUi(self, OcrQueue):
@@ -26,8 +26,10 @@ class Ui_OcrQueue(object):
             OcrQueue.setObjectName(u"OcrQueue")
         OcrQueue.resize(650, 400)
         OcrQueue.setWindowTitle(u"OcrQueue")
-        self.horizontalLayout_2 = QHBoxLayout(OcrQueue)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.verticalLayout_5 = QVBoxLayout(OcrQueue)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.groupBox_3 = QGroupBox(OcrQueue)
         self.groupBox_3.setObjectName(u"groupBox_3")
         self.verticalLayout_2 = QVBoxLayout(self.groupBox_3)
@@ -82,7 +84,7 @@ class Ui_OcrQueue(object):
         self.verticalLayout_2.addWidget(self.ocr_startButton)
 
 
-        self.horizontalLayout_2.addWidget(self.groupBox_3)
+        self.horizontalLayout.addWidget(self.groupBox_3)
 
         self.verticalLayout_3 = QVBoxLayout()
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
@@ -107,7 +109,7 @@ class Ui_OcrQueue(object):
         self.verticalLayout_3.addWidget(self.progressBar)
 
 
-        self.horizontalLayout_2.addLayout(self.verticalLayout_3)
+        self.horizontalLayout.addLayout(self.verticalLayout_3)
 
         self.groupBox_5 = QGroupBox(OcrQueue)
         self.groupBox_5.setObjectName(u"groupBox_5")
@@ -134,7 +136,15 @@ class Ui_OcrQueue(object):
         self.verticalLayout_4.addWidget(self.ocr_ignoreValidateCheckBox)
 
 
-        self.horizontalLayout_2.addWidget(self.groupBox_5)
+        self.horizontalLayout.addWidget(self.groupBox_5)
+
+
+        self.verticalLayout_5.addLayout(self.horizontalLayout)
+
+        self.statusLabel = QLabel(OcrQueue)
+        self.statusLabel.setObjectName(u"statusLabel")
+
+        self.verticalLayout_5.addWidget(self.statusLabel)
 
 
         self.retranslateUi(OcrQueue)
@@ -156,6 +166,7 @@ class Ui_OcrQueue(object):
         self.ocr_acceptSelectedButton.setText(QCoreApplication.translate("OcrQueue", u"results.acceptSelectedButton", None))
         self.ocr_acceptAllButton.setText(QCoreApplication.translate("OcrQueue", u"results.acceptAllButton", None))
         self.ocr_ignoreValidateCheckBox.setText(QCoreApplication.translate("OcrQueue", u"results.ignoreValidate", None))
+        self.statusLabel.setText("")
         pass
     # retranslateUi
 

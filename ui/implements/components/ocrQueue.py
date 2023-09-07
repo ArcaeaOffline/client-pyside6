@@ -43,6 +43,10 @@ class OcrQueue(Ui_OcrQueue, QWidget):
         self.iccOptionButtonGroup.addButton(self.iccTryFixRadioButton, 2)
         self.updateIccOption()
 
+        self.statusLabelClearTimer = QTimer(self)
+        self.statusLabelClearTimer.setSingleShot(True)
+        self.statusLabelClearTimer.timeout.connect(self.clearStatusMessage)
+
     def model(self):
         return self.__model
 
@@ -87,6 +91,13 @@ class OcrQueue(Ui_OcrQueue, QWidget):
     def updateIccOption(self):
         if self.model():
             self.model().iccOption = self.iccOptionButtonGroup.checkedId()
+
+    def showStatusMessage(self, message: str):
+        self.statusLabel.setText(message)
+        self.statusLabelClearTimer.start()
+
+    def clearStatusMessage(self):
+        self.statusLabel.setText("")
 
     def resizeTableView(self):
         self.tableView.resizeRowsToContents()

@@ -7,7 +7,7 @@ from arcaea_offline_ocr.device.v1.definition import DeviceV1
 from arcaea_offline_ocr.device.v2.definition import DeviceV2
 from arcaea_offline_ocr.sift_db import SIFTDatabase
 from PySide6.QtCore import Qt, Slot
-from PySide6.QtWidgets import QFileDialog, QWidget
+from PySide6.QtWidgets import QApplication, QFileDialog, QWidget
 
 from ui.designer.tabs.tabOcr.tabOcr_Device_ui import Ui_TabOcr_Device
 from ui.extends.components.ocrQueue import OcrQueueModel
@@ -101,6 +101,7 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
         )
         for file in files:
             self.ocrQueueModel.addItem(file)
+            QApplication.processEvents()
         self.ocrQueue.resizeTableView()
 
     @Slot()
