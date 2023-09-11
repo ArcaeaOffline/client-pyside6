@@ -4,6 +4,10 @@ __debug*
 arcaea_offline.db
 arcaea_offline.ini
 
+# Qt compiled stuff
+*.qm
+*_rc.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
