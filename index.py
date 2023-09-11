@@ -7,8 +7,7 @@ from PySide6.QtCore import QCoreApplication, QLocale
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QDialog, QMessageBox
 
-import ui.resources.images.images_rc
-import ui.resources.translations.translations_rc
+import ui.resources.resources_rc
 from ui.extends.shared.language import changeAppLanguage
 from ui.extends.shared.settings import Settings
 from ui.implements.mainwindow import MainWindow
