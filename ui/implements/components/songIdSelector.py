@@ -5,11 +5,11 @@ from typing import Literal
 from arcaea_offline.database import Database
 from arcaea_offline.models import Chart
 from PySide6.QtCore import QModelIndex, Qt, Signal, Slot
-from PySide6.QtGui import QShowEvent
 from PySide6.QtWidgets import QCompleter, QWidget
 
 from ui.designer.components.songIdSelector_ui import Ui_SongIdSelector
 from ui.extends.components.songIdSelector import SearchCompleterModel
+from ui.extends.shared.database import databaseUpdateSignals
 from ui.extends.shared.delegates.descriptionDelegate import DescriptionDelegate
 from ui.extends.shared.language import LanguageChangeEventFilter
 
@@ -39,6 +39,8 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
         self.nextPackageButton.clicked.connect(
             lambda: self.quickSwitchSelection("next", "package")
         )
+
+        databaseUpdateSignals.songDataUpdated.connect(self.updateDatabase)
 
         self.fillPackComboBox()
         self.packComboBox.setCurrentIndex(-1)
@@ -93,8 +95,7 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
         self.packComboBox.setCurrentIndex(-1)
         self.songIdComboBox.setCurrentIndex(-1)
 
-    def showEvent(self, event: QShowEvent):
-        # update database results when widget visible
+    def updateDatabase(self):
         self.searchCompleterModel.updateSearcherSongs()
 
         # remember selection and restore later
@@ -107,7 +108,6 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
             self.selectPack(pack)
         if songId:
             self.selectSongId(songId)
-        return super().showEvent(event)
 
     def fillPackComboBox(self):
         self.packComboBox.clear()

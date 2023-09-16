@@ -12,10 +12,12 @@ from arcaea_offline.external.arcaea import (
 )
 from arcaea_offline.external.arcaea.common import ArcaeaParser
 from arcaea_offline.external.arcsong import ArcsongDbParser
+from arcaea_offline.models import Difficulty, Pack, Song
 from PySide6.QtCore import QDir, Slot
 from PySide6.QtWidgets import QFileDialog, QMessageBox, QWidget
 
 from ui.designer.tabs.tabDb.tabDb_Manage_ui import Ui_TabDb_Manage
+from ui.extends.shared.database import databaseUpdateSignals
 
 logger = logging.getLogger(__name__)
 
@@ -40,6 +42,7 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
             with db.sessionmaker() as session:
                 parser.write_database(session)
                 session.commit()
+                databaseUpdateSignals.songDataUpdated.emit()
             QMessageBox.information(self, None, "OK")
         except Exception as e:
             logging.exception("Sync arcsong.db error")
@@ -47,28 +50,31 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
                 self, "Sync Error", "\n".join(traceback.format_exception(e))
             )
 
-    def importFromArcaeaParser(self, parser: ArcaeaParser, logName, path) -> int:
+    def importFromArcaeaParser(
+        self, parser: ArcaeaParser, instance, logName, path
+    ) -> int:
         # extracted by sourcery
         db = Database()
         with db.sessionmaker() as session:
             parser.write_database(session)
             session.commit()
-        itemNum = len(parser.parse())
+            databaseUpdateSignals.songDataUpdated.emit()
+        itemNum = len([item for item in parser.parse() if isinstance(item, instance)])
         logger.info(f"updated {itemNum} {logName} from {path}")
         return itemNum
 
     def importPacklist(self, packlistPath):
         packlistParser = PacklistParser(packlistPath)
-        return self.importFromArcaeaParser(packlistParser, "packs", packlistPath)
+        return self.importFromArcaeaParser(packlistParser, Pack, "packs", packlistPath)
 
     def importSonglist(self, songlistPath):
         songlistParser = SonglistParser(songlistPath)
-        return self.importFromArcaeaParser(songlistParser, "songs", songlistPath)
+        return self.importFromArcaeaParser(songlistParser, Song, "songs", songlistPath)
 
     def importSonglistDifficulties(self, songlistPath):
         songlistDifficultiesParser = SonglistDifficultiesParser(songlistPath)
         return self.importFromArcaeaParser(
-            songlistDifficultiesParser, "difficulties", songlistPath
+            songlistDifficultiesParser, Difficulty, "difficulties", songlistPath
         )
 
     @Slot()
@@ -190,7 +196,7 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
 
         exportLocation, _filter = QFileDialog.getSaveFileName(
             self,
-            "Save your scores to...",
+            "Export arcsong.json",
             QDir.current().filePath("arcsong.json"),
             "JSON (*.json);;*",
         )

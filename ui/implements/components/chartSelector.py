@@ -4,10 +4,10 @@ from arcaea_offline.database import Database
 from arcaea_offline.models import Chart
 from arcaea_offline.utils.rating import rating_class_to_text
 from PySide6.QtCore import Signal, Slot
-from PySide6.QtGui import QShowEvent
 from PySide6.QtWidgets import QWidget
 
 from ui.designer.components.chartSelector_ui import Ui_ChartSelector
+from ui.extends.shared.database import databaseUpdateSignals
 from ui.extends.shared.language import LanguageChangeEventFilter
 
 logger = logging.getLogger(__name__)
@@ -30,6 +30,12 @@ class ChartSelector(Ui_ChartSelector, QWidget):
         self.songIdSelector.valueChanged.connect(self.valueChanged)
         self.ratingClassSelector.valueChanged.connect(self.valueChanged)
 
+        # handle `songIdSelector.updateDatabase` by this component
+        databaseUpdateSignals.songDataUpdated.disconnect(
+            self.songIdSelector.updateDatabase
+        )
+        databaseUpdateSignals.songDataUpdated.connect(self.updateDatabase)
+
     def value(self):
         songId = self.songIdSelector.songId()
         ratingClass = self.ratingClassSelector.value()
@@ -38,13 +44,15 @@ class ChartSelector(Ui_ChartSelector, QWidget):
             return self.db.get_chart(songId, ratingClass)
         return None
 
-    def showEvent(self, event: QShowEvent):
+    def updateDatabase(self):
         # remember selection and restore later
         ratingClass = self.ratingClassSelector.value()
 
+        # wait `songIdSelector` finish
+        self.songIdSelector.updateDatabase()
+
         if ratingClass is not None:
             self.ratingClassSelector.select(ratingClass)
-        return super().showEvent(event)
 
     @Slot()
     def updateResultLabel(self):
