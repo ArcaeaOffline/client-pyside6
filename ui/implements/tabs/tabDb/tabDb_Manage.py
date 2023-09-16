@@ -6,6 +6,7 @@ import zipfile
 from arcaea_offline.database import Database
 from arcaea_offline.external.arcaea import (
     PacklistParser,
+    SonglistDifficultiesParser,
     SonglistParser,
     St3ScoreParser,
 )
@@ -46,7 +47,7 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
                 self, "Sync Error", "\n".join(traceback.format_exception(e))
             )
 
-    def importFromArcaeaParser(self, parser: ArcaeaParser, logName, path):
+    def importFromArcaeaParser(self, parser: ArcaeaParser, logName, path) -> int:
         # extracted by sourcery
         db = Database()
         with db.sessionmaker() as session:
@@ -56,13 +57,19 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
         logger.info(f"updated {itemNum} {logName} from {path}")
         return itemNum
 
-    def importPacklist(self, packlistPath) -> int:
+    def importPacklist(self, packlistPath):
         packlistParser = PacklistParser(packlistPath)
         return self.importFromArcaeaParser(packlistParser, "packs", packlistPath)
 
-    def importSonglist(self, songlistPath) -> int:
+    def importSonglist(self, songlistPath):
         songlistParser = SonglistParser(songlistPath)
         return self.importFromArcaeaParser(songlistParser, "songs", songlistPath)
+
+    def importSonglistDifficulties(self, songlistPath):
+        songlistDifficultiesParser = SonglistDifficultiesParser(songlistPath)
+        return self.importFromArcaeaParser(
+            songlistDifficultiesParser, "difficulties", songlistPath
+        )
 
     @Slot()
     def on_importPacklistButton_clicked(self):
@@ -95,8 +102,11 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
                 return
 
             songNum = self.importSonglist(songlistFile)
+            difficultyNum = self.importSonglistDifficulties(songlistFile)
             QMessageBox.information(
-                self, None, f"Updated {songNum} songs from<br>{songlistFile}"
+                self,
+                None,
+                f"Updated {songNum} songs and {difficultyNum} difficulties from<br>{songlistFile}",
             )
         except Exception as e:
             logger.exception("import songlist error")
@@ -122,9 +132,10 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
 
                 packsNum = self.importPacklist(packlistPath)
                 songsNum = self.importSonglist(songlistPath)
+                difficultyNum = self.importSonglistDifficulties(songlistPath)
 
             message = [
-                f"{packsNum} packs and {songsNum} songs updated from",
+                f"{packsNum} packs, {songsNum} songs and {difficultyNum} difficulties updated from",
                 str(apkFile),
             ]
             QMessageBox.information(self, None, "<br>".join(message))
