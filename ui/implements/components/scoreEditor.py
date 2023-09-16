@@ -17,12 +17,13 @@ from PySide6.QtWidgets import (
 from ui.designer.components.scoreEditor_ui import Ui_ScoreEditor
 from ui.extends.shared.language import LanguageChangeEventFilter
 
-
+# TODO: use bit flags
 class ScoreValidateResult(IntEnum):
     Ok = 0
     ScoreMismatch = 1
     ScoreEmpty = 2
     ChartInvalid = 50
+    ChartIncomplete = 51
     ScoreIncomplete = 100
 
 
@@ -38,6 +39,10 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
         self.installEventFilter(self.languageChangeEventFilter)
 
         self.__validateBeforeAccept = True
+        self.__warnIfIncomplete = True
+        self.warnIfIncompleteCheckBox.setChecked(self.__warnIfIncomplete)
+        self.warnIfIncompleteCheckBox.toggled.connect(self.setWarnIfIncomplete)
+
         self.__chart = None
         self.__score_id = None
 
@@ -75,13 +80,24 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
 
         self.dateTimeEdit.setDateTime(QDateTime.currentDateTime())
 
+    def validateBeforeAccept(self):
+        return self.__validateBeforeAccept
+
     def setValidateBeforeAccept(self, __bool: bool):
         self.__validateBeforeAccept = __bool
+
+    def warnIfIncomplete(self):
+        return self.__warnIfIncomplete
+
+    def setWarnIfIncomplete(self, __bool: bool):
+        if self.sender() != self.warnIfIncompleteCheckBox:
+            self.warnIfIncompleteCheckBox.setChecked(__bool)
+        self.__warnIfIncomplete = __bool
 
     def triggerValidateMessageBox(self):
         validate = self.validateScore()
 
-        if validate in [ScoreValidateResult.Ok, ScoreValidateResult.ScoreIncomplete]:
+        if validate == ScoreValidateResult.Ok:
             return True
         if validate == ScoreValidateResult.ChartInvalid:
             QMessageBox.critical(
@@ -92,6 +108,19 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
                 # fmt: on
             )
             return False
+        if validate == ScoreValidateResult.ChartIncomplete:
+            if not self.__warnIfIncomplete:
+                return True
+            result = QMessageBox.warning(
+                self,
+                # fmt: off
+                QCoreApplication.translate("ScoreEditor", "chartIncompleteDialog.title"),
+                QCoreApplication.translate("ScoreEditor", "chartIncompleteDialog.content"),
+                # fmt: on
+                QMessageBox.StandardButton.Yes,
+                QMessageBox.StandardButton.No,
+            )
+            return result == QMessageBox.StandardButton.Yes
         if validate == ScoreValidateResult.ScoreMismatch:
             result = QMessageBox.warning(
                 self,
@@ -114,6 +143,19 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
                 QMessageBox.StandardButton.No,
             )
             return result == QMessageBox.StandardButton.Yes
+        elif validate == ScoreValidateResult.ScoreIncomplete:
+            if not self.__warnIfIncomplete:
+                return True
+            result = QMessageBox.warning(
+                self,
+                # fmt: off
+                QCoreApplication.translate("ScoreEditor", "scoreIncompleteDialog.title"),
+                QCoreApplication.translate("ScoreEditor", "scoreIncompleteDialog.content"),
+                # fmt: on
+                QMessageBox.StandardButton.Yes,
+                QMessageBox.StandardButton.No,
+            )
+            return result == QMessageBox.StandardButton.Yes
         else:
             return False
 
@@ -130,25 +172,20 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
         score_text = self.scoreLineEdit.text().replace("'", "")
         return int(score_text) if score_text else 0
 
-    def setMinimums(self):
-        self.pureSpinBox.setMinimum(0)
-        self.farSpinBox.setMinimum(0)
-        self.lostSpinBox.setMinimum(0)
-        self.maxRecallSpinBox.setMinimum(-1)
+    def setComboBoxMaximums(self, max: int):
+        self.pureSpinBox.setMaximum(max)
+        self.farSpinBox.setMaximum(max)
+        self.lostSpinBox.setMaximum(max)
+        self.maxRecallSpinBox.setMaximum(max)
 
     def setLimits(self, chart: Chart):
-        self.setMinimums()
-        self.pureSpinBox.setMaximum(chart.notes)
-        self.farSpinBox.setMaximum(chart.notes)
-        self.lostSpinBox.setMaximum(chart.notes)
-        self.maxRecallSpinBox.setMaximum(chart.notes)
+        if not isinstance(chart, Chart) or chart.notes is None:
+            self.setComboBoxMaximums(283375)
+        else:
+            self.setComboBoxMaximums(chart.notes)
 
     def resetLimits(self):
-        self.setMinimums()
-        self.pureSpinBox.setMaximum(0)
-        self.farSpinBox.setMaximum(0)
-        self.lostSpinBox.setMaximum(0)
-        self.maxRecallSpinBox.setMaximum(0)
+        self.setComboBoxMaximums(0)
 
     def setChart(self, chart: Optional[Chart]):
         if isinstance(chart, Chart):
@@ -162,6 +199,9 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
     def validateScore(self) -> ScoreValidateResult:
         if not isinstance(self.__chart, Chart):
             return ScoreValidateResult.ChartInvalid
+
+        if self.__chart.notes is None:
+            return ScoreValidateResult.ChartIncomplete
 
         score = self.value()
 
@@ -184,6 +224,8 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
             text = QCoreApplication.translate("ScoreEditor", "validate.ok")
         elif validate == ScoreValidateResult.ChartInvalid:
             text = QCoreApplication.translate("ScoreEditor", "validate.chartInvalid")
+        elif validate == ScoreValidateResult.ChartIncomplete:
+            text = QCoreApplication.translate("ScoreEditor", "validate.chartIncomple")
         elif validate == ScoreValidateResult.ScoreMismatch:
             text = QCoreApplication.translate("ScoreEditor", "validate.scoreMismatch")
         elif validate == ScoreValidateResult.ScoreEmpty:

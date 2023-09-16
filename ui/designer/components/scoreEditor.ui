@@ -39,6 +39,9 @@
        <height>0</height>
       </size>
      </property>
+     <property name="minimum">
+      <number>0</number>
+     </property>
      <property name="maximum">
       <number>0</number>
      </property>
@@ -206,6 +209,9 @@
        <height>0</height>
       </size>
      </property>
+     <property name="minimum">
+      <number>0</number>
+     </property>
      <property name="maximum">
       <number>0</number>
      </property>
@@ -287,6 +293,9 @@
        <height>0</height>
       </size>
      </property>
+     <property name="minimum">
+      <number>0</number>
+     </property>
      <property name="maximum">
       <number>0</number>
      </property>
@@ -333,6 +342,13 @@
     <widget class="QLabel" name="idLabel">
      <property name="text">
       <string>idAutoInsert</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0">
+    <widget class="QCheckBox" name="warnIfIncompleteCheckBox">
+     <property name="text">
+      <string>warnIfIncomplete</string>
      </property>
     </widget>
    </item>

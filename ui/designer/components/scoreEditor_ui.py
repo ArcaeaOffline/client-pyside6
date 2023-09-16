@@ -44,6 +44,7 @@ class Ui_ScoreEditor(object):
         self.pureSpinBox = QSpinBox(ScoreEditor)
         self.pureSpinBox.setObjectName(u"pureSpinBox")
         self.pureSpinBox.setMinimumSize(QSize(100, 0))
+        self.pureSpinBox.setMinimum(0)
         self.pureSpinBox.setMaximum(0)
 
         self.gridLayout.addWidget(self.pureSpinBox, 2, 1, 1, 1)
@@ -148,6 +149,7 @@ class Ui_ScoreEditor(object):
         self.lostSpinBox = QSpinBox(ScoreEditor)
         self.lostSpinBox.setObjectName(u"lostSpinBox")
         self.lostSpinBox.setMinimumSize(QSize(100, 0))
+        self.lostSpinBox.setMinimum(0)
         self.lostSpinBox.setMaximum(0)
 
         self.gridLayout.addWidget(self.lostSpinBox, 4, 1, 1, 1)
@@ -201,6 +203,7 @@ class Ui_ScoreEditor(object):
         self.farSpinBox = QSpinBox(ScoreEditor)
         self.farSpinBox.setObjectName(u"farSpinBox")
         self.farSpinBox.setMinimumSize(QSize(100, 0))
+        self.farSpinBox.setMinimum(0)
         self.farSpinBox.setMaximum(0)
 
         self.gridLayout.addWidget(self.farSpinBox, 3, 1, 1, 1)
@@ -233,6 +236,11 @@ class Ui_ScoreEditor(object):
         self.idLabel.setObjectName(u"idLabel")
 
         self.gridLayout.addWidget(self.idLabel, 0, 1, 1, 1)
+
+        self.warnIfIncompleteCheckBox = QCheckBox(ScoreEditor)
+        self.warnIfIncompleteCheckBox.setObjectName(u"warnIfIncompleteCheckBox")
+
+        self.gridLayout.addWidget(self.warnIfIncompleteCheckBox, 12, 0, 1, 1)
 
         QWidget.setTabOrder(self.scoreLineEdit, self.pureSpinBox)
         QWidget.setTabOrder(self.pureSpinBox, self.pureNoneCheckBox)
@@ -279,6 +287,7 @@ class Ui_ScoreEditor(object):
         self.label.setText(QCoreApplication.translate("ScoreEditor", u"formLabel.score", None))
         self.farNoneCheckBox.setText(QCoreApplication.translate("ScoreEditor", u"setNone", None))
         self.idLabel.setText(QCoreApplication.translate("ScoreEditor", u"idAutoInsert", None))
+        self.warnIfIncompleteCheckBox.setText(QCoreApplication.translate("ScoreEditor", u"warnIfIncomplete", None))
         pass
     # retranslateUi
 

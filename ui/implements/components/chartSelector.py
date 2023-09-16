@@ -45,7 +45,14 @@ class ChartSelector(Ui_ChartSelector, QWidget):
         ratingClass = self.ratingClassSelector.value()
 
         if songId and isinstance(ratingClass, int):
-            return self.db.get_chart(songId, ratingClass)
+            result = self.db.get_chart(songId, ratingClass)
+            if result is None and self.songIdSelector.mode == SongIdSelectorMode.SongId:
+                return Chart(
+                    song_id=songId,
+                    rating_class=ratingClass,
+                    set=self.songIdSelector.packId(),
+                )
+            return result
         return None
 
     def updateDatabase(self):
@@ -62,19 +69,23 @@ class ChartSelector(Ui_ChartSelector, QWidget):
     def updateResultLabel(self):
         chart = self.value()
         if isinstance(chart, Chart):
-            pack = self.db.get_pack(chart.set)
-            texts = [
-                [
-                    pack.name,
-                    chart.title,
-                    f"{rating_class_to_text(chart.rating_class)} "
-                    f"{chart.rating}{'+' if chart.rating_plus else ''}"
-                    f"({chart.constant / 10})",
-                ],
-                [pack.id, chart.song_id, str(chart.rating_class)],
-            ]
-            texts = [" | ".join(t) for t in texts]
-            text = f'{texts[0]}<br><font color="gray">{texts[1]}</font>'
+            if chart.constant is not None:
+                pack = self.db.get_pack(chart.set)
+
+                texts = [
+                    [
+                        pack.name,
+                        chart.title,
+                        f"{rating_class_to_text(chart.rating_class)} "
+                        f"{chart.rating}{'+' if chart.rating_plus else ''}"
+                        f"({chart.constant / 10})",
+                    ],
+                    [pack.id, chart.song_id, str(chart.rating_class)],
+                ]
+                texts = [" | ".join(t) for t in texts]
+                text = f'{texts[0]}<br><font color="gray">{texts[1]}</font>'
+            else:
+                text = f'No chart data<br><font color="gray">{chart.set} | {chart.song_id} | {chart.rating_class}</font>'
             self.resultLabel.setText(text)
         else:
             self.resultLabel.setText("...")
