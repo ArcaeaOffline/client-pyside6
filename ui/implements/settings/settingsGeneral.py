@@ -21,8 +21,10 @@ class SettingsGeneral(SettingsBaseWidget):
 
         self.setupUi(self)
 
-        availableLanguageFiles = QDir(":/lang").entryInfoList(QDir.Filter.Files)
+        availableLanguageFiles = QDir(":/lang").entryInfoList()
         for fileInfo in availableLanguageFiles:
+            if not fileInfo.isFile() or fileInfo.suffix() != "qm":
+                continue
             languageCode = fileInfo.baseName()
             locale = QLocale(languageCode)
             self.languageValueWidget.addItem(localeToFullName(locale), locale)
