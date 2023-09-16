@@ -351,58 +351,58 @@ validation</translation>
         <translation>Commit</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="106"/>
+        <location filename="../../implements/components/scoreEditor.py" line="110"/>
         <source>emptyScoreDialog.title</source>
         <translation>Empty Score</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="107"/>
+        <location filename="../../implements/components/scoreEditor.py" line="111"/>
         <source>emptyScoreDialog.content</source>
         <translation>Are you sure to commit an empty score?</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="86"/>
-        <location filename="../../implements/components/scoreEditor.py" line="87"/>
+        <location filename="../../implements/components/scoreEditor.py" line="90"/>
+        <location filename="../../implements/components/scoreEditor.py" line="91"/>
         <source>chartInvalidDialog.title</source>
         <translation>Chart Invalid</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="95"/>
+        <location filename="../../implements/components/scoreEditor.py" line="99"/>
         <source>scoreMismatchDialog.title</source>
         <translation>Possible Invalid Score</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="96"/>
+        <location filename="../../implements/components/scoreEditor.py" line="100"/>
         <source>scoreMismatchDialog.content</source>
         <translation>The entered score may not match the selected chart. Commit this score anyway?</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="181"/>
+        <location filename="../../implements/components/scoreEditor.py" line="185"/>
         <source>validate.ok</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="183"/>
+        <location filename="../../implements/components/scoreEditor.py" line="187"/>
         <source>validate.chartInvalid</source>
         <translation>Chart invalid</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="185"/>
+        <location filename="../../implements/components/scoreEditor.py" line="189"/>
         <source>validate.scoreMismatch</source>
         <translation>Possible invalid score</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="187"/>
+        <location filename="../../implements/components/scoreEditor.py" line="191"/>
         <source>validate.scoreEmpty</source>
         <translation>Empty score</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="189"/>
+        <location filename="../../implements/components/scoreEditor.py" line="193"/>
         <source>validate.scoreIncomplete</source>
         <translation>Score incomplete, cannot verify</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="192"/>
+        <location filename="../../implements/components/scoreEditor.py" line="196"/>
         <source>validate.unknownState</source>
         <translation>Unknown</translation>
     </message>
@@ -564,6 +564,46 @@ validation</translation>
         <source>exportScores.description</source>
         <translation>Export all your scores to a JSON file</translation>
     </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="79"/>
+        <source>importPacklistButton</source>
+        <translation>Import packlist</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="86"/>
+        <source>importSonglistButton</source>
+        <translation>Import songlist</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="93"/>
+        <source>importPacklist.description</source>
+        <translation>Import packlist file</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="100"/>
+        <source>importSonglist.description</source>
+        <translation>Import songlist file</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="107"/>
+        <source>exportArcsongJsonButton</source>
+        <translation>Export arcsong.json</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="114"/>
+        <source>exportArcsongJson.description</source>
+        <translation>Export arcsong.json file</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="121"/>
+        <source>importApkButton</source>
+        <translation>Import APK</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="128"/>
+        <source>importApk.description</source>
+        <translation>Import packlist and songlist from .apk file</translation>
+    </message>
 </context>
 <context>
     <name>TabInputScore</name>
@@ -666,79 +706,6 @@ validation</translation>
         <location filename="../../designer/tabs/tabToolsEntry.ui" line="24"/>
         <source>tab.infoLookup</source>
         <translation>Chart Info Lookup</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabToolsEntry.ui" line="29"/>
-        <source>tab.andreal</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TabTools_Andreal</name>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="23"/>
-        <source>andrealPathSelector</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="40"/>
-        <source>andrealExecutableSelector</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="50"/>
-        <source>imageType</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="60"/>
-        <source>imageVersion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="98"/>
-        <source>exportJsonButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="105"/>
-        <source>generateButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="127"/>
-        <source>previewImage</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="149"/>
-        <source>imageType.recent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="156"/>
-        <source>imageType.best</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="163"/>
-        <source>imageType.best30</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="172"/>
-        <source>imageFormat</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="220"/>
-        <source>chart</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="227"/>
-        <source>imageQuality</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

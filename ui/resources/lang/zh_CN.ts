@@ -350,58 +350,58 @@
         <translation>提交</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="106"/>
+        <location filename="../../implements/components/scoreEditor.py" line="110"/>
         <source>emptyScoreDialog.title</source>
         <translation>分数为空</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="107"/>
+        <location filename="../../implements/components/scoreEditor.py" line="111"/>
         <source>emptyScoreDialog.content</source>
         <translation>确定提交空分数吗？</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="86"/>
-        <location filename="../../implements/components/scoreEditor.py" line="87"/>
+        <location filename="../../implements/components/scoreEditor.py" line="90"/>
+        <location filename="../../implements/components/scoreEditor.py" line="91"/>
         <source>chartInvalidDialog.title</source>
         <translation>谱面无效</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="95"/>
+        <location filename="../../implements/components/scoreEditor.py" line="99"/>
         <source>scoreMismatchDialog.title</source>
         <translation>分数可能有误</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="96"/>
+        <location filename="../../implements/components/scoreEditor.py" line="100"/>
         <source>scoreMismatchDialog.content</source>
         <translation>输入的分数不在理论计算范围内。是否确认提交？</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="181"/>
+        <location filename="../../implements/components/scoreEditor.py" line="185"/>
         <source>validate.ok</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="183"/>
+        <location filename="../../implements/components/scoreEditor.py" line="187"/>
         <source>validate.chartInvalid</source>
         <translation>谱面无效</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="185"/>
+        <location filename="../../implements/components/scoreEditor.py" line="189"/>
         <source>validate.scoreMismatch</source>
         <translation>分数可能有误</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="187"/>
+        <location filename="../../implements/components/scoreEditor.py" line="191"/>
         <source>validate.scoreEmpty</source>
         <translation>分数为空</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="189"/>
+        <location filename="../../implements/components/scoreEditor.py" line="193"/>
         <source>validate.scoreIncomplete</source>
         <translation>分数不完整，无法验证</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="192"/>
+        <location filename="../../implements/components/scoreEditor.py" line="196"/>
         <source>validate.unknownState</source>
         <translation>未知</translation>
     </message>
@@ -563,6 +563,46 @@
         <source>exportScores.description</source>
         <translation>将所有分数导出为 JSON 文件</translation>
     </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="79"/>
+        <source>importPacklistButton</source>
+        <translation>导入 packlist</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="86"/>
+        <source>importSonglistButton</source>
+        <translation>导入 songlist</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="93"/>
+        <source>importPacklist.description</source>
+        <translation>导入 packlist 文件</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="100"/>
+        <source>importSonglist.description</source>
+        <translation>导入 songlist 文件</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="107"/>
+        <source>exportArcsongJsonButton</source>
+        <translation>导出 arcsong.json</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="114"/>
+        <source>exportArcsongJson.description</source>
+        <translation>导出 arcsong.json 文件</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="121"/>
+        <source>importApkButton</source>
+        <translation>导入 APK</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="128"/>
+        <source>importApk.description</source>
+        <translation>从 .apk 文件导入 packlist 和 songlist</translation>
+    </message>
 </context>
 <context>
     <name>TabInputScore</name>
@@ -665,79 +705,6 @@
         <location filename="../../designer/tabs/tabToolsEntry.ui" line="24"/>
         <source>tab.infoLookup</source>
         <translation>查询谱面信息</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabToolsEntry.ui" line="29"/>
-        <source>tab.andreal</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TabTools_Andreal</name>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="23"/>
-        <source>andrealPathSelector</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="40"/>
-        <source>andrealExecutableSelector</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="50"/>
-        <source>imageType</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="60"/>
-        <source>imageVersion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="98"/>
-        <source>exportJsonButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="105"/>
-        <source>generateButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="127"/>
-        <source>previewImage</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="149"/>
-        <source>imageType.recent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="156"/>
-        <source>imageType.best</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="163"/>
-        <source>imageType.best30</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="172"/>
-        <source>imageFormat</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="220"/>
-        <source>chart</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="227"/>
-        <source>imageQuality</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
