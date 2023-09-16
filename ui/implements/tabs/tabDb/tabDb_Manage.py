@@ -51,6 +51,7 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
         db = Database()
         with db.sessionmaker() as session:
             parser.write_database(session)
+            session.commit()
         itemNum = len(parser.parse())
         logger.info(f"updated {itemNum} {logName} from {path}")
         return itemNum
