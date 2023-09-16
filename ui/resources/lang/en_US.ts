@@ -315,94 +315,143 @@ validation</translation>
     <name>ScoreEditor</name>
     <message>
         <location filename="../../designer/components/scoreEditor.ui" line="20"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="50"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="80"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="217"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="231"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="241"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="275"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="318"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="53"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="83"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="223"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="237"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="247"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="281"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="327"/>
         <source>setNone</source>
         <translation>None</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="251"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="257"/>
         <source>formLabel.date</source>
         <translation>Time</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="298"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="307"/>
         <source>formLabel.comment</source>
         <translation>Comment</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="308"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="317"/>
         <source>formLabel.score</source>
         <translation>Score</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="335"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="344"/>
         <source>idAutoInsert</source>
         <translation>(Auto Insert)</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="261"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="351"/>
+        <source>warnIfIncomplete</source>
+        <translation>Warn if incomplete</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/scoreEditor.ui" line="267"/>
         <source>commitButton</source>
         <translation>Commit</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="110"/>
-        <source>emptyScoreDialog.title</source>
-        <translation>Empty Score</translation>
-    </message>
-    <message>
-        <location filename="../../implements/components/scoreEditor.py" line="111"/>
-        <source>emptyScoreDialog.content</source>
-        <translation>Are you sure to commit an empty score?</translation>
-    </message>
-    <message>
-        <location filename="../../implements/components/scoreEditor.py" line="90"/>
-        <location filename="../../implements/components/scoreEditor.py" line="91"/>
-        <source>chartInvalidDialog.title</source>
-        <translation>Chart Invalid</translation>
-    </message>
-    <message>
-        <location filename="../../implements/components/scoreEditor.py" line="99"/>
-        <source>scoreMismatchDialog.title</source>
-        <translation>Possible Invalid Score</translation>
-    </message>
-    <message>
-        <location filename="../../implements/components/scoreEditor.py" line="100"/>
-        <source>scoreMismatchDialog.content</source>
-        <translation>The entered score may not match the selected chart. Commit this score anyway?</translation>
-    </message>
-    <message>
-        <location filename="../../implements/components/scoreEditor.py" line="185"/>
+        <location filename="../../implements/components/scoreEditor.py" line="306"/>
         <source>validate.ok</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="187"/>
-        <source>validate.chartInvalid</source>
-        <translation>Chart invalid</translation>
+        <location filename="../../implements/components/scoreEditor.py" line="65"/>
+        <source>confirmDialog.chartIncomplete.title</source>
+        <translation>No chart data</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="189"/>
+        <location filename="../../implements/components/scoreEditor.py" line="66"/>
+        <source>confirmDialog.chartIncomplete.text</source>
+        <translation>Chart data incomplete, cannot verify score. Commit anyway?</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="71"/>
+        <source>confirmDialog.scoreMismatch.title</source>
+        <translation>Score mismatch</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="72"/>
+        <source>confirmDialog.scoreMismatch.text</source>
+        <translation>The entered score may not match the selected chart. Commit anyway?</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="77"/>
+        <source>confirmDialog.emptyScore.title</source>
+        <translation>Empty score</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="78"/>
+        <source>confirmDialog.emptyScore.text</source>
+        <translation>Score empty. Commit anyway?</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="83"/>
+        <source>confirmDialog.scoreIncompleteForValidate.title</source>
+        <translation>Score incomplete</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="84"/>
+        <source>confirmDialog.scoreIncompleteForValidate.text</source>
+        <translation>Cannot verify an incomplete score. Commit anyway?</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="192"/>
+        <source>confirmDialog.chartNotSet.title</source>
+        <translation>Chart not set</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="193"/>
+        <source>confirmDialog.chartNotSet.text</source>
+        <translation>Chart not set, cannot commit.</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="201"/>
+        <source>confirmDialog.scoreIncomplete.title</source>
+        <translation>Score incomplete</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="202"/>
+        <source>confirmDialog.scoreIncomplete.text</source>
+        <translation>Necessary score field missing, cannot commit.</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="310"/>
+        <source>validate.chartNotSet</source>
+        <translation>Chart not set</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="314"/>
+        <source>validate.chartIncomple</source>
+        <translation>No chart data, cannot verify</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="318"/>
         <source>validate.scoreMismatch</source>
         <translation>Possible invalid score</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="191"/>
+        <location filename="../../implements/components/scoreEditor.py" line="322"/>
         <source>validate.scoreEmpty</source>
         <translation>Empty score</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="193"/>
+        <location filename="../../implements/components/scoreEditor.py" line="326"/>
         <source>validate.scoreIncomplete</source>
+        <translation>Missing necessary score field</translation>
+    </message>
+    <message>
+        <location filename="../../implements/components/scoreEditor.py" line="332"/>
+        <source>validate.scoreIncompleteForValidate</source>
         <translation>Score incomplete, cannot verify</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="196"/>
+        <location filename="../../implements/components/scoreEditor.py" line="337"/>
         <source>validate.unknownState</source>
         <translation>Unknown</translation>
     </message>
@@ -422,7 +471,7 @@ validation</translation>
     <message>
         <location filename="../../implements/settings/settingsAndreal.py" line="79"/>
         <location filename="../../implements/settings/settingsAndreal.py" line="82"/>
-        <location filename="../../implements/settings/settingsGeneral.py" line="105"/>
+        <location filename="../../implements/settings/settingsGeneral.py" line="107"/>
         <location filename="../../implements/settings/settingsOcr.py" line="137"/>
         <location filename="../../implements/settings/settingsOcr.py" line="140"/>
         <location filename="../../implements/settings/settingsOcr.py" line="143"/>
@@ -436,27 +485,27 @@ validation</translation>
         <translation>Andreal Executable</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsGeneral.py" line="76"/>
+        <location filename="../../implements/settings/settingsGeneral.py" line="78"/>
         <source>general.dbUrlResetWarning</source>
         <translation>Application will now delete this setting and exit. Reboot application manually to specify a new database file. Continue?</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsGeneral.py" line="99"/>
+        <location filename="../../implements/settings/settingsGeneral.py" line="101"/>
         <source>general.title</source>
         <translation>General</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsGeneral.py" line="101"/>
+        <location filename="../../implements/settings/settingsGeneral.py" line="103"/>
         <source>general.language.label</source>
         <translation>Language</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsGeneral.py" line="102"/>
+        <location filename="../../implements/settings/settingsGeneral.py" line="104"/>
         <source>general.language.followSystem</source>
         <translation>Follow system</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsGeneral.py" line="104"/>
+        <location filename="../../implements/settings/settingsGeneral.py" line="106"/>
         <source>general.dbUrl.label</source>
         <translation>Database URL</translation>
     </message>

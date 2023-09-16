@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from enum import IntEnum
 from typing import Any, Optional
 
@@ -17,19 +18,73 @@ from PySide6.QtWidgets import (
 from ui.designer.components.scoreEditor_ui import Ui_ScoreEditor
 from ui.extends.shared.language import LanguageChangeEventFilter
 
-# TODO: use bit flags
+
 class ScoreValidateResult(IntEnum):
-    Ok = 0
-    ScoreMismatch = 1
-    ScoreEmpty = 2
-    ChartInvalid = 50
-    ChartIncomplete = 51
-    ScoreIncomplete = 100
+    Ok = 0x001
+
+    ScoreMismatch = 0x010
+    ScoreEmpty = 0x020
+    ScoreIncomplete = 0x040
+    ScoreIncompleteForValidate = 0x080
+
+    ChartNotSet = 0x100
+    ChartIncomplete = 0x200
+
+
+@dataclass
+class ScoreEditorValidationItem:
+    flag: int
+    title: str = ""
+    text: str = ""
+    warnIfIncomplete: bool = False
 
 
 class ScoreEditor(Ui_ScoreEditor, QWidget):
     valueChanged = Signal()
     accepted = Signal()
+
+    VALIDATION_ITEMS = [
+        ScoreEditorValidationItem(
+            ScoreValidateResult.ChartIncomplete,
+            warnIfIncomplete=True,
+        ),
+        ScoreEditorValidationItem(
+            ScoreValidateResult.ScoreMismatch,
+        ),
+        ScoreEditorValidationItem(
+            ScoreValidateResult.ScoreEmpty,
+        ),
+        ScoreEditorValidationItem(
+            ScoreValidateResult.ScoreIncompleteForValidate, warnIfIncomplete=True
+        ),
+    ]
+
+    VALIDATION_ITEMS_TEXT = [
+        [
+            # fmt: off
+            lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.chartIncomplete.title"),
+            lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.chartIncomplete.text"),
+            # fmt: on
+        ],
+        [
+            # fmt: off
+            lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.scoreMismatch.title"),
+            lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.scoreMismatch.text"),
+            # fmt: on
+        ],
+        [
+            # fmt: off
+            lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.emptyScore.title"),
+            lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.emptyScore.text"),
+            # fmt: on
+        ],
+        [
+            # fmt: off
+            lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.scoreIncompleteForValidate.title"),
+            lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.scoreIncompleteForValidate.text"),
+            # fmt: on,
+        ],
+    ]
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -80,6 +135,16 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
 
         self.dateTimeEdit.setDateTime(QDateTime.currentDateTime())
 
+    def retranslateUi(self, *args):
+        super().retranslateUi(self)
+
+        for item, itemTextCallables in zip(
+            self.VALIDATION_ITEMS, self.VALIDATION_ITEMS_TEXT
+        ):
+            titleCallable, textCallable = itemTextCallables
+            item.title = titleCallable()
+            item.text = textCallable()
+
     def validateBeforeAccept(self):
         return self.__validateBeforeAccept
 
@@ -94,70 +159,77 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
             self.warnIfIncompleteCheckBox.setChecked(__bool)
         self.__warnIfIncomplete = __bool
 
+    def __triggerMessageBox(
+        self, methodStr: str, title: str, text: str, userConfirmButton: bool = False
+    ) -> QMessageBox.StandardButton:
+        if methodStr == "critical":
+            method = QMessageBox.critical
+        elif methodStr == "warning":
+            method = QMessageBox.warning
+        else:
+            method = QMessageBox.information
+
+        if userConfirmButton:
+            return method(
+                self,
+                title,
+                text,
+                QMessageBox.StandardButton.Yes,
+                QMessageBox.StandardButton.No,
+            )
+        else:
+            return method(self, title, text)
+
     def triggerValidateMessageBox(self):
         validate = self.validateScore()
 
-        if validate == ScoreValidateResult.Ok:
+        if validate & ScoreValidateResult.Ok:
             return True
-        if validate == ScoreValidateResult.ChartInvalid:
-            QMessageBox.critical(
-                self,
+        if validate & ScoreValidateResult.ChartNotSet:
+            self.__triggerMessageBox(
+                "critical",
                 # fmt: off
-                QCoreApplication.translate("ScoreEditor", "chartInvalidDialog.title"),
-                QCoreApplication.translate("ScoreEditor", "chartInvalidDialog.title"),
+                QCoreApplication.translate("ScoreEditor", "confirmDialog.chartNotSet.title"),
+                QCoreApplication.translate("ScoreEditor", "confirmDialog.chartNotSet.text"),
                 # fmt: on
             )
             return False
-        if validate == ScoreValidateResult.ChartIncomplete:
-            if not self.__warnIfIncomplete:
-                return True
-            result = QMessageBox.warning(
-                self,
+        if validate & ScoreValidateResult.ScoreIncomplete:
+            self.__triggerMessageBox(
+                "critical",
                 # fmt: off
-                QCoreApplication.translate("ScoreEditor", "chartIncompleteDialog.title"),
-                QCoreApplication.translate("ScoreEditor", "chartIncompleteDialog.content"),
+                QCoreApplication.translate("ScoreEditor", "confirmDialog.scoreIncomplete.title"),
+                QCoreApplication.translate("ScoreEditor", "confirmDialog.scoreIncomplete.text"),
                 # fmt: on
-                QMessageBox.StandardButton.Yes,
-                QMessageBox.StandardButton.No,
             )
-            return result == QMessageBox.StandardButton.Yes
-        if validate == ScoreValidateResult.ScoreMismatch:
-            result = QMessageBox.warning(
-                self,
-                # fmt: off
-                QCoreApplication.translate("ScoreEditor", "scoreMismatchDialog.title"),
-                QCoreApplication.translate("ScoreEditor", "scoreMismatchDialog.content"),
-                # fmt: on
-                QMessageBox.StandardButton.Yes,
-                QMessageBox.StandardButton.No,
-            )
-            return result == QMessageBox.StandardButton.Yes
-        elif validate == ScoreValidateResult.ScoreEmpty:
-            result = QMessageBox.warning(
-                self,
-                # fmt: off
-                QCoreApplication.translate("ScoreEditor", "emptyScoreDialog.title"),
-                QCoreApplication.translate("ScoreEditor", "emptyScoreDialog.content"),
-                # fmt: on
-                QMessageBox.StandardButton.Yes,
-                QMessageBox.StandardButton.No,
-            )
-            return result == QMessageBox.StandardButton.Yes
-        elif validate == ScoreValidateResult.ScoreIncomplete:
-            if not self.__warnIfIncomplete:
-                return True
-            result = QMessageBox.warning(
-                self,
-                # fmt: off
-                QCoreApplication.translate("ScoreEditor", "scoreIncompleteDialog.title"),
-                QCoreApplication.translate("ScoreEditor", "scoreIncompleteDialog.content"),
-                # fmt: on
-                QMessageBox.StandardButton.Yes,
-                QMessageBox.StandardButton.No,
-            )
-            return result == QMessageBox.StandardButton.Yes
-        else:
             return False
+
+        # since validate may have multiple results
+        # ask user step by step, then return the final result
+        finalResult = True
+
+        for item in self.VALIDATION_ITEMS:
+            if not finalResult:
+                # user canceled commit, break then return
+                break
+
+            if not validate & item.flag:
+                continue
+
+            if item.warnIfIncomplete and not self.warnIfIncomplete():
+                # if the item requires `warnIfIncomplete`
+                # and the user set the `warnIfIncomplete` option to `False`
+                # skip this validation
+                continue
+
+            finalResult = (
+                self.__triggerMessageBox(
+                    "warning", item.title, item.text, userConfirmButton=True
+                )
+                == QMessageBox.StandardButton.Yes
+            )
+
+        return finalResult
 
     @Slot()
     def on_commitButton_clicked(self):
@@ -170,7 +242,7 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
 
     def score(self):
         score_text = self.scoreLineEdit.text().replace("'", "")
-        return int(score_text) if score_text else 0
+        return int(score_text) if score_text else None
 
     def setComboBoxMaximums(self, max: int):
         self.pureSpinBox.setMaximum(max)
@@ -198,44 +270,73 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
 
     def validateScore(self) -> ScoreValidateResult:
         if not isinstance(self.__chart, Chart):
-            return ScoreValidateResult.ChartInvalid
+            return ScoreValidateResult.ChartNotSet
+
+        flags = 0x000
 
         if self.__chart.notes is None:
-            return ScoreValidateResult.ChartIncomplete
+            flags |= ScoreValidateResult.ChartIncomplete
 
         score = self.value()
 
-        if score.pure is None or score.far is None:
-            return ScoreValidateResult.ScoreIncomplete
+        if score.score is None:
+            flags |= ScoreValidateResult.ScoreIncomplete
+        elif score.pure is None or score.far is None:
+            flags |= ScoreValidateResult.ScoreIncompleteForValidate
+        elif self.__chart.notes is not None:
+            score_range = calculate_score_range(
+                self.__chart.notes, score.pure, score.far
+            )
+            note_in_range = score.pure + score.far + score.lost <= self.__chart.notes
+            score_in_range = score_range[0] <= score.score <= score_range[1]
+            if not score_in_range or not note_in_range:
+                flags |= ScoreValidateResult.ScoreMismatch
 
-        score_range = calculate_score_range(self.__chart.notes, score.pure, score.far)
-        note_in_range = score.pure + score.far + score.lost <= self.__chart.notes
-        score_in_range = score_range[0] <= score.score <= score_range[1]
-        if not score_in_range or not note_in_range:
-            return ScoreValidateResult.ScoreMismatch
         if score.score == 0:
-            return ScoreValidateResult.ScoreEmpty
-        return ScoreValidateResult.Ok
+            flags |= ScoreValidateResult.ScoreEmpty
+
+        return ScoreValidateResult.Ok if flags == 0x000 else flags
 
     def updateValidateLabel(self):
         validate = self.validateScore()
 
-        if validate == ScoreValidateResult.Ok:
-            text = QCoreApplication.translate("ScoreEditor", "validate.ok")
-        elif validate == ScoreValidateResult.ChartInvalid:
-            text = QCoreApplication.translate("ScoreEditor", "validate.chartInvalid")
-        elif validate == ScoreValidateResult.ChartIncomplete:
-            text = QCoreApplication.translate("ScoreEditor", "validate.chartIncomple")
-        elif validate == ScoreValidateResult.ScoreMismatch:
-            text = QCoreApplication.translate("ScoreEditor", "validate.scoreMismatch")
-        elif validate == ScoreValidateResult.ScoreEmpty:
-            text = QCoreApplication.translate("ScoreEditor", "validate.scoreEmpty")
-        elif validate == ScoreValidateResult.ScoreIncomplete:
-            text = QCoreApplication.translate("ScoreEditor", "validate.scoreIncomplete")
-        else:
-            text = QCoreApplication.translate("ScoreEditor", "validate.unknownState")
+        texts = []
 
-        self.validateLabel.setText(text)
+        if validate & ScoreValidateResult.Ok:
+            texts.append(QCoreApplication.translate("ScoreEditor", "validate.ok"))
+        if validate & ScoreValidateResult.ChartNotSet:
+            texts.append(
+                QCoreApplication.translate("ScoreEditor", "validate.chartNotSet")
+            )
+        if validate & ScoreValidateResult.ChartIncomplete:
+            texts.append(
+                QCoreApplication.translate("ScoreEditor", "validate.chartIncomple")
+            )
+        if validate & ScoreValidateResult.ScoreMismatch:
+            texts.append(
+                QCoreApplication.translate("ScoreEditor", "validate.scoreMismatch")
+            )
+        if validate & ScoreValidateResult.ScoreEmpty:
+            texts.append(
+                QCoreApplication.translate("ScoreEditor", "validate.scoreEmpty")
+            )
+        if validate & ScoreValidateResult.ScoreIncomplete:
+            texts.append(
+                QCoreApplication.translate("ScoreEditor", "validate.scoreIncomplete")
+            )
+        if validate & ScoreValidateResult.ScoreIncompleteForValidate:
+            texts.append(
+                # fmt: off
+                QCoreApplication.translate("ScoreEditor", "validate.scoreIncompleteForValidate")
+                # fmt: on
+            )
+
+        if not texts:
+            texts.append(
+                QCoreApplication.translate("ScoreEditor", "validate.unknownState")
+            )
+
+        self.validateLabel.setText(" | ".join(texts))
 
     def __getItemBaseName(self, item: QLineEdit | QSpinBox | QDateTimeEdit | QComboBox):
         if isinstance(item, QSpinBox):
