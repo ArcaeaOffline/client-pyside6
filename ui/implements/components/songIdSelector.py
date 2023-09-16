@@ -1,5 +1,6 @@
 import logging
 import re
+from enum import IntEnum
 from typing import Literal
 
 from arcaea_offline.database import Database
@@ -14,6 +15,11 @@ from ui.extends.shared.delegates.descriptionDelegate import DescriptionDelegate
 from ui.extends.shared.language import LanguageChangeEventFilter
 
 logger = logging.getLogger(__name__)
+
+
+class SongIdSelectorMode(IntEnum):
+    SongId = 0
+    Chart = 1
 
 
 class SongIdSelector(Ui_SongIdSelector, QWidget):
@@ -40,6 +46,8 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
             lambda: self.quickSwitchSelection("next", "package")
         )
 
+        self.mode = SongIdSelectorMode.SongId
+
         databaseUpdateSignals.songDataUpdated.connect(self.updateDatabase)
 
         self.fillPackComboBox()
@@ -61,6 +69,9 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
 
         self.packComboBox.currentIndexChanged.connect(self.valueChanged)
         self.songIdComboBox.currentIndexChanged.connect(self.valueChanged)
+
+    def setMode(self, mode: SongIdSelectorMode):
+        self.mode = mode
 
     def quickSwitchSelection(
         self,
@@ -135,20 +146,30 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
         self.songIdComboBox.clear()
         packId = self.packComboBox.currentData()
         if packId:
-            charts = self.db.get_charts_by_pack_id(packId)
-            inserted_song_ids = []
-            for chart in charts:
-                if chart.song_id not in inserted_song_ids:
-                    self.songIdComboBox.addItem(
-                        f"{chart.title} ({chart.song_id})", chart.song_id
-                    )
-                    inserted_song_ids.append(chart.song_id)
+            if self.mode == SongIdSelectorMode.SongId:
+                items = self.db.get_songs_by_pack_id(packId)
+            elif self.mode == SongIdSelectorMode.Chart:
+                items = self.db.get_charts_by_pack_id(packId)
+            else:
+                raise ValueError("Unknown SongIdSelectorMode.")
+            insertedSongIds = []
+            for item in items:
+                if self.mode == SongIdSelectorMode.SongId:
+                    itemId = item.id
+                elif self.mode == SongIdSelectorMode.Chart:
+                    itemId = item.song_id
+                else:
+                    continue
+
+                if itemId not in insertedSongIds:
+                    self.songIdComboBox.addItem(f"{item.title} ({itemId})", itemId)
+                    insertedSongIds.append(itemId)
                     row = self.songIdComboBox.count() - 1
                     self.songIdComboBox.setItemData(
-                        row, chart.title, DescriptionDelegate.MainTextRole
+                        row, item.title, DescriptionDelegate.MainTextRole
                     )
                     self.songIdComboBox.setItemData(
-                        row, chart.song_id, DescriptionDelegate.DescriptionTextRole
+                        row, itemId, DescriptionDelegate.DescriptionTextRole
                     )
         self.songIdComboBox.setCurrentIndex(-1)
 

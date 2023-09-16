@@ -9,6 +9,7 @@ from PySide6.QtWidgets import QWidget
 from ui.designer.components.chartSelector_ui import Ui_ChartSelector
 from ui.extends.shared.database import databaseUpdateSignals
 from ui.extends.shared.language import LanguageChangeEventFilter
+from ui.implements.components.songIdSelector import SongIdSelectorMode
 
 logger = logging.getLogger(__name__)
 
@@ -35,6 +36,9 @@ class ChartSelector(Ui_ChartSelector, QWidget):
             self.songIdSelector.updateDatabase
         )
         databaseUpdateSignals.songDataUpdated.connect(self.updateDatabase)
+
+    def setSongIdSelectorMode(self, mode: SongIdSelectorMode):
+        self.songIdSelector.setMode(mode)
 
     def value(self):
         songId = self.songIdSelector.songId()
@@ -79,8 +83,11 @@ class ChartSelector(Ui_ChartSelector, QWidget):
         ratingClasses = []
         songId = self.songIdSelector.songId()
         if songId:
-            charts = self.db.get_charts_by_song_id(songId)
-            ratingClasses = [chart.rating_class for chart in charts]
+            if self.songIdSelector.mode == SongIdSelectorMode.Chart:
+                items = self.db.get_charts_by_song_id(songId)
+            else:
+                items = self.db.get_difficulties_by_song_id(songId)
+            ratingClasses = [item.rating_class for item in items]
         self.ratingClassSelector.setButtonsEnabled(ratingClasses)
 
     @Slot()
