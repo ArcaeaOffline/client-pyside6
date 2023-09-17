@@ -19,6 +19,7 @@ from PySide6.QtWidgets import (QApplication, QSizePolicy, QTabWidget, QVBoxLayou
     QWidget)
 
 from ui.implements.tabs.tabTools.tabTools_InfoLookup import TabTools_InfoLookup
+from ui.implements.tabs.tabTools.tabTools_StepCalculator import TabTools_StepCalculator
 
 class Ui_TabToolsEntry(object):
     def setupUi(self, TabToolsEntry):
@@ -33,6 +34,9 @@ class Ui_TabToolsEntry(object):
         self.tab = TabTools_InfoLookup()
         self.tab.setObjectName(u"tab")
         self.tabWidget.addTab(self.tab, "")
+        self.tab_2 = TabTools_StepCalculator()
+        self.tab_2.setObjectName(u"tab_2")
+        self.tabWidget.addTab(self.tab_2, "")
 
         self.verticalLayout.addWidget(self.tabWidget)
 
@@ -47,6 +51,7 @@ class Ui_TabToolsEntry(object):
 
     def retranslateUi(self, TabToolsEntry):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("TabToolsEntry", u"tab.infoLookup", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("TabToolsEntry", u"tab.stepCalculator", None))
         pass
     # retranslateUi
 

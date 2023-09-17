@@ -24,6 +24,11 @@
        <string>tab.infoLookup</string>
       </attribute>
      </widget>
+     <widget class="TabTools_StepCalculator" name="tab_2">
+      <attribute name="title">
+       <string>tab.stepCalculator</string>
+      </attribute>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -33,6 +38,12 @@
    <class>TabTools_InfoLookup</class>
    <extends>QWidget</extends>
    <header>ui.implements.tabs.tabTools.tabTools_InfoLookup</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabTools_StepCalculator</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabTools.tabTools_StepCalculator</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

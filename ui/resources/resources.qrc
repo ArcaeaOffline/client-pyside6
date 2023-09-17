@@ -3,6 +3,11 @@
   <qresource prefix="/">
     <file>images/icon.png</file>
     <file>images/logo.png</file>
+    <file>images/stepCalculator/stamina.png</file>
+    <file>images/stepCalculator/play.png</file>
+    <file>images/stepCalculator/memory-boost.png</file>
+    <file>images/stepCalculator/legacy-play.png</file>
+    <file>images/stepCalculator/legacy-play-plus.png</file>
 
     <file>lang/zh_CN.qm</file>
     <file>lang/en_US.qm</file>
