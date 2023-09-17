@@ -6,7 +6,7 @@
     <message>
         <location filename="../../designer/components/chartSelector.ui" line="26"/>
         <source>songIdSelector.title</source>
-        <translation>Select Song</translation>
+        <translation>Select a Song</translation>
     </message>
     <message>
         <location filename="../../designer/components/chartSelector.ui" line="71"/>
@@ -43,7 +43,7 @@
         <location filename="../../startup/databaseChecker.ui" line="23"/>
         <location filename="../../startup/databaseChecker_ui.py" line="162"/>
         <source>dbPathLabel</source>
-        <translation>Database Path</translation>
+        <translation>Database path</translation>
     </message>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="33"/>
@@ -61,13 +61,13 @@
         <location filename="../../startup/databaseChecker.ui" line="117"/>
         <location filename="../../startup/databaseChecker_ui.py" line="177"/>
         <source>dbVersionLabel</source>
-        <translation>Database Version</translation>
+        <translation>Database version</translation>
     </message>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="93"/>
         <location filename="../../startup/databaseChecker_ui.py" line="171"/>
         <source>dbCheckConnLabel</source>
-        <translation>Database Connection</translation>
+        <translation>Database connection</translation>
     </message>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="110"/>
@@ -170,7 +170,7 @@
     <message>
         <location filename="../../implements/tabs/tabInputScore.py" line="31"/>
         <source>tracebackFormatExceptionOnly.content</source>
-        <translation>Unexpected Error&lt;br&gt;{0}</translation>
+        <translation>Unexpected error&lt;br&gt;{0}</translation>
     </message>
 </context>
 <context>
@@ -343,7 +343,7 @@ validation</translation>
     <message>
         <location filename="../../designer/components/scoreEditor.ui" line="344"/>
         <source>idAutoInsert</source>
-        <translation>(Auto Insert)</translation>
+        <translation>(Auto insert)</translation>
     </message>
     <message>
         <location filename="../../designer/components/scoreEditor.ui" line="351"/>
@@ -466,7 +466,7 @@ validation</translation>
     <message>
         <location filename="../../implements/settings/settingsAndreal.py" line="78"/>
         <source>andreal.andrealFolder.label</source>
-        <translation>Andreal Folder</translation>
+        <translation>Andreal folder</translation>
     </message>
     <message>
         <location filename="../../implements/settings/settingsAndreal.py" line="79"/>
@@ -482,7 +482,7 @@ validation</translation>
     <message>
         <location filename="../../implements/settings/settingsAndreal.py" line="81"/>
         <source>andreal.andrealExecutable.label</source>
-        <translation>Andreal Executable</translation>
+        <translation>Andreal executable</translation>
     </message>
     <message>
         <location filename="../../implements/settings/settingsGeneral.py" line="78"/>
@@ -573,12 +573,12 @@ validation</translation>
     <message>
         <location filename="../../implements/tabs/tabDbEntry.py" line="16"/>
         <source>tab.scoreTableViewer</source>
-        <translation>TABLE [Score]</translation>
+        <translation>Table [Score]</translation>
     </message>
     <message>
         <location filename="../../implements/tabs/tabDbEntry.py" line="20"/>
         <source>tab.b30TableViewer</source>
-        <translation>TABLE [B30]</translation>
+        <translation>Table [B30]</translation>
     </message>
 </context>
 <context>
@@ -591,7 +591,7 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="30"/>
         <source>syncArcSongDb.description</source>
-        <translation>Write chart info to database</translation>
+        <translation>Update chart info</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="37"/>
@@ -606,7 +606,7 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="58"/>
         <source>exportScoresButton</source>
-        <translation>Export scores</translation>
+        <translation>Export Scores</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="65"/>
@@ -659,12 +659,12 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabInputScore.ui" line="20"/>
         <source>tab.selectChart</source>
-        <translation>Chart Selector</translation>
+        <translation>Select a Chart</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabInputScore.ui" line="44"/>
         <source>tab.scoreEdit</source>
-        <translation>Score Edit</translation>
+        <translation>Score Input</translation>
     </message>
 </context>
 <context>
@@ -703,7 +703,7 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="46"/>
         <source>b30KnnModelSelector.title</source>
-        <translation>Select B30 specialized KNearest Model</translation>
+        <translation>Select B30 Specialized KNearest Model</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="62"/>
@@ -731,7 +731,7 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="33"/>
         <source>deviceSelector.useAutoFactor</source>
-        <translation>Auto Factor</translation>
+        <translation>Auto calculate factor</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="70"/>
@@ -767,7 +767,7 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="47"/>
         <source>songSelect</source>
-        <translation>Select a song</translation>
+        <translation>Select a Song</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="65"/>
@@ -797,17 +797,17 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="166"/>
         <source>song.bgDayNight</source>
-        <translation>Background Day/Night</translation>
+        <translation>Background day/night</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="179"/>
         <source>song.audioPreview</source>
-        <translation>Audio Preview Segment</translation>
+        <translation>Audio preview duration</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="206"/>
         <source>song.artist</source>
-        <translation>Artist</translation>
+        <translation>Music by</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="233"/>
@@ -847,7 +847,7 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="355"/>
         <source>chartSelect</source>
-        <translation>Select a difficulty</translation>
+        <translation>Select a Difficulty</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="379"/>
@@ -872,7 +872,7 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="484"/>
         <source>difficulty.artist</source>
-        <translation>Artist</translation>
+        <translation>Music by</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="497"/>
@@ -887,12 +887,12 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="544"/>
         <source>difficulty.jacketOverride</source>
-        <translation>Jacket Override</translation>
+        <translation>Jacket override</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="557"/>
         <source>difficulty.chartDesigner</source>
-        <translation>Chart Designer</translation>
+        <translation>Note Design</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="577"/>
@@ -907,17 +907,17 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="603"/>
         <source>difficulty.bgInverse</source>
-        <translation>Background Inversed</translation>
+        <translation>Background (inversed)</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="623"/>
         <source>difficulty.jacketDesigner</source>
-        <translation>Jacket Designer</translation>
+        <translation>Illustration by</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="636"/>
         <source>difficulty.jacketNight</source>
-        <translation>Jacket Night</translation>
+        <translation>Jacket night</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="649"/>

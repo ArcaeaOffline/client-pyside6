@@ -6,7 +6,7 @@
     <message>
         <location filename="../../designer/components/chartSelector.ui" line="26"/>
         <source>songIdSelector.title</source>
-        <translation>选择曲目</translation>
+        <translation>选择一首歌曲</translation>
     </message>
     <message>
         <location filename="../../designer/components/chartSelector.ui" line="71"/>
@@ -590,7 +590,7 @@
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="30"/>
         <source>syncArcSongDb.description</source>
-        <translation>将谱面信息写入数据库</translation>
+        <translation>更新谱面信息</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="37"/>
@@ -658,12 +658,12 @@
     <message>
         <location filename="../../designer/tabs/tabInputScore.ui" line="20"/>
         <source>tab.selectChart</source>
-        <translation>谱面选择</translation>
+        <translation>选择谱面</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabInputScore.ui" line="44"/>
         <source>tab.scoreEdit</source>
-        <translation>分数编辑</translation>
+        <translation>录入分数</translation>
     </message>
 </context>
 <context>
@@ -730,7 +730,7 @@
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="33"/>
         <source>deviceSelector.useAutoFactor</source>
-        <translation>自动确定 factor</translation>
+        <translation>自动计算 factor</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="70"/>
@@ -766,7 +766,7 @@
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="47"/>
         <source>songSelect</source>
-        <translation>选择一首曲目</translation>
+        <translation>选择一首歌曲</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="65"/>
@@ -891,7 +891,7 @@
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="557"/>
         <source>difficulty.chartDesigner</source>
-        <translation>谱师</translation>
+        <translation>谱面设计</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="577"/>
@@ -911,7 +911,7 @@
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="623"/>
         <source>difficulty.jacketDesigner</source>
-        <translation>封面</translation>
+        <translation>插画</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="636"/>
