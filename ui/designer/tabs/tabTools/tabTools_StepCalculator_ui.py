@@ -16,43 +16,18 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QDoubleSpinBox,
-    QGridLayout, QGroupBox, QHBoxLayout, QLabel,
-    QPushButton, QRadioButton, QSizePolicy, QStackedWidget,
-    QVBoxLayout, QWidget)
+    QFormLayout, QGridLayout, QGroupBox, QHBoxLayout,
+    QLabel, QLineEdit, QPushButton, QRadioButton,
+    QSizePolicy, QStackedWidget, QVBoxLayout, QWidget)
 
 class Ui_TabTools_StepCalculator(object):
     def setupUi(self, TabTools_StepCalculator):
         if not TabTools_StepCalculator.objectName():
             TabTools_StepCalculator.setObjectName(u"TabTools_StepCalculator")
-        TabTools_StepCalculator.resize(615, 549)
+        TabTools_StepCalculator.resize(840, 549)
         TabTools_StepCalculator.setWindowTitle(u"TabTools_StepCalculator")
         self.verticalLayout_3 = QVBoxLayout(TabTools_StepCalculator)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.widget_3 = QWidget(TabTools_StepCalculator)
-        self.widget_3.setObjectName(u"widget_3")
-        self.gridLayout = QGridLayout(self.widget_3)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.label = QLabel(self.widget_3)
-        self.label.setObjectName(u"label")
-
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-
-        self.partnerStepValueSpinBox = QDoubleSpinBox(self.widget_3)
-        self.partnerStepValueSpinBox.setObjectName(u"partnerStepValueSpinBox")
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.partnerStepValueSpinBox.sizePolicy().hasHeightForWidth())
-        self.partnerStepValueSpinBox.setSizePolicy(sizePolicy)
-        self.partnerStepValueSpinBox.setMaximum(1000.000000000000000)
-        self.partnerStepValueSpinBox.setSingleStep(1.000000000000000)
-        self.partnerStepValueSpinBox.setStepType(QAbstractSpinBox.DefaultStepType)
-
-        self.gridLayout.addWidget(self.partnerStepValueSpinBox, 0, 1, 1, 1)
-
-
-        self.verticalLayout_3.addWidget(self.widget_3)
-
         self.mapTypeWidget = QWidget(TabTools_StepCalculator)
         self.mapTypeWidget.setObjectName(u"mapTypeWidget")
         self.horizontalLayout = QHBoxLayout(self.mapTypeWidget)
@@ -75,7 +50,7 @@ class Ui_TabTools_StepCalculator(object):
         self.mapTypePlayRadioButton.setCheckable(True)
         self.mapTypePlayRadioButton.setAutoExclusive(True)
 
-        self.gridLayout_2.addWidget(self.mapTypePlayRadioButton, 1, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.mapTypePlayRadioButton, 2, 0, 1, 1)
 
         self.mapTypeLegacyPlayPlusRadioButton = QPushButton(self.mapTypeSelectorWidget)
         self.mapTypeLegacyPlayPlusRadioButton.setObjectName(u"mapTypeLegacyPlayPlusRadioButton")
@@ -83,28 +58,18 @@ class Ui_TabTools_StepCalculator(object):
         self.mapTypeLegacyPlayPlusRadioButton.setCheckable(True)
         self.mapTypeLegacyPlayPlusRadioButton.setAutoExclusive(True)
 
-        self.gridLayout_2.addWidget(self.mapTypeLegacyPlayPlusRadioButton, 0, 1, 1, 1)
-
-        self.pushButton_4 = QPushButton(self.mapTypeSelectorWidget)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setEnabled(False)
-        self.pushButton_4.setStyleSheet(u"QPushButton{background-color: transparent}")
-        self.pushButton_4.setText(u"Beyond placeholder")
-        self.pushButton_4.setCheckable(False)
-        self.pushButton_4.setAutoExclusive(True)
-
-        self.gridLayout_2.addWidget(self.pushButton_4, 1, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.mapTypeLegacyPlayPlusRadioButton, 1, 0, 1, 1)
 
 
         self.horizontalLayout.addWidget(self.mapTypeSelectorWidget)
 
         self.stackedWidget = QStackedWidget(self.mapTypeWidget)
         self.stackedWidget.setObjectName(u"stackedWidget")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.stackedWidget.sizePolicy().hasHeightForWidth())
-        self.stackedWidget.setSizePolicy(sizePolicy1)
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.stackedWidget.sizePolicy().hasHeightForWidth())
+        self.stackedWidget.setSizePolicy(sizePolicy)
         self.legacyPlay = QWidget()
         self.legacyPlay.setObjectName(u"legacyPlay")
         self.verticalLayout = QVBoxLayout(self.legacyPlay)
@@ -121,11 +86,11 @@ class Ui_TabTools_StepCalculator(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.widget = QWidget(self.legacyPlayPlus)
         self.widget.setObjectName(u"widget")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
-        self.widget.setSizePolicy(sizePolicy2)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
+        self.widget.setSizePolicy(sizePolicy1)
         self.horizontalLayout_2 = QHBoxLayout(self.widget)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.legacyPlayPlus_x2StaminaRadioButton = QRadioButton(self.widget)
@@ -151,8 +116,8 @@ class Ui_TabTools_StepCalculator(object):
 
         self.legacyPlayPlus_useFragmentsGroupBox = QGroupBox(self.legacyPlayPlus)
         self.legacyPlayPlus_useFragmentsGroupBox.setObjectName(u"legacyPlayPlus_useFragmentsGroupBox")
-        sizePolicy2.setHeightForWidth(self.legacyPlayPlus_useFragmentsGroupBox.sizePolicy().hasHeightForWidth())
-        self.legacyPlayPlus_useFragmentsGroupBox.setSizePolicy(sizePolicy2)
+        sizePolicy1.setHeightForWidth(self.legacyPlayPlus_useFragmentsGroupBox.sizePolicy().hasHeightForWidth())
+        self.legacyPlayPlus_useFragmentsGroupBox.setSizePolicy(sizePolicy1)
         self.legacyPlayPlus_useFragmentsGroupBox.setCheckable(True)
         self.legacyPlayPlus_useFragmentsGroupBox.setChecked(False)
         self.horizontalLayout_3 = QHBoxLayout(self.legacyPlayPlus_useFragmentsGroupBox)
@@ -195,74 +160,198 @@ class Ui_TabTools_StepCalculator(object):
 
         self.horizontalLayout.addWidget(self.stackedWidget)
 
+        self.groupBox_3 = QGroupBox(self.mapTypeWidget)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.verticalLayout_5 = QVBoxLayout(self.groupBox_3)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.label = QLabel(self.groupBox_3)
+        self.label.setObjectName(u"label")
+
+        self.horizontalLayout_5.addWidget(self.label)
+
+        self.partnerStepValueSpinBox = QDoubleSpinBox(self.groupBox_3)
+        self.partnerStepValueSpinBox.setObjectName(u"partnerStepValueSpinBox")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.partnerStepValueSpinBox.sizePolicy().hasHeightForWidth())
+        self.partnerStepValueSpinBox.setSizePolicy(sizePolicy2)
+        self.partnerStepValueSpinBox.setMaximum(1000.000000000000000)
+        self.partnerStepValueSpinBox.setSingleStep(1.000000000000000)
+        self.partnerStepValueSpinBox.setStepType(QAbstractSpinBox.DefaultStepType)
+
+        self.horizontalLayout_5.addWidget(self.partnerStepValueSpinBox)
+
+
+        self.verticalLayout_5.addLayout(self.horizontalLayout_5)
+
+        self.partnerSkillGroupBox = QGroupBox(self.groupBox_3)
+        self.partnerSkillGroupBox.setObjectName(u"partnerSkillGroupBox")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.partnerSkillGroupBox.sizePolicy().hasHeightForWidth())
+        self.partnerSkillGroupBox.setSizePolicy(sizePolicy3)
+        self.partnerSkillGroupBox.setCheckable(True)
+        self.partnerSkillGroupBox.setChecked(False)
+        self.verticalLayout_7 = QVBoxLayout(self.partnerSkillGroupBox)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.formLayout = QFormLayout()
+        self.formLayout.setObjectName(u"formLayout")
+        self.formLayout.setLabelAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_5 = QLabel(self.partnerSkillGroupBox)
+        self.label_5.setObjectName(u"label_5")
+
+        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label_5)
+
+        self.label_6 = QLabel(self.partnerSkillGroupBox)
+        self.label_6.setObjectName(u"label_6")
+
+        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_6)
+
+        self.partnerSkillFinalMultiplierLineEdit = QLineEdit(self.partnerSkillGroupBox)
+        self.partnerSkillFinalMultiplierLineEdit.setObjectName(u"partnerSkillFinalMultiplierLineEdit")
+        self.partnerSkillFinalMultiplierLineEdit.setText(u"1.0")
+        self.partnerSkillFinalMultiplierLineEdit.setPlaceholderText(u"1.0")
+
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.partnerSkillFinalMultiplierLineEdit)
+
+        self.partnerSkillStepBonusLineEdit = QLineEdit(self.partnerSkillGroupBox)
+        self.partnerSkillStepBonusLineEdit.setObjectName(u"partnerSkillStepBonusLineEdit")
+        self.partnerSkillStepBonusLineEdit.setText(u"+0.0")
+        self.partnerSkillStepBonusLineEdit.setPlaceholderText(u"+0.0")
+
+        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.partnerSkillStepBonusLineEdit)
+
+
+        self.verticalLayout_7.addLayout(self.formLayout)
+
+        self.groupBox_4 = QGroupBox(self.partnerSkillGroupBox)
+        self.groupBox_4.setObjectName(u"groupBox_4")
+        self.gridLayout_3 = QGridLayout(self.groupBox_4)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.partnerSkillPresetButton_awakenedEto = QPushButton(self.groupBox_4)
+        self.partnerSkillPresetButton_awakenedEto.setObjectName(u"partnerSkillPresetButton_awakenedEto")
+
+        self.gridLayout_3.addWidget(self.partnerSkillPresetButton_awakenedEto, 0, 1, 1, 1)
+
+        self.partnerSkillPresetButton_awakenedIlith = QPushButton(self.groupBox_4)
+        self.partnerSkillPresetButton_awakenedIlith.setObjectName(u"partnerSkillPresetButton_awakenedIlith")
+
+        self.gridLayout_3.addWidget(self.partnerSkillPresetButton_awakenedIlith, 0, 0, 1, 1)
+
+        self.partnerSkillPresetButton_awakenedLuna = QPushButton(self.groupBox_4)
+        self.partnerSkillPresetButton_awakenedLuna.setObjectName(u"partnerSkillPresetButton_awakenedLuna")
+
+        self.gridLayout_3.addWidget(self.partnerSkillPresetButton_awakenedLuna, 1, 0, 1, 1)
+
+        self.partnerSkillPresetButton_amaneBelowEx = QPushButton(self.groupBox_4)
+        self.partnerSkillPresetButton_amaneBelowEx.setObjectName(u"partnerSkillPresetButton_amaneBelowEx")
+
+        self.gridLayout_3.addWidget(self.partnerSkillPresetButton_amaneBelowEx, 1, 1, 1, 1)
+
+        self.partnerSkillPresetButton_maya = QPushButton(self.groupBox_4)
+        self.partnerSkillPresetButton_maya.setObjectName(u"partnerSkillPresetButton_maya")
+
+        self.gridLayout_3.addWidget(self.partnerSkillPresetButton_maya, 2, 0, 1, 1)
+
+
+        self.verticalLayout_7.addWidget(self.groupBox_4)
+
+
+        self.verticalLayout_5.addWidget(self.partnerSkillGroupBox)
+
+
+        self.horizontalLayout.addWidget(self.groupBox_3)
+
 
         self.verticalLayout_3.addWidget(self.mapTypeWidget)
 
         self.widget_2 = QWidget(TabTools_StepCalculator)
         self.widget_2.setObjectName(u"widget_2")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.widget_2.sizePolicy().hasHeightForWidth())
-        self.widget_2.setSizePolicy(sizePolicy3)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.widget_2.sizePolicy().hasHeightForWidth())
+        self.widget_2.setSizePolicy(sizePolicy4)
         self.horizontalLayout_4 = QHBoxLayout(self.widget_2)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.groupBox = QGroupBox(self.widget_2)
         self.groupBox.setObjectName(u"groupBox")
-        self.verticalLayout_5 = QVBoxLayout(self.groupBox)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.horizontalWidget = QWidget(self.groupBox)
-        self.horizontalWidget.setObjectName(u"horizontalWidget")
-        self.horizontalLayout_5 = QHBoxLayout(self.horizontalWidget)
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.label_2 = QLabel(self.horizontalWidget)
+        self.formLayout_2 = QFormLayout(self.groupBox)
+        self.formLayout_2.setObjectName(u"formLayout_2")
+        self.formLayout_2.setLabelAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.calculate_toStep_playResultSpinBox = QDoubleSpinBox(self.groupBox)
+        self.calculate_toStep_playResultSpinBox.setObjectName(u"calculate_toStep_playResultSpinBox")
+        sizePolicy2.setHeightForWidth(self.calculate_toStep_playResultSpinBox.sizePolicy().hasHeightForWidth())
+        self.calculate_toStep_playResultSpinBox.setSizePolicy(sizePolicy2)
+        self.calculate_toStep_playResultSpinBox.setDecimals(3)
+        self.calculate_toStep_playResultSpinBox.setMaximum(100.000000000000000)
+        self.calculate_toStep_playResultSpinBox.setSingleStep(0.100000000000000)
+
+        self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.calculate_toStep_playResultSpinBox)
+
+        self.label_2 = QLabel(self.groupBox)
         self.label_2.setObjectName(u"label_2")
 
-        self.horizontalLayout_5.addWidget(self.label_2)
+        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.label_2)
 
-        self.playResultSpinBox = QDoubleSpinBox(self.horizontalWidget)
-        self.playResultSpinBox.setObjectName(u"playResultSpinBox")
-        sizePolicy.setHeightForWidth(self.playResultSpinBox.sizePolicy().hasHeightForWidth())
-        self.playResultSpinBox.setSizePolicy(sizePolicy)
-        self.playResultSpinBox.setDecimals(3)
-        self.playResultSpinBox.setMaximum(100.000000000000000)
-        self.playResultSpinBox.setSingleStep(0.100000000000000)
+        self.label_7 = QLabel(self.groupBox)
+        self.label_7.setObjectName(u"label_7")
+        sizePolicy4.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
+        self.label_7.setSizePolicy(sizePolicy4)
 
-        self.horizontalLayout_5.addWidget(self.playResultSpinBox)
+        self.formLayout_2.setWidget(2, QFormLayout.LabelRole, self.label_7)
 
+        self.calculate_toStep_resultLabel = QLabel(self.groupBox)
+        self.calculate_toStep_resultLabel.setObjectName(u"calculate_toStep_resultLabel")
+        sizePolicy4.setHeightForWidth(self.calculate_toStep_resultLabel.sizePolicy().hasHeightForWidth())
+        self.calculate_toStep_resultLabel.setSizePolicy(sizePolicy4)
+        self.calculate_toStep_resultLabel.setText(u"...")
 
-        self.verticalLayout_5.addWidget(self.horizontalWidget)
+        self.formLayout_2.setWidget(2, QFormLayout.FieldRole, self.calculate_toStep_resultLabel)
 
-        self.calculatePlayResultFromScoreButton = QPushButton(self.groupBox)
-        self.calculatePlayResultFromScoreButton.setObjectName(u"calculatePlayResultFromScoreButton")
+        self.calculate_toStep_calculatePlayResultFromScoreButton = QPushButton(self.groupBox)
+        self.calculate_toStep_calculatePlayResultFromScoreButton.setObjectName(u"calculate_toStep_calculatePlayResultFromScoreButton")
 
-        self.verticalLayout_5.addWidget(self.calculatePlayResultFromScoreButton)
+        self.formLayout_2.setWidget(1, QFormLayout.FieldRole, self.calculate_toStep_calculatePlayResultFromScoreButton)
 
 
         self.horizontalLayout_4.addWidget(self.groupBox)
 
         self.groupBox_2 = QGroupBox(self.widget_2)
         self.groupBox_2.setObjectName(u"groupBox_2")
-        self.verticalLayout_6 = QVBoxLayout(self.groupBox_2)
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.horizontalWidget_2 = QWidget(self.groupBox_2)
-        self.horizontalWidget_2.setObjectName(u"horizontalWidget_2")
-        self.horizontalLayout_6 = QHBoxLayout(self.horizontalWidget_2)
-        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.label_4 = QLabel(self.horizontalWidget_2)
+        self.formLayout_3 = QFormLayout(self.groupBox_2)
+        self.formLayout_3.setObjectName(u"formLayout_3")
+        self.formLayout_3.setLabelAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_4 = QLabel(self.groupBox_2)
         self.label_4.setObjectName(u"label_4")
 
-        self.horizontalLayout_6.addWidget(self.label_4)
+        self.formLayout_3.setWidget(0, QFormLayout.LabelRole, self.label_4)
 
-        self.doubleSpinBox = QDoubleSpinBox(self.horizontalWidget_2)
-        self.doubleSpinBox.setObjectName(u"doubleSpinBox")
-        sizePolicy.setHeightForWidth(self.doubleSpinBox.sizePolicy().hasHeightForWidth())
-        self.doubleSpinBox.setSizePolicy(sizePolicy)
+        self.calculate_fromStep_targetStepSpinBox = QDoubleSpinBox(self.groupBox_2)
+        self.calculate_fromStep_targetStepSpinBox.setObjectName(u"calculate_fromStep_targetStepSpinBox")
+        sizePolicy2.setHeightForWidth(self.calculate_fromStep_targetStepSpinBox.sizePolicy().hasHeightForWidth())
+        self.calculate_fromStep_targetStepSpinBox.setSizePolicy(sizePolicy2)
 
-        self.horizontalLayout_6.addWidget(self.doubleSpinBox)
+        self.formLayout_3.setWidget(0, QFormLayout.FieldRole, self.calculate_fromStep_targetStepSpinBox)
 
+        self.label_9 = QLabel(self.groupBox_2)
+        self.label_9.setObjectName(u"label_9")
+        sizePolicy4.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
+        self.label_9.setSizePolicy(sizePolicy4)
 
-        self.verticalLayout_6.addWidget(self.horizontalWidget_2)
+        self.formLayout_3.setWidget(1, QFormLayout.LabelRole, self.label_9)
+
+        self.calculate_fromStep_resultLabel = QLabel(self.groupBox_2)
+        self.calculate_fromStep_resultLabel.setObjectName(u"calculate_fromStep_resultLabel")
+        sizePolicy4.setHeightForWidth(self.calculate_fromStep_resultLabel.sizePolicy().hasHeightForWidth())
+        self.calculate_fromStep_resultLabel.setSizePolicy(sizePolicy4)
+        self.calculate_fromStep_resultLabel.setText(u"...")
+
+        self.formLayout_3.setWidget(1, QFormLayout.FieldRole, self.calculate_fromStep_resultLabel)
 
 
         self.horizontalLayout_4.addWidget(self.groupBox_2)
@@ -280,18 +369,30 @@ class Ui_TabTools_StepCalculator(object):
     # setupUi
 
     def retranslateUi(self, TabTools_StepCalculator):
-        self.label.setText(QCoreApplication.translate("TabTools_StepCalculator", u"partnerStepValueLabel", None))
         self.mapTypeLegacyPlayRadioButton.setText("")
         self.mapTypePlayRadioButton.setText("")
         self.mapTypeLegacyPlayPlusRadioButton.setText("")
         self.label_3.setText(QCoreApplication.translate("TabTools_StepCalculator", u"legacyPlay.noOptions", None))
         self.legacyPlayPlus_useFragmentsGroupBox.setTitle(QCoreApplication.translate("TabTools_StepCalculator", u"legacyPlayPlus.useFragments", None))
         self.play_memoryBoostCheckBox.setText(QCoreApplication.translate("TabTools_StepCalculator", u"play.memoryBoost", None))
-        self.groupBox.setTitle(QCoreApplication.translate("TabTools_StepCalculator", u"calculation", None))
-        self.label_2.setText(QCoreApplication.translate("TabTools_StepCalculator", u"playResultLabel", None))
-        self.calculatePlayResultFromScoreButton.setText(QCoreApplication.translate("TabTools_StepCalculator", u"calculatePlayResultFromScoreButton", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("TabTools_StepCalculator", u"inverseCalculation", None))
-        self.label_4.setText(QCoreApplication.translate("TabTools_StepCalculator", u"targetStep", None))
+        self.groupBox_3.setTitle(QCoreApplication.translate("TabTools_StepCalculator", u"partner.title", None))
+        self.label.setText(QCoreApplication.translate("TabTools_StepCalculator", u"partner.stepValueLabel", None))
+        self.partnerSkillGroupBox.setTitle(QCoreApplication.translate("TabTools_StepCalculator", u"partner.skill.title", None))
+        self.label_5.setText(QCoreApplication.translate("TabTools_StepCalculator", u"partner.skill.stepBonus", None))
+        self.label_6.setText(QCoreApplication.translate("TabTools_StepCalculator", u"partner.skill.finalMultiplier", None))
+        self.groupBox_4.setTitle(QCoreApplication.translate("TabTools_StepCalculator", u"partner.skill.presets", None))
+        self.partnerSkillPresetButton_awakenedEto.setText(QCoreApplication.translate("TabTools_StepCalculator", u"partner.skill.presets.awakenedEto", None))
+        self.partnerSkillPresetButton_awakenedIlith.setText(QCoreApplication.translate("TabTools_StepCalculator", u"partner.skill.presets.awakenedIlith", None))
+        self.partnerSkillPresetButton_awakenedLuna.setText(QCoreApplication.translate("TabTools_StepCalculator", u"partner.skill.presets.awakenedLuna", None))
+        self.partnerSkillPresetButton_amaneBelowEx.setText(QCoreApplication.translate("TabTools_StepCalculator", u"partner.skill.presets.amaneBelowEx", None))
+        self.partnerSkillPresetButton_maya.setText(QCoreApplication.translate("TabTools_StepCalculator", u"partner.skill.presets.maya", None))
+        self.groupBox.setTitle(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.toStep", None))
+        self.label_2.setText(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.toStep.playResultLabel", None))
+        self.label_7.setText(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.toStep.resultLabel", None))
+        self.calculate_toStep_calculatePlayResultFromScoreButton.setText(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.toStep.calculatePlayResultFromScoreButton", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.fromStep", None))
+        self.label_4.setText(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.fromStep.targetStepLabel", None))
+        self.label_9.setText(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.fromStep.resultLabel", None))
         pass
     # retranslateUi
 
