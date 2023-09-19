@@ -1,4 +1,4 @@
-from arcaea_offline.calculate import calculate_potential
+from arcaea_offline.calculate import calculate_play_rating
 from arcaea_offline.models import Chart, Score
 from PySide6.QtCore import QCoreApplication, QModelIndex, QSortFilterProxyModel, Qt
 
@@ -35,7 +35,7 @@ class DbScoreTableModel(DbTableModel):
         newPtts = []
         for chart, score in zip(newCharts, newScores):
             if isinstance(chart, Chart) and isinstance(score, Score):
-                newPtts.append(calculate_potential(chart.constant / 10, score.score))
+                newPtts.append(calculate_play_rating(chart.constant / 10, score.score))
             else:
                 newPtts.append(None)
 
