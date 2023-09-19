@@ -749,6 +749,15 @@
     </message>
 </context>
 <context>
+    <name>TabOverview</name>
+    <message>
+        <location filename="../../designer/tabs/tabOverview.ui" line="23"/>
+        <source>databaseDescribeLabel {} {} {} {} {} {}</source>
+        <extracomment>This database now have {} packs, {} songs, {} difficulties, {} chart info ({} complete) and {} scores.</extracomment>
+        <translation>数据库中有 {} 个曲包，{} 首歌曲，{} 个难度，{} 个谱面信息（{} 个完整），{} 个分数记录。</translation>
+    </message>
+</context>
+<context>
     <name>TabToolsEntry</name>
     <message>
         <location filename="../../designer/tabs/tabToolsEntry.ui" line="24"/>
@@ -932,107 +941,107 @@
 <context>
     <name>TabTools_StepCalculator</name>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="109"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="90"/>
         <source>legacyPlay.noOptions</source>
         <translation>没有选项</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="159"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="140"/>
         <source>legacyPlayPlus.useFragments</source>
         <translation>使用残片</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="202"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="183"/>
         <source>play.memoryBoost</source>
         <translation>源韵强化</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="213"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="194"/>
         <source>partner.title</source>
         <translation>搭档</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="221"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="202"/>
         <source>partner.stepValueLabel</source>
         <translation>STEP 值</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="255"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="236"/>
         <source>partner.skill.title</source>
         <translation>搭档技能</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="272"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="253"/>
         <source>partner.skill.stepBonus</source>
         <translation>步数加成</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="279"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="260"/>
         <source>partner.skill.finalMultiplier</source>
         <translation>最终乘算</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="308"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="289"/>
         <source>partner.skill.presets</source>
         <translation>预置数据</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="314"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="295"/>
         <source>partner.skill.presets.awakenedEto</source>
         <translation>爱托（觉醒）</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="321"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="302"/>
         <source>partner.skill.presets.awakenedIlith</source>
         <translation>依莉丝（觉醒）</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="328"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="309"/>
         <source>partner.skill.presets.awakenedLuna</source>
         <translation>露娜（觉醒）</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="335"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="316"/>
         <source>partner.skill.presets.amaneBelowEx</source>
         <translation>天音（EX 以下）</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="342"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="323"/>
         <source>partner.skill.presets.maya</source>
         <translation>摩耶</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="370"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="351"/>
         <source>calculate.toStep</source>
         <translation>正算</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="398"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="379"/>
         <source>calculate.toStep.playResultLabel</source>
         <translation>单曲 PTT</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="405"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="412"/>
         <source>calculate.toStep.calculatePlayResultFromScoreButton</source>
         <translation>从分数计算</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="418"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="392"/>
         <source>calculate.toStep.resultLabel</source>
         <translation>结果</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="441"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="422"/>
         <source>calculate.fromStep</source>
         <translation>逆算</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="450"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="431"/>
         <source>calculate.fromStep.targetStepLabel</source>
         <translation>目标 STEP 值</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="473"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="454"/>
         <source>calculate.fromStep.resultLabel</source>
         <translation>结果（单曲 PTT）</translation>
     </message>

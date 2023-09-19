@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'tabOverview.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.0
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -30,6 +30,11 @@ class Ui_TabOverview(object):
         self.widget.setObjectName(u"widget")
 
         self.verticalLayout.addWidget(self.widget)
+
+        self.databaseDescribeLabel = QLabel(TabOverview)
+        self.databaseDescribeLabel.setObjectName(u"databaseDescribeLabel")
+
+        self.verticalLayout.addWidget(self.databaseDescribeLabel)
 
         self.widget_2 = QWidget(TabOverview)
         self.widget_2.setObjectName(u"widget_2")
@@ -103,6 +108,7 @@ class Ui_TabOverview(object):
     # setupUi
 
     def retranslateUi(self, TabOverview):
+        self.databaseDescribeLabel.setText(QCoreApplication.translate("TabOverview", u"databaseDescribeLabel {} {} {} {} {} {}", None))
         pass
     # retranslateUi
 

@@ -18,6 +18,13 @@
     <widget class="QWidget" name="widget" native="true"/>
    </item>
    <item>
+    <widget class="QLabel" name="databaseDescribeLabel">
+     <property name="text">
+      <string extracomment="This database now have {} packs, {} songs, {} difficulties, {} chart info ({} complete) and {} scores.">databaseDescribeLabel {} {} {} {} {} {}</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QWidget" name="widget_2" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
