@@ -2,6 +2,19 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
+    <name>ChartAndScoreInput</name>
+    <message>
+        <location filename="../../designer/components/chartAndScoreInput.ui" line="20"/>
+        <source>selectChart</source>
+        <translation>Select a Chart</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/chartAndScoreInput.ui" line="44"/>
+        <source>editScore</source>
+        <translation>Edit Score</translation>
+    </message>
+</context>
+<context>
     <name>ChartSelector</name>
     <message>
         <location filename="../../designer/components/chartSelector.ui" line="26"/>
@@ -158,19 +171,6 @@
         <location filename="../../designer/components/fileSelector.ui" line="45"/>
         <source>selectButton</source>
         <translation>Select...</translation>
-    </message>
-</context>
-<context>
-    <name>General</name>
-    <message>
-        <location filename="../../implements/tabs/tabInputScore.py" line="30"/>
-        <source>tracebackFormatExceptionOnly.title</source>
-        <translation>Error</translation>
-    </message>
-    <message>
-        <location filename="../../implements/tabs/tabInputScore.py" line="31"/>
-        <source>tracebackFormatExceptionOnly.content</source>
-        <translation>Unexpected error&lt;br&gt;{0}</translation>
     </message>
 </context>
 <context>
@@ -655,19 +655,6 @@ validation</translation>
     </message>
 </context>
 <context>
-    <name>TabInputScore</name>
-    <message>
-        <location filename="../../designer/tabs/tabInputScore.ui" line="20"/>
-        <source>tab.selectChart</source>
-        <translation>Select a Chart</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabInputScore.ui" line="44"/>
-        <source>tab.scoreEdit</source>
-        <translation>Score Input</translation>
-    </message>
-</context>
-<context>
     <name>TabOcrDisabled</name>
     <message>
         <location filename="../../designer/tabs/tabOcrDisabled.ui" line="81"/>
@@ -942,107 +929,112 @@ validation</translation>
 <context>
     <name>TabTools_StepCalculator</name>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="90"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="97"/>
         <source>legacyPlay.noOptions</source>
         <translation>No options</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="140"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="147"/>
         <source>legacyPlayPlus.useFragments</source>
         <translation>Use Fragments</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="183"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="190"/>
         <source>play.memoryBoost</source>
         <translation>Memory boost</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="194"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="201"/>
         <source>partner.title</source>
         <translation>Partner</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="202"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="209"/>
         <source>partner.stepValueLabel</source>
         <translation>STEP value</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="236"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="243"/>
         <source>partner.skill.title</source>
         <translation>Partner Skill</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="253"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="260"/>
         <source>partner.skill.stepBonus</source>
         <translation>Step bonus</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="260"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="267"/>
         <source>partner.skill.finalMultiplier</source>
         <translation>Final multiplier</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="289"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="296"/>
         <source>partner.skill.presets</source>
         <translation>Preset Datas</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="295"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="302"/>
         <source>partner.skill.presets.awakenedEto</source>
         <translation>Eto (Awakened)</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="302"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="309"/>
         <source>partner.skill.presets.awakenedIlith</source>
         <translation>Ilith (Awakened)</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="309"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="316"/>
         <source>partner.skill.presets.awakenedLuna</source>
         <translation>Luna (Awakened)</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="316"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="323"/>
         <source>partner.skill.presets.amaneBelowEx</source>
         <translation>Amane (Below EX)</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="323"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="330"/>
         <source>partner.skill.presets.maya</source>
         <translation>Maya</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="351"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="358"/>
         <source>calculate.toStep</source>
         <translation>Calculate to Step</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="379"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="386"/>
         <source>calculate.toStep.playResultLabel</source>
         <translation>Play result</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="412"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="419"/>
         <source>calculate.toStep.calculatePlayResultFromScoreButton</source>
         <translation>Calculate from Score</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="392"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="399"/>
         <source>calculate.toStep.resultLabel</source>
         <translation>Result</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="422"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="20"/>
+        <source>detailedLogOutput</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="429"/>
         <source>calculate.fromStep</source>
         <translation>Calculate from Step</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="431"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="438"/>
         <source>calculate.fromStep.targetStepLabel</source>
         <translation>Target step value</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="454"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="461"/>
         <source>calculate.fromStep.resultLabel</source>
         <translation>Result (play rating)</translation>
     </message>

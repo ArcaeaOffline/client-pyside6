@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>514</width>
+    <width>500</width>
     <height>400</height>
    </rect>
   </property>
@@ -15,66 +15,15 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>tab.selectChart</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="ChartSelector" name="chartSelector" native="true"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="title">
-      <string>tab.scoreEdit</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="ScoreEditor" name="scoreEditor" native="true"/>
-      </item>
-     </layout>
-    </widget>
+    <widget class="ChartAndScoreInput" name="chartAndScoreInput" native="true"/>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ChartSelector</class>
+   <class>ChartAndScoreInput</class>
    <extends>QWidget</extends>
-   <header>ui.implements.components.chartSelector</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ScoreEditor</class>
-   <extends>QWidget</extends>
-   <header>ui.implements.components.scoreEditor</header>
+   <header>ui.implements.components.chartAndScoreInput</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
