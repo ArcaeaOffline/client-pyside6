@@ -755,7 +755,7 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabToolsEntry.ui" line="29"/>
         <source>tab.stepCalculator</source>
-        <translation type="unfinished"></translation>
+        <translation>Step Calculator</translation>
     </message>
 </context>
 <context>
@@ -1021,7 +1021,7 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="20"/>
         <source>detailedLogOutput</source>
-        <translation type="unfinished"></translation>
+        <translation>Detailed log output</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="429"/>

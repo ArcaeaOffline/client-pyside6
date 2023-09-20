@@ -15,6 +15,13 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
+    <widget class="QCheckBox" name="detailedLogOutputCheckBox">
+     <property name="text">
+      <string>detailedLogOutput</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QWidget" name="mapTypeWidget" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>

@@ -754,7 +754,7 @@
     <message>
         <location filename="../../designer/tabs/tabToolsEntry.ui" line="29"/>
         <source>tab.stepCalculator</source>
-        <translation type="unfinished"></translation>
+        <translation>步数计算器</translation>
     </message>
 </context>
 <context>
@@ -1020,7 +1020,7 @@
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="20"/>
         <source>detailedLogOutput</source>
-        <translation type="unfinished"></translation>
+        <translation>详细日志输出</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="429"/>

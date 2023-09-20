@@ -1,7 +1,13 @@
 import logging
 
+from arcaea_offline.calculate import calculate_play_rating
 from arcaea_offline.calculate.world_step import (
+    AmaneBelowExPartnerBonus,
+    AwakenedEtoPartnerBonus,
+    AwakenedIlithPartnerBonus,
+    AwakenedLunaPartnerBonus,
     LegacyMapStepBooster,
+    MayaPartnerBonus,
     MemoriesStepBooster,
     PartnerBonus,
     PlayResult,
@@ -9,6 +15,7 @@ from arcaea_offline.calculate.world_step import (
     calculate_step,
     calculate_step_original,
 )
+from arcaea_offline.models import Chart, Score
 from PySide6.QtCore import QEasingCurve, QObject, QSize, Qt, QTimeLine
 from PySide6.QtGui import QIcon, QPainter, QPaintEvent, QPixmap
 from PySide6.QtWidgets import (
@@ -22,6 +29,8 @@ from PySide6.QtWidgets import (
 from ui.designer.tabs.tabTools.tabTools_StepCalculator_ui import (
     Ui_TabTools_StepCalculator,
 )
+from ui.implements.components.chartAndScoreInput import ChartAndScoreInput
+from ui.implements.components.songIdSelector import SongIdSelectorMode
 
 logger = logging.getLogger(__name__)
 
@@ -69,11 +78,23 @@ class ButtonGrayscaleEffectApplier(QObject):
         target.setGraphicsEffect(effect)
 
 
+class ChartAndScoreInputDialog(ChartAndScoreInput):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowFlag(Qt.WindowType.Dialog, True)
+        self.setSongIdSelectorMode(SongIdSelectorMode.Chart)
+
+
 class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
 
+        self.calculate_toStep_calculatePlayResultFromScoreButton.clicked.connect(
+            self.openChartAndScoreInputDialog
+        )
+
+        # set icons
         staminaIcon = QIcon(":/images/stepCalculator/stamina.png")
         for radioButton in [
             self.legacyPlayPlus_x2StaminaRadioButton,
@@ -104,6 +125,7 @@ class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
             button.setIconSize(mapTypeIconSize)
             button.setIcon(pixmap)
 
+        # apply grayscale effects
         self.buttonGrayscaleEffectAppliers = []
         for button in [
             self.mapTypeLegacyPlayRadioButton,
@@ -117,6 +139,7 @@ class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
             applier = ButtonGrayscaleEffectApplier(button)
             self.buttonGrayscaleEffectAppliers.append(applier)
 
+        # create button groups
         self.mapTypeButtonGroup = QButtonGroup(self)
         self.mapTypeButtonGroup.addButton(self.mapTypeLegacyPlayRadioButton, 0)
         self.mapTypeButtonGroup.addButton(self.mapTypeLegacyPlayPlusRadioButton, 1)
@@ -147,6 +170,7 @@ class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
             self.legacyPlayPlus_x15fragRadioButton, 500
         )
 
+        # bind calculate functions
         self.mapTypeButtonGroup.buttonToggled.connect(self.tryCalculate)
         self.legacyPlayPlusStaminaButtonGroup.buttonToggled.connect(self.tryCalculate)
         self.legacyPlayPlusFragmentsButtonGroup.buttonToggled.connect(self.tryCalculate)
@@ -159,6 +183,65 @@ class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
         self.calculate_fromStep_targetStepSpinBox.valueChanged.connect(
             self.tryCalculate
         )
+
+        # connect partner skill preset buttons
+        self.partnerSkillPresetButton_awakenedIlith.clicked.connect(
+            self.applyPartnerPreset
+        )
+        self.partnerSkillPresetButton_awakenedEto.clicked.connect(
+            self.applyPartnerPreset
+        )
+        self.partnerSkillPresetButton_awakenedLuna.clicked.connect(
+            self.applyPartnerPreset
+        )
+        self.partnerSkillPresetButton_amaneBelowEx.clicked.connect(
+            self.applyPartnerPreset
+        )
+        self.partnerSkillPresetButton_maya.clicked.connect(self.applyPartnerPreset)
+
+    def openChartAndScoreInputDialog(self):
+        dialog = ChartAndScoreInputDialog(self)
+        dialog.scoreCommited.connect(
+            lambda: self.setPlayResultFromChartAndScoreInput(dialog)
+        )
+        dialog.show()
+
+    def setPlayResultFromChartAndScoreInput(self, dialog: ChartAndScoreInputDialog):
+        if score := dialog.score():
+            chart = dialog.chart()
+            self.calculate_toStep_playResultSpinBox.setValue(
+                float(calculate_play_rating(chart.constant / 10, score.score))
+            )
+            dialog.close()
+            dialog.deleteLater()
+        else:
+            return
+
+    def applyPartnerPreset(self):
+        if not self.sender():
+            return
+
+        objectName = self.sender().objectName()
+
+        if not objectName:
+            return
+
+        formatString = "partnerSkillPresetButton_{}"
+        if objectName == formatString.format("awakenedIlith"):
+            pb = AwakenedIlithPartnerBonus
+        elif objectName == formatString.format("awakenedEto"):
+            pb = AwakenedEtoPartnerBonus
+        elif objectName == formatString.format("awakenedLuna"):
+            pb = AwakenedLunaPartnerBonus
+        elif objectName == formatString.format("amaneBelowEx"):
+            pb = AmaneBelowExPartnerBonus
+        elif objectName == formatString.format("maya"):
+            pb = MayaPartnerBonus
+        else:
+            return
+
+        self.partnerSkillStepBonusLineEdit.setText(str(pb.step_bonus))
+        self.partnerSkillFinalMultiplierLineEdit.setText(str(pb.final_multiplier))
 
     def toStepPlayResult(self):
         return PlayResult(
@@ -177,6 +260,8 @@ class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
                 partnerBonus.final_multiplier
                 return partnerBonus
             except Exception:
+                if self.detailedLogOutputCheckBox.isChecked():
+                    logger.exception("Cannot parse PartnerBonus input")
                 return PartnerBonus()
 
         return PartnerBonus()
@@ -220,7 +305,8 @@ class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
             )
             self.calculate_toStep_resultLabel.setText(f"{step}<br>({stepOriginal})")
         except Exception:
-            logger.exception("Cannot calculate toStep")
+            if self.detailedLogOutputCheckBox.isChecked():
+                logger.exception("Cannot calculate toStep")
             self.calculate_toStep_resultLabel.setText("...")
 
         # fromStep
@@ -236,5 +322,6 @@ class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
                 )
             )
         except Exception:
-            logger.exception("Cannot calculate fromStep")
+            if self.detailedLogOutputCheckBox.isChecked():
+                logger.exception("Cannot calculate fromStep")
             self.calculate_fromStep_resultLabel.setText("...")

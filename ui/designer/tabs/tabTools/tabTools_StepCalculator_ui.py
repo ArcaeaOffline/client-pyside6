@@ -28,6 +28,11 @@ class Ui_TabTools_StepCalculator(object):
         TabTools_StepCalculator.setWindowTitle(u"TabTools_StepCalculator")
         self.verticalLayout_3 = QVBoxLayout(TabTools_StepCalculator)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.detailedLogOutputCheckBox = QCheckBox(TabTools_StepCalculator)
+        self.detailedLogOutputCheckBox.setObjectName(u"detailedLogOutputCheckBox")
+
+        self.verticalLayout_3.addWidget(self.detailedLogOutputCheckBox)
+
         self.mapTypeWidget = QWidget(TabTools_StepCalculator)
         self.mapTypeWidget.setObjectName(u"mapTypeWidget")
         self.horizontalLayout = QHBoxLayout(self.mapTypeWidget)
@@ -369,6 +374,7 @@ class Ui_TabTools_StepCalculator(object):
     # setupUi
 
     def retranslateUi(self, TabTools_StepCalculator):
+        self.detailedLogOutputCheckBox.setText(QCoreApplication.translate("TabTools_StepCalculator", u"detailedLogOutput", None))
         self.mapTypeLegacyPlayRadioButton.setText("")
         self.mapTypePlayRadioButton.setText("")
         self.mapTypeLegacyPlayPlusRadioButton.setText("")
