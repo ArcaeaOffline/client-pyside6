@@ -11,7 +11,7 @@ class TabInputScore(Ui_TabInputScore, QWidget):
         self.chartAndScoreInput.scoreCommited.connect(self.commit)
 
     def commit(self):
-        score = self.chartAndScoreInput.value()
+        score = self.chartAndScoreInput.score()
         if not score:
             return
         Database().insert_score(score)
