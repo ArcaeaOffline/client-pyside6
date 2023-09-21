@@ -1,6 +1,8 @@
 import sys
 
-from PySide6.QtCore import QFileInfo, QSettings
+from PySide6.QtCore import QFileInfo, QSettings, Signal
+
+from .singleton import QObjectSingleton
 
 __all__ = [
     "DATABASE_URL",
@@ -29,13 +31,19 @@ ANDREAL_FOLDER = "Andreal/AndrealFolder"
 ANDREAL_EXECUTABLE = "Andreal/AndrealExecutable"
 
 
-class Settings(QSettings):
+class Settings(QSettings, metaclass=QObjectSingleton):
+    updated = Signal(str)
+
     def __init__(self, parent=None):
         super().__init__(
             QFileInfo(sys.argv[0]).dir().absoluteFilePath("arcaea_offline.ini"),
             QSettings.Format.IniFormat,
             parent,
         )
+
+    def setValue(self, key: str, value) -> None:
+        super().setValue(key, value)
+        self.updated.emit(key)
 
     def _strItem(self, key: str) -> str | None:
         return self.value(key, None, str)
