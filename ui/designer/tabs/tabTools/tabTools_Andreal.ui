@@ -62,7 +62,7 @@
       <item>
        <widget class="QRadioButton" name="imageType_infoRadioButton">
         <property name="text">
-         <string>/a</string>
+         <string notr="true">/a</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -72,14 +72,14 @@
       <item>
        <widget class="QRadioButton" name="imageType_best30RadioButton">
         <property name="text">
-         <string>/a b30</string>
+         <string notr="true">/a b30</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QRadioButton" name="imageType_bestRadioButton">
         <property name="text">
-         <string>/a info</string>
+         <string notr="true">/a info</string>
         </property>
        </widget>
       </item>
@@ -113,6 +113,47 @@
      </property>
     </widget>
    </item>
+   <item row="3" column="1">
+    <widget class="QWidget" name="chartHolderWidget" native="true">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="chartSelectButton">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>chart.selectButton</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="chartSelectLabel">
+        <property name="text">
+         <string notr="true">...</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item row="4" column="0">
     <widget class="QLabel" name="label_5">
      <property name="text">
@@ -137,11 +178,99 @@
      </property>
     </widget>
    </item>
+   <item row="5" column="1">
+    <widget class="QWidget" name="horizontalWidget_2" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QRadioButton" name="imageFormat_jpgRadioButton">
+        <property name="text">
+         <string notr="true">JPG</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="imageFormat_pngRadioButton">
+        <property name="text">
+         <string notr="true">PNG</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item row="6" column="0">
     <widget class="QLabel" name="jpgQualityFormLabel">
      <property name="text">
       <string>jpgQuality</string>
      </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QWidget" name="jpgQualityHolderWidget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QSlider" name="jpgQualitySlider">
+        <property name="minimum">
+         <number>10</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="value">
+         <number>90</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="jpgQualitySpinBox">
+        <property name="minimum">
+         <number>10</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="value">
+         <number>90</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item row="7" column="0" colspan="2">
@@ -199,158 +328,6 @@
       </spacer>
      </item>
     </layout>
-   </item>
-   <item row="5" column="1">
-    <widget class="QWidget" name="horizontalWidget_2" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QRadioButton" name="imageFormat_jpgRadioButton">
-        <property name="text">
-         <string notr="true">JPG</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="imageFormat_pngRadioButton">
-        <property name="text">
-         <string notr="true">PNG</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="8" column="0">
-    <widget class="QLabel" name="label_8">
-     <property name="text">
-      <string>preview</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="1">
-    <widget class="QLabel" name="previewLabel">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel { color: red }</string>
-     </property>
-     <property name="text">
-      <string notr="true"/>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="1">
-    <widget class="QWidget" name="jpgQualityHolderWidget" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QSlider" name="jpgQualitySlider">
-        <property name="minimum">
-         <number>10</number>
-        </property>
-        <property name="maximum">
-         <number>100</number>
-        </property>
-        <property name="value">
-         <number>90</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="jpgQualitySpinBox">
-        <property name="minimum">
-         <number>10</number>
-        </property>
-        <property name="maximum">
-         <number>100</number>
-        </property>
-        <property name="value">
-         <number>90</number>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="QWidget" name="chartHolderWidget" native="true">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_8">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QPushButton" name="chartSelectButton">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>100</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>chart.selectButton</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="chartSelectLabel">
-        <property name="text">
-         <string notr="true">...</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
    </item>
   </layout>
  </widget>

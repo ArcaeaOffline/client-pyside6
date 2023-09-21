@@ -463,18 +463,18 @@
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../../implements/settings/settingsAndreal.py" line="76"/>
+        <location filename="../../implements/settings/settingsAndreal.py" line="79"/>
         <source>andreal.title</source>
         <translation>Andreal</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsAndreal.py" line="78"/>
+        <location filename="../../implements/settings/settingsAndreal.py" line="81"/>
         <source>andreal.andrealFolder.label</source>
-        <translation>Andreal 文件夹</translation>
+        <translation>Andreal 数据文件夹</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsAndreal.py" line="79"/>
         <location filename="../../implements/settings/settingsAndreal.py" line="82"/>
+        <location filename="../../implements/settings/settingsAndreal.py" line="85"/>
         <location filename="../../implements/settings/settingsGeneral.py" line="107"/>
         <location filename="../../implements/settings/settingsOcr.py" line="137"/>
         <location filename="../../implements/settings/settingsOcr.py" line="140"/>
@@ -484,7 +484,7 @@
         <translation>重置</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsAndreal.py" line="81"/>
+        <location filename="../../implements/settings/settingsAndreal.py" line="84"/>
         <source>andreal.andrealExecutable.label</source>
         <translation>Andreal 可执行文件</translation>
     </message>
@@ -760,6 +760,79 @@
         <location filename="../../designer/tabs/tabToolsEntry.ui" line="29"/>
         <source>tab.stepCalculator</source>
         <translation>步数计算器</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabToolsEntry.ui" line="34"/>
+        <source>tab.andreal</source>
+        <translation>Andreal 图片生成</translation>
+    </message>
+</context>
+<context>
+    <name>TabTools_Andreal</name>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="23"/>
+        <source>andrealFolder</source>
+        <translation>Andreal 数据文件夹</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="33"/>
+        <source>andrealExecutable</source>
+        <translation>Andreal 可执行文件</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="43"/>
+        <source>imageType</source>
+        <translation>图片类型</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="102"/>
+        <source>imageTypeWhatIsThisButton</source>
+        <translation>/a 是什么？</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="112"/>
+        <source>chart</source>
+        <translation>选择一个谱面</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="143"/>
+        <source>chart.selectButton</source>
+        <translation>选择</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="160"/>
+        <source>imageVersion</source>
+        <translation>图片版本</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="177"/>
+        <source>imageFormat</source>
+        <translation>图片格式</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="225"/>
+        <source>jpgQuality</source>
+        <translation>JPG 质量</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="294"/>
+        <source>exportJsonButton</source>
+        <translation>导出请求数据至 JSON</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="301"/>
+        <source>generatePreviewButton</source>
+        <translation>生成预览</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="313"/>
+        <source>generateImageButton</source>
+        <translation>生成</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="81"/>
+        <source>imageWhatIsThisDialog.description</source>
+        <translation>生成……&lt;ul&gt;&lt;li&gt;/a - 最近一次成绩&lt;/li&gt;&lt;li&gt;/a b30 - /a b30&lt;/li&gt;&lt;li&gt;/a info - 所选谱面的最好成绩&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>

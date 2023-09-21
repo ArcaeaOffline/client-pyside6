@@ -62,17 +62,20 @@ class Ui_TabTools_Andreal(object):
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.imageType_infoRadioButton = QRadioButton(self.horizontalWidget)
         self.imageType_infoRadioButton.setObjectName(u"imageType_infoRadioButton")
+        self.imageType_infoRadioButton.setText(u"/a")
         self.imageType_infoRadioButton.setChecked(True)
 
         self.horizontalLayout.addWidget(self.imageType_infoRadioButton)
 
         self.imageType_best30RadioButton = QRadioButton(self.horizontalWidget)
         self.imageType_best30RadioButton.setObjectName(u"imageType_best30RadioButton")
+        self.imageType_best30RadioButton.setText(u"/a b30")
 
         self.horizontalLayout.addWidget(self.imageType_best30RadioButton)
 
         self.imageType_bestRadioButton = QRadioButton(self.horizontalWidget)
         self.imageType_bestRadioButton.setObjectName(u"imageType_bestRadioButton")
+        self.imageType_bestRadioButton.setText(u"/a info")
 
         self.horizontalLayout.addWidget(self.imageType_bestRadioButton)
 
@@ -93,6 +96,27 @@ class Ui_TabTools_Andreal(object):
 
         self.formLayout.setWidget(3, QFormLayout.LabelRole, self.chartFormLabel)
 
+        self.chartHolderWidget = QWidget(TabTools_Andreal)
+        self.chartHolderWidget.setObjectName(u"chartHolderWidget")
+        self.chartHolderWidget.setEnabled(False)
+        self.horizontalLayout_8 = QHBoxLayout(self.chartHolderWidget)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.chartSelectButton = QPushButton(self.chartHolderWidget)
+        self.chartSelectButton.setObjectName(u"chartSelectButton")
+        self.chartSelectButton.setMaximumSize(QSize(100, 100))
+
+        self.horizontalLayout_8.addWidget(self.chartSelectButton)
+
+        self.chartSelectLabel = QLabel(self.chartHolderWidget)
+        self.chartSelectLabel.setObjectName(u"chartSelectLabel")
+        self.chartSelectLabel.setText(u"...")
+
+        self.horizontalLayout_8.addWidget(self.chartSelectLabel)
+
+
+        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.chartHolderWidget)
+
         self.label_5 = QLabel(TabTools_Andreal)
         self.label_5.setObjectName(u"label_5")
 
@@ -109,10 +133,61 @@ class Ui_TabTools_Andreal(object):
 
         self.formLayout.setWidget(5, QFormLayout.LabelRole, self.label_6)
 
+        self.horizontalWidget_2 = QWidget(TabTools_Andreal)
+        self.horizontalWidget_2.setObjectName(u"horizontalWidget_2")
+        sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.horizontalWidget_2.sizePolicy().hasHeightForWidth())
+        self.horizontalWidget_2.setSizePolicy(sizePolicy)
+        self.horizontalLayout_2 = QHBoxLayout(self.horizontalWidget_2)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.imageFormat_jpgRadioButton = QRadioButton(self.horizontalWidget_2)
+        self.imageFormat_jpgRadioButton.setObjectName(u"imageFormat_jpgRadioButton")
+        self.imageFormat_jpgRadioButton.setText(u"JPG")
+        self.imageFormat_jpgRadioButton.setChecked(True)
+
+        self.horizontalLayout_2.addWidget(self.imageFormat_jpgRadioButton)
+
+        self.imageFormat_pngRadioButton = QRadioButton(self.horizontalWidget_2)
+        self.imageFormat_pngRadioButton.setObjectName(u"imageFormat_pngRadioButton")
+        self.imageFormat_pngRadioButton.setText(u"PNG")
+
+        self.horizontalLayout_2.addWidget(self.imageFormat_pngRadioButton)
+
+
+        self.formLayout.setWidget(5, QFormLayout.FieldRole, self.horizontalWidget_2)
+
         self.jpgQualityFormLabel = QLabel(TabTools_Andreal)
         self.jpgQualityFormLabel.setObjectName(u"jpgQualityFormLabel")
 
         self.formLayout.setWidget(6, QFormLayout.LabelRole, self.jpgQualityFormLabel)
+
+        self.jpgQualityHolderWidget = QWidget(TabTools_Andreal)
+        self.jpgQualityHolderWidget.setObjectName(u"jpgQualityHolderWidget")
+        self.horizontalLayout_3 = QHBoxLayout(self.jpgQualityHolderWidget)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.jpgQualitySlider = QSlider(self.jpgQualityHolderWidget)
+        self.jpgQualitySlider.setObjectName(u"jpgQualitySlider")
+        self.jpgQualitySlider.setMinimum(10)
+        self.jpgQualitySlider.setMaximum(100)
+        self.jpgQualitySlider.setValue(90)
+        self.jpgQualitySlider.setOrientation(Qt.Horizontal)
+
+        self.horizontalLayout_3.addWidget(self.jpgQualitySlider)
+
+        self.jpgQualitySpinBox = QSpinBox(self.jpgQualityHolderWidget)
+        self.jpgQualitySpinBox.setObjectName(u"jpgQualitySpinBox")
+        self.jpgQualitySpinBox.setMinimum(10)
+        self.jpgQualitySpinBox.setMaximum(100)
+        self.jpgQualitySpinBox.setValue(90)
+
+        self.horizontalLayout_3.addWidget(self.jpgQualitySpinBox)
+
+
+        self.formLayout.setWidget(6, QFormLayout.FieldRole, self.jpgQualityHolderWidget)
 
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
@@ -145,95 +220,6 @@ class Ui_TabTools_Andreal(object):
 
         self.formLayout.setLayout(7, QFormLayout.SpanningRole, self.horizontalLayout_5)
 
-        self.horizontalWidget_2 = QWidget(TabTools_Andreal)
-        self.horizontalWidget_2.setObjectName(u"horizontalWidget_2")
-        sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.horizontalWidget_2.sizePolicy().hasHeightForWidth())
-        self.horizontalWidget_2.setSizePolicy(sizePolicy)
-        self.horizontalLayout_2 = QHBoxLayout(self.horizontalWidget_2)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.imageFormat_jpgRadioButton = QRadioButton(self.horizontalWidget_2)
-        self.imageFormat_jpgRadioButton.setObjectName(u"imageFormat_jpgRadioButton")
-        self.imageFormat_jpgRadioButton.setText(u"JPG")
-        self.imageFormat_jpgRadioButton.setChecked(True)
-
-        self.horizontalLayout_2.addWidget(self.imageFormat_jpgRadioButton)
-
-        self.imageFormat_pngRadioButton = QRadioButton(self.horizontalWidget_2)
-        self.imageFormat_pngRadioButton.setObjectName(u"imageFormat_pngRadioButton")
-        self.imageFormat_pngRadioButton.setText(u"PNG")
-
-        self.horizontalLayout_2.addWidget(self.imageFormat_pngRadioButton)
-
-
-        self.formLayout.setWidget(5, QFormLayout.FieldRole, self.horizontalWidget_2)
-
-        self.label_8 = QLabel(TabTools_Andreal)
-        self.label_8.setObjectName(u"label_8")
-
-        self.formLayout.setWidget(8, QFormLayout.LabelRole, self.label_8)
-
-        self.previewLabel = QLabel(TabTools_Andreal)
-        self.previewLabel.setObjectName(u"previewLabel")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.previewLabel.sizePolicy().hasHeightForWidth())
-        self.previewLabel.setSizePolicy(sizePolicy1)
-        self.previewLabel.setStyleSheet(u"QLabel { color: red }")
-        self.previewLabel.setText(u"")
-
-        self.formLayout.setWidget(8, QFormLayout.FieldRole, self.previewLabel)
-
-        self.jpgQualityHolderWidget = QWidget(TabTools_Andreal)
-        self.jpgQualityHolderWidget.setObjectName(u"jpgQualityHolderWidget")
-        self.horizontalLayout_3 = QHBoxLayout(self.jpgQualityHolderWidget)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.jpgQualitySlider = QSlider(self.jpgQualityHolderWidget)
-        self.jpgQualitySlider.setObjectName(u"jpgQualitySlider")
-        self.jpgQualitySlider.setMinimum(10)
-        self.jpgQualitySlider.setMaximum(100)
-        self.jpgQualitySlider.setValue(90)
-        self.jpgQualitySlider.setOrientation(Qt.Horizontal)
-
-        self.horizontalLayout_3.addWidget(self.jpgQualitySlider)
-
-        self.jpgQualitySpinBox = QSpinBox(self.jpgQualityHolderWidget)
-        self.jpgQualitySpinBox.setObjectName(u"jpgQualitySpinBox")
-        self.jpgQualitySpinBox.setMinimum(10)
-        self.jpgQualitySpinBox.setMaximum(100)
-        self.jpgQualitySpinBox.setValue(90)
-
-        self.horizontalLayout_3.addWidget(self.jpgQualitySpinBox)
-
-
-        self.formLayout.setWidget(6, QFormLayout.FieldRole, self.jpgQualityHolderWidget)
-
-        self.chartHolderWidget = QWidget(TabTools_Andreal)
-        self.chartHolderWidget.setObjectName(u"chartHolderWidget")
-        self.chartHolderWidget.setEnabled(False)
-        self.horizontalLayout_8 = QHBoxLayout(self.chartHolderWidget)
-        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.chartSelectButton = QPushButton(self.chartHolderWidget)
-        self.chartSelectButton.setObjectName(u"chartSelectButton")
-        self.chartSelectButton.setMaximumSize(QSize(100, 100))
-
-        self.horizontalLayout_8.addWidget(self.chartSelectButton)
-
-        self.chartSelectLabel = QLabel(self.chartHolderWidget)
-        self.chartSelectLabel.setObjectName(u"chartSelectLabel")
-        self.chartSelectLabel.setText(u"...")
-
-        self.horizontalLayout_8.addWidget(self.chartSelectLabel)
-
-
-        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.chartHolderWidget)
-
 
         self.retranslateUi(TabTools_Andreal)
         self.imageFormat_jpgRadioButton.toggled.connect(self.jpgQualityHolderWidget.setEnabled)
@@ -246,19 +232,15 @@ class Ui_TabTools_Andreal(object):
         self.label.setText(QCoreApplication.translate("TabTools_Andreal", u"andrealFolder", None))
         self.label_2.setText(QCoreApplication.translate("TabTools_Andreal", u"andrealExecutable", None))
         self.label_3.setText(QCoreApplication.translate("TabTools_Andreal", u"imageType", None))
-        self.imageType_infoRadioButton.setText(QCoreApplication.translate("TabTools_Andreal", u"/a", None))
-        self.imageType_best30RadioButton.setText(QCoreApplication.translate("TabTools_Andreal", u"/a b30", None))
-        self.imageType_bestRadioButton.setText(QCoreApplication.translate("TabTools_Andreal", u"/a info", None))
         self.imageTypeWhatIsThisButton.setText(QCoreApplication.translate("TabTools_Andreal", u"imageTypeWhatIsThisButton", None))
         self.chartFormLabel.setText(QCoreApplication.translate("TabTools_Andreal", u"chart", None))
+        self.chartSelectButton.setText(QCoreApplication.translate("TabTools_Andreal", u"chart.selectButton", None))
         self.label_5.setText(QCoreApplication.translate("TabTools_Andreal", u"imageVersion", None))
         self.label_6.setText(QCoreApplication.translate("TabTools_Andreal", u"imageFormat", None))
         self.jpgQualityFormLabel.setText(QCoreApplication.translate("TabTools_Andreal", u"jpgQuality", None))
         self.exportJsonButton.setText(QCoreApplication.translate("TabTools_Andreal", u"exportJsonButton", None))
         self.generatePreviewButton.setText(QCoreApplication.translate("TabTools_Andreal", u"generatePreviewButton", None))
         self.generateImageButton.setText(QCoreApplication.translate("TabTools_Andreal", u"generateImageButton", None))
-        self.label_8.setText(QCoreApplication.translate("TabTools_Andreal", u"preview", None))
-        self.chartSelectButton.setText(QCoreApplication.translate("TabTools_Andreal", u"chart.selectButton", None))
         pass
     # retranslateUi
 

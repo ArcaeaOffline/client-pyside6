@@ -74,6 +74,9 @@ class AndrealHelper(QObject):
         return base64.b64decode(b64result)
 
     def request(self, jsonPath: str, arguments: list[str]):
+        logger.debug(
+            f"{self.__class__.__name__} received request {jsonPath=} {arguments=}"
+        )
         runnable = AndrealExecuteRunnable(self.andrealExecutable, jsonPath, arguments)
         runnable.signals.error.connect(self.error)
         runnable.signals.completed.connect(self.ready)

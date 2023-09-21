@@ -464,18 +464,18 @@ validation</translation>
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../../implements/settings/settingsAndreal.py" line="76"/>
+        <location filename="../../implements/settings/settingsAndreal.py" line="79"/>
         <source>andreal.title</source>
         <translation>Andreal</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsAndreal.py" line="78"/>
+        <location filename="../../implements/settings/settingsAndreal.py" line="81"/>
         <source>andreal.andrealFolder.label</source>
-        <translation>Andreal folder</translation>
+        <translation>Andreal data folder</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsAndreal.py" line="79"/>
         <location filename="../../implements/settings/settingsAndreal.py" line="82"/>
+        <location filename="../../implements/settings/settingsAndreal.py" line="85"/>
         <location filename="../../implements/settings/settingsGeneral.py" line="107"/>
         <location filename="../../implements/settings/settingsOcr.py" line="137"/>
         <location filename="../../implements/settings/settingsOcr.py" line="140"/>
@@ -485,7 +485,7 @@ validation</translation>
         <translation>Reset</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsAndreal.py" line="81"/>
+        <location filename="../../implements/settings/settingsAndreal.py" line="84"/>
         <source>andreal.andrealExecutable.label</source>
         <translation>Andreal executable</translation>
     </message>
@@ -761,6 +761,79 @@ validation</translation>
         <location filename="../../designer/tabs/tabToolsEntry.ui" line="29"/>
         <source>tab.stepCalculator</source>
         <translation>Step Calculator</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabToolsEntry.ui" line="34"/>
+        <source>tab.andreal</source>
+        <translation>Andreal Image Generator</translation>
+    </message>
+</context>
+<context>
+    <name>TabTools_Andreal</name>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="23"/>
+        <source>andrealFolder</source>
+        <translation>Andreal data folder</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="33"/>
+        <source>andrealExecutable</source>
+        <translation>Andreal executable</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="43"/>
+        <source>imageType</source>
+        <translation>Image type</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="102"/>
+        <source>imageTypeWhatIsThisButton</source>
+        <translation>What is /a?</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="112"/>
+        <source>chart</source>
+        <translation>Select a Chart</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="143"/>
+        <source>chart.selectButton</source>
+        <translation>Select...</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="160"/>
+        <source>imageVersion</source>
+        <translation>Image version</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="177"/>
+        <source>imageFormat</source>
+        <translation>Image format</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="225"/>
+        <source>jpgQuality</source>
+        <translation>JPG quality</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="294"/>
+        <source>exportJsonButton</source>
+        <translation>Export Request Data to JSON</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="301"/>
+        <source>generatePreviewButton</source>
+        <translation>Generate Preview</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="313"/>
+        <source>generateImageButton</source>
+        <translation>Generate</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="81"/>
+        <source>imageWhatIsThisDialog.description</source>
+        <translation>Generate image of...&lt;ul&gt;&lt;li&gt;/a - the most recent score&lt;/li&gt;&lt;li&gt;/a b30 - best30 image&lt;/li&gt;&lt;li&gt;/a info - best score of the selected chart&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
