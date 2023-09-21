@@ -313,49 +313,54 @@
 <context>
     <name>ScoreEditor</name>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="20"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="53"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="83"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="223"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="237"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="247"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="281"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="327"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="109"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="119"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="189"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="199"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="239"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="272"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="279"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="302"/>
         <source>setNone</source>
         <translation>置空</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="257"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="169"/>
         <source>formLabel.date</source>
         <translation>时间</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="307"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="338"/>
         <source>formLabel.comment</source>
         <translation>注释</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="317"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="358"/>
+        <source>formLabel.preview</source>
+        <translation>预览</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/scoreEditor.ui" line="99"/>
         <source>formLabel.score</source>
         <translation>分数</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="344"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="162"/>
         <source>idAutoInsert</source>
         <translation>（自动插入）</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="351"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="309"/>
         <source>warnIfIncomplete</source>
         <translation>不完整时要求确认</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="267"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="63"/>
         <source>commitButton</source>
         <translation>提交</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="306"/>
+        <location filename="../../implements/components/scoreEditor.py" line="320"/>
         <source>validate.ok</source>
         <translation>OK</translation>
     </message>
@@ -400,57 +405,57 @@
         <translation>无法验证不完整的分数。继续提交吗？</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="192"/>
+        <location filename="../../implements/components/scoreEditor.py" line="205"/>
         <source>confirmDialog.chartNotSet.title</source>
         <translation>未指定谱面</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="193"/>
+        <location filename="../../implements/components/scoreEditor.py" line="206"/>
         <source>confirmDialog.chartNotSet.text</source>
         <translation>未指定谱面，无法提交。</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="201"/>
+        <location filename="../../implements/components/scoreEditor.py" line="214"/>
         <source>confirmDialog.scoreIncomplete.title</source>
         <translation>分数不完整</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="202"/>
+        <location filename="../../implements/components/scoreEditor.py" line="215"/>
         <source>confirmDialog.scoreIncomplete.text</source>
         <translation>缺失必要的分数数据，无法提交。</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="310"/>
+        <location filename="../../implements/components/scoreEditor.py" line="324"/>
         <source>validate.chartNotSet</source>
         <translation>未指定谱面</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="314"/>
+        <location filename="../../implements/components/scoreEditor.py" line="328"/>
         <source>validate.chartIncomple</source>
         <translation>谱面数据缺失，无法验证分数</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="318"/>
+        <location filename="../../implements/components/scoreEditor.py" line="332"/>
         <source>validate.scoreMismatch</source>
         <translation>分数可能有误</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="322"/>
+        <location filename="../../implements/components/scoreEditor.py" line="336"/>
         <source>validate.scoreEmpty</source>
         <translation>分数为空</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="326"/>
+        <location filename="../../implements/components/scoreEditor.py" line="340"/>
         <source>validate.scoreIncomplete</source>
         <translation>缺失必要分数数据</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="332"/>
+        <location filename="../../implements/components/scoreEditor.py" line="346"/>
         <source>validate.scoreIncompleteForValidate</source>
         <translation>分数不完整，无法验证</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="337"/>
+        <location filename="../../implements/components/scoreEditor.py" line="351"/>
         <source>validate.unknownState</source>
         <translation>未知</translation>
     </message>

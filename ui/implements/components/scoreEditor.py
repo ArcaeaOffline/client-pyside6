@@ -135,6 +135,8 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
 
         self.dateTimeEdit.setDateTime(QDateTime.currentDateTime())
 
+        self.valueChanged.connect(self.updatePreviewLabel)
+
     def retranslateUi(self, *args):
         super().retranslateUi(self)
 
@@ -144,6 +146,17 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
             titleCallable, textCallable = itemTextCallables
             item.title = titleCallable()
             item.text = textCallable()
+
+    def updatePreviewLabel(self):
+        if score := self.value():
+            texts = [
+                f"({score.song_id}, {score.rating_class}), Score {score.score}",
+                f"PURE {score.pure}, FAR {score.far}, LOST {score.lost}, MR {score.max_recall}",
+                f"Date {score.date}, Clear type {score.clear_type}, Modifier {score.modifier}",
+            ]
+            self.previewLabel.setText("<br>".join(texts))
+        else:
+            self.previewLabel.setText("None")
 
     def validateBeforeAccept(self):
         return self.__validateBeforeAccept
@@ -267,6 +280,7 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
             self.__chart = None
             self.resetLimits()
         self.updateValidateLabel()
+        self.updatePreviewLabel()
 
     def validateScore(self) -> ScoreValidateResult:
         if not isinstance(self.__chart, Chart):
