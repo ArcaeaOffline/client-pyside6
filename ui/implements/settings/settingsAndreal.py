@@ -11,6 +11,9 @@ class SettingsAndreal(SettingsBaseWidget):
 
         self.setupUi(self)
 
+        self.andrealFolderValueWidget.setMode(
+            self.andrealFolderValueWidget.getExistingDirectory
+        )
         if self.settings.andrealFolder():
             self.andrealFolderValueWidget.selectFile(self.settings.andrealFolder())
         self.andrealFolderValueWidget.filesSelected.connect(self.setAndrealFolder)
