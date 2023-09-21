@@ -11,7 +11,12 @@ from PySide6.QtWidgets import QApplication, QFileDialog, QWidget
 
 from ui.designer.tabs.tabOcr.tabOcr_Device_ui import Ui_TabOcr_Device
 from ui.extends.components.ocrQueue import OcrQueueModel
-from ui.extends.shared.settings import Settings
+from ui.extends.shared.settings import (
+    DEVICES_JSON_FILE,
+    KNN_MODEL_FILE,
+    SIFT_DATABASE_FILE,
+    Settings,
+)
 from ui.extends.tabs.tabOcr.tabOcr_Device import (
     ScoreConverter,
     TabDeviceV2AutoRoisOcrRunnable,
@@ -29,10 +34,11 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
 
         self.deviceFileSelector.filesSelected.connect(self.deviceFileSelected)
         self.knnModelSelector.filesSelected.connect(self.knnModelFileSelected)
-        self.tesseractFileSelector.filesSelected.connect(
-            self.tesseractFileSelectorFilesSelected
-        )
         self.siftDatabaseSelector.filesSelected.connect(self.siftDatabaseFileSelected)
+
+        self.deviceFileSelector.connectSettings(DEVICES_JSON_FILE)
+        self.knnModelSelector.connectSettings(KNN_MODEL_FILE)
+        self.siftDatabaseSelector.connectSettings(SIFT_DATABASE_FILE)
 
         settings = Settings()
         logger.info("Applying default settings...")
@@ -74,24 +80,16 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
             self.deviceDependenciesStackedWidget.setCurrentIndex(device.version - 1)
 
     def deviceFileSelected(self):
-        selectedFiles = self.deviceFileSelector.selectedFiles()
-        if selectedFiles:
+        if selectedFiles := self.deviceFileSelector.selectedFiles():
             file = selectedFiles[0]
             self.deviceComboBox.loadDevicesJson(file)
 
     def knnModelFileSelected(self):
-        selectedFiles = self.knnModelSelector.selectedFiles()
-        if selectedFiles:
+        if selectedFiles := self.knnModelSelector.selectedFiles():
             self.knnModel = cv2.ml.KNearest.load(selectedFiles[0])
 
-    def tesseractFileSelectorFilesSelected(self):
-        selectedFiles = self.tesseractFileSelector.selectedFiles()
-        if selectedFiles:
-            pytesseract.pytesseract.tesseract_cmd = selectedFiles[0]
-
     def siftDatabaseFileSelected(self):
-        selectedFiles = self.siftDatabaseSelector.selectedFiles()
-        if selectedFiles:
+        if selectedFiles := self.siftDatabaseSelector.selectedFiles():
             self.siftDatabase = SIFTDatabase(selectedFiles[0])
 
     @Slot()

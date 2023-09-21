@@ -1,8 +1,9 @@
-from PySide6.QtCore import QDir, QFileInfo, QMetaObject, Qt, Signal, Slot
+from PySide6.QtCore import QDir, QFileInfo, Qt, Signal, Slot
 from PySide6.QtWidgets import QFileDialog, QWidget
 
 from ui.designer.components.fileSelector_ui import Ui_FileSelector
 from ui.extends.shared.language import LanguageChangeEventFilter
+from ui.extends.shared.settings import Settings
 
 
 class FileSelector(Ui_FileSelector, QWidget):
@@ -25,6 +26,8 @@ class FileSelector(Ui_FileSelector, QWidget):
 
         self.__mode = self.getOpenFileNames
 
+        self.settingsKey = None
+
     def getOpenFileNames(self):
         selectedFiles, filter = QFileDialog.getOpenFileNames(
             self,
@@ -39,13 +42,12 @@ class FileSelector(Ui_FileSelector, QWidget):
             self.accepted.emit()
 
     def getExistingDirectory(self):
-        selectedDir = QFileDialog.getExistingDirectory(
+        if selectedDir := QFileDialog.getExistingDirectory(
             self,
             self.__caption,
             self.__startDirectory,
             QFileDialog.Option.ShowDirsOnly | self.__options,
-        )
-        if selectedDir:
+        ):
             self.__selectedFiles = [selectedDir]
             self.accepted.emit()
 
@@ -83,13 +85,29 @@ class FileSelector(Ui_FileSelector, QWidget):
         self.updateLabel()
 
     def updateLabel(self):
-        selectedFiles = self.selectedFiles()
-
-        if not selectedFiles:
-            self.elidedLabel.setText("...")
-        else:
+        if selectedFiles := self.selectedFiles():
             self.elidedLabel.setText("<br>".join(selectedFiles))
+        else:
+            self.elidedLabel.setText("...")
 
     @Slot()
     def on_selectButton_clicked(self):
         self.__mode()
+
+    def connectSettings(self, settingsKey: str):
+        self.settingsKey = settingsKey
+        Settings().updated.connect(self.settingsUpdated)
+
+    def disconnectSettings(self):
+        Settings().updated.disconnect(self.settingsUpdated)
+        self.settingsKey = None
+
+    def settingsUpdated(self, key: str):
+        if key != self.settingsKey:
+            return
+
+        # keep user selection
+        if self.__selectedFiles:
+            return
+
+        self.selectFile(Settings().value(key))

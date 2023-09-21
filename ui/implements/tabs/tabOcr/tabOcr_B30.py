@@ -5,15 +5,13 @@ import cv2
 from arcaea_offline_ocr.b30.chieri.v4.ocr import ChieriBotV4Ocr
 from arcaea_offline_ocr.sift_db import SIFTDatabase
 from arcaea_offline_ocr.utils import imread_unicode
-
-# from paddleocr import PaddleOCR
 from PySide6.QtCore import Signal, Slot
 from PySide6.QtWidgets import QWidget
 
 from ui.designer.tabs.tabOcr.tabOcr_B30_ui import Ui_TabOcr_B30
 from ui.extends.components.ocrQueue import OcrQueueModel
 from ui.extends.shared.cv2_utils import cv2BgrMatToQImage, qImageToCvMatBgr
-from ui.extends.shared.settings import Settings
+from ui.extends.shared.settings import KNN_MODEL_FILE, SIFT_DATABASE_FILE, Settings
 from ui.extends.tabs.tabOcr.tabOcr_B30 import ChieriV4OcrRunnable, b30ResultToScore
 
 logger = logging.getLogger(__name__)
@@ -30,15 +28,13 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
         self.b30TypeComboBox.setCurrentIndex(0)
         self.b30TypeComboBox.setEnabled(False)
 
-        # self.paddleFolderSelector.setMode(
-        #     self.paddleFolderSelector.getExistingDirectory
-        # )
-
         self.imageSelector.filesSelected.connect(self.imageSelected)
         self.knnModelSelector.filesSelected.connect(self.knnModelSelected)
         self.b30KnnModelSelector.filesSelected.connect(self.b30KnnModelSelected)
-        # self.paddleFolderSelector.filesSelected.connect(self.paddleFolderSelected)
         self.siftDatabaseSelector.filesSelected.connect(self.siftDatabaseSelected)
+
+        self.knnModelSelector.connectSettings(KNN_MODEL_FILE)
+        self.siftDatabaseSelector.connectSettings(SIFT_DATABASE_FILE)
 
         self.imagePath = None  # for checking only
         self.img = None
@@ -61,58 +57,29 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
         self.ocrQueue.setModel(self.ocrQueueModel)
 
     def imageSelected(self):
-        selectedFiles = self.imageSelector.selectedFiles()
-        if selectedFiles:
+        if selectedFiles := self.imageSelector.selectedFiles():
             imagePath = selectedFiles[0]
             self.imagePath = imagePath
             self.img = imread_unicode(imagePath)
             self.tryPrepareOcr.emit()
 
     def knnModelSelected(self):
-        selectedFiles = self.knnModelSelector.selectedFiles()
-        if selectedFiles:
+        if selectedFiles := self.knnModelSelector.selectedFiles():
             knnModelPath = selectedFiles[0]
             self.knnModel = cv2.ml.KNearest.load(knnModelPath)
             self.tryPrepareOcr.emit()
 
     def b30KnnModelSelected(self):
-        selectedFiles = self.b30KnnModelSelector.selectedFiles()
-        if selectedFiles:
+        if selectedFiles := self.b30KnnModelSelector.selectedFiles():
             b30KnnModelPath = selectedFiles[0]
             self.b30KnnModel = cv2.ml.KNearest.load(b30KnnModelPath)
             self.tryPrepareOcr.emit()
 
     def siftDatabaseSelected(self):
-        selectedFiles = self.siftDatabaseSelector.selectedFiles()
-        if selectedFiles:
+        if selectedFiles := self.siftDatabaseSelector.selectedFiles():
             siftDatabasePath = selectedFiles[0]
             self.siftDatabase = SIFTDatabase(siftDatabasePath)
             self.tryPrepareOcr.emit()
-
-    def paddleFolderSelected(self):
-        selectedFiles = self.paddleFolderSelector.selectedFiles()
-        if selectedFiles:
-            self.paddleFolder = selectedFiles[0]
-            self.initPaddle()
-            self.tryPrepareOcr.emit()
-
-    def initPaddle(self):
-        paddleFolder = Path(self.paddleFolder)
-        paddleDetFolder = paddleFolder / "det"
-        paddleClsFolder = paddleFolder / "cls"
-        paddleRecFolder = paddleFolder / "rec"
-
-        if not (paddleDetFolder.exists() and paddleRecFolder.exists()):
-            logger.warning("paddleocr folder incomplete, aborting.")
-            return
-
-        self.paddle = PaddleOCR(
-            show_log=False,
-            use_angle_cls=False,
-            det_model_dir=str(paddleDetFolder),
-            cls_model_dir=str(paddleClsFolder),
-            rec_model_dir=str(paddleRecFolder),
-        )
 
     def prepareOcr(self):
         b30Type = self.b30TypeComboBox.currentData()
