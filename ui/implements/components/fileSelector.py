@@ -96,6 +96,14 @@ class FileSelector(Ui_FileSelector, QWidget):
 
     def connectSettings(self, settingsKey: str):
         self.settingsKey = settingsKey
+
+        # keep user selection
+        if self.__selectedFiles:
+            return
+
+        if value := Settings().value(self.settingsKey):
+            self.selectFile(value)
+
         Settings().updated.connect(self.settingsUpdated)
 
     def disconnectSettings(self):
@@ -110,4 +118,4 @@ class FileSelector(Ui_FileSelector, QWidget):
         if self.__selectedFiles:
             return
 
-        self.selectFile(Settings().value(key))
+        self.selectFile(Settings().value(self.settingsKey))
