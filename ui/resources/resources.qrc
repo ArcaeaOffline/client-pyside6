@@ -1,6 +1,8 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
   <qresource prefix="/">
+    <file>VERSION</file>
+
     <file>images/icon.png</file>
     <file>images/logo.png</file>
     <file>images/stepCalculator/stamina.png</file>

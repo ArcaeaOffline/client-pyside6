@@ -4,6 +4,8 @@ __debug*
 arcaea_offline.db
 arcaea_offline.ini
 
+ui/resources/VERSION
+
 # Qt compiled stuff
 *.qm
 *_rc.py

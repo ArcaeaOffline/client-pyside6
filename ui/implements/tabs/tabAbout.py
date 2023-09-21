@@ -1,4 +1,4 @@
-from PySide6.QtCore import Qt, Slot
+from PySide6.QtCore import QFile, Qt, Slot
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QMessageBox, QWidget
 
@@ -21,3 +21,11 @@ class TabAbout(Ui_TabAbout, QWidget):
     @Slot()
     def on_aboutQtButton_clicked(self):
         QMessageBox.aboutQt(self)
+
+    @Slot()
+    def on_versionInfoButton_clicked(self):
+        versionFile = QFile(":/VERSION")
+        versionFile.open(QFile.OpenModeFlag.ReadOnly)
+        versionText = str(versionFile.readAll(), encoding="utf-8")
+        versionFile.close()
+        QMessageBox.information(self, None, versionText)

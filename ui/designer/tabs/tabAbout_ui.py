@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'tabAbout.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.0
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -22,7 +22,7 @@ class Ui_TabAbout(object):
     def setupUi(self, TabAbout):
         if not TabAbout.objectName():
             TabAbout.setObjectName(u"TabAbout")
-        TabAbout.resize(587, 431)
+        TabAbout.resize(550, 400)
         TabAbout.setWindowTitle(u"TabAbout")
         self.verticalLayout = QVBoxLayout(TabAbout)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -67,6 +67,11 @@ class Ui_TabAbout(object):
 
         self.horizontalLayout.addWidget(self.aboutQtButton)
 
+        self.versionInfoButton = QPushButton(TabAbout)
+        self.versionInfoButton.setObjectName(u"versionInfoButton")
+
+        self.horizontalLayout.addWidget(self.versionInfoButton)
+
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer_2)
@@ -82,6 +87,7 @@ class Ui_TabAbout(object):
 
     def retranslateUi(self, TabAbout):
         self.aboutQtButton.setText(QCoreApplication.translate("TabAbout", u"About Qt", None))
+        self.versionInfoButton.setText(QCoreApplication.translate("TabAbout", u"Version Info", None))
         pass
     # retranslateUi
 
