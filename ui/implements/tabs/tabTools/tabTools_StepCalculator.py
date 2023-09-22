@@ -29,6 +29,7 @@ from PySide6.QtWidgets import (
 from ui.designer.tabs.tabTools.tabTools_StepCalculator_ui import (
     Ui_TabTools_StepCalculator,
 )
+from ui.extends.shared.language import LanguageChangeEventFilter
 from ui.implements.components.chartAndScoreInput import ChartAndScoreInput
 from ui.implements.components.songIdSelector import SongIdSelectorMode
 
@@ -89,6 +90,9 @@ class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
 
         self.calculate_toStep_calculatePlayResultFromScoreButton.clicked.connect(
             self.openChartAndScoreInputDialog

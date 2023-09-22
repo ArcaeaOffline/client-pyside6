@@ -1,5 +1,4 @@
 import logging
-from pathlib import Path
 
 import cv2
 from arcaea_offline_ocr.b30.chieri.v4.ocr import ChieriBotV4Ocr
@@ -11,6 +10,7 @@ from PySide6.QtWidgets import QWidget
 from ui.designer.tabs.tabOcr.tabOcr_B30_ui import Ui_TabOcr_B30
 from ui.extends.components.ocrQueue import OcrQueueModel
 from ui.extends.shared.cv2_utils import cv2BgrMatToQImage, qImageToCvMatBgr
+from ui.extends.shared.language import LanguageChangeEventFilter
 from ui.extends.shared.settings import KNN_MODEL_FILE, SIFT_DATABASE_FILE, Settings
 from ui.extends.tabs.tabOcr.tabOcr_B30 import ChieriV4OcrRunnable, b30ResultToScore
 
@@ -23,6 +23,9 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
 
         self.b30TypeComboBox.addItem("ChieriV4", "chieri_v4")
         self.b30TypeComboBox.setCurrentIndex(0)

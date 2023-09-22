@@ -3,12 +3,16 @@ from PySide6.QtGui import QShowEvent
 from PySide6.QtWidgets import QWidget
 
 from ui.designer.tabs.tabOverview_ui import Ui_TabOverview
+from ui.extends.shared.language import LanguageChangeEventFilter
 
 
 class TabOverview(Ui_TabOverview, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
 
         self.db = Database()
         # self.db.register_update_hook(self.updateOverview)

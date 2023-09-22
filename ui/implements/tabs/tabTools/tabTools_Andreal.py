@@ -21,6 +21,7 @@ from PySide6.QtWidgets import (
 )
 
 from ui.designer.tabs.tabTools.tabTools_Andreal_ui import Ui_TabTools_Andreal
+from ui.extends.shared.language import LanguageChangeEventFilter
 from ui.extends.shared.settings import ANDREAL_EXECUTABLE, ANDREAL_FOLDER
 from ui.extends.tabs.tabTools.tabTools_Andreal import AndrealHelper
 from ui.implements.components.chartSelector import ChartSelector
@@ -94,6 +95,9 @@ class TabTools_Andreal(Ui_TabTools_Andreal, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
 
         self.db = Database()
 

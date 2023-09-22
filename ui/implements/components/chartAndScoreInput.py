@@ -2,6 +2,7 @@ from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QWidget
 
 from ui.designer.components.chartAndScoreInput_ui import Ui_ChartAndScoreInput
+from ui.extends.shared.language import LanguageChangeEventFilter
 from ui.implements.components.songIdSelector import SongIdSelectorMode
 
 
@@ -11,6 +12,9 @@ class ChartAndScoreInput(Ui_ChartAndScoreInput, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
 
         self.chartSelector.valueChanged.connect(self.updateScoreEditorChart)
         self.scoreEditor.accepted.connect(self.commit)

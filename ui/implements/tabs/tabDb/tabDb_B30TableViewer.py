@@ -4,6 +4,7 @@ from PySide6.QtWidgets import QMessageBox
 
 from ui.extends.shared.delegates.chartDelegate import ChartDelegate
 from ui.extends.shared.delegates.scoreDelegate import ScoreDelegate
+from ui.extends.shared.language import LanguageChangeEventFilter
 from ui.extends.shared.models.tables.b30 import (
     DbB30TableModel,
     DbB30TableSortFilterProxyModel,
@@ -34,6 +35,10 @@ class TableScoreDelegate(ScoreDelegate):
 class DbB30TableViewer(DbTableViewer):
     def __init__(self, parent=None):
         super().__init__(parent)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
+
         self.tableView.verticalHeader().setVisible(True)
 
         self.tableModel = DbB30TableModel(self)

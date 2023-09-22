@@ -3,12 +3,16 @@ from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QMessageBox, QWidget
 
 from ui.designer.tabs.tabAbout_ui import Ui_TabAbout
+from ui.extends.shared.language import LanguageChangeEventFilter
 
 
 class TabAbout(Ui_TabAbout, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
 
         logoPixmap = QPixmap(":/images/logo.png").scaled(
             300,

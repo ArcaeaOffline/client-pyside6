@@ -18,6 +18,7 @@ from PySide6.QtWidgets import QFileDialog, QMessageBox, QWidget
 
 from ui.designer.tabs.tabDb.tabDb_Manage_ui import Ui_TabDb_Manage
 from ui.extends.shared.database import databaseUpdateSignals
+from ui.extends.shared.language import LanguageChangeEventFilter
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +27,9 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
 
     @Slot()
     def on_syncArcSongDbButton_clicked(self):

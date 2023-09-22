@@ -11,6 +11,7 @@ from PySide6.QtWidgets import QApplication, QFileDialog, QWidget
 
 from ui.designer.tabs.tabOcr.tabOcr_Device_ui import Ui_TabOcr_Device
 from ui.extends.components.ocrQueue import OcrQueueModel
+from ui.extends.shared.language import LanguageChangeEventFilter
 from ui.extends.shared.settings import (
     DEVICES_JSON_FILE,
     KNN_MODEL_FILE,
@@ -31,6 +32,9 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
         super().__init__(parent)
         self.setupUi(self)
         self.openWizardButton.setEnabled(False)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
 
         self.deviceFileSelector.filesSelected.connect(self.deviceFileSelected)
         self.knnModelSelector.filesSelected.connect(self.knnModelFileSelected)
