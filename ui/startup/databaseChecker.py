@@ -1,9 +1,9 @@
 import logging
 import traceback
-from typing import Literal, Optional, Union
+from enum import IntEnum
 
 from arcaea_offline.database import Database
-from PySide6.QtCore import QCoreApplication, QDir, QFileInfo, Qt, QTimer, QUrl, Slot
+from PySide6.QtCore import QCoreApplication, QDir, QFileInfo, Qt, QUrl, Slot
 from PySide6.QtWidgets import QDialog, QMessageBox
 
 from ui.extends.shared.database import create_engine
@@ -12,6 +12,11 @@ from ui.extends.shared.settings import Settings
 from .databaseChecker_ui import Ui_DatabaseChecker
 
 logger = logging.getLogger(__name__)
+
+
+class DatabaseCheckerResult(IntEnum):
+    FileExist = 0x001
+    Initted = 0x002
 
 
 class DatabaseChecker(Ui_DatabaseChecker, QDialog):
@@ -25,9 +30,7 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
 
         self.confirmDbByExistingSettings = False
         self.settings = Settings(self)
-        dbUrlString = self.settings.databaseUrl()
-
-        if dbUrlString:
+        if dbUrlString := self.settings.databaseUrl():
             dbFileUrl = QUrl(dbUrlString.replace("sqlite://", "file://"))
             dbFileInfo = QFileInfo(dbFileUrl.toLocalFile())
             if dbFileInfo.exists():
@@ -42,37 +45,85 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
             self.dbDirSelector.selectFile(QDir.currentPath())
             self.dbFilenameLineEdit.setText("arcaea_offline.db")
 
-    def updateLabels(
-        self,
-        version: Union[Optional[int], Literal["reset"]],
-        init_status: Union[Optional[bool], Literal["reset"]],
-    ):
-        if version is not None:
-            self.dbVersionLabel.setText(str(version))
-        elif version == "reset":
-            self.dbVersionLabel.setText("-")
+    def dbPath(self):
+        return QDir(self.dbDirSelector.selectedFiles()[0])
 
-        if init_status is not None:
-            if init_status:
-                self.dbCheckConnLabel.setText('<font color="green">OK</font>')
-                self.continueButton.setEnabled(True)
-            else:
-                self.dbCheckConnLabel.setText('<font color="red">Error</font>')
-                self.continueButton.setEnabled(False)
-        elif init_status == "reset":
-            self.dbCheckConnLabel.setText("-")
+    def dbFileInfo(self):
+        return QFileInfo(
+            QDir.cleanPath(
+                self.dbPath().absoluteFilePath(self.dbFilenameLineEdit.text())
+            )
+        )
+
+    def dbFileUrl(self):
+        return QUrl.fromLocalFile(self.dbFileInfo().filePath())
+
+    def dbSqliteUrl(self):
+        # dbSqliteUrl.setScheme("sqlite")
+        return QUrl(self.dbFileUrl().toString().replace("file://", "sqlite://"))
+
+    def confirmDb(self) -> DatabaseCheckerResult:
+        flags = 0x000
+
+        dbFileInfo = self.dbFileInfo()
+        dbSqliteUrl = self.dbSqliteUrl()
+        if not dbFileInfo.exists():
+            return flags
+
+        flags |= DatabaseCheckerResult.FileExist
+        db = Database(create_engine(dbSqliteUrl))
+        if db.check_init():
+            flags |= DatabaseCheckerResult.Initted
+
+        return flags
+
+    def updateLabels(self):
+        result = self.confirmDb()
+        try:
+            db = Database()
+            version = db.version()
+            initted = db.check_init()
+            self.dbVersionLabel.setText(str(version))
+            self.dbCheckConnLabel.setText(
+                '<font color="green">OK</font>'
+                if initted
+                else '<font color="red">Not initted</font>'
+            )
+            self.continueButton.setEnabled(initted)
+        except Exception as e:
+            self.dbVersionLabel.setText("-")
+            self.dbCheckConnLabel.setText(
+                f'<font color="red">Error: {e}</font>'
+                if result & DatabaseCheckerResult.FileExist
+                else "-"
+            )
             self.continueButton.setEnabled(False)
 
     @Slot()
     def on_confirmDbPathButton_clicked(self):
-        dbPath = QDir(self.dbDirSelector.selectedFiles()[0])
-        dbFileInfo = QFileInfo(
-            QDir.cleanPath(dbPath.absoluteFilePath(self.dbFilenameLineEdit.text()))
-        )
-        dbFileUrl = QUrl.fromLocalFile(dbFileInfo.filePath())
-        # dbSqliteUrl.setScheme("sqlite")
-        dbSqliteUrl = QUrl(dbFileUrl.toString().replace("file://", "sqlite://"))
-        if not dbFileInfo.exists():
+        dbSqliteUrl = self.dbSqliteUrl()
+
+        result = self.confirmDb()
+        if result & DatabaseCheckerResult.Initted:
+            if not self.confirmDbByExistingSettings:
+                self.settings.setDatabaseUrl(dbSqliteUrl.toString())
+        elif result & DatabaseCheckerResult.FileExist:
+            confirm_try_init = QMessageBox.question(
+                self,
+                None,
+                # fmt: off
+                QCoreApplication.translate("DatabaseChecker", "dialog.tryInitExistingDatabase"),
+                # fmt: on
+            )
+            if confirm_try_init == QMessageBox.StandardButton.Yes:
+                try:
+                    Database().init(checkfirst=True)
+                except Exception as e:
+                    logger.exception("Error while initializing an existing database")
+                    QMessageBox.critical(
+                        self, None, "\n".join(traceback.format_exception(e))
+                    )
+        else:
             confirm_new_database = QMessageBox.question(
                 self,
                 None,
@@ -83,36 +134,7 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
             if confirm_new_database == QMessageBox.StandardButton.Yes:
                 db = Database(create_engine(dbSqliteUrl))
                 db.init()
-                self.on_confirmDbPathButton_clicked()
-        else:
-            db = Database(create_engine(dbSqliteUrl))
-            if db.check_init():
-                self.updateLabels(db.version(), True)
-                if self.confirmDbByExistingSettings:
-                    QTimer.singleShot(25, self.accept)
-                else:
-                    self.settings.setDatabaseUrl(dbSqliteUrl.toString())
-            else:
-                confirm_try_init = QMessageBox.question(
-                    self,
-                    None,
-                    # fmt: off
-                    QCoreApplication.translate("DatabaseChecker", "dialog.tryInit"),
-                    # fmt: on
-                )
-                if confirm_try_init == QMessageBox.StandardButton.Yes:
-                    try:
-                        db.init(checkfirst=True)
-                    except Exception as e:
-                        logger.exception(
-                            "Error while initializing an existing database"
-                        )
-                        QMessageBox.critical(
-                            self, None, "\n".join(traceback.format_exception(e))
-                        )
-                        self.updateLabels("reset", False)
-                    finally:
-                        self.on_confirmDbPathButton_clicked()
+        self.updateLabels()
 
     @Slot()
     def on_continueButton_clicked(self):

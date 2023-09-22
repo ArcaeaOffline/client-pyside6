@@ -11,7 +11,7 @@ import ui.resources.resources_rc
 from ui.extends.shared.language import changeAppLanguage
 from ui.extends.shared.settings import Settings
 from ui.implements.mainwindow import MainWindow
-from ui.startup.databaseChecker import DatabaseChecker
+from ui.startup.databaseChecker import DatabaseChecker, DatabaseCheckerResult
 
 logging.basicConfig(
     level=logging.INFO,
@@ -32,20 +32,24 @@ if __name__ == "__main__":
     changeAppLanguage(locale)
 
     databaseChecker = DatabaseChecker()
-    result = databaseChecker.exec()
+    databaseChecker.setWindowIcon(QIcon(":/images/icon.png"))
+    databaseCheckResult = databaseChecker.confirmDb()
 
-    if result == QDialog.DialogCode.Accepted:
-        try:
-            Database()
-        except Exception as e:
-            QMessageBox.critical(
-                None, "Database Error", "\n".join(traceback.format_exception(e))
-            )
+    if not databaseCheckResult & DatabaseCheckerResult.Initted:
+        result = databaseChecker.exec()
+
+        if result == QDialog.DialogCode.Accepted:
+            try:
+                Database()
+            except Exception as e:
+                QMessageBox.critical(
+                    None, "Database Error", "\n".join(traceback.format_exception(e))
+                )
+                sys.exit(1)
+        else:
             sys.exit(1)
 
-        window = MainWindow()
-        window.setWindowIcon(QIcon(":/images/icon.png"))
-        window.show()
-        sys.exit(app.exec())
-    else:
-        sys.exit(1)
+    window = MainWindow()
+    window.setWindowIcon(QIcon(":/images/icon.png"))
+    window.show()
+    sys.exit(app.exec())

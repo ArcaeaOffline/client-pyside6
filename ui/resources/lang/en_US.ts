@@ -89,14 +89,14 @@
         <translation>Continue</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="80"/>
-        <source>dialog.confirmNewDatabase</source>
-        <translation>Database file does not exist. Create now?</translation>
+        <location filename="../../startup/databaseChecker.py" line="117"/>
+        <source>dialog.tryInitExistingDatabase</source>
+        <translation>The existing database doesn&apos;t seem to be initialized properly, try initialize again?</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="100"/>
-        <source>dialog.tryInit</source>
-        <translation>The existing database doesn&apos;t seem to be initialized, try initialize it again?</translation>
+        <location filename="../../startup/databaseChecker.py" line="133"/>
+        <source>dialog.confirmNewDatabase</source>
+        <translation>Database file does not exist. Create now?</translation>
     </message>
 </context>
 <context>
@@ -566,6 +566,11 @@ validation</translation>
         <location filename="../../designer/tabs/tabAbout.ui" line="79"/>
         <source>About Qt</source>
         <translation>About Qt</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabAbout.ui" line="86"/>
+        <source>Version Info</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

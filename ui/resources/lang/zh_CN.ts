@@ -89,14 +89,14 @@
         <translation>继续</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="80"/>
-        <source>dialog.confirmNewDatabase</source>
-        <translation>数据库文件不存在，是否创建？</translation>
+        <location filename="../../startup/databaseChecker.py" line="117"/>
+        <source>dialog.tryInitExistingDatabase</source>
+        <translation>现有的数据库似乎没有正确初始化，是否尝试再次初始化？</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="100"/>
-        <source>dialog.tryInit</source>
-        <translation>现有的数据库似乎没有正确初始化，是否尝试再次初始化？</translation>
+        <location filename="../../startup/databaseChecker.py" line="133"/>
+        <source>dialog.confirmNewDatabase</source>
+        <translation>数据库文件不存在，是否创建？</translation>
     </message>
 </context>
 <context>
@@ -565,6 +565,11 @@
         <location filename="../../designer/tabs/tabAbout.ui" line="79"/>
         <source>About Qt</source>
         <translation>关于 Qt</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabAbout.ui" line="86"/>
+        <source>Version Info</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
