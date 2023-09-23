@@ -93,13 +93,18 @@ class ChartDelegate(TextSegmentDelegate):
                 [{self.TextRole: "Chart Invalid", self.ColorRole: QColor("#ff0000")}]
             ]
 
+        chartConstantString = (
+            f"{chart.constant / 10:.1f}"
+            if chart.constant is not None and chart.constant > 0
+            else "?"
+        )
         return [
             [
                 {self.TextRole: f"{chart.title}"},
             ],
             [
                 {
-                    self.TextRole: f"{rating_class_to_text(chart.rating_class)} {chart.constant / 10:.1f}",
+                    self.TextRole: f"{rating_class_to_text(chart.rating_class)} {chartConstantString}",
                     self.ColorRole: self.RatingClassColors[chart.rating_class],
                 },
             ],

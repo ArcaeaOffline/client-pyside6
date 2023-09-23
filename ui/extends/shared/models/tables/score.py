@@ -29,12 +29,26 @@ class DbScoreTableModel(DbTableModel):
     def syncDb(self):
         newScores = self._db.get_scores()
         newScores = sorted(newScores, key=lambda x: x.id)
-        newCharts = [
-            self._db.get_chart(score.song_id, score.rating_class) for score in newScores
-        ]
+        newCharts = []
+        for score in newScores:
+            dbChart = self._db.get_chart(score.song_id, score.rating_class)
+            newCharts.append(
+                dbChart
+                if isinstance(dbChart, Chart)
+                else Chart(
+                    song_id=score.song_id,
+                    rating_class=score.rating_class,
+                    title=score.song_id,
+                    set="unknown",
+                )
+            )
         newPtts = []
         for chart, score in zip(newCharts, newScores):
-            if isinstance(chart, Chart) and isinstance(score, Score):
+            if (
+                isinstance(chart, Chart)
+                and chart.constant is not None
+                and isinstance(score, Score)
+            ):
                 newPtts.append(calculate_play_rating(chart.constant / 10, score.score))
             else:
                 newPtts.append(None)
@@ -103,10 +117,11 @@ class DbScoreTableModel(DbTableModel):
             elif index.column() == 2 and role in [self.ChartRole, self.ScoreRole]:
                 return self.__items[index.row()][role]
             elif index.column() == 3:
+                potential = self.__items[index.row()][self.PttRole]
                 if role == Qt.ItemDataRole.DisplayRole:
-                    return f"{self.__items[index.row()][self.PttRole]:.3f}"
+                    return f"{potential:.3f}" if potential is not None else "-"
                 elif role == self.PttRole:
-                    return self.__items[index.row()][self.PttRole]
+                    return potential
         return None
 
     def setData(self, index, value, role):
@@ -165,30 +180,35 @@ class DbScoreTableSortFilterProxyModel(QSortFilterProxyModel):
     Sort_C2_ScoreRole = Qt.ItemDataRole.UserRole + 75
     Sort_C2_TimeRole = Qt.ItemDataRole.UserRole + 76
 
-    def lessThan(self, source_left, source_right) -> bool:
-        if source_left.column() != source_right.column():
+    def lessThan(self, sourceLeft, sourceRight) -> bool:
+        if sourceLeft.column() != sourceRight.column():
             return
 
-        column = source_left.column()
+        column = sourceLeft.column()
         if column == 0:
-            return source_left.data(DbScoreTableModel.IdRole) < source_right.data(
+            return sourceLeft.data(DbScoreTableModel.IdRole) < sourceRight.data(
                 DbScoreTableModel.IdRole
             )
         elif column == 2:
-            score_left = source_left.data(DbScoreTableModel.ScoreRole)
-            score_right = source_right.data(DbScoreTableModel.ScoreRole)
-            if isinstance(score_left, Score) and isinstance(score_right, Score):
+            scoreLeft = sourceLeft.data(DbScoreTableModel.ScoreRole)
+            scoreRight = sourceRight.data(DbScoreTableModel.ScoreRole)
+            if isinstance(scoreLeft, Score) and isinstance(scoreRight, Score):
                 if self.sortRole() == self.Sort_C2_ScoreRole:
-                    return score_left.score < score_right.score
+                    return scoreLeft.score < scoreRight.score
                 elif self.sortRole() == self.Sort_C2_TimeRole:
-                    if score_left.date and score_right.date:
-                        return score_left.date < score_right.date
-                    elif score_left.date:
+                    if scoreLeft.date and scoreRight.date:
+                        return scoreLeft.date < scoreRight.date
+                    elif scoreLeft.date:
                         return False
                     else:
                         return True
         elif column == 3:
-            return source_left.data(DbScoreTableModel.PttRole) < source_right.data(
-                DbScoreTableModel.PttRole
-            )
-        return super().lessThan(source_left, source_right)
+            pttLeft = sourceLeft.data(DbScoreTableModel.PttRole)
+            pttRight = sourceRight.data(DbScoreTableModel.PttRole)
+            if pttLeft and pttRight:
+                return pttLeft < pttRight
+            elif pttLeft:
+                return False
+            else:
+                return True
+        return super().lessThan(sourceLeft, sourceRight)

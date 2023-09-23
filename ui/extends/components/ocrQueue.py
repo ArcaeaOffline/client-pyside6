@@ -263,7 +263,13 @@ class OcrQueueModel(QAbstractListModel):
         index = self.index(row, 0)
         chart = index.data(self.ChartRole)
         score = index.data(self.ScoreRole)
-        if isinstance(chart, Chart) and isinstance(score, Score):
+        if (
+            isinstance(chart, Chart)
+            and isinstance(score, Score)
+            and chart.notes
+            and score.pure
+            and score.far
+        ):
             scoreRange = calculate_score_range(chart.notes, score.pure, score.far)
             scoreValidateOk = scoreRange[0] <= score.score <= scoreRange[1]
             self.setData(index, scoreValidateOk, self.ScoreValidateOkRole)

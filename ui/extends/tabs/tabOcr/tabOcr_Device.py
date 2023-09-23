@@ -85,4 +85,11 @@ class ScoreConverter:
             comment=f"OCR {QFileInfo(imagePath).fileName()}",
         )
         chart = db.get_chart(score.song_id, score.rating_class)
+        if not chart:
+            chart = Chart(
+                song_id=result.song_id,
+                rating_class=result.rating_class,
+                title=result.song_id,
+                constant=0.0,
+            )
         return (chart, score)

@@ -96,7 +96,13 @@ class ScoreDelegate(TextSegmentDelegate):
         score = self.getScore(index)
         chart = self.getChart(index)
 
-        if isinstance(score, Score) and isinstance(chart, Chart):
+        if (
+            isinstance(score, Score)
+            and isinstance(chart, Chart)
+            and chart.notes is not None
+            and score.pure is not None
+            and score.far is not None
+        ):
             scoreRange = calculate_score_range(chart.notes, score.pure, score.far)
             return scoreRange[0] <= score.score <= scoreRange[1]
 

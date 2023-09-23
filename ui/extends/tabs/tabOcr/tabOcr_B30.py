@@ -1,7 +1,7 @@
 import logging
 
 from arcaea_offline.database import Database
-from arcaea_offline.models import Score
+from arcaea_offline.models import Chart, Score
 from arcaea_offline_ocr.b30.chieri.v4.ocr import ChieriBotV4Ocr
 from arcaea_offline_ocr.b30.shared import B30OcrResultItem
 from PySide6.QtGui import QImage
@@ -48,5 +48,13 @@ def b30ResultToScore(_: None, qImage: QImage, result: B30OcrResultItem):
         lost=result.lost,
         comment="B30 OCR",
     )
+
+    if not chart:
+        chart = Chart(
+            song_id=song_id,
+            rating_class=result.rating_class,
+            title=song_id,
+            constant=0.0,
+        )
 
     return (chart, score)
