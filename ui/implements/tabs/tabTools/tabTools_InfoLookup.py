@@ -234,7 +234,7 @@ class TabTools_InfoLookup(Ui_TabTools_InfoLookup, QWidget):
             score = int(scoreText)
 
             self.playRatingCalculateResultLabel.setText(
-                f"{calculate_play_rating(chartInfo.constant / 10, score):.3f}"
+                f"{calculate_play_rating(chartInfo.constant, score):.3f}"
             )
         else:
             self.resetPlayRatingCalculateResultLabel()

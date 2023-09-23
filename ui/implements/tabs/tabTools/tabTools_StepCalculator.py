@@ -214,7 +214,7 @@ class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
         if score := dialog.score():
             chart = dialog.chart()
             self.calculate_toStep_playResultSpinBox.setValue(
-                float(calculate_play_rating(chart.constant / 10, score.score))
+                float(calculate_play_rating(chart.constant, score.score))
             )
             dialog.close()
             dialog.deleteLater()

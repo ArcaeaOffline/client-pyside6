@@ -49,7 +49,7 @@ class DbScoreTableModel(DbTableModel):
                 and chart.constant is not None
                 and isinstance(score, Score)
             ):
-                newPtts.append(calculate_play_rating(chart.constant / 10, score.score))
+                newPtts.append(calculate_play_rating(chart.constant, score.score))
             else:
                 newPtts.append(None)
 
