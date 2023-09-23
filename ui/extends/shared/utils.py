@@ -10,6 +10,9 @@ def keepWidgetInScreen(widget: QWidget, screen: QScreen = None):
     # for why using frameGeometry.width() / frameGeometry.height()
     # instead of width() / height().
 
+    # https://stackoverflow.com/questions/49700394/qt-unable-to-set-geometry
+    widget.adjustSize()
+
     screen = screen or QGuiApplication.primaryScreen()
     screenAvailableGeometry = screen.availableGeometry()
 
