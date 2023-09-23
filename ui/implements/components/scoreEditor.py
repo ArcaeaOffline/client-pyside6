@@ -151,12 +151,19 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
         if score := self.value():
             texts = [
                 f"({score.song_id}, {score.rating_class}), Score {score.score}",
-                f"PURE {score.pure}, FAR {score.far}, LOST {score.lost}, MR {score.max_recall}",
-                f"Date {score.date}, Clear type {score.clear_type}, Modifier {score.modifier}",
+                f"PURE {score.pure}, FAR {score.far}, LOST {score.lost}",
+                f"MAX RECALL {score.max_recall}",
+                f"Date {score.date}",
+                f"Clear type {score.clear_type}",
+                f"Modifier {score.modifier}",
             ]
-            self.previewLabel.setText("<br>".join(texts))
+            self.previewLabel.setText(
+                f"{score.score}, P{score.pure} F{score.far} L{score.lost}, MR {score.max_recall}"
+            )
+            self.previewLabel.setToolTip("<br>".join(texts))
         else:
             self.previewLabel.setText("None")
+            self.previewLabel.setToolTip("")
 
     def validateBeforeAccept(self):
         return self.__validateBeforeAccept
