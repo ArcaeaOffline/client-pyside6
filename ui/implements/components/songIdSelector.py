@@ -48,9 +48,6 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
 
         self.mode = SongIdSelectorMode.SongId
 
-        databaseUpdateSignals.songDataUpdated.connect(self.updateDatabase)
-
-        self.fillPackComboBox()
         self.packComboBox.setCurrentIndex(-1)
         self.songIdComboBox.setCurrentIndex(-1)
 
@@ -69,6 +66,9 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
 
         self.packComboBox.currentIndexChanged.connect(self.valueChanged)
         self.songIdComboBox.currentIndexChanged.connect(self.valueChanged)
+
+        self.updateDatabase()
+        databaseUpdateSignals.songDataUpdated.connect(self.updateDatabase)
 
     def setMode(self, mode: SongIdSelectorMode):
         self.mode = mode
