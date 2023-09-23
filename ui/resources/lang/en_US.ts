@@ -89,12 +89,12 @@
         <translation>Continue</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="117"/>
+        <location filename="../../startup/databaseChecker.py" line="115"/>
         <source>dialog.tryInitExistingDatabase</source>
         <translation>The existing database doesn&apos;t seem to be initialized properly, try initialize again?</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="133"/>
+        <location filename="../../startup/databaseChecker.py" line="131"/>
         <source>dialog.confirmNewDatabase</source>
         <translation>Database file does not exist. Create now?</translation>
     </message>
@@ -283,22 +283,22 @@ validation</translation>
 <context>
     <name>OcrTableModel</name>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="341"/>
+        <location filename="../../extends/components/ocrQueue.py" line="347"/>
         <source>horizontalHeader.title.select</source>
         <translation>Select</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="342"/>
+        <location filename="../../extends/components/ocrQueue.py" line="348"/>
         <source>horizontalHeader.title.imagePreview</source>
         <translation>Image Preview</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="343"/>
+        <location filename="../../extends/components/ocrQueue.py" line="349"/>
         <source>horizontalHeader.title.chart</source>
         <translation>Chart</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="344"/>
+        <location filename="../../extends/components/ocrQueue.py" line="350"/>
         <source>horizontalHeader.title.score</source>
         <translation>Score</translation>
     </message>
@@ -314,54 +314,54 @@ validation</translation>
 <context>
     <name>ScoreEditor</name>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="109"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="119"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="189"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="199"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="239"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="272"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="279"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="302"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="139"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="178"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="225"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="258"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="285"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="292"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="318"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="328"/>
         <source>setNone</source>
         <translation>None</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="169"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="102"/>
         <source>formLabel.date</source>
         <translation>Time</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="338"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="268"/>
         <source>formLabel.comment</source>
         <translation>Comment</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="358"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="119"/>
         <source>formLabel.preview</source>
         <translation>Preview</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="99"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="20"/>
         <source>formLabel.score</source>
         <translation>Score</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="162"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="278"/>
         <source>idAutoInsert</source>
         <translation>(Auto insert)</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="309"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="112"/>
         <source>warnIfIncomplete</source>
         <translation>Warn if incomplete</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="63"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="218"/>
         <source>commitButton</source>
         <translation>Commit</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="320"/>
+        <location filename="../../implements/components/scoreEditor.py" line="327"/>
         <source>validate.ok</source>
         <translation>OK</translation>
     </message>
@@ -406,57 +406,57 @@ validation</translation>
         <translation>Cannot verify an incomplete score. Commit anyway?</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="205"/>
+        <location filename="../../implements/components/scoreEditor.py" line="212"/>
         <source>confirmDialog.chartNotSet.title</source>
         <translation>Chart not set</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="206"/>
+        <location filename="../../implements/components/scoreEditor.py" line="213"/>
         <source>confirmDialog.chartNotSet.text</source>
         <translation>Chart not set, cannot commit.</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="214"/>
+        <location filename="../../implements/components/scoreEditor.py" line="221"/>
         <source>confirmDialog.scoreIncomplete.title</source>
         <translation>Score incomplete</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="215"/>
+        <location filename="../../implements/components/scoreEditor.py" line="222"/>
         <source>confirmDialog.scoreIncomplete.text</source>
         <translation>Necessary score field missing, cannot commit.</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="324"/>
+        <location filename="../../implements/components/scoreEditor.py" line="331"/>
         <source>validate.chartNotSet</source>
         <translation>Chart not set</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="328"/>
+        <location filename="../../implements/components/scoreEditor.py" line="335"/>
         <source>validate.chartIncomple</source>
         <translation>No chart data, cannot verify</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="332"/>
+        <location filename="../../implements/components/scoreEditor.py" line="339"/>
         <source>validate.scoreMismatch</source>
         <translation>Possible invalid score</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="336"/>
+        <location filename="../../implements/components/scoreEditor.py" line="343"/>
         <source>validate.scoreEmpty</source>
         <translation>Empty score</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="340"/>
+        <location filename="../../implements/components/scoreEditor.py" line="347"/>
         <source>validate.scoreIncomplete</source>
         <translation>Missing necessary score field</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="346"/>
+        <location filename="../../implements/components/scoreEditor.py" line="353"/>
         <source>validate.scoreIncompleteForValidate</source>
         <translation>Score incomplete, cannot verify</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="351"/>
+        <location filename="../../implements/components/scoreEditor.py" line="358"/>
         <source>validate.unknownState</source>
         <translation>Unknown</translation>
     </message>
@@ -581,12 +581,12 @@ validation</translation>
         <translation>Manage</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDbEntry.py" line="16"/>
+        <location filename="../../implements/tabs/tabDbEntry.py" line="20"/>
         <source>tab.scoreTableViewer</source>
         <translation>Table [Score]</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDbEntry.py" line="20"/>
+        <location filename="../../implements/tabs/tabDbEntry.py" line="24"/>
         <source>tab.b30TableViewer</source>
         <translation>Table [B30]</translation>
     </message>
@@ -769,6 +769,11 @@ validation</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabToolsEntry.ui" line="34"/>
+        <source>tab.chartRecommend</source>
+        <translation>Chart Recommend</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabToolsEntry.ui" line="39"/>
         <source>tab.andreal</source>
         <translation>Andreal Image Generator</translation>
     </message>
@@ -836,9 +841,33 @@ validation</translation>
         <translation>Generate</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="81"/>
+        <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="82"/>
         <source>imageWhatIsThisDialog.description</source>
         <translation>Generate image of...&lt;ul&gt;&lt;li&gt;/a - the most recent score&lt;/li&gt;&lt;li&gt;/a b30 - best30 image&lt;/li&gt;&lt;li&gt;/a info - best score of the selected chart&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>TabTools_ChartRecommend</name>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="20"/>
+        <source>constantRangeFromPlayRating</source>
+        <translation>Chart Constant Range from Play Rating</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="118"/>
+        <source>chartsByConstant</source>
+        <translation>Charts by Constant</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="174"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="273"/>
+        <source>refreshButton</source>
+        <translation>Roll</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="197"/>
+        <source>chartsRecommendFromPlayRating</source>
+        <translation>Chart from Play Rating Based on Best Score</translation>
     </message>
 </context>
 <context>
@@ -1007,6 +1036,11 @@ validation</translation>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="649"/>
         <source>difficulty.title</source>
         <translation>Title</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="695"/>
+        <source>playRatingCalculate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

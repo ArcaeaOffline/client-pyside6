@@ -29,6 +29,11 @@
        <string>tab.stepCalculator</string>
       </attribute>
      </widget>
+     <widget class="TabTools_ChartRecommend" name="tab_4">
+      <attribute name="title">
+       <string>tab.chartRecommend</string>
+      </attribute>
+     </widget>
      <widget class="TabTools_Andreal" name="tab_3">
       <attribute name="title">
        <string>tab.andreal</string>
@@ -55,6 +60,12 @@
    <class>TabTools_Andreal</class>
    <extends>QWidget</extends>
    <header>ui.implements.tabs.tabTools.tabTools_Andreal</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabTools_ChartRecommend</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabTools.tabTools_ChartRecommend</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -19,6 +19,7 @@ from PySide6.QtWidgets import (QApplication, QSizePolicy, QTabWidget, QVBoxLayou
     QWidget)
 
 from ui.implements.tabs.tabTools.tabTools_Andreal import TabTools_Andreal
+from ui.implements.tabs.tabTools.tabTools_ChartRecommend import TabTools_ChartRecommend
 from ui.implements.tabs.tabTools.tabTools_InfoLookup import TabTools_InfoLookup
 from ui.implements.tabs.tabTools.tabTools_StepCalculator import TabTools_StepCalculator
 
@@ -38,6 +39,9 @@ class Ui_TabToolsEntry(object):
         self.tab_2 = TabTools_StepCalculator()
         self.tab_2.setObjectName(u"tab_2")
         self.tabWidget.addTab(self.tab_2, "")
+        self.tab_4 = TabTools_ChartRecommend()
+        self.tab_4.setObjectName(u"tab_4")
+        self.tabWidget.addTab(self.tab_4, "")
         self.tab_3 = TabTools_Andreal()
         self.tab_3.setObjectName(u"tab_3")
         self.tabWidget.addTab(self.tab_3, "")
@@ -56,6 +60,7 @@ class Ui_TabToolsEntry(object):
     def retranslateUi(self, TabToolsEntry):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("TabToolsEntry", u"tab.infoLookup", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("TabToolsEntry", u"tab.stepCalculator", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), QCoreApplication.translate("TabToolsEntry", u"tab.chartRecommend", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("TabToolsEntry", u"tab.andreal", None))
         pass
     # retranslateUi

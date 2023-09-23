@@ -89,12 +89,12 @@
         <translation>继续</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="117"/>
+        <location filename="../../startup/databaseChecker.py" line="115"/>
         <source>dialog.tryInitExistingDatabase</source>
         <translation>现有的数据库似乎没有正确初始化，是否尝试再次初始化？</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="133"/>
+        <location filename="../../startup/databaseChecker.py" line="131"/>
         <source>dialog.confirmNewDatabase</source>
         <translation>数据库文件不存在，是否创建？</translation>
     </message>
@@ -282,22 +282,22 @@
 <context>
     <name>OcrTableModel</name>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="341"/>
+        <location filename="../../extends/components/ocrQueue.py" line="347"/>
         <source>horizontalHeader.title.select</source>
         <translation>选择</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="342"/>
+        <location filename="../../extends/components/ocrQueue.py" line="348"/>
         <source>horizontalHeader.title.imagePreview</source>
         <translation>图像预览</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="343"/>
+        <location filename="../../extends/components/ocrQueue.py" line="349"/>
         <source>horizontalHeader.title.chart</source>
         <translation>谱面</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="344"/>
+        <location filename="../../extends/components/ocrQueue.py" line="350"/>
         <source>horizontalHeader.title.score</source>
         <translation>分数</translation>
     </message>
@@ -313,54 +313,54 @@
 <context>
     <name>ScoreEditor</name>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="109"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="119"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="189"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="199"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="239"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="272"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="279"/>
-        <location filename="../../designer/components/scoreEditor.ui" line="302"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="139"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="178"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="225"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="258"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="285"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="292"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="318"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="328"/>
         <source>setNone</source>
         <translation>置空</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="169"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="102"/>
         <source>formLabel.date</source>
         <translation>时间</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="338"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="268"/>
         <source>formLabel.comment</source>
         <translation>注释</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="358"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="119"/>
         <source>formLabel.preview</source>
         <translation>预览</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="99"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="20"/>
         <source>formLabel.score</source>
         <translation>分数</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="162"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="278"/>
         <source>idAutoInsert</source>
         <translation>（自动插入）</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="309"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="112"/>
         <source>warnIfIncomplete</source>
         <translation>不完整时要求确认</translation>
     </message>
     <message>
-        <location filename="../../designer/components/scoreEditor.ui" line="63"/>
+        <location filename="../../designer/components/scoreEditor.ui" line="218"/>
         <source>commitButton</source>
         <translation>提交</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="320"/>
+        <location filename="../../implements/components/scoreEditor.py" line="327"/>
         <source>validate.ok</source>
         <translation>OK</translation>
     </message>
@@ -405,57 +405,57 @@
         <translation>无法验证不完整的分数。继续提交吗？</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="205"/>
+        <location filename="../../implements/components/scoreEditor.py" line="212"/>
         <source>confirmDialog.chartNotSet.title</source>
         <translation>未指定谱面</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="206"/>
+        <location filename="../../implements/components/scoreEditor.py" line="213"/>
         <source>confirmDialog.chartNotSet.text</source>
         <translation>未指定谱面，无法提交。</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="214"/>
+        <location filename="../../implements/components/scoreEditor.py" line="221"/>
         <source>confirmDialog.scoreIncomplete.title</source>
         <translation>分数不完整</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="215"/>
+        <location filename="../../implements/components/scoreEditor.py" line="222"/>
         <source>confirmDialog.scoreIncomplete.text</source>
         <translation>缺失必要的分数数据，无法提交。</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="324"/>
+        <location filename="../../implements/components/scoreEditor.py" line="331"/>
         <source>validate.chartNotSet</source>
         <translation>未指定谱面</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="328"/>
+        <location filename="../../implements/components/scoreEditor.py" line="335"/>
         <source>validate.chartIncomple</source>
         <translation>谱面数据缺失，无法验证分数</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="332"/>
+        <location filename="../../implements/components/scoreEditor.py" line="339"/>
         <source>validate.scoreMismatch</source>
         <translation>分数可能有误</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="336"/>
+        <location filename="../../implements/components/scoreEditor.py" line="343"/>
         <source>validate.scoreEmpty</source>
         <translation>分数为空</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="340"/>
+        <location filename="../../implements/components/scoreEditor.py" line="347"/>
         <source>validate.scoreIncomplete</source>
         <translation>缺失必要分数数据</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="346"/>
+        <location filename="../../implements/components/scoreEditor.py" line="353"/>
         <source>validate.scoreIncompleteForValidate</source>
         <translation>分数不完整，无法验证</translation>
     </message>
     <message>
-        <location filename="../../implements/components/scoreEditor.py" line="351"/>
+        <location filename="../../implements/components/scoreEditor.py" line="358"/>
         <source>validate.unknownState</source>
         <translation>未知</translation>
     </message>
@@ -580,12 +580,12 @@
         <translation>管理</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDbEntry.py" line="16"/>
+        <location filename="../../implements/tabs/tabDbEntry.py" line="20"/>
         <source>tab.scoreTableViewer</source>
         <translation>表 [分数]</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDbEntry.py" line="20"/>
+        <location filename="../../implements/tabs/tabDbEntry.py" line="24"/>
         <source>tab.b30TableViewer</source>
         <translation>表 [B30]</translation>
     </message>
@@ -768,6 +768,11 @@
     </message>
     <message>
         <location filename="../../designer/tabs/tabToolsEntry.ui" line="34"/>
+        <source>tab.chartRecommend</source>
+        <translation>谱面推荐</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabToolsEntry.ui" line="39"/>
         <source>tab.andreal</source>
         <translation>Andreal 图片生成</translation>
     </message>
@@ -835,9 +840,33 @@
         <translation>生成</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="81"/>
+        <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="82"/>
         <source>imageWhatIsThisDialog.description</source>
         <translation>生成……&lt;ul&gt;&lt;li&gt;/a - 最近一次成绩&lt;/li&gt;&lt;li&gt;/a b30 - /a b30&lt;/li&gt;&lt;li&gt;/a info - 所选谱面的最好成绩&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>TabTools_ChartRecommend</name>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="20"/>
+        <source>constantRangeFromPlayRating</source>
+        <translation>由单曲 PTT 逆算谱面定数范围</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="118"/>
+        <source>chartsByConstant</source>
+        <translation>按定数查谱</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="174"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="273"/>
+        <source>refreshButton</source>
+        <translation>换一批</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="197"/>
+        <source>chartsRecommendFromPlayRating</source>
+        <translation>由单曲 PTT 结合最好成绩推荐谱面</translation>
     </message>
 </context>
 <context>
@@ -1006,6 +1035,11 @@
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="649"/>
         <source>difficulty.title</source>
         <translation>标题</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="695"/>
+        <source>playRatingCalculate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
