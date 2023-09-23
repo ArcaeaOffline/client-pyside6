@@ -20,7 +20,7 @@
    <item>
     <widget class="QLabel" name="databaseDescribeLabel">
      <property name="text">
-      <string extracomment="This database now have {} packs, {} songs, {} difficulties, {} chart info ({} complete) and {} scores.">databaseDescribeLabel {} {} {} {} {} {}</string>
+      <string notr="true" extracomment="This database now have {} packs, {} songs, {} difficulties, {} chart info ({} complete) and {} scores.">...</string>
      </property>
     </widget>
    </item>

@@ -752,7 +752,7 @@ validation</translation>
         <location filename="../../designer/tabs/tabOverview.ui" line="23"/>
         <source>databaseDescribeLabel {} {} {} {} {} {}</source>
         <extracomment>This database now have {} packs, {} songs, {} difficulties, {} chart info ({} complete) and {} scores.</extracomment>
-        <translation>This database now have {} packs, {} songs, {} difficulties, {} chart info ({} complete) and {} scores.</translation>
+        <translation>There are {} packs, {} songs, {} difficulties, {} chart info ({} complete) and {} scores in database.</translation>
     </message>
 </context>
 <context>

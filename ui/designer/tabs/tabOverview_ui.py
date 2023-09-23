@@ -33,6 +33,7 @@ class Ui_TabOverview(object):
 
         self.databaseDescribeLabel = QLabel(TabOverview)
         self.databaseDescribeLabel.setObjectName(u"databaseDescribeLabel")
+        self.databaseDescribeLabel.setText(u"...")
 
         self.verticalLayout.addWidget(self.databaseDescribeLabel)
 
@@ -108,7 +109,6 @@ class Ui_TabOverview(object):
     # setupUi
 
     def retranslateUi(self, TabOverview):
-        self.databaseDescribeLabel.setText(QCoreApplication.translate("TabOverview", u"databaseDescribeLabel {} {} {} {} {} {}", None))
         pass
     # retranslateUi
 
