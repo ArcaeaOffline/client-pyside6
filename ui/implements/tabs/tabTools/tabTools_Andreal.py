@@ -9,16 +9,7 @@ from arcaea_offline.external.andreal.api_data import (
 from arcaea_offline.models import Chart
 from PySide6.QtCore import QCoreApplication, QDir, QFileInfo, Qt, Slot
 from PySide6.QtGui import QGuiApplication, QImage, QPainter, QPaintEvent, QPixmap
-from PySide6.QtWidgets import (
-    QButtonGroup,
-    QDialog,
-    QDialogButtonBox,
-    QFileDialog,
-    QLabel,
-    QMessageBox,
-    QVBoxLayout,
-    QWidget,
-)
+from PySide6.QtWidgets import QButtonGroup, QFileDialog, QLabel, QMessageBox, QWidget
 
 from ui.designer.tabs.tabTools.tabTools_Andreal_ui import Ui_TabTools_Andreal
 from ui.extends.shared.language import LanguageChangeEventFilter
@@ -70,27 +61,6 @@ class ChartSelectorDialog(ChartSelector):
         self.setSongIdSelectorMode(SongIdSelectorMode.Chart)
 
 
-class ImageTypeWhatIsThisDialog(QDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.verticalLayout = QVBoxLayout(self)
-
-        self.label = QLabel(
-            # fmt: off
-            QCoreApplication.translate('TabTools_Andreal', 'imageWhatIsThisDialog.description')
-            # fmt: on
-        )
-
-        self.verticalLayout.addWidget(self.label)
-
-        self.buttonBox = QDialogButtonBox(Qt.Orientation.Horizontal)
-        self.buttonBox.addButton(QDialogButtonBox.StandardButton.Ok)
-        self.buttonBox.accepted.connect(self.close)
-        self.buttonBox.rejected.connect(self.close)
-
-        self.verticalLayout.addWidget(self.buttonBox)
-
-
 class TabTools_Andreal(Ui_TabTools_Andreal, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -129,10 +99,6 @@ class TabTools_Andreal(Ui_TabTools_Andreal, QWidget):
         self.andrealHelper.ready.connect(self.generateReady)
         self.andrealHelper.finished.connect(self.generateFinished)
 
-        self.imageTypeWhatIsThisButton.clicked.connect(
-            lambda: ImageTypeWhatIsThisDialog(self).show()
-        )
-
         self.imageTypeButtonGroup = QButtonGroup(self)
         self.imageTypeButtonGroup.addButton(self.imageType_infoRadioButton, 0)
         self.imageTypeButtonGroup.addButton(self.imageType_bestRadioButton, 1)
@@ -162,6 +128,16 @@ class TabTools_Andreal(Ui_TabTools_Andreal, QWidget):
             self.chartSelectLabel.setText(
                 f"{chart.title}({chart.song_id}), {chart.rating_class}"
             )
+
+    @Slot()
+    def on_imageTypeWhatIsThisButton_clicked(self):
+        QMessageBox.information(
+            self,
+            None,
+            # fmt: off
+            QCoreApplication.translate("TabTools_Andreal", "imageWhatIsThisDialog.description"),
+            # fmt: on
+        )
 
     def imageFormat(self):
         buttonId = self.imageFormatButtonGroup.checkedId()

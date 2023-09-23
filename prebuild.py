@@ -6,6 +6,23 @@ from pathlib import Path
 versionFile = Path("ui/resources/VERSION")
 assert versionFile.exists()
 
+versionTexts = []
+
+projectVersionText = "arcaea-offline-pyside-ui\n"
+gitDescribe = os.popen("git describe --tags --long")
+gitDescribeContent = gitDescribe.read().replace("\n", "")
+if gitDescribe.close() is None:
+    projectVersionText += f"{gitDescribeContent}"
+else:
+    gitRevParse = os.popen("git rev-parse --short HEAD")
+    gitRevParseContent = gitRevParse.read().replace("\n", "")
+    projectVersionText += f"commit {gitRevParseContent}"
+    gitRevParse.close()
+projectVersionText += "\n"
+
+versionTexts.append(projectVersionText)
+
+
 # detect pip
 pipName = None
 possiblePipNames = ["pip3", "pip"]
@@ -19,7 +36,6 @@ for possiblePipName in possiblePipNames:
         pipName = possiblePipName
         break
 
-versionTexts = []
 
 # if possiblePipName:
 #     pipFreezeLines = os.popen(f"{possiblePipName} freeze").read().split("\n")

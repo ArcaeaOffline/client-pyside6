@@ -1,6 +1,6 @@
 from PySide6.QtCore import QFile, Qt, Slot
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import QMessageBox, QWidget
+from PySide6.QtWidgets import QMessageBox, QTextBrowser, QWidget
 
 from ui.designer.tabs.tabAbout_ui import Ui_TabAbout
 from ui.extends.shared.language import LanguageChangeEventFilter
@@ -28,8 +28,12 @@ class TabAbout(Ui_TabAbout, QWidget):
 
     @Slot()
     def on_versionInfoButton_clicked(self):
+        textBrowser = QTextBrowser(self)
+        textBrowser.setWindowFlag(Qt.WindowType.Dialog, True)
+        textBrowser.setWindowTitle("version")
         versionFile = QFile(":/VERSION")
         versionFile.open(QFile.OpenModeFlag.ReadOnly)
         versionText = str(versionFile.readAll(), encoding="utf-8")
         versionFile.close()
-        QMessageBox.information(self, None, versionText)
+        textBrowser.setText(versionText)
+        textBrowser.show()
