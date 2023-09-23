@@ -1040,7 +1040,7 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="695"/>
         <source>playRatingCalculate</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculate Play Rating</translation>
     </message>
 </context>
 <context>

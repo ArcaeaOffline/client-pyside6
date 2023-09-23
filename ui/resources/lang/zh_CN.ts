@@ -1039,7 +1039,7 @@
     <message>
         <location filename="../../designer/tabs/tabTools/tabTools_InfoLookup.ui" line="695"/>
         <source>playRatingCalculate</source>
-        <translation type="unfinished"></translation>
+        <translation>计算单曲 PTT</translation>
     </message>
 </context>
 <context>

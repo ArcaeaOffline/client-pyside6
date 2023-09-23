@@ -1,5 +1,6 @@
 import re
 
+from arcaea_offline.calculate import calculate_play_rating
 from arcaea_offline.database import Database
 from PySide6.QtCore import QDateTime
 from PySide6.QtWidgets import QVBoxLayout, QWidget
@@ -25,6 +26,16 @@ class TabTools_InfoLookup(Ui_TabTools_InfoLookup, QWidget):
         self.songIdSelector.valueChanged.connect(self.updateRatingClassEnabled)
         self.ratingClassSelector.valueChanged.connect(self.updateDifficultyLabels)
         self.ratingClassSelector.valueChanged.connect(self.updateChartInfoLabels)
+
+        self.songIdSelector.valueChanged.connect(
+            self.updatePlayRatingCalculateResultLabel
+        )
+        self.ratingClassSelector.valueChanged.connect(
+            self.updatePlayRatingCalculateResultLabel
+        )
+        self.playRatingCalculateScoreLineEdit.textChanged.connect(
+            self.updatePlayRatingCalculateResultLabel
+        )
 
         self.langSelectComboBox.addItem("En - English [en]", "en")
         self.langSelectComboBox.addItem("あ - Japanese [ja]", "ja")
@@ -193,7 +204,38 @@ class TabTools_InfoLookup(Ui_TabTools_InfoLookup, QWidget):
 
         chartInfo = self.db.get_chart_info(songId, ratingClass)
 
+        if not chartInfo:
+            self.resetChartInfoLabels()
+            return
+
         self.chartConstantLabel.setText(str(chartInfo.constant / 10))
         self.chartNotesLabel.setText(
             str(chartInfo.notes) if chartInfo.notes is not None else "-"
         )
+
+    def resetPlayRatingCalculateResultLabel(self):
+        self.playRatingCalculateResultLabel.setText("...")
+
+    def updatePlayRatingCalculateResultLabel(self):
+        songId = self.songIdSelector.songId()
+        ratingClass = self.ratingClassSelector.value()
+
+        if not songId or ratingClass is None:
+            self.resetPlayRatingCalculateResultLabel()
+            return
+
+        chartInfo = self.db.get_chart_info(songId, ratingClass)
+
+        if not chartInfo or not chartInfo.constant:
+            self.resetPlayRatingCalculateResultLabel()
+            return
+
+        if scoreText := self.playRatingCalculateScoreLineEdit.text().replace("'", ""):
+            score = int(scoreText)
+
+            self.playRatingCalculateResultLabel.setText(
+                f"{calculate_play_rating(chartInfo.constant / 10, score):.3f}"
+            )
+        else:
+            self.resetPlayRatingCalculateResultLabel()
+            return
