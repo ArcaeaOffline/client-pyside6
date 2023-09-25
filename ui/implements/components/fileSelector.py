@@ -1,4 +1,5 @@
 from PySide6.QtCore import QDir, QFileInfo, Qt, Signal, Slot
+from PySide6.QtGui import QDragEnterEvent, QDragLeaveEvent, QDropEvent
 from PySide6.QtWidgets import QFileDialog, QWidget
 
 from ui.designer.components.fileSelector_ui import Ui_FileSelector
@@ -27,6 +28,26 @@ class FileSelector(Ui_FileSelector, QWidget):
         self.__mode = self.getOpenFileNames
 
         self.settingsKey = None
+
+        self.setAcceptDrops(True)
+
+    def dragEnterEvent(self, event: QDragEnterEvent):
+        if event.mimeData().hasUrls() and event.mimeData().urls()[0].isLocalFile():
+            event.accept()
+            self.elidedLabel.setText(
+                f'Drop "{QFileInfo(event.mimeData().urls()[0].toLocalFile()).fileName()}"?'
+            )
+            return
+        return super().dragEnterEvent(event)
+
+    def dragLeaveEvent(self, event: QDragLeaveEvent):
+        self.updateLabel()
+        return super().dragLeaveEvent(event)
+
+    def dropEvent(self, event: QDropEvent):
+        url = event.mimeData().urls()[0]
+        file = url.toLocalFile()
+        self.selectFile(file)
 
     def getOpenFileNames(self):
         selectedFiles, filter = QFileDialog.getOpenFileNames(
