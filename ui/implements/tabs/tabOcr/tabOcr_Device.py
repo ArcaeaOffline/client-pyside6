@@ -99,9 +99,19 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
         files, _filter = QFileDialog.getOpenFileNames(
             self, None, "", "Image Files (*.png *.jpg *.jpeg *.bmp *.webp);;*"
         )
-        for file in files:
+        filesNum = len(files)
+        if filesNum >= 1000:
+            updateFreq = 20
+        elif filesNum >= 100:
+            updateFreq = 10
+        elif filesNum >= 30:
+            updateFreq = 5
+        else:
+            updateFreq = 1
+        for i, file in enumerate(files):
             self.ocrQueueModel.addItem(file)
-            QApplication.processEvents()
+            if i % updateFreq == 0:
+                QApplication.processEvents()
         self.ocrQueue.resizeTableView()
 
     @Slot()
