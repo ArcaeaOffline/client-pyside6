@@ -2,6 +2,7 @@ import contextlib
 import logging
 from typing import Tuple
 
+import cv2
 from arcaea_offline.database import Database
 from arcaea_offline.models import Chart, Score
 from arcaea_offline_ocr.device.shared import DeviceOcrResult
@@ -28,7 +29,9 @@ class TabDeviceV2OcrRunnable(OcrRunnable):
 
     def run(self):
         try:
-            rois = DeviceV2Rois(self.device, imread_unicode(self.imagePath))
+            rois = DeviceV2Rois(
+                self.device, imread_unicode(self.imagePath, cv2.IMREAD_COLOR)
+            )
             rois.sizes = (
                 SizesV2(self.device.factor)
                 if self.sizesV2
@@ -53,7 +56,7 @@ class TabDeviceV2AutoRoisOcrRunnable(OcrRunnable):
 
     def run(self):
         try:
-            rois = DeviceV2AutoRois(imread_unicode(self.imagePath))
+            rois = DeviceV2AutoRois(imread_unicode(self.imagePath, cv2.IMREAD_COLOR))
             factor = rois.sizes.factor
             rois.sizes = SizesV2(factor) if self.sizesV2 else SizesV1(factor)
             ocr = DeviceV2Ocr(self.knnModel, self.phashDb)
