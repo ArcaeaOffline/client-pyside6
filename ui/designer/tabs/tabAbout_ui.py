@@ -72,6 +72,12 @@ class Ui_TabAbout(object):
 
         self.horizontalLayout.addWidget(self.versionInfoButton)
 
+        self.licenseButton = QPushButton(TabAbout)
+        self.licenseButton.setObjectName(u"licenseButton")
+        self.licenseButton.setText(u"LICENSE")
+
+        self.horizontalLayout.addWidget(self.licenseButton)
+
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer_2)

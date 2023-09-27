@@ -37,3 +37,16 @@ class TabAbout(Ui_TabAbout, QWidget):
         versionFile.close()
         textBrowser.setText(versionText)
         textBrowser.show()
+
+    @Slot()
+    def on_licenseButton_clicked(self):
+        textBrowser = QTextBrowser(self)
+        textBrowser.setWindowFlag(Qt.WindowType.Dialog, True)
+        textBrowser.setWindowTitle("LICENSE")
+        licenseFile = QFile(":/LICENSE")
+        licenseFile.open(QFile.OpenModeFlag.ReadOnly)
+        licenseText = str(licenseFile.readAll(), encoding="utf-8")
+        licenseFile.close()
+        textBrowser.setText(licenseText)
+        textBrowser.setMinimumSize(500, 400)
+        textBrowser.show()
