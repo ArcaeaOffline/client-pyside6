@@ -266,9 +266,9 @@ class OcrQueueModel(QAbstractListModel):
         if (
             isinstance(chart, Chart)
             and isinstance(score, Score)
-            and chart.notes
-            and score.pure
-            and score.far
+            and chart.notes is not None
+            and score.pure is not None
+            and score.far is not None
         ):
             scoreRange = calculate_score_range(chart.notes, score.pure, score.far)
             scoreValidateOk = scoreRange[0] <= score.score <= scoreRange[1]
