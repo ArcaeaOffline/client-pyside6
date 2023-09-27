@@ -5,8 +5,8 @@ import cv2
 # from arcaea_offline_ocr_device_creation_wizard.implements.wizard import Wizard
 from arcaea_offline_ocr.device.v1.definition import DeviceV1
 from arcaea_offline_ocr.device.v2.definition import DeviceV2
-from arcaea_offline_ocr.sift_db import SIFTDatabase
 from arcaea_offline_ocr.phash_db import ImagePHashDatabase
+from arcaea_offline_ocr.sift_db import SIFTDatabase
 from PySide6.QtCore import Qt, Slot
 from PySide6.QtWidgets import QApplication, QFileDialog, QWidget
 
@@ -16,7 +16,8 @@ from ui.extends.shared.language import LanguageChangeEventFilter
 from ui.extends.shared.settings import (
     DEVICES_JSON_FILE,
     KNN_MODEL_FILE,
-    SIFT_DATABASE_FILE,
+    PHASH_DATABASE_FILE,
+    TESSERACT_FILE,
     Settings,
 )
 from ui.extends.tabs.tabOcr.tabOcr_Device import (
@@ -39,20 +40,15 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
 
         self.deviceFileSelector.filesSelected.connect(self.deviceFileSelected)
         self.knnModelSelector.filesSelected.connect(self.knnModelFileSelected)
-        # self.siftDatabaseSelector.filesSelected.connect(self.siftDatabaseFileSelected)
         self.phashDatabaseSelector.filesSelected.connect(self.phashDatabaseFileSelected)
 
+        logger.info("Applying settings...")
         self.deviceFileSelector.connectSettings(DEVICES_JSON_FILE)
         self.knnModelSelector.connectSettings(KNN_MODEL_FILE)
-        # self.siftDatabaseSelector.connectSettings(SIFT_DATABASE_FILE)
-
+        self.tesseractFileSelector.connectSettings(TESSERACT_FILE)
+        self.phashDatabaseSelector.connectSettings(PHASH_DATABASE_FILE)
         settings = Settings()
-        logger.info("Applying default settings...")
-        self.deviceFileSelector.selectFile(settings.devicesJsonFile())
-        self.tesseractFileSelector.selectFile(settings.tesseractPath())
         self.deviceComboBox.selectDevice(settings.deviceUuid())
-        self.knnModelSelector.selectFile(settings.knnModelFile())
-        # vself.siftDatabaseSelector.selectFile(settings.siftDatabaseFile())
 
         self.ocrQueueModel = OcrQueueModel(self)
         self.ocrQueue.setModel(self.ocrQueueModel)
@@ -93,10 +89,6 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
     def knnModelFileSelected(self):
         if selectedFiles := self.knnModelSelector.selectedFiles():
             self.knnModel = cv2.ml.KNearest.load(selectedFiles[0])
-
-    def siftDatabaseFileSelected(self):
-        if selectedFiles := self.siftDatabaseSelector.selectedFiles():
-            self.siftDatabase = SIFTDatabase(selectedFiles[0])
 
     def phashDatabaseFileSelected(self):
         if selectedFiles := self.phashDatabaseSelector.selectedFiles():

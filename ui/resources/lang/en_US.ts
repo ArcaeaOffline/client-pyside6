@@ -477,10 +477,12 @@ validation</translation>
         <location filename="../../implements/settings/settingsAndreal.py" line="82"/>
         <location filename="../../implements/settings/settingsAndreal.py" line="85"/>
         <location filename="../../implements/settings/settingsGeneral.py" line="107"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="137"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="140"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="143"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="146"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="190"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="193"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="196"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="199"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="202"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="205"/>
         <source>resetButton</source>
         <translation>Reset</translation>
     </message>
@@ -515,29 +517,39 @@ validation</translation>
         <translation>Database URL</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="134"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="187"/>
         <source>ocr.title</source>
         <translation>OCR</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="136"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="189"/>
         <source>ocr.devicesJson.label</source>
         <translation>Default devices.json</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="139"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="192"/>
         <source>ocr.deviceUuid.label</source>
         <translation>Default device</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="142"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="195"/>
         <source>ocr.knnModelFile.label</source>
         <translation>Default KNearest model</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="145"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="198"/>
+        <source>ocr.b30KnnModelFile.label</source>
+        <translation>Default B30 KNearest model</translation>
+    </message>
+    <message>
+        <location filename="../../implements/settings/settingsOcr.py" line="201"/>
         <source>ocr.siftDatabaseFile.label</source>
         <translation>Default SIFT database file</translation>
+    </message>
+    <message>
+        <location filename="../../implements/settings/settingsOcr.py" line="204"/>
+        <source>ocr.phashDatabaseFile.label</source>
+        <translation>Default image PHash database</translation>
     </message>
 </context>
 <context>
@@ -570,7 +582,7 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabAbout.ui" line="86"/>
         <source>Version Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Version Info</translation>
     </message>
 </context>
 <context>
@@ -704,8 +716,8 @@ validation</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="62"/>
-        <source>siftDatabaseSelector.title</source>
-        <translation>Select Image SIFT Database</translation>
+        <source>phashDatabaseSelector.title</source>
+        <translation>Select Image PHash Database</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="74"/>
@@ -726,32 +738,31 @@ validation</translation>
         <translation>Select Device</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="33"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="35"/>
         <source>deviceSelector.useAutoFactor</source>
         <translation>Auto calculate factor</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="70"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="81"/>
         <source>knnModelSelector.title</source>
         <translation>Select KNearest Model</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="101"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="112"/>
         <source>tesseractSelector.title</source>
         <translation>Select tesseract Path</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="129"/>
-        <source>siftDatabaseSelector.title</source>
-        <translation>Select Image SIFT Database</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="140"/>
+        <source>phashDatabaseSelector.title</source>
+        <translation>Select Image PHash Database</translation>
     </message>
 </context>
 <context>
     <name>TabOverview</name>
     <message>
-        <location filename="../../designer/tabs/tabOverview.ui" line="23"/>
+        <location filename="../../implements/tabs/tabOverview.py" line="43"/>
         <source>databaseDescribeLabel {} {} {} {} {} {}</source>
-        <extracomment>This database now have {} packs, {} songs, {} difficulties, {} chart info ({} complete) and {} scores.</extracomment>
         <translation>There are {} packs, {} songs, {} difficulties, {} chart info ({} complete) and {} scores in database.</translation>
     </message>
 </context>
@@ -841,7 +852,7 @@ validation</translation>
         <translation>Generate</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="82"/>
+        <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="138"/>
         <source>imageWhatIsThisDialog.description</source>
         <translation>Generate image of...&lt;ul&gt;&lt;li&gt;/a - the most recent score&lt;/li&gt;&lt;li&gt;/a b30 - best30 image&lt;/li&gt;&lt;li&gt;/a info - best score of the selected chart&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>

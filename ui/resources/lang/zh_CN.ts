@@ -476,10 +476,12 @@
         <location filename="../../implements/settings/settingsAndreal.py" line="82"/>
         <location filename="../../implements/settings/settingsAndreal.py" line="85"/>
         <location filename="../../implements/settings/settingsGeneral.py" line="107"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="137"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="140"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="143"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="146"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="190"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="193"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="196"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="199"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="202"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="205"/>
         <source>resetButton</source>
         <translation>重置</translation>
     </message>
@@ -514,29 +516,39 @@
         <translation>数据库 URL</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="134"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="187"/>
         <source>ocr.title</source>
         <translation>OCR</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="136"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="189"/>
         <source>ocr.devicesJson.label</source>
         <translation>默认设备定义文件</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="139"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="192"/>
         <source>ocr.deviceUuid.label</source>
         <translation>默认设备</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="142"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="195"/>
         <source>ocr.knnModelFile.label</source>
         <translation>默认 KNearest 模型</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="145"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="198"/>
+        <source>ocr.b30KnnModelFile.label</source>
+        <translation>默认 B30 KNearest 模型</translation>
+    </message>
+    <message>
+        <location filename="../../implements/settings/settingsOcr.py" line="201"/>
         <source>ocr.siftDatabaseFile.label</source>
         <translation>默认 SIFT 特征值数据库</translation>
+    </message>
+    <message>
+        <location filename="../../implements/settings/settingsOcr.py" line="204"/>
+        <source>ocr.phashDatabaseFile.label</source>
+        <translation>默认图像 PHash 数据库</translation>
     </message>
 </context>
 <context>
@@ -569,7 +581,7 @@
     <message>
         <location filename="../../designer/tabs/tabAbout.ui" line="86"/>
         <source>Version Info</source>
-        <translation type="unfinished"></translation>
+        <translation>版本信息</translation>
     </message>
 </context>
 <context>
@@ -703,8 +715,8 @@
     </message>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="62"/>
-        <source>siftDatabaseSelector.title</source>
-        <translation>选择图像 SIFT 特征值数据库</translation>
+        <source>phashDatabaseSelector.title</source>
+        <translation>选择图像 PHash 数据库</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="74"/>
@@ -725,32 +737,31 @@
         <translation>选择设备</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="33"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="35"/>
         <source>deviceSelector.useAutoFactor</source>
         <translation>自动计算 factor</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="70"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="81"/>
         <source>knnModelSelector.title</source>
         <translation>选择 KNearest 模型</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="101"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="112"/>
         <source>tesseractSelector.title</source>
         <translation>选择 tesseract 路径</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="129"/>
-        <source>siftDatabaseSelector.title</source>
-        <translation>选择图像 SIFT 特征值数据库</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="140"/>
+        <source>phashDatabaseSelector.title</source>
+        <translation>选择图像 PHash 数据库</translation>
     </message>
 </context>
 <context>
     <name>TabOverview</name>
     <message>
-        <location filename="../../designer/tabs/tabOverview.ui" line="23"/>
+        <location filename="../../implements/tabs/tabOverview.py" line="43"/>
         <source>databaseDescribeLabel {} {} {} {} {} {}</source>
-        <extracomment>This database now have {} packs, {} songs, {} difficulties, {} chart info ({} complete) and {} scores.</extracomment>
         <translation>数据库中有 {} 个曲包，{} 首歌曲，{} 个难度，{} 个谱面信息（{} 个完整），{} 个分数记录。</translation>
     </message>
 </context>
@@ -840,7 +851,7 @@
         <translation>生成</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="82"/>
+        <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="138"/>
         <source>imageWhatIsThisDialog.description</source>
         <translation>生成……&lt;ul&gt;&lt;li&gt;/a - 最近一次成绩&lt;/li&gt;&lt;li&gt;/a b30 - /a b30&lt;/li&gt;&lt;li&gt;/a info - 所选谱面的最好成绩&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>

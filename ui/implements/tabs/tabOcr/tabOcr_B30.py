@@ -12,7 +12,11 @@ from ui.designer.tabs.tabOcr.tabOcr_B30_ui import Ui_TabOcr_B30
 from ui.extends.components.ocrQueue import OcrQueueModel
 from ui.extends.shared.cv2_utils import cv2BgrMatToQImage, qImageToCvMatBgr
 from ui.extends.shared.language import LanguageChangeEventFilter
-from ui.extends.shared.settings import KNN_MODEL_FILE, SIFT_DATABASE_FILE, Settings
+from ui.extends.shared.settings import (
+    B30_KNN_MODEL_FILE,
+    KNN_MODEL_FILE,
+    PHASH_DATABASE_FILE,
+)
 from ui.extends.tabs.tabOcr.tabOcr_B30 import ChieriV4OcrRunnable, b30ResultToScore
 
 logger = logging.getLogger(__name__)
@@ -35,11 +39,7 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
         self.imageSelector.filesSelected.connect(self.imageSelected)
         self.knnModelSelector.filesSelected.connect(self.knnModelSelected)
         self.b30KnnModelSelector.filesSelected.connect(self.b30KnnModelSelected)
-        # self.siftDatabaseSelector.filesSelected.connect(self.siftDatabaseSelected)
         self.phashDatabaseSelector.filesSelected.connect(self.phashDatabaseSelected)
-
-        self.knnModelSelector.connectSettings(KNN_MODEL_FILE)
-        # self.siftDatabaseSelector.connectSettings(SIFT_DATABASE_FILE)
 
         self.imagePath = None  # for checking only
         self.img = None
@@ -54,10 +54,10 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
 
         self.tryPrepareOcr.connect(self.prepareOcr)
 
-        settings = Settings()
         logger.info("Applying default settings...")
-        self.knnModelSelector.selectFile(settings.knnModelFile())
-        # self.siftDatabaseSelector.selectFile(settings.siftDatabaseFile())
+        self.knnModelSelector.connectSettings(KNN_MODEL_FILE)
+        self.b30KnnModelSelector.connectSettings(B30_KNN_MODEL_FILE)
+        self.phashDatabaseSelector.connectSettings(PHASH_DATABASE_FILE)
 
         self.ocrQueueModel = OcrQueueModel(self)
         self.ocrQueue.setModel(self.ocrQueueModel)
@@ -79,12 +79,6 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
         if selectedFiles := self.b30KnnModelSelector.selectedFiles():
             b30KnnModelPath = selectedFiles[0]
             self.b30KnnModel = cv2.ml.KNearest.load(b30KnnModelPath)
-            self.tryPrepareOcr.emit()
-
-    def siftDatabaseSelected(self):
-        if selectedFiles := self.siftDatabaseSelector.selectedFiles():
-            siftDatabasePath = selectedFiles[0]
-            self.siftDatabase = SIFTDatabase(siftDatabasePath)
             self.tryPrepareOcr.emit()
 
     def phashDatabaseSelected(self):

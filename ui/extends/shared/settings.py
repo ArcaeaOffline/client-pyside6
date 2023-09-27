@@ -25,7 +25,9 @@ DEVICES_JSON_FILE = "Ocr/DevicesJsonFile"
 DEVICE_UUID = "Ocr/DeviceUuid"
 TESSERACT_FILE = "Ocr/TesseractFile"
 KNN_MODEL_FILE = "Ocr/KnnModelFile"
+B30_KNN_MODEL_FILE = "Ocr/B30KnnModelFile"
 SIFT_DATABASE_FILE = "Ocr/SiftDatabaseFile"
+PHASH_DATABASE_FILE = "Ocr/PHashDatabaseFile"
 
 ANDREAL_FOLDER = "Andreal/AndrealFolder"
 ANDREAL_EXECUTABLE = "Andreal/AndrealExecutable"
@@ -104,6 +106,15 @@ class Settings(QSettings, metaclass=QObjectSingleton):
     def resetKnnModelFile(self):
         self._resetStrItem(KNN_MODEL_FILE)
 
+    def b30KnnModelFile(self):
+        return self._strItem(B30_KNN_MODEL_FILE)
+
+    def setB30KnnModelFile(self, value: str):
+        self._setStrItem(B30_KNN_MODEL_FILE, value)
+
+    def resetB30KnnModelFile(self):
+        self._resetStrItem(B30_KNN_MODEL_FILE)
+
     def siftDatabaseFile(self):
         return self._strItem(SIFT_DATABASE_FILE)
 
@@ -112,6 +123,15 @@ class Settings(QSettings, metaclass=QObjectSingleton):
 
     def resetSiftDatabaseFile(self):
         self._resetStrItem(SIFT_DATABASE_FILE)
+
+    def phashDatabaseFile(self):
+        return self._strItem(PHASH_DATABASE_FILE)
+
+    def setPHashDatabaseFile(self, value: str):
+        self._setStrItem(PHASH_DATABASE_FILE, value)
+
+    def resetPHashDatabaseFile(self):
+        self._resetStrItem(PHASH_DATABASE_FILE)
 
     def andrealFolder(self):
         return self._strItem(ANDREAL_FOLDER)
