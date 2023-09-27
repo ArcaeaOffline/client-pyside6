@@ -59,11 +59,11 @@
      <item>
       <widget class="QGroupBox" name="groupBox_4">
        <property name="title">
-        <string>siftDatabaseSelector.title</string>
+        <string>phashDatabaseSelector.title</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="FileSelector" name="siftDatabaseSelector" native="true"/>
+         <widget class="FileSelector" name="phashDatabaseSelector" native="true"/>
         </item>
        </layout>
       </widget>

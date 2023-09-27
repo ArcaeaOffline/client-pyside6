@@ -2,6 +2,7 @@ import logging
 
 import cv2
 from arcaea_offline_ocr.b30.chieri.v4.ocr import ChieriBotV4Ocr
+from arcaea_offline_ocr.phash_db import ImagePHashDatabase
 from arcaea_offline_ocr.sift_db import SIFTDatabase
 from arcaea_offline_ocr.utils import imread_unicode
 from PySide6.QtCore import Signal, Slot
@@ -34,10 +35,11 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
         self.imageSelector.filesSelected.connect(self.imageSelected)
         self.knnModelSelector.filesSelected.connect(self.knnModelSelected)
         self.b30KnnModelSelector.filesSelected.connect(self.b30KnnModelSelected)
-        self.siftDatabaseSelector.filesSelected.connect(self.siftDatabaseSelected)
+        # self.siftDatabaseSelector.filesSelected.connect(self.siftDatabaseSelected)
+        self.phashDatabaseSelector.filesSelected.connect(self.phashDatabaseSelected)
 
         self.knnModelSelector.connectSettings(KNN_MODEL_FILE)
-        self.siftDatabaseSelector.connectSettings(SIFT_DATABASE_FILE)
+        # self.siftDatabaseSelector.connectSettings(SIFT_DATABASE_FILE)
 
         self.imagePath = None  # for checking only
         self.img = None
@@ -45,7 +47,8 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
         self.paddle = None
         self.knnModel = None
         self.b30KnnModel = None
-        self.siftDatabase = None
+        # self.siftDatabase = None
+        self.phashDatabase = None
 
         self.ocr = None
 
@@ -54,7 +57,7 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
         settings = Settings()
         logger.info("Applying default settings...")
         self.knnModelSelector.selectFile(settings.knnModelFile())
-        self.siftDatabaseSelector.selectFile(settings.siftDatabaseFile())
+        # self.siftDatabaseSelector.selectFile(settings.siftDatabaseFile())
 
         self.ocrQueueModel = OcrQueueModel(self)
         self.ocrQueue.setModel(self.ocrQueueModel)
@@ -84,6 +87,12 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
             self.siftDatabase = SIFTDatabase(siftDatabasePath)
             self.tryPrepareOcr.emit()
 
+    def phashDatabaseSelected(self):
+        if selectedFiles := self.phashDatabaseSelector.selectedFiles():
+            phashDatabasePath = selectedFiles[0]
+            self.phashDatabase = ImagePHashDatabase(phashDatabasePath)
+            self.tryPrepareOcr.emit()
+
     def prepareOcr(self):
         b30Type = self.b30TypeComboBox.currentData()
         if not b30Type:
@@ -94,13 +103,13 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
                 not self.imagePath
                 or not self.knnModel
                 or not self.b30KnnModel
-                or not self.siftDatabase
+                or not self.phashDatabase
             ):
                 return
 
             self.ocrQueueModel.clear()
 
-            ocr = ChieriBotV4Ocr(self.knnModel, self.b30KnnModel, self.siftDatabase)
+            ocr = ChieriBotV4Ocr(self.knnModel, self.b30KnnModel, self.phashDatabase)
             ocr.set_factor(self.img)
             self.ocr = ocr
 
@@ -116,7 +125,7 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
             not self.imagePath
             or not self.knnModel
             or not self.b30KnnModel
-            or not self.siftDatabase
+            or not self.phashDatabase
         ):
             return
 

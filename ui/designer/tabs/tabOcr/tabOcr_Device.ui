@@ -28,11 +28,22 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QCheckBox" name="deviceUseAutoFactorCheckBox">
-        <property name="text">
-         <string>deviceSelector.useAutoFactor</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QCheckBox" name="deviceUseAutoFactorCheckBox">
+          <property name="text">
+           <string>deviceSelector.useAutoFactor</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="deviceSizesV2CheckBox">
+          <property name="text">
+           <string notr="true">SizesV2</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
        <widget class="FileSelector" name="deviceFileSelector" native="true"/>
@@ -126,11 +137,11 @@
           <item>
            <widget class="QGroupBox" name="groupBox_5">
             <property name="title">
-             <string>siftDatabaseSelector.title</string>
+             <string>phashDatabaseSelector.title</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
-              <widget class="FileSelector" name="siftDatabaseSelector" native="true"/>
+              <widget class="FileSelector" name="phashDatabaseSelector" native="true"/>
              </item>
             </layout>
            </widget>
@@ -162,15 +173,15 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>DevicesComboBox</class>
-   <extends>QComboBox</extends>
-   <header>ui.implements.components.devicesComboBox</header>
-  </customwidget>
-  <customwidget>
    <class>OcrQueue</class>
    <extends>QWidget</extends>
    <header>ui.implements.components.ocrQueue</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>DevicesComboBox</class>
+   <extends>QComboBox</extends>
+   <header>ui.implements.components.devicesComboBox</header>
   </customwidget>
  </customwidgets>
  <resources/>

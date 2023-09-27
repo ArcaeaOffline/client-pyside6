@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'tabOcr_B30.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.1
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -76,10 +76,10 @@ class Ui_TabOcr_B30(object):
         self.groupBox_4.setObjectName(u"groupBox_4")
         self.verticalLayout_5 = QVBoxLayout(self.groupBox_4)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.siftDatabaseSelector = FileSelector(self.groupBox_4)
-        self.siftDatabaseSelector.setObjectName(u"siftDatabaseSelector")
+        self.phashDatabaseSelector = FileSelector(self.groupBox_4)
+        self.phashDatabaseSelector.setObjectName(u"phashDatabaseSelector")
 
-        self.verticalLayout_5.addWidget(self.siftDatabaseSelector)
+        self.verticalLayout_5.addWidget(self.phashDatabaseSelector)
 
 
         self.horizontalLayout_3.addWidget(self.groupBox_4)
@@ -119,7 +119,7 @@ class Ui_TabOcr_B30(object):
         self.groupBox.setTitle(QCoreApplication.translate("TabOcr_B30", u"b30type", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("TabOcr_B30", u"knnModelSelector.title", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("TabOcr_B30", u"b30KnnModelSelector.title", None))
-        self.groupBox_4.setTitle(QCoreApplication.translate("TabOcr_B30", u"siftDatabaseSelector.title", None))
+        self.groupBox_4.setTitle(QCoreApplication.translate("TabOcr_B30", u"phashDatabaseSelector.title", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("TabOcr_B30", u"imageSelector.title", None))
         pass
     # retranslateUi

@@ -5,8 +5,8 @@ from typing import Tuple
 from arcaea_offline.database import Database
 from arcaea_offline.models import Chart, Score
 from arcaea_offline_ocr.device.shared import DeviceOcrResult
-from arcaea_offline_ocr.device.v2.ocr import DeviceV2Ocr
-from arcaea_offline_ocr.device.v2.rois import DeviceV2AutoRois, DeviceV2Rois
+from arcaea_offline_ocr.device.v2 import DeviceV2AutoRois, DeviceV2Ocr, DeviceV2Rois
+from arcaea_offline_ocr.device.v2.sizes import SizesV1, SizesV2
 from arcaea_offline_ocr.utils import imread_unicode
 from PySide6.QtCore import QDateTime, QFileInfo
 
@@ -18,17 +18,23 @@ import exif
 
 
 class TabDeviceV2OcrRunnable(OcrRunnable):
-    def __init__(self, imagePath, device, knnModel, siftDb):
+    def __init__(self, imagePath, device, knnModel, phashDb, *, sizesV2: bool):
         super().__init__()
         self.imagePath = imagePath
         self.device = device
         self.knnModel = knnModel
-        self.siftDb = siftDb
+        self.phashDb = phashDb
+        self.sizesV2 = sizesV2
 
     def run(self):
         try:
             rois = DeviceV2Rois(self.device, imread_unicode(self.imagePath))
-            ocr = DeviceV2Ocr(self.knnModel, self.siftDb)
+            rois.sizes = (
+                SizesV2(self.device.factor)
+                if self.sizesV2
+                else SizesV1(self.device.factor)
+            )
+            ocr = DeviceV2Ocr(self.knnModel, self.phashDb)
             result = ocr.ocr(rois)
             self.signals.resultReady.emit(result)
         except Exception:
@@ -38,16 +44,19 @@ class TabDeviceV2OcrRunnable(OcrRunnable):
 
 
 class TabDeviceV2AutoRoisOcrRunnable(OcrRunnable):
-    def __init__(self, imagePath, knnModel, siftDb):
+    def __init__(self, imagePath, knnModel, phashDb, *, sizesV2: bool):
         super().__init__()
         self.imagePath = imagePath
         self.knnModel = knnModel
-        self.siftDb = siftDb
+        self.phashDb = phashDb
+        self.sizesV2 = sizesV2
 
     def run(self):
         try:
             rois = DeviceV2AutoRois(imread_unicode(self.imagePath))
-            ocr = DeviceV2Ocr(self.knnModel, self.siftDb)
+            factor = rois.sizes.factor
+            rois.sizes = SizesV2(factor) if self.sizesV2 else SizesV1(factor)
+            ocr = DeviceV2Ocr(self.knnModel, self.phashDb)
             result = ocr.ocr(rois)
             self.signals.resultReady.emit(result)
         except Exception:

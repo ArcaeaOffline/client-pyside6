@@ -40,10 +40,21 @@ class Ui_TabOcr_Device(object):
         self.groupBox.setObjectName(u"groupBox")
         self.verticalLayout = QVBoxLayout(self.groupBox)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.deviceUseAutoFactorCheckBox = QCheckBox(self.groupBox)
         self.deviceUseAutoFactorCheckBox.setObjectName(u"deviceUseAutoFactorCheckBox")
 
-        self.verticalLayout.addWidget(self.deviceUseAutoFactorCheckBox)
+        self.horizontalLayout.addWidget(self.deviceUseAutoFactorCheckBox)
+
+        self.deviceSizesV2CheckBox = QCheckBox(self.groupBox)
+        self.deviceSizesV2CheckBox.setObjectName(u"deviceSizesV2CheckBox")
+        self.deviceSizesV2CheckBox.setText(u"SizesV2")
+
+        self.horizontalLayout.addWidget(self.deviceSizesV2CheckBox)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
 
         self.deviceFileSelector = FileSelector(self.groupBox)
         self.deviceFileSelector.setObjectName(u"deviceFileSelector")
@@ -109,10 +120,10 @@ class Ui_TabOcr_Device(object):
         self.groupBox_5.setObjectName(u"groupBox_5")
         self.verticalLayout_7 = QVBoxLayout(self.groupBox_5)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.siftDatabaseSelector = FileSelector(self.groupBox_5)
-        self.siftDatabaseSelector.setObjectName(u"siftDatabaseSelector")
+        self.phashDatabaseSelector = FileSelector(self.groupBox_5)
+        self.phashDatabaseSelector.setObjectName(u"phashDatabaseSelector")
 
-        self.verticalLayout_7.addWidget(self.siftDatabaseSelector)
+        self.verticalLayout_7.addWidget(self.phashDatabaseSelector)
 
 
         self.verticalLayout_4.addWidget(self.groupBox_5)
@@ -149,7 +160,7 @@ class Ui_TabOcr_Device(object):
         self.deviceUseAutoFactorCheckBox.setText(QCoreApplication.translate("TabOcr_Device", u"deviceSelector.useAutoFactor", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("TabOcr_Device", u"knnModelSelector.title", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("TabOcr_Device", u"tesseractSelector.title", None))
-        self.groupBox_5.setTitle(QCoreApplication.translate("TabOcr_Device", u"siftDatabaseSelector.title", None))
+        self.groupBox_5.setTitle(QCoreApplication.translate("TabOcr_Device", u"phashDatabaseSelector.title", None))
         pass
     # retranslateUi
 

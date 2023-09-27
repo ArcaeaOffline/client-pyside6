@@ -6,6 +6,7 @@ import cv2
 from arcaea_offline_ocr.device.v1.definition import DeviceV1
 from arcaea_offline_ocr.device.v2.definition import DeviceV2
 from arcaea_offline_ocr.sift_db import SIFTDatabase
+from arcaea_offline_ocr.phash_db import ImagePHashDatabase
 from PySide6.QtCore import Qt, Slot
 from PySide6.QtWidgets import QApplication, QFileDialog, QWidget
 
@@ -38,11 +39,12 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
 
         self.deviceFileSelector.filesSelected.connect(self.deviceFileSelected)
         self.knnModelSelector.filesSelected.connect(self.knnModelFileSelected)
-        self.siftDatabaseSelector.filesSelected.connect(self.siftDatabaseFileSelected)
+        # self.siftDatabaseSelector.filesSelected.connect(self.siftDatabaseFileSelected)
+        self.phashDatabaseSelector.filesSelected.connect(self.phashDatabaseFileSelected)
 
         self.deviceFileSelector.connectSettings(DEVICES_JSON_FILE)
         self.knnModelSelector.connectSettings(KNN_MODEL_FILE)
-        self.siftDatabaseSelector.connectSettings(SIFT_DATABASE_FILE)
+        # self.siftDatabaseSelector.connectSettings(SIFT_DATABASE_FILE)
 
         settings = Settings()
         logger.info("Applying default settings...")
@@ -50,7 +52,7 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
         self.tesseractFileSelector.selectFile(settings.tesseractPath())
         self.deviceComboBox.selectDevice(settings.deviceUuid())
         self.knnModelSelector.selectFile(settings.knnModelFile())
-        self.siftDatabaseSelector.selectFile(settings.siftDatabaseFile())
+        # vself.siftDatabaseSelector.selectFile(settings.siftDatabaseFile())
 
         self.ocrQueueModel = OcrQueueModel(self)
         self.ocrQueue.setModel(self.ocrQueueModel)
@@ -96,6 +98,10 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
         if selectedFiles := self.siftDatabaseSelector.selectedFiles():
             self.siftDatabase = SIFTDatabase(selectedFiles[0])
 
+    def phashDatabaseFileSelected(self):
+        if selectedFiles := self.phashDatabaseSelector.selectedFiles():
+            self.phashDatabase = ImagePHashDatabase(selectedFiles[0])
+
     @Slot()
     def on_ocr_addImageButton_clicked(self):
         files, _filter = QFileDialog.getOpenFileNames(
@@ -115,14 +121,16 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
                 runnable = TabDeviceV2AutoRoisOcrRunnable(
                     imagePath,
                     self.knnModel,
-                    self.siftDatabase,
+                    self.phashDatabase,
+                    sizesV2=self.deviceSizesV2CheckBox.isChecked(),
                 )
             else:
                 runnable = TabDeviceV2OcrRunnable(
                     imagePath,
                     self.deviceComboBox.currentData(),
                     self.knnModel,
-                    self.siftDatabase,
+                    self.phashDatabase,
+                    sizesV2=self.deviceSizesV2CheckBox.isChecked(),
                 )
             self.ocrQueueModel.setData(index, runnable, OcrQueueModel.OcrRunnableRole)
             self.ocrQueueModel.setData(
