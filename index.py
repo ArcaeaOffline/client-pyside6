@@ -1,6 +1,8 @@
 import logging
 import sys
 import traceback
+from datetime import datetime
+from pathlib import Path
 
 from arcaea_offline.database import Database
 from PySide6.QtCore import QCoreApplication, QLocale
@@ -13,17 +15,35 @@ from ui.extends.shared.settings import Settings
 from ui.implements.mainwindow import MainWindow
 from ui.startup.databaseChecker import DatabaseChecker, DatabaseCheckerResult
 
-logging.basicConfig(
-    level=logging.INFO,
-    stream=sys.stdout,
-    force=True,
-    format="[{levelname}]{asctime}|{name}: {msg}",
-    datefmt="%m-%d %H:%M:%S",
-    style="{",
+rootLogger = logging.getLogger("root")
+rootLogger.setLevel(logging.DEBUG)
+
+rootLoggerFormatter = logging.Formatter(
+    "[{levelname}]{asctime}|{name}: {msg}", "%m-%d %H:%M:%S", "{"
 )
+
 
 if __name__ == "__main__":
     QCoreApplication.setApplicationName("Arcaea Offline")
+
+    logFolder = (Path(sys.argv[0]).parent / "logs").resolve()
+    logFolder.mkdir(exist_ok=True)
+
+    now = datetime.now()
+    ymd = now.strftime("%Y%m%d")
+    hms = now.strftime("%H%M%S")
+
+    rootLoggerFileHandler = logging.FileHandler(
+        str(logFolder / f"arcaea-offline-pyside-ui-{ymd}-{hms}_debug.log"),
+        encoding="utf-8",
+    )
+    rootLoggerFileHandler.setLevel(logging.DEBUG)
+    rootLoggerFileHandler.setFormatter(rootLoggerFormatter)
+    rootLogger.addHandler(rootLoggerFileHandler)
+    rootLoggerStdOutHandler = logging.StreamHandler(sys.stdout)
+    rootLoggerStdOutHandler.setLevel(logging.INFO)
+    rootLoggerStdOutHandler.setFormatter(rootLoggerFormatter)
+    rootLogger.addHandler(rootLoggerStdOutHandler)
 
     app = QApplication(sys.argv)
     locale = (

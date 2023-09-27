@@ -54,7 +54,7 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
 
         self.tryPrepareOcr.connect(self.prepareOcr)
 
-        logger.info("Applying default settings...")
+        logger.info("Applying settings...")
         self.knnModelSelector.connectSettings(KNN_MODEL_FILE)
         self.b30KnnModelSelector.connectSettings(B30_KNN_MODEL_FILE)
         self.phashDatabaseSelector.connectSettings(PHASH_DATABASE_FILE)

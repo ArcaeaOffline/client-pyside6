@@ -222,7 +222,7 @@ class OcrQueueModel(QAbstractListModel):
         index = self.index(row, 0)
         imagePath: str = index.data(self.ImagePathRole)
         qImage: QImage = index.data(self.ImageQImageRole)
-        logger.info(f"update request: {result}@row{row}")
+        logger.debug(f"update request: {result}@row{row}")
         processOcrResultFunc = index.data(self.ProcessOcrResultFuncRole)
 
         chart, scoreInsert = processOcrResultFunc(imagePath, qImage, result)
