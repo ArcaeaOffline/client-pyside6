@@ -74,6 +74,7 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
         db = Database(create_engine(dbSqliteUrl))
         if db.check_init():
             flags |= DatabaseCheckerResult.Initted
+            self.settings.setDatabaseUrl(self.dbSqliteUrl().toString())
 
         return flags
 
@@ -102,6 +103,7 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
     @Slot()
     def on_confirmDbPathButton_clicked(self):
         dbSqliteUrl = self.dbSqliteUrl()
+        self.settings.setDatabaseUrl(dbSqliteUrl.toString())
 
         result = self.confirmDb()
         if result & DatabaseCheckerResult.Initted:
