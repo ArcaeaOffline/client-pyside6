@@ -180,19 +180,20 @@ class TabTools_Andreal(Ui_TabTools_Andreal, QWidget):
 
         arguments = [
             str(self.imageType()),
-            f'--json-file="{jsonFile}"',
-            f"--img-version={self.imageVersion()}",
+            "--json-file",
+            jsonFile,
+            "--img-version",
+            str(self.imageVersion()),
         ]
         if self.andrealFolderSelector.selectedFiles():
-            arguments.append(
-                f'--path="{self.andrealFolderSelector.selectedFiles()[0]}"'
-            )
+            arguments.append("--path")
+            arguments.append(self.andrealFolderSelector.selectedFiles()[0])
         if preview:
-            arguments.extend(["--img-format=jpg", "--img-quality=20"])
+            arguments.extend(["--img-format", "jpg", "--img-quality", "20"])
         else:
-            arguments.append(f"--img-format={self.imageFormat()}")
+            arguments.extend(["--img-format", self.imageFormat()])
             if self.imageFormat() == "jpg":
-                arguments.append(f"--img-quality={self.jpgQualitySpinBox.value()}")
+                arguments.extend(["--img-quality", str(self.jpgQualitySpinBox.value())])
         return arguments
 
     def getAndrealJsonContent(self):

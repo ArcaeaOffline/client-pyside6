@@ -2,6 +2,7 @@ import base64
 import logging
 import os
 import re
+import subprocess
 
 from PySide6.QtCore import QObject, QProcess, QRunnable, QThreadPool, Signal
 
@@ -24,7 +25,12 @@ class AndrealExecuteRunnable(QRunnable):
 
     def run(self):
         try:
-            result = os.popen(f"{self.executePath} {' '.join(self.arguments)}").read()
+            subp = subprocess.run(
+                [self.executePath, *self.arguments],
+                capture_output=True,
+                encoding="utf-8",
+            )
+            result = subp.stdout
             b64Result = [s for s in result.split("\n") if s]
             imageBytes = base64.b64decode(
                 re.sub(r"data:image/.*;base64,", "", b64Result[-1])
