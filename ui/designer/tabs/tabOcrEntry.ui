@@ -29,6 +29,11 @@
        <string>tab.b30</string>
       </attribute>
      </widget>
+     <widget class="TabOcr_BuildPHashDatabase" name="tab_3">
+      <attribute name="title">
+       <string>tab.buildPHashDatabase</string>
+      </attribute>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -44,6 +49,12 @@
    <class>TabOcr_B30</class>
    <extends>QWidget</extends>
    <header>ui.implements.tabs.tabOcr.tabOcr_B30</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabOcr_BuildPHashDatabase</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabOcr.tabOcr_BuildPHashDatabase</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

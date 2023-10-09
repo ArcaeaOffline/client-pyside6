@@ -89,12 +89,12 @@
         <translation>Continue</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="115"/>
+        <location filename="../../startup/databaseChecker.py" line="117"/>
         <source>dialog.tryInitExistingDatabase</source>
         <translation>The existing database doesn&apos;t seem to be initialized properly, try initialize again?</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="131"/>
+        <location filename="../../startup/databaseChecker.py" line="133"/>
         <source>dialog.confirmNewDatabase</source>
         <translation>Database file does not exist. Create now?</translation>
     </message>
@@ -696,6 +696,11 @@ validation</translation>
         <source>tab.b30</source>
         <translation>B30</translation>
     </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcrEntry.ui" line="34"/>
+        <source>tab.buildPHashDatabase</source>
+        <translation>Build pHash Database</translation>
+    </message>
 </context>
 <context>
     <name>TabOcr_B30</name>
@@ -1165,6 +1170,39 @@ validation</translation>
         <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="461"/>
         <source>calculate.fromStep.resultLabel</source>
         <translation>Result (play rating)</translation>
+    </message>
+</context>
+<context>
+    <name>tabOcr_BuildPHashDatabase</name>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="33"/>
+        <source>folders.title</source>
+        <translation>Data Folders</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="41"/>
+        <source>folders.songDir</source>
+        <translation>Song jackets</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="62"/>
+        <source>folders.charIconDir</source>
+        <translation>Character icons</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="84"/>
+        <source>options.title</source>
+        <translation>Options</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="170"/>
+        <source>resetButton</source>
+        <translation>Reset</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="211"/>
+        <source>buildButton</source>
+        <translation>Build</translation>
     </message>
 </context>
 </TS>

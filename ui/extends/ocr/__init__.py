@@ -1,3 +1,5 @@
+from .build_phash import build_image_phash_database
+
 try:
     import json
 
