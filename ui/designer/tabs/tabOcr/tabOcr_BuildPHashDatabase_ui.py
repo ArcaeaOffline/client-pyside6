@@ -15,25 +15,25 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGroupBox, QHBoxLayout, QLabel,
-    QProgressBar, QPushButton, QSizePolicy, QSpacerItem,
-    QSpinBox, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QGroupBox, QHBoxLayout,
+    QLabel, QProgressBar, QPushButton, QSizePolicy,
+    QSpacerItem, QSpinBox, QVBoxLayout, QWidget)
 
 from ui.implements.components.fileSelector import FileSelector
 
-class Ui_tabOcr_BuildPHashDatabase(object):
-    def setupUi(self, tabOcr_BuildPHashDatabase):
-        if not tabOcr_BuildPHashDatabase.objectName():
-            tabOcr_BuildPHashDatabase.setObjectName(u"tabOcr_BuildPHashDatabase")
-        tabOcr_BuildPHashDatabase.resize(632, 551)
-        tabOcr_BuildPHashDatabase.setWindowTitle(u"tabOcr_BuildPHashDatabase")
-        self.verticalLayout_3 = QVBoxLayout(tabOcr_BuildPHashDatabase)
+class Ui_TabOcr_BuildPHashDatabase(object):
+    def setupUi(self, TabOcr_BuildPHashDatabase):
+        if not TabOcr_BuildPHashDatabase.objectName():
+            TabOcr_BuildPHashDatabase.setObjectName(u"TabOcr_BuildPHashDatabase")
+        TabOcr_BuildPHashDatabase.resize(632, 551)
+        TabOcr_BuildPHashDatabase.setWindowTitle(u"TabOcr_BuildPHashDatabase")
+        self.verticalLayout_3 = QVBoxLayout(TabOcr_BuildPHashDatabase)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer)
 
-        self.groupBox = QGroupBox(tabOcr_BuildPHashDatabase)
+        self.groupBox = QGroupBox(TabOcr_BuildPHashDatabase)
         self.groupBox.setObjectName(u"groupBox")
         self.verticalLayout = QVBoxLayout(self.groupBox)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -77,7 +77,7 @@ class Ui_tabOcr_BuildPHashDatabase(object):
 
         self.verticalLayout_3.addWidget(self.groupBox)
 
-        self.groupBox_2 = QGroupBox(tabOcr_BuildPHashDatabase)
+        self.groupBox_2 = QGroupBox(TabOcr_BuildPHashDatabase)
         self.groupBox_2.setObjectName(u"groupBox_2")
         self.horizontalLayout_3 = QHBoxLayout(self.groupBox_2)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
@@ -132,6 +132,12 @@ class Ui_tabOcr_BuildPHashDatabase(object):
 
         self.horizontalLayout_3.addLayout(self.verticalLayout_2)
 
+        self.preprocessCharIconCheckBox = QCheckBox(self.groupBox_2)
+        self.preprocessCharIconCheckBox.setObjectName(u"preprocessCharIconCheckBox")
+        self.preprocessCharIconCheckBox.setChecked(True)
+
+        self.horizontalLayout_3.addWidget(self.preprocessCharIconCheckBox)
+
         self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer_3)
@@ -144,14 +150,21 @@ class Ui_tabOcr_BuildPHashDatabase(object):
 
         self.verticalLayout_3.addWidget(self.groupBox_2)
 
-        self.progressBar = QProgressBar(tabOcr_BuildPHashDatabase)
-        self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setMaximum(0)
-        self.progressBar.setValue(0)
-        self.progressBar.setAlignment(Qt.AlignCenter)
-        self.progressBar.setFormat(u"%v/%m - %p%")
+        self.readImageProgressBar = QProgressBar(TabOcr_BuildPHashDatabase)
+        self.readImageProgressBar.setObjectName(u"readImageProgressBar")
+        self.readImageProgressBar.setMaximum(0)
+        self.readImageProgressBar.setValue(0)
+        self.readImageProgressBar.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_3.addWidget(self.progressBar)
+        self.verticalLayout_3.addWidget(self.readImageProgressBar)
+
+        self.calculateHashProgressBar = QProgressBar(TabOcr_BuildPHashDatabase)
+        self.calculateHashProgressBar.setObjectName(u"calculateHashProgressBar")
+        self.calculateHashProgressBar.setMaximum(0)
+        self.calculateHashProgressBar.setValue(0)
+        self.calculateHashProgressBar.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_3.addWidget(self.calculateHashProgressBar)
 
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
@@ -159,7 +172,7 @@ class Ui_tabOcr_BuildPHashDatabase(object):
 
         self.horizontalLayout_5.addItem(self.horizontalSpacer)
 
-        self.buildButton = QPushButton(tabOcr_BuildPHashDatabase)
+        self.buildButton = QPushButton(TabOcr_BuildPHashDatabase)
         self.buildButton.setObjectName(u"buildButton")
 
         self.horizontalLayout_5.addWidget(self.buildButton)
@@ -176,18 +189,21 @@ class Ui_tabOcr_BuildPHashDatabase(object):
         self.verticalLayout_3.addItem(self.verticalSpacer_2)
 
 
-        self.retranslateUi(tabOcr_BuildPHashDatabase)
+        self.retranslateUi(TabOcr_BuildPHashDatabase)
 
-        QMetaObject.connectSlotsByName(tabOcr_BuildPHashDatabase)
+        QMetaObject.connectSlotsByName(TabOcr_BuildPHashDatabase)
     # setupUi
 
-    def retranslateUi(self, tabOcr_BuildPHashDatabase):
-        self.groupBox.setTitle(QCoreApplication.translate("tabOcr_BuildPHashDatabase", u"folders.title", None))
-        self.label.setText(QCoreApplication.translate("tabOcr_BuildPHashDatabase", u"folders.songDir", None))
-        self.label_2.setText(QCoreApplication.translate("tabOcr_BuildPHashDatabase", u"folders.charIconDir", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("tabOcr_BuildPHashDatabase", u"options.title", None))
-        self.optionsResetButton.setText(QCoreApplication.translate("tabOcr_BuildPHashDatabase", u"resetButton", None))
-        self.buildButton.setText(QCoreApplication.translate("tabOcr_BuildPHashDatabase", u"buildButton", None))
+    def retranslateUi(self, TabOcr_BuildPHashDatabase):
+        self.groupBox.setTitle(QCoreApplication.translate("TabOcr_BuildPHashDatabase", u"folders.title", None))
+        self.label.setText(QCoreApplication.translate("TabOcr_BuildPHashDatabase", u"folders.songDir", None))
+        self.label_2.setText(QCoreApplication.translate("TabOcr_BuildPHashDatabase", u"folders.charIconDir", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("TabOcr_BuildPHashDatabase", u"options.title", None))
+        self.preprocessCharIconCheckBox.setText(QCoreApplication.translate("TabOcr_BuildPHashDatabase", u"options.preprocessCharIcon", None))
+        self.optionsResetButton.setText(QCoreApplication.translate("TabOcr_BuildPHashDatabase", u"resetButton", None))
+        self.readImageProgressBar.setFormat(QCoreApplication.translate("TabOcr_BuildPHashDatabase", u"[Reading images] %v/%m - %p%", None))
+        self.calculateHashProgressBar.setFormat(QCoreApplication.translate("TabOcr_BuildPHashDatabase", u"[Calculate hashes] %v/%m - %p%", None))
+        self.buildButton.setText(QCoreApplication.translate("TabOcr_BuildPHashDatabase", u"buildButton", None))
         pass
     # retranslateUi
 

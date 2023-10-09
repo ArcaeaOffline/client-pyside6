@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>tabOcr_BuildPHashDatabase</class>
- <widget class="QWidget" name="tabOcr_BuildPHashDatabase">
+ <class>TabOcr_BuildPHashDatabase</class>
+ <widget class="QWidget" name="TabOcr_BuildPHashDatabase">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string notr="true">tabOcr_BuildPHashDatabase</string>
+   <string notr="true">TabOcr_BuildPHashDatabase</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
@@ -152,6 +152,16 @@
        </layout>
       </item>
       <item>
+       <widget class="QCheckBox" name="preprocessCharIconCheckBox">
+        <property name="text">
+         <string>options.preprocessCharIcon</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer_3">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -175,7 +185,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QProgressBar" name="progressBar">
+    <widget class="QProgressBar" name="readImageProgressBar">
      <property name="maximum">
       <number>0</number>
      </property>
@@ -186,7 +196,23 @@
       <set>Qt::AlignCenter</set>
      </property>
      <property name="format">
-      <string notr="true">%v/%m - %p%</string>
+      <string>[Reading images] %v/%m - %p%</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QProgressBar" name="calculateHashProgressBar">
+     <property name="maximum">
+      <number>0</number>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="format">
+      <string>[Calculate hashes] %v/%m - %p%</string>
      </property>
     </widget>
    </item>

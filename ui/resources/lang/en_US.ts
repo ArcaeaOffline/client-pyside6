@@ -731,6 +731,54 @@ validation</translation>
     </message>
 </context>
 <context>
+    <name>TabOcr_BuildPHashDatabase</name>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="33"/>
+        <source>folders.title</source>
+        <translation>Data Folders</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="41"/>
+        <source>folders.songDir</source>
+        <translation>Song jackets</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="62"/>
+        <source>folders.charIconDir</source>
+        <translation>Partner icons</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="84"/>
+        <source>options.title</source>
+        <translation>Options</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="157"/>
+        <source>options.preprocessCharIcon</source>
+        <translation>Preprocess partner icons</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="180"/>
+        <source>resetButton</source>
+        <translation>Reset</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="199"/>
+        <source>[Reading images] %v/%m - %p%</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="215"/>
+        <source>[Calculate hashes] %v/%m - %p%</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="237"/>
+        <source>buildButton</source>
+        <translation>Build</translation>
+    </message>
+</context>
+<context>
     <name>TabOcr_Device</name>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="20"/>
@@ -1170,39 +1218,6 @@ validation</translation>
         <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="461"/>
         <source>calculate.fromStep.resultLabel</source>
         <translation>Result (play rating)</translation>
-    </message>
-</context>
-<context>
-    <name>tabOcr_BuildPHashDatabase</name>
-    <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="33"/>
-        <source>folders.title</source>
-        <translation>Data Folders</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="41"/>
-        <source>folders.songDir</source>
-        <translation>Song jackets</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="62"/>
-        <source>folders.charIconDir</source>
-        <translation>Character icons</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="84"/>
-        <source>options.title</source>
-        <translation>Options</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="170"/>
-        <source>resetButton</source>
-        <translation>Reset</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="211"/>
-        <source>buildButton</source>
-        <translation>Build</translation>
     </message>
 </context>
 </TS>

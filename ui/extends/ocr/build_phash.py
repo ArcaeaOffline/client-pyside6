@@ -1,14 +1,29 @@
 import sqlite3
 import time
-from pathlib import Path
 from typing import Any, Callable, Optional
 
 import cv2
+import numpy as np
 from arcaea_offline_ocr.phash_db import phash_opencv
 
 
+def preprocess_char_icon(img_gray: cv2.Mat):
+    h, w = img_gray.shape[:2]
+    img = cv2.fillPoly(
+        img_gray,
+        [
+            np.array([[0, 0], [round(w / 2), 0], [0, round(h / 2)]], np.int32),
+            np.array([[w, 0], [round(w / 2), 0], [w, round(h / 2)]], np.int32),
+            np.array([[0, h], [round(w / 2), h], [0, round(h / 2)]], np.int32),
+            np.array([[w, h], [round(w / 2), h], [w, round(h / 2)]], np.int32),
+        ],
+        (128),
+    )
+    return img
+
+
 def build_image_phash_database(
-    images: list[Path],
+    images: list[cv2.Mat],
     labels: list[str],
     *,
     hash_size: int = 16,
@@ -33,9 +48,9 @@ def build_image_phash_database(
 
         image_num = len(images)
         id_hashes = []
-        for i, label, image_path in zip(range(image_num), labels, images):
+        for i, label, image in zip(range(image_num), labels, images):
             image_hash = phash_opencv(
-                cv2.imread(str(image_path.resolve()), cv2.IMREAD_GRAYSCALE),
+                image,
                 hash_size=hash_size,
                 highfreq_factor=highfreq_factor,
             )

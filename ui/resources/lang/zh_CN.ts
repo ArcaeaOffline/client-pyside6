@@ -730,6 +730,54 @@
     </message>
 </context>
 <context>
+    <name>TabOcr_BuildPHashDatabase</name>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="33"/>
+        <source>folders.title</source>
+        <translation>数据文件夹</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="41"/>
+        <source>folders.songDir</source>
+        <translation>曲封</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="62"/>
+        <source>folders.charIconDir</source>
+        <translation>搭档头像</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="84"/>
+        <source>options.title</source>
+        <translation>选项</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="157"/>
+        <source>options.preprocessCharIcon</source>
+        <translation>预处理搭档头像</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="180"/>
+        <source>resetButton</source>
+        <translation>重置</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="199"/>
+        <source>[Reading images] %v/%m - %p%</source>
+        <translation>[读取图片] %v/%m - %p%</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="215"/>
+        <source>[Calculate hashes] %v/%m - %p%</source>
+        <translation>[计算哈希] %v/%m - %p%</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="237"/>
+        <source>buildButton</source>
+        <translation>构建</translation>
+    </message>
+</context>
+<context>
     <name>TabOcr_Device</name>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="20"/>
@@ -1169,39 +1217,6 @@
         <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="461"/>
         <source>calculate.fromStep.resultLabel</source>
         <translation>结果（单曲 PTT）</translation>
-    </message>
-</context>
-<context>
-    <name>tabOcr_BuildPHashDatabase</name>
-    <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="33"/>
-        <source>folders.title</source>
-        <translation>数据文件夹</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="41"/>
-        <source>folders.songDir</source>
-        <translation>曲封</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="62"/>
-        <source>folders.charIconDir</source>
-        <translation>搭档头像</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="84"/>
-        <source>options.title</source>
-        <translation>选项</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="170"/>
-        <source>resetButton</source>
-        <translation>重置</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_BuildPHashDatabase.ui" line="211"/>
-        <source>buildButton</source>
-        <translation>构建</translation>
     </message>
 </context>
 </TS>
