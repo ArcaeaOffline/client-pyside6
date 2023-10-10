@@ -786,28 +786,44 @@
     </message>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="27"/>
-        <source>deviceSelector.title</source>
-        <translation>选择设备</translation>
+        <source>options.title</source>
+        <translation>选项</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="35"/>
-        <source>deviceSelector.useAutoFactor</source>
-        <translation>自动计算 factor</translation>
+        <source>options.usePreset</source>
+        <translation>使用预设</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="81"/>
-        <source>knnModelSelector.title</source>
-        <translation>选择 KNearest 模型</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="73"/>
+        <source>options.rois</source>
+        <translation>定位器</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="112"/>
-        <source>tesseractSelector.title</source>
-        <translation>选择 tesseract 路径</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="128"/>
+        <source>options.masker</source>
+        <translation>遮罩器</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="140"/>
-        <source>phashDatabaseSelector.title</source>
-        <translation>选择图像 PHash 数据库</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="138"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="145"/>
+        <source>options.useCustom</source>
+        <translation>使用自定义设置</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="203"/>
+        <source>dependencies.title</source>
+        <translation>OCR 依赖</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="209"/>
+        <source>dependencies.knnModel</source>
+        <translation>KNearest 模型</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="246"/>
+        <source>dependencies.phashDatabase</source>
+        <translation>图像 pHash 数据库</translation>
     </message>
 </context>
 <context>

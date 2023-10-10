@@ -787,28 +787,44 @@ validation</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="27"/>
-        <source>deviceSelector.title</source>
-        <translation>Select Device</translation>
+        <source>options.title</source>
+        <translation>Options</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="35"/>
-        <source>deviceSelector.useAutoFactor</source>
-        <translation>Auto calculate factor</translation>
+        <source>options.usePreset</source>
+        <translation>Use preset</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="81"/>
-        <source>knnModelSelector.title</source>
-        <translation>Select KNearest Model</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="73"/>
+        <source>options.rois</source>
+        <translation>Rois</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="112"/>
-        <source>tesseractSelector.title</source>
-        <translation>Select tesseract Path</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="128"/>
+        <source>options.masker</source>
+        <translation>Masker</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="140"/>
-        <source>phashDatabaseSelector.title</source>
-        <translation>Select Image PHash Database</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="138"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="145"/>
+        <source>options.useCustom</source>
+        <translation>Use custom options</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="203"/>
+        <source>dependencies.title</source>
+        <translation>OCR Dependencies</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="209"/>
+        <source>dependencies.knnModel</source>
+        <translation>KNearest model</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="246"/>
+        <source>dependencies.phashDatabase</source>
+        <translation>Image pHash database</translation>
     </message>
 </context>
 <context>

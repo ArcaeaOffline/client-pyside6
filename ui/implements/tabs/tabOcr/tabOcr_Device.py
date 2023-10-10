@@ -1,30 +1,20 @@
 import logging
 
 import cv2
-
-# from arcaea_offline_ocr_device_creation_wizard.implements.wizard import Wizard
-from arcaea_offline_ocr.device.v1.definition import DeviceV1
-from arcaea_offline_ocr.device.v2.definition import DeviceV2
-from arcaea_offline_ocr.phash_db import ImagePHashDatabase
-from arcaea_offline_ocr.sift_db import SIFTDatabase
+from arcaea_offline_ocr.phash_db import ImagePhashDatabase
 from PySide6.QtCore import Qt, Slot
 from PySide6.QtWidgets import QApplication, QFileDialog, QWidget
 
 from ui.designer.tabs.tabOcr.tabOcr_Device_ui import Ui_TabOcr_Device
 from ui.extends.components.ocrQueue import OcrQueueModel
 from ui.extends.shared.language import LanguageChangeEventFilter
-from ui.extends.shared.settings import (
-    DEVICES_JSON_FILE,
-    KNN_MODEL_FILE,
-    PHASH_DATABASE_FILE,
-    TESSERACT_FILE,
-    Settings,
-)
+from ui.extends.shared.settings import KNN_MODEL_FILE, PHASH_DATABASE_FILE
 from ui.extends.tabs.tabOcr.tabOcr_Device import (
     ScoreConverter,
     TabDeviceV2AutoRoisOcrRunnable,
     TabDeviceV2OcrRunnable,
 )
+
 
 logger = logging.getLogger(__name__)
 
@@ -38,17 +28,36 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
         self.languageChangeEventFilter = LanguageChangeEventFilter(self)
         self.installEventFilter(self.languageChangeEventFilter)
 
-        self.deviceFileSelector.filesSelected.connect(self.deviceFileSelected)
-        self.knnModelSelector.filesSelected.connect(self.knnModelFileSelected)
-        self.phashDatabaseSelector.filesSelected.connect(self.phashDatabaseFileSelected)
+        # connect options checkBoxes & comboBoxes
+        self.options_roisUseCustomCheckBox.toggled.connect(
+            lambda useCustom: self.options_roisStackedWidget.setCurrentIndex(
+                1 if useCustom else 0
+            )
+        )
+        self.options_maskerUseCustomCheckBox.toggled.connect(
+            lambda useCustom: self.options_maskerStackedWidget.setCurrentIndex(
+                1 if useCustom else 0
+            )
+        )
+        self.options_usePresetCheckBox.toggled.connect(self.options_setUsePreset)
+
+        self.options_presetComboBox.currentIndexChanged.connect(
+            self.options_presetSelected
+        )
+        # fill option values
+        self.options_fillComboBoxes()
+
+        self.dependencies_knnModelSelector.filesSelected.connect(self.knnModelSelected)
+        self.dependencies_phashDatabaseSelector.filesSelected.connect(
+            self.phashDatabaseSelected
+        )
 
         logger.info("Applying settings...")
-        self.deviceFileSelector.connectSettings(DEVICES_JSON_FILE)
-        self.knnModelSelector.connectSettings(KNN_MODEL_FILE)
-        self.tesseractFileSelector.connectSettings(TESSERACT_FILE)
-        self.phashDatabaseSelector.connectSettings(PHASH_DATABASE_FILE)
-        settings = Settings()
-        self.deviceComboBox.selectDevice(settings.deviceUuid())
+        self.dependencies_knnModelSelector.connectSettings(KNN_MODEL_FILE)
+        self.dependencies_phashDatabaseSelector.connectSettings(PHASH_DATABASE_FILE)
+
+        self.options_usePresetCheckBox.setChecked(True)
+        self.options_usePresetCheckBox.setEnabled(False)
 
         self.ocrQueueModel = OcrQueueModel(self)
         self.ocrQueue.setModel(self.ocrQueueModel)
@@ -60,43 +69,70 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
         # wizard.open()
         pass
 
-    @Slot()
-    def on_deviceUseAutoFactorCheckBox_stateChanged(self):
-        checkState = self.deviceUseAutoFactorCheckBox.checkState()
-        if checkState == Qt.CheckState.Checked:
-            self.deviceDependenciesStackedWidget.setCurrentIndex(1)
-            self.deviceComboBox.setCurrentIndex(-1)
-            self.deviceFileSelector.setEnabled(False)
-            self.deviceComboBox.setEnabled(False)
-        else:
-            self.deviceFileSelector.setEnabled(True)
-            self.deviceComboBox.setEnabled(True)
+    @Slot(bool)
+    def options_setUsePreset(self, usePreset: bool):
+        self.options_roisUseCustomCheckBox.setChecked(not usePreset)
+        self.options_maskerUseCustomCheckBox.setChecked(not usePreset)
+        self.options_preciseControlWidget.setEnabled(not usePreset)
+        if not usePreset:
+            self.options_presetComboBox.setCurrentIndex(-1)
 
-    @Slot()
-    def on_deviceComboBox_currentIndexChanged(self):
-        self.changeDeviceDepStackedWidget()
+    @Slot(int)
+    def options_presetSelected(self, index: int):
+        if index < 0:
+            self.options_roisComboBox.setCurrentIndex(-1)
+            self.options_maskerComboBox.setCurrentIndex(-1)
 
-    def changeDeviceDepStackedWidget(self):
-        device = self.deviceComboBox.currentData()
-        if isinstance(device, (DeviceV1, DeviceV2)):
-            self.deviceDependenciesStackedWidget.setCurrentIndex(device.version - 1)
+        autoTypeString = self.options_presetComboBox.currentData()
+        roisAutoTypeIndex = self.options_roisComboBox.findData(autoTypeString)
+        maskerAutoTypeIndex = self.options_maskerComboBox.findData(autoTypeString)
+        self.options_roisComboBox.setCurrentIndex(roisAutoTypeIndex)
+        self.options_maskerComboBox.setCurrentIndex(maskerAutoTypeIndex)
 
-    def deviceFileSelected(self):
-        if selectedFiles := self.deviceFileSelector.selectedFiles():
-            file = selectedFiles[0]
-            self.deviceComboBox.loadDevicesJson(file)
+    def options_fillComboBoxes(self):
+        self.options_roisComboBox.addItem("RoisAutoT1", "AutoT1")
+        self.options_roisComboBox.addItem("RoisAutoT2", "AutoT2")
+        self.options_roisComboBox.setCurrentIndex(-1)
 
-    def knnModelFileSelected(self):
-        if selectedFiles := self.knnModelSelector.selectedFiles():
-            self.knnModel = cv2.ml.KNearest.load(selectedFiles[0])
+        self.options_maskerComboBox.addItem("MaskerAutoT1", "AutoT1")
+        self.options_maskerComboBox.addItem("MaskerAutoT2", "AutoT2")
+        self.options_maskerComboBox.setCurrentIndex(-1)
 
-    def phashDatabaseFileSelected(self):
-        if selectedFiles := self.phashDatabaseSelector.selectedFiles():
-            self.phashDatabase = ImagePHashDatabase(selectedFiles[0])
+        self.options_presetComboBox.addItem("AutoT1 (ver <= 4.7.2)", "AutoT1")
+        self.options_presetComboBox.addItem("AutoT2 (ver >= 5.0.0)", "AutoT2")
+        self.options_presetComboBox.setCurrentIndex(1)
+
+    def knnModelSelected(self):
+        try:
+            knnModelFile = self.dependencies_knnModelSelector.selectedFiles()[0]
+            self.knnModel = cv2.ml.KNearest.load(knnModelFile)
+            self.dependencies_knnModelStatusLabel.setText(
+                f'<font color="green">OK</font>, varCount {self.knnModel.getVarCount()}'
+            )
+        except Exception:
+            logger.exception("Error loading knn model:")
+            self.dependencies_knnModelStatusLabel.setText(
+                '<font color="red">Error</font>'
+            )
+
+    def phashDatabaseSelected(self):
+        try:
+            phashDbFile = self.dependencies_phashDatabaseSelector.selectedFiles()[0]
+            self.phashDatabase = ImagePhashDatabase(phashDbFile)
+            self.dependencies_phashDatabaseStatusLabel.setText(
+                f'<font color="green">OK</font>, '
+                f"J{len(self.phashDatabase.jacket_hashes)} "
+                f"PI{len(self.phashDatabase.partner_icon_hashes)}"
+            )
+        except Exception:
+            logger.exception("Error loading phash database:")
+            self.dependencies_phashDatabaseStatusLabel.setText(
+                '<font color="red">Error</font>'
+            )
 
     @Slot()
     def on_ocr_addImageButton_clicked(self):
-        files, _filter = QFileDialog.getOpenFileNames(
+        files, _ = QFileDialog.getOpenFileNames(
             self, None, "", "Image Files (*.png *.jpg *.jpeg *.bmp *.webp);;*"
         )
         filesNum = len(files)
