@@ -118,7 +118,7 @@ class TabOcr_BuildPHashDatabase(Ui_TabOcr_BuildPHashDatabase, QWidget):
             self.readImageProgressBar.setValue(i)
 
         songLabels = [re.sub(r"_.*$", "", p.stem) for p in songFilePaths]
-        charLabels = [f"partner||{p.stem}" for p in charIconFilePaths]
+        charLabels = [f"partner_icon||{p.stem}" for p in charIconFilePaths]
 
         self.databaseBuildThread = BuildDatabaseThread(
             songMats + charIconMats, songLabels + charLabels
