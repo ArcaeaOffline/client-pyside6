@@ -1,11 +1,10 @@
 import logging
 import re
 from enum import IntEnum
-from typing import Literal
 
 from arcaea_offline.database import Database
 from arcaea_offline.models import Chart
-from PySide6.QtCore import QModelIndex, Qt, Signal, Slot
+from PySide6.QtCore import QModelIndex, QSignalMapper, Qt, Signal, Slot
 from PySide6.QtWidgets import QCompleter, QWidget
 
 from ui.designer.components.songIdSelector_ui import Ui_SongIdSelector
@@ -33,18 +32,22 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
         self.languageChangeEventFilter = LanguageChangeEventFilter(self)
         self.installEventFilter(self.languageChangeEventFilter)
 
-        self.previousPackageButton.clicked.connect(
-            lambda: self.quickSwitchSelection("previous", "package")
+        # quick switch bindings
+        self.quickSwitchSignalMapper = QSignalMapper(self)
+        self.previousPackageButton.clicked.connect(self.quickSwitchSignalMapper.map)
+        self.quickSwitchSignalMapper.setMapping(
+            self.previousPackageButton, "package||previous"
         )
-        self.previousSongIdButton.clicked.connect(
-            lambda: self.quickSwitchSelection("previous", "songId")
+        self.nextPackageButton.clicked.connect(self.quickSwitchSignalMapper.map)
+        self.quickSwitchSignalMapper.setMapping(self.nextPackageButton, "package||next")
+        self.previousSongIdButton.clicked.connect(self.quickSwitchSignalMapper.map)
+        self.quickSwitchSignalMapper.setMapping(
+            self.previousSongIdButton, "songId||previous"
         )
-        self.nextSongIdButton.clicked.connect(
-            lambda: self.quickSwitchSelection("next", "songId")
-        )
-        self.nextPackageButton.clicked.connect(
-            lambda: self.quickSwitchSelection("next", "package")
-        )
+        self.nextSongIdButton.clicked.connect(self.quickSwitchSignalMapper.map)
+        self.quickSwitchSignalMapper.setMapping(self.nextSongIdButton, "songId||next")
+
+        self.quickSwitchSignalMapper.mappedString.connect(self.quickSwitchSlot)
 
         self.mode = SongIdSelectorMode.SongId
 
@@ -73,12 +76,11 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
     def setMode(self, mode: SongIdSelectorMode):
         self.mode = mode
 
-    def quickSwitchSelection(
-        self,
-        direction: Literal["previous", "next"],
-        model: Literal["package", "songId"],
-    ):
-        minIndex = 0
+    @Slot(str)
+    def quickSwitchSlot(self, action: str):
+        model, direction = action.split("||")
+
+        minIndex = -1
         if model == "package":
             maxIndex = self.packComboBox.count() - 1
             currentIndex = self.packComboBox.currentIndex() + (
@@ -174,7 +176,7 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
         self.songIdComboBox.setCurrentIndex(-1)
 
     @Slot()
-    def on_packComboBox_activated(self):
+    def on_packComboBox_currentIndexChanged(self):
         self.fillSongIdComboBox()
 
     @Slot(str)
