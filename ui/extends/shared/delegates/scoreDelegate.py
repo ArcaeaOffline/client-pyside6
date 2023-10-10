@@ -1,19 +1,15 @@
-from typing import Union
-
 from arcaea_offline.calculate import calculate_score_range
 from arcaea_offline.models import Chart, Score
 from arcaea_offline.utils.rating import rating_class_to_text
-from arcaea_offline.utils.score import score_to_grade_text, zip_score_grade
+from arcaea_offline.utils.score import (
+    clear_type_to_text,
+    modifier_to_text,
+    score_to_grade_text,
+    zip_score_grade,
+)
 from PySide6.QtCore import QAbstractItemModel, QDateTime, QModelIndex, Qt, Signal
 from PySide6.QtGui import QColor, QFont, QLinearGradient
-from PySide6.QtWidgets import (
-    QFrame,
-    QHBoxLayout,
-    QLabel,
-    QPushButton,
-    QSizePolicy,
-    QWidget,
-)
+from PySide6.QtWidgets import QHBoxLayout, QLabel, QPushButton, QSizePolicy, QWidget
 
 from ui.implements.components.scoreEditor import ScoreEditor
 
@@ -26,12 +22,6 @@ class ScoreEditorDelegateWrapper(ScoreEditor):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-
-        # self.hLine = QFrame(self)
-        # self.hLine.setFrameShape(QFrame.Shape.HLine)
-        # self.hLine.setFrameShadow(QFrame.Shadow.Plain)
-        # self.hLine.setFixedHeight(5)
-        # self.gridLayout.addWidget(self.hLine, self.gridLayout.rowCount(), 0, -1, -1)
 
         self.delegateHeader = QWidget(self)
         self.delegateHeaderHBoxLayout = QHBoxLayout(self.delegateHeader)
@@ -55,7 +45,9 @@ class ScoreEditorDelegateWrapper(ScoreEditor):
         text = "Editing "
         text += _extra or ""
         text += f"score {score.score}"
-        text += f"<br>(P{score.pure} F{score.far} L{score.lost} | MR{score.max_recall})"
+        text += (
+            f"<br>(P{score.pure} F{score.far} L{score.lost} | MR {score.max_recall})"
+        )
         self.editorLabel.setText(text)
 
 
@@ -111,8 +103,8 @@ class ScoreDelegate(TextSegmentDelegate):
 
     def getTextSegments(self, index, option):
         score = self.getScore(index)
-        chart = self.getChart(index)
-        if not (isinstance(score, Score) and isinstance(chart, Chart)):
+
+        if not isinstance(score, Score):
             return [
                 [
                     {
@@ -128,7 +120,9 @@ class ScoreDelegate(TextSegmentDelegate):
         score_font.setPointSize(12)
         score_grade_font = QFont(score_font)
         score_grade_font.setBold(True)
-        return [
+        placeholderColor = option.widget.palette().placeholderText().color()
+
+        segments = [
             [
                 {
                     self.TextRole: score_to_grade_text(score.score),
@@ -156,18 +150,46 @@ class ScoreDelegate(TextSegmentDelegate):
                     self.ColorRole: self.PureFarLostColors[2],
                 },
                 {self.TextRole: " | "},
-                {self.TextRole: f"MAX RECALL {score.max_recall}"},
-            ],
-            [
-                {
-                    self.TextRole: QDateTime.fromSecsSinceEpoch(score.date).toString(
-                        "yyyy-MM-dd hh:mm:ss"
-                    )
-                    if score.date
-                    else "-- No Date --"
-                }
+                {self.TextRole: f"MR {score.max_recall}"},
             ],
         ]
+
+        if score.date is not None:
+            segments.append(
+                [
+                    {
+                        self.TextRole: QDateTime.fromSecsSinceEpoch(
+                            score.date
+                        ).toString("yyyy-MM-dd hh:mm:ss")
+                    }
+                ],
+            )
+        else:
+            segments.append(
+                [{self.TextRole: "-- No Date --", self.ColorRole: placeholderColor}],
+            )
+
+        modifierClearTypeSegments = []
+        if score.modifier is not None:
+            modifierClearTypeSegments.append(
+                {self.TextRole: modifier_to_text(score.modifier)}
+            )
+        else:
+            modifierClearTypeSegments.append(
+                {self.TextRole: "Modifier None", self.ColorRole: placeholderColor}
+            )
+        modifierClearTypeSegments.append({self.TextRole: ", "})
+        if score.clear_type is not None:
+            modifierClearTypeSegments.append(
+                {self.TextRole: clear_type_to_text(score.clear_type)}
+            )
+        else:
+            modifierClearTypeSegments.append(
+                {self.TextRole: "Clear Type None", self.ColorRole: placeholderColor}
+            )
+        segments.append(modifierClearTypeSegments)
+
+        return segments
 
     def paintWarningBackground(self, index: QModelIndex) -> bool:
         return True
