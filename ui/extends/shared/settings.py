@@ -5,12 +5,11 @@ from PySide6.QtCore import QFileInfo, QSettings, Signal
 from .singleton import QObjectSingleton
 
 __all__ = [
+    "LANGUAGE",
     "DATABASE_URL",
-    "DEVICES_JSON_FILE",
-    "DEVICE_UUID",
-    "TESSERACT_FILE",
     "KNN_MODEL_FILE",
-    "SIFT_DATABASE_FILE",
+    "B30_KNN_MODEL_FILE",
+    "PHASH_DATABASE_FILE",
     "ANDREAL_FOLDER",
     "ANDREAL_EXECUTABLE",
     "Settings",
@@ -21,12 +20,8 @@ __all__ = [
 LANGUAGE = "Language"
 DATABASE_URL = "DatabaseUrl"
 
-DEVICES_JSON_FILE = "Ocr/DevicesJsonFile"
-DEVICE_UUID = "Ocr/DeviceUuid"
-TESSERACT_FILE = "Ocr/TesseractFile"
 KNN_MODEL_FILE = "Ocr/KnnModelFile"
 B30_KNN_MODEL_FILE = "Ocr/B30KnnModelFile"
-SIFT_DATABASE_FILE = "Ocr/SiftDatabaseFile"
 PHASH_DATABASE_FILE = "Ocr/PHashDatabaseFile"
 
 ANDREAL_FOLDER = "Andreal/AndrealFolder"
@@ -70,33 +65,6 @@ class Settings(QSettings, metaclass=QObjectSingleton):
     def setDatabaseUrl(self, value: str):
         self._setStrItem(DATABASE_URL, value)
 
-    def devicesJsonFile(self):
-        return self._strItem(DEVICES_JSON_FILE)
-
-    def setDevicesJsonFile(self, value: str):
-        self._setStrItem(DEVICES_JSON_FILE, value)
-
-    def resetDevicesJsonFile(self):
-        self._resetStrItem(DEVICES_JSON_FILE)
-
-    def deviceUuid(self):
-        return self._strItem(DEVICE_UUID)
-
-    def setDeviceUuid(self, value: str):
-        self._setStrItem(DEVICE_UUID, value)
-
-    def resetDeviceUuid(self):
-        self._resetStrItem(DEVICE_UUID)
-
-    def tesseractPath(self):
-        return self._strItem(TESSERACT_FILE)
-
-    def setTesseractPath(self, value: str):
-        self._setStrItem(TESSERACT_FILE, value)
-
-    def resetTesseractPath(self):
-        self._resetStrItem(TESSERACT_FILE)
-
     def knnModelFile(self):
         return self._strItem(KNN_MODEL_FILE)
 
@@ -114,15 +82,6 @@ class Settings(QSettings, metaclass=QObjectSingleton):
 
     def resetB30KnnModelFile(self):
         self._resetStrItem(B30_KNN_MODEL_FILE)
-
-    def siftDatabaseFile(self):
-        return self._strItem(SIFT_DATABASE_FILE)
-
-    def setSiftDatabaseFile(self, value: str):
-        self._setStrItem(SIFT_DATABASE_FILE, value)
-
-    def resetSiftDatabaseFile(self):
-        self._resetStrItem(SIFT_DATABASE_FILE)
 
     def phashDatabaseFile(self):
         return self._strItem(PHASH_DATABASE_FILE)
