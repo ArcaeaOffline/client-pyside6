@@ -225,8 +225,8 @@
     </message>
     <message>
         <location filename="../../designer/components/ocrQueue.ui" line="34"/>
-        <source>icc.ignore</source>
-        <translation>Ignore</translation>
+        <source>icc.useQt</source>
+        <translation>Use Qt</translation>
     </message>
     <message>
         <location filename="../../designer/components/ocrQueue.ui" line="41"/>
@@ -477,12 +477,9 @@ validation</translation>
         <location filename="../../implements/settings/settingsAndreal.py" line="82"/>
         <location filename="../../implements/settings/settingsAndreal.py" line="85"/>
         <location filename="../../implements/settings/settingsGeneral.py" line="107"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="190"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="193"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="196"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="199"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="202"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="205"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="104"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="107"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="110"/>
         <source>resetButton</source>
         <translation>Reset</translation>
     </message>
@@ -517,37 +514,22 @@ validation</translation>
         <translation>Database URL</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="187"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="101"/>
         <source>ocr.title</source>
         <translation>OCR</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="189"/>
-        <source>ocr.devicesJson.label</source>
-        <translation>Default devices.json</translation>
-    </message>
-    <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="192"/>
-        <source>ocr.deviceUuid.label</source>
-        <translation>Default device</translation>
-    </message>
-    <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="195"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="103"/>
         <source>ocr.knnModelFile.label</source>
         <translation>Default KNearest model</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="198"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="106"/>
         <source>ocr.b30KnnModelFile.label</source>
         <translation>Default B30 KNearest model</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="201"/>
-        <source>ocr.siftDatabaseFile.label</source>
-        <translation>Default SIFT database file</translation>
-    </message>
-    <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="204"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="109"/>
         <source>ocr.phashDatabaseFile.label</source>
         <translation>Default image PHash database</translation>
     </message>
@@ -1201,17 +1183,17 @@ validation</translation>
         <translation>Calculate to Step</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="386"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="367"/>
         <source>calculate.toStep.playResultLabel</source>
         <translation>Play result</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="419"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="393"/>
         <source>calculate.toStep.calculatePlayResultFromScoreButton</source>
         <translation>Calculate from Score</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="399"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="406"/>
         <source>calculate.toStep.resultLabel</source>
         <translation>Result</translation>
     </message>
@@ -1221,17 +1203,17 @@ validation</translation>
         <translation>Detailed log output</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="429"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="448"/>
         <source>calculate.fromStep</source>
         <translation>Calculate from Step</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="438"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="457"/>
         <source>calculate.fromStep.targetStepLabel</source>
         <translation>Target step value</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="461"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="480"/>
         <source>calculate.fromStep.resultLabel</source>
         <translation>Result (play rating)</translation>
     </message>

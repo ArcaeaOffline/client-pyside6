@@ -29,9 +29,9 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
-            <widget class="QRadioButton" name="iccIgnoreRadioButton">
+            <widget class="QRadioButton" name="iccUseQtRadioButton">
              <property name="text">
-              <string>icc.ignore</string>
+              <string>icc.useQt</string>
              </property>
             </widget>
            </item>

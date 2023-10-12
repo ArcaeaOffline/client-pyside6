@@ -7,7 +7,6 @@ from arcaea_offline.database import Database
 from arcaea_offline.models import Chart, Score
 from arcaea_offline_ocr.b30.shared import B30OcrResultItem
 from arcaea_offline_ocr.device.common import DeviceOcrResult
-from arcaea_offline_ocr.utils import convert_to_srgb
 from PIL import Image
 from PIL.ImageQt import ImageQt
 from PySide6.QtCore import (
@@ -25,6 +24,7 @@ from PySide6.QtCore import (
 )
 from PySide6.QtGui import QImage, QPixmap
 
+from ui.extends.ocr import convert_to_srgb
 from ui.extends.shared.delegates.chartDelegate import ChartDelegate
 from ui.extends.shared.delegates.imageDelegate import ImageDelegate
 from ui.extends.shared.delegates.scoreDelegate import ScoreDelegate
@@ -46,7 +46,7 @@ class OcrRunnable(QRunnable):
 
 
 class IccOption(IntEnum):
-    Ignore = 0
+    UseQt = 0
     UsePIL = 1
     TryFix = 2
 

@@ -38,10 +38,10 @@ class Ui_OcrQueue(object):
         self.groupBox.setObjectName(u"groupBox")
         self.verticalLayout = QVBoxLayout(self.groupBox)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.iccIgnoreRadioButton = QRadioButton(self.groupBox)
-        self.iccIgnoreRadioButton.setObjectName(u"iccIgnoreRadioButton")
+        self.iccUseQtRadioButton = QRadioButton(self.groupBox)
+        self.iccUseQtRadioButton.setObjectName(u"iccUseQtRadioButton")
 
-        self.verticalLayout.addWidget(self.iccIgnoreRadioButton)
+        self.verticalLayout.addWidget(self.iccUseQtRadioButton)
 
         self.iccUsePILRadioButton = QRadioButton(self.groupBox)
         self.iccUsePILRadioButton.setObjectName(u"iccUsePILRadioButton")
@@ -155,7 +155,7 @@ class Ui_OcrQueue(object):
     def retranslateUi(self, OcrQueue):
         self.groupBox_3.setTitle(QCoreApplication.translate("OcrQueue", u"queue.title", None))
         self.groupBox.setTitle(QCoreApplication.translate("OcrQueue", u"iccOptionsGroupBox", None))
-        self.iccIgnoreRadioButton.setText(QCoreApplication.translate("OcrQueue", u"icc.ignore", None))
+        self.iccUseQtRadioButton.setText(QCoreApplication.translate("OcrQueue", u"icc.useQt", None))
         self.iccUsePILRadioButton.setText(QCoreApplication.translate("OcrQueue", u"icc.usePIL", None))
         self.iccTryFixRadioButton.setText(QCoreApplication.translate("OcrQueue", u"icc.tryFix", None))
         self.ocr_addImageButton.setText(QCoreApplication.translate("OcrQueue", u"queue.addImageButton", None))

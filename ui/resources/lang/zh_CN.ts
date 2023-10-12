@@ -225,13 +225,13 @@
     </message>
     <message>
         <location filename="../../designer/components/ocrQueue.ui" line="34"/>
-        <source>icc.ignore</source>
-        <translation>忽略</translation>
+        <source>icc.useQt</source>
+        <translation>使用 Qt</translation>
     </message>
     <message>
         <location filename="../../designer/components/ocrQueue.ui" line="41"/>
         <source>icc.usePIL</source>
-        <translation>使用 PIL 读取</translation>
+        <translation>使用 PIL</translation>
     </message>
     <message>
         <location filename="../../designer/components/ocrQueue.ui" line="51"/>
@@ -476,12 +476,9 @@
         <location filename="../../implements/settings/settingsAndreal.py" line="82"/>
         <location filename="../../implements/settings/settingsAndreal.py" line="85"/>
         <location filename="../../implements/settings/settingsGeneral.py" line="107"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="190"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="193"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="196"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="199"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="202"/>
-        <location filename="../../implements/settings/settingsOcr.py" line="205"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="104"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="107"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="110"/>
         <source>resetButton</source>
         <translation>重置</translation>
     </message>
@@ -516,37 +513,22 @@
         <translation>数据库 URL</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="187"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="101"/>
         <source>ocr.title</source>
         <translation>OCR</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="189"/>
-        <source>ocr.devicesJson.label</source>
-        <translation>默认设备定义文件</translation>
-    </message>
-    <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="192"/>
-        <source>ocr.deviceUuid.label</source>
-        <translation>默认设备</translation>
-    </message>
-    <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="195"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="103"/>
         <source>ocr.knnModelFile.label</source>
         <translation>默认 KNearest 模型</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="198"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="106"/>
         <source>ocr.b30KnnModelFile.label</source>
         <translation>默认 B30 KNearest 模型</translation>
     </message>
     <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="201"/>
-        <source>ocr.siftDatabaseFile.label</source>
-        <translation>默认 SIFT 特征值数据库</translation>
-    </message>
-    <message>
-        <location filename="../../implements/settings/settingsOcr.py" line="204"/>
+        <location filename="../../implements/settings/settingsOcr.py" line="109"/>
         <source>ocr.phashDatabaseFile.label</source>
         <translation>默认图像 PHash 数据库</translation>
     </message>
@@ -1200,17 +1182,17 @@
         <translation>正算</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="386"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="367"/>
         <source>calculate.toStep.playResultLabel</source>
         <translation>单曲 PTT</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="419"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="393"/>
         <source>calculate.toStep.calculatePlayResultFromScoreButton</source>
         <translation>从分数计算</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="399"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="406"/>
         <source>calculate.toStep.resultLabel</source>
         <translation>结果</translation>
     </message>
@@ -1220,17 +1202,17 @@
         <translation>详细日志输出</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="429"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="448"/>
         <source>calculate.fromStep</source>
         <translation>逆算</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="438"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="457"/>
         <source>calculate.fromStep.targetStepLabel</source>
         <translation>目标 STEP 值</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="461"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_StepCalculator.ui" line="480"/>
         <source>calculate.fromStep.resultLabel</source>
         <translation>结果（单曲 PTT）</translation>
     </message>

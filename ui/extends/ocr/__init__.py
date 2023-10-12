@@ -1,28 +1,27 @@
+import io
+
+from PIL import Image, ImageCms
+
 from .build_phash import build_image_phash_database
 
-try:
-    import json
 
-    from arcaea_offline_ocr.device.v1.definition import DeviceV1
-    from arcaea_offline_ocr.device.v2.definition import DeviceV2
+def convert_to_srgb(pil_img: Image.Image):
+    """
+    Convert PIL image to sRGB color space (if possible)
+    and save the converted file.
 
-    def load_devices_json(filepath: str) -> list[DeviceV1]:
-        with open(filepath, "r", encoding="utf-8") as f:
-            file_content = f.read()
-            if len(file_content) == 0:
-                return []
-            content = json.loads(file_content)
-            assert isinstance(content, list)
-            devices = []
-            for item in content:
-                version = item["version"]
-                if version == 1:
-                    devices.append(DeviceV1(**item))
-                elif version == 2:
-                    devices.append(DeviceV2(**item))
-            return devices
+    https://stackoverflow.com/a/65667797/16484891
 
-except Exception:
+    CC BY-SA 4.0
+    """
+    icc = pil_img.info.get("icc_profile", "")
+    icc_conv = ""
 
-    def load_devices_json(*args, **kwargs):
-        pass
+    if icc:
+        io_handle = io.BytesIO(icc)  # virtual file
+        src_profile = ImageCms.ImageCmsProfile(io_handle)
+        dst_profile = ImageCms.createProfile("sRGB")
+        img_conv = ImageCms.profileToProfile(pil_img, src_profile, dst_profile)
+        icc_conv = img_conv.info.get("icc_profile", "")
+
+    return img_conv if icc != icc_conv else pil_img

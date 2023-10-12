@@ -43,7 +43,7 @@ class OcrQueue(Ui_OcrQueue, QWidget):
 
         self.iccOptionButtonGroup = QButtonGroup(self)
         self.iccOptionButtonGroup.buttonToggled.connect(self.updateIccOption)
-        self.iccOptionButtonGroup.addButton(self.iccIgnoreRadioButton, 0)
+        self.iccOptionButtonGroup.addButton(self.iccUseQtRadioButton, 0)
         self.iccOptionButtonGroup.addButton(self.iccUsePILRadioButton, 1)
         self.iccOptionButtonGroup.addButton(self.iccTryFixRadioButton, 2)
         self.updateIccOption()
