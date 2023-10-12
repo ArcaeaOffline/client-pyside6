@@ -1,20 +1,21 @@
 import logging
 
 import cv2
+from arcaea_offline_ocr.device.rois import (
+    DeviceRoisAutoT1,
+    DeviceRoisAutoT2,
+    DeviceRoisMaskerAutoT1,
+    DeviceRoisMaskerAutoT2,
+)
 from arcaea_offline_ocr.phash_db import ImagePhashDatabase
-from PySide6.QtCore import Qt, Slot
-from PySide6.QtWidgets import QApplication, QFileDialog, QWidget
+from PySide6.QtCore import Slot
+from PySide6.QtWidgets import QApplication, QFileDialog, QMessageBox, QWidget
 
 from ui.designer.tabs.tabOcr.tabOcr_Device_ui import Ui_TabOcr_Device
 from ui.extends.components.ocrQueue import OcrQueueModel
 from ui.extends.shared.language import LanguageChangeEventFilter
 from ui.extends.shared.settings import KNN_MODEL_FILE, PHASH_DATABASE_FILE
-from ui.extends.tabs.tabOcr.tabOcr_Device import (
-    ScoreConverter,
-    TabDeviceV2AutoRoisOcrRunnable,
-    TabDeviceV2OcrRunnable,
-)
-
+from ui.extends.tabs.tabOcr.tabOcr_Device import ScoreConverter, TabDeviceOcrRunnable
 
 logger = logging.getLogger(__name__)
 
@@ -106,9 +107,15 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
         try:
             knnModelFile = self.dependencies_knnModelSelector.selectedFiles()[0]
             self.knnModel = cv2.ml.KNearest.load(knnModelFile)
-            self.dependencies_knnModelStatusLabel.setText(
-                f'<font color="green">OK</font>, varCount {self.knnModel.getVarCount()}'
-            )
+            varCount = self.knnModel.getVarCount()
+            if varCount != 81:
+                self.dependencies_knnModelStatusLabel.setText(
+                    f'<font color="darkorange">WARN</font>, varCount {varCount}'
+                )
+            else:
+                self.dependencies_knnModelStatusLabel.setText(
+                    f'<font color="green">OK</font>, varCount {varCount}'
+                )
         except Exception:
             logger.exception("Error loading knn model:")
             self.dependencies_knnModelStatusLabel.setText(
@@ -150,30 +157,51 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
                 QApplication.processEvents()
         self.ocrQueue.resizeTableView()
 
+    def deviceRois(self):
+        if self.options_roisUseCustomCheckBox.isChecked():
+            ...
+        else:
+            selectedPreset = self.options_roisComboBox.currentData()
+            if selectedPreset == "AutoT1":
+                return DeviceRoisAutoT1
+            elif selectedPreset == "AutoT2":
+                return DeviceRoisAutoT2
+            else:
+                QMessageBox.critical(self, None, "Select a Rois preset first.")
+                return None
+
+    def deviceRoisMasker(self):
+        if self.options_maskerUseCustomCheckBox.isChecked():
+            ...
+        else:
+            selectedPreset = self.options_maskerComboBox.currentData()
+            if selectedPreset == "AutoT1":
+                return DeviceRoisMaskerAutoT1()
+            elif selectedPreset == "AutoT2":
+                return DeviceRoisMaskerAutoT2()
+            else:
+                QMessageBox.critical(self, None, "Select a Masker preset first.")
+                return None
+
     @Slot()
     def on_ocr_startButton_clicked(self):
         for row in range(self.ocrQueueModel.rowCount()):
             index = self.ocrQueueModel.index(row, 0)
             imagePath = index.data(OcrQueueModel.ImagePathRole)
-            if self.deviceUseAutoFactorCheckBox.checkState() == Qt.CheckState.Checked:
-                runnable = TabDeviceV2AutoRoisOcrRunnable(
-                    imagePath,
-                    self.knnModel,
-                    self.phashDatabase,
-                    sizesV2=self.deviceSizesV2CheckBox.isChecked(),
-                )
-            else:
-                runnable = TabDeviceV2OcrRunnable(
-                    imagePath,
-                    self.deviceComboBox.currentData(),
-                    self.knnModel,
-                    self.phashDatabase,
-                    sizesV2=self.deviceSizesV2CheckBox.isChecked(),
-                )
+
+            rois = self.deviceRois()
+            masker = self.deviceRoisMasker()
+
+            if rois is None or masker is None:
+                return
+
+            runnable = TabDeviceOcrRunnable(
+                imagePath, rois, masker, self.knnModel, self.phashDatabase
+            )
             self.ocrQueueModel.setData(index, runnable, OcrQueueModel.OcrRunnableRole)
             self.ocrQueueModel.setData(
                 index,
-                ScoreConverter.deviceV2,
+                ScoreConverter.device,
                 OcrQueueModel.ProcessOcrResultFuncRole,
             )
         self.ocrQueueModel.startQueue()

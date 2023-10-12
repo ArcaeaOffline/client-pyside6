@@ -6,7 +6,7 @@ from arcaea_offline.calculate import calculate_score_range
 from arcaea_offline.database import Database
 from arcaea_offline.models import Chart, Score
 from arcaea_offline_ocr.b30.shared import B30OcrResultItem
-from arcaea_offline_ocr.device.shared import DeviceOcrResult
+from arcaea_offline_ocr.device.common import DeviceOcrResult
 from arcaea_offline_ocr.utils import convert_to_srgb
 from PIL import Image
 from PIL.ImageQt import ImageQt

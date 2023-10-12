@@ -4,6 +4,8 @@
     <file>VERSION</file>
     <file>LICENSE</file>
 
+    <file>partnerModifiers.json</file>
+
     <file>images/icon.png</file>
     <file>images/logo.png</file>
     <file>images/stepCalculator/stamina.png</file>
