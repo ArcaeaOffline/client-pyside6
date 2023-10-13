@@ -2,8 +2,9 @@ import json
 import sys
 from functools import cached_property
 from pathlib import Path
-from typing import Literal
+from typing import Literal, Optional, overload
 
+from arcaea_offline.models import Chart, Difficulty, Song
 from PySide6.QtCore import QFile
 
 from .singleton import Singleton
@@ -45,3 +46,41 @@ class Data(metaclass=Singleton):
     @property
     def arcaeaPath(self):
         return self.dataPath / "Arcaea"
+
+    @overload
+    def getJacketPath(self, chart: Chart, /) -> Path | None:
+        ...
+
+    @overload
+    def getJacketPath(
+        self, song: Song, difficulty: Optional[Difficulty] = None, /
+    ) -> Path | None:
+        ...
+
+    def getJacketPath(self, *args) -> Path | None:
+        if isinstance(args[0], Chart):
+            chart = args[0]
+            ratingSpecified = f"{chart.song_id}_{chart.rating_class}"
+            base = chart.song_id
+        elif isinstance(args[0], Song):
+            song = args[0]
+            difficulty = args[1]
+            ratingSpecified = (
+                f"{song.id}_{difficulty.rating_class}"
+                if isinstance(difficulty, Difficulty)
+                else song.id
+            )
+            base = song.id
+        else:
+            raise ValueError()
+
+        ratingSpecified += ".jpg"
+        base += ".jpg"
+
+        jacketsPath = self.arcaeaPath / "Song"
+        if (jacketsPath / ratingSpecified).exists():
+            return jacketsPath / ratingSpecified
+        elif (jacketsPath / base).exists():
+            return jacketsPath / base
+        else:
+            return None

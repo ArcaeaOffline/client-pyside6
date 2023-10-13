@@ -1,8 +1,15 @@
-from typing import Callable
+from enum import IntEnum
+from typing import Callable, Literal
 
-from PySide6.QtCore import QEvent, QModelIndex, QObject, QPoint, QSize, Qt
+from PySide6.QtCore import QModelIndex, QPoint, QSize, Qt
 from PySide6.QtGui import QBrush, QColor, QFont, QFontMetrics, QLinearGradient, QPainter
-from PySide6.QtWidgets import QApplication, QStyledItemDelegate, QStyleOptionViewItem
+from PySide6.QtWidgets import QStyledItemDelegate, QStyleOptionViewItem
+
+
+class TextSegmentDelegateVerticalAlign(IntEnum):
+    Top = 0
+    Middle = 1
+    Bottom = 2
 
 
 class TextSegmentDelegate(QStyledItemDelegate):
@@ -14,6 +21,28 @@ class TextSegmentDelegate(QStyledItemDelegate):
     BrushRole = TextRole + 2
     GradientWrapperRole = TextRole + 3
     FontRole = TextRole + 20
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        # TODO: make this differ by index
+        self.baseXOffset = 0
+        self.baseYOffset = 0
+
+        self.verticalAlign = TextSegmentDelegateVerticalAlign.Middle
+
+    def setVerticalAlign(self, align: Literal["top", "middle", "bottom"]):
+        if not isinstance(align, str) and align not in ["top", "middle", "bottom"]:
+            raise ValueError(
+                "TextSegment only supports top/middle/bottom vertical aligning."
+            )
+
+        if align == "top":
+            self.verticalAlign = TextSegmentDelegateVerticalAlign.Top
+        elif align == "middle":
+            self.verticalAlign = TextSegmentDelegateVerticalAlign.Middle
+        elif align == "bottom":
+            self.verticalAlign = TextSegmentDelegateVerticalAlign.Bottom
 
     def getTextSegments(
         self, index: QModelIndex, option
@@ -50,14 +79,32 @@ class TextSegmentDelegate(QStyledItemDelegate):
             height += lineHeight + self.VerticalPadding
         return QSize(width, height)
 
+    def baseX(self, option: QStyleOptionViewItem, index: QModelIndex):
+        return option.rect.x() + self.HorizontalPadding + self.baseXOffset
+
+    def baseY(self, option: QStyleOptionViewItem, index: QModelIndex):
+        baseY = option.rect.y() + self.VerticalPadding + self.baseYOffset
+        if self.verticalAlign != TextSegmentDelegateVerticalAlign.Top:
+            paintAreaSize: QSize = option.rect.size()
+            delegateSize = self.sizeHint(option, index)
+            if self.verticalAlign == TextSegmentDelegateVerticalAlign.Middle:
+                baseY += round((paintAreaSize.height() - delegateSize.height()) / 2)
+            elif self.verticalAlign == TextSegmentDelegateVerticalAlign.Bottom:
+                baseY += paintAreaSize.height() - delegateSize.height()
+        return baseY
+
+    def textMaxWidth(self, option: QStyleOptionViewItem, index: QModelIndex):
+        return option.rect.width() - (2 * self.HorizontalPadding) - self.baseXOffset
+
     def paint(
         self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex
     ):
         self.initStyleOption(option, index)
-        # draw text only
-        baseX = option.rect.x() + self.HorizontalPadding
-        baseY = option.rect.y() + self.VerticalPadding
-        maxWidth = option.rect.width() - (2 * self.HorizontalPadding)
+
+        baseX = self.baseX(option, index)
+        baseY = self.baseY(option, index)
+        maxWidth = self.textMaxWidth(option, index)
+
         fm: QFontMetrics = option.fontMetrics
         painter.save()
         for line in self.getTextSegments(index, option):
@@ -69,8 +116,7 @@ class TextSegmentDelegate(QStyledItemDelegate):
                 # elide text, get font values
                 text = textFrag[self.TextRole]
                 fragMaxWidth = maxWidth - (lineBaseX - baseX)
-                font = textFrag.get(self.FontRole)
-                if font:
+                if font := textFrag.get(self.FontRole):
                     painter.setFont(font)
                     _fm = QFontMetrics(font)
                 else:
@@ -116,37 +162,3 @@ class TextSegmentDelegate(QStyledItemDelegate):
 
     def super_styledItemDelegate_paint(self, painter, option, index):
         return super().paint(painter, option, index)
-
-
-class NoCommitWhenFocusOutEventFilter(QObject):
-    """
-    --DEPRECATED--
-
-    The default QAbstractItemDelegate implementation has a private function
-    `editorEventFilter()`, when editor sends focusOut/hide event, it emits the
-    `commitData(editor)` signal. We don't want this since we need to validate
-    the input, so we filter the event out and handle it by ourselves.
-
-    Reimplement `checkIsEditor(self, val) -> bool` to ensure this filter is
-    working. The default implementation always return `False`.
-    """
-
-    def checkIsEditor(self, val) -> bool:
-        return False
-
-    def eventFilter(self, object: QObject, event: QEvent) -> bool:
-        if self.checkIsEditor(object) and event.type() in [
-            QEvent.Type.FocusOut,
-            QEvent.Type.Hide,
-        ]:
-            widget = QApplication.focusWidget()
-            while widget:
-                # check if focus changed into editor's child
-                if self.checkIsEditor(widget):
-                    return False
-                widget = widget.parentWidget()
-
-            object.hide()
-            object.deleteLater()
-            return True
-        return False

@@ -1,7 +1,8 @@
-from arcaea_offline.models import Chart
+from arcaea_offline.models import Chart, Difficulty, Song
 from arcaea_offline.utils.rating import rating_class_to_short_text, rating_class_to_text
+from PIL import Image
 from PySide6.QtCore import QModelIndex, Qt, Signal
-from PySide6.QtGui import QColor
+from PySide6.QtGui import QColor, QPainter, QPixmap
 from PySide6.QtWidgets import (
     QFrame,
     QHBoxLayout,
@@ -13,6 +14,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from ui.extends.shared.data import Data
 from ui.implements.components.chartSelector import ChartSelector
 
 from ..utils import keepWidgetInScreen
@@ -86,51 +88,139 @@ class ChartDelegate(TextSegmentDelegate):
     def getChart(self, index: QModelIndex) -> Chart | None:
         return None
 
+    def getSong(self, index: QModelIndex) -> Song | None:
+        return None
+
+    def getDifficulty(self, index: QModelIndex) -> Difficulty | None:
+        return None
+
     def getTextSegments(self, index: QModelIndex, option):
         chart = self.getChart(index)
-        if not isinstance(chart, Chart):
+        song = self.getSong(index)
+        difficulty = self.getDifficulty(index)
+
+        chartValid = isinstance(chart, Chart)
+        songValid = isinstance(song, Song)
+        difficultyValid = isinstance(difficulty, Difficulty)
+
+        if not chartValid and not songValid:
             return [
-                [{self.TextRole: "Chart Invalid", self.ColorRole: QColor("#ff0000")}]
+                [
+                    {
+                        self.TextRole: "Chart/Song not set",
+                        self.ColorRole: QColor("#ff0000"),
+                    }
+                ]
             ]
 
-        chartConstantString = (
-            f"{chart.constant / 10:.1f}"
-            if chart.constant is not None and chart.constant > 0
-            else "?"
+        # get texts
+        if chartValid:
+            title = chart.title
+        else:
+            title = (
+                difficulty.title if difficultyValid and difficulty.title else song.title
+            )
+
+        if chartValid and chart.constant is not None:
+            chartConstantString = f"{chart.constant / 10:.1f}"
+        elif difficultyValid:
+            chartConstantString = str(difficulty.rating)
+            if difficulty.rating_plus:
+                chartConstantString += "+"
+        else:
+            chartConstantString = "?"
+
+        if chartValid:
+            ratingClass = chart.rating_class
+        elif difficultyValid:
+            ratingClass = difficulty.rating_class
+        else:
+            ratingClass = None
+
+        ratingText = (
+            f"{rating_class_to_text(chart.rating_class)} {chartConstantString}"
+            if ratingClass is not None
+            else "Unknown ?"
         )
+
+        if chartValid:
+            descText = f"({chart.song_id}, {chart.set})"
+        else:
+            descText = f"({song.id}, {song.set})"
+
+        # get attributes
+        ratingClassColor = (
+            self.RatingClassColors[ratingClass] if ratingClass is not None else None
+        )
+
         return [
             [
-                {self.TextRole: f"{chart.title}"},
+                {self.TextRole: str(title)},
             ],
             [
                 {
-                    self.TextRole: f"{rating_class_to_text(chart.rating_class)} {chartConstantString}",
-                    self.ColorRole: self.RatingClassColors[chart.rating_class],
+                    self.TextRole: ratingText,
+                    self.ColorRole: ratingClassColor,
                 },
             ],
             [
                 {
-                    self.TextRole: f"({chart.song_id}, {chart.set})",
+                    self.TextRole: descText,
                     self.ColorRole: option.widget.palette().placeholderText().color(),
                 },
             ],
         ]
 
-    def paintWarningBackground(self, index: QModelIndex) -> bool:
-        return True
+    def sizeHint(self, option, index):
+        size = super().sizeHint(option, index)
+        size.setWidth(size.width() + self.HorizontalPadding + size.height())
+        return size
 
     def paint(self, painter, option, index):
-        # draw chartInvalid warning background
-        chart = self.getChart(index)
-        if not isinstance(chart, Chart) and self.paintWarningBackground(index):
-            painter.save()
-            painter.setPen(Qt.PenStyle.NoPen)
-            bgColor = QColor(self.ChartInvalidBackgroundColor)
-            bgColor.setAlpha(50)
-            painter.setBrush(bgColor)
-            painter.drawRect(option.rect)
-            painter.restore()
         option.text = ""
+
+        data = Data()
+
+        chart = self.getChart(index)
+        song = self.getSong(index)
+        difficulty = self.getDifficulty(index)
+
+        if isinstance(chart, Chart):
+            jacketPath = data.getJacketPath(chart)
+        elif isinstance(song, Song):
+            jacketPath = data.getJacketPath(song, difficulty)
+        else:
+            jacketPath = "__TEXT_ONLY__"
+
+        if jacketPath == "__TEXT_ONLY__":
+            super().paint(painter, option, index)
+            return
+
+        textSizeHint = super().sizeHint(option, index)
+        jacketSize = textSizeHint.height()
+        self.baseXOffset = self.HorizontalPadding + jacketSize
+
+        jacketSizeTuple = (jacketSize, jacketSize)
+        if jacketPath:
+            pixmap = (
+                Image.open(str(jacketPath.resolve()))
+                .resize(jacketSizeTuple, Image.BICUBIC)
+                .toqpixmap()
+            )
+        else:
+            pixmap = (
+                Image.fromqpixmap(QPixmap(":/images/jacket-placeholder.png"))
+                .resize(jacketSizeTuple, Image.BICUBIC)
+                .toqpixmap()
+            )
+
+        painter.save()
+        painter.setRenderHint(QPainter.RenderHint.LosslessImageRendering, True)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing, True)
+        painter.drawPixmap(
+            option.rect.x() + self.HorizontalPadding, self.baseY(option, index), pixmap
+        )
+        painter.restore()
         super().paint(painter, option, index)
 
     def checkIsEditor(self, val):
