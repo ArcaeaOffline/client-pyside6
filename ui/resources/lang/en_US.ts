@@ -692,24 +692,24 @@ validation</translation>
         <translation>B30 Image Type</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="34"/>
-        <source>knnModelSelector.title</source>
-        <translation>Select KNearest Model</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="32"/>
+        <source>dependencies.title</source>
+        <translation>OCR Dependencies</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="46"/>
-        <source>b30KnnModelSelector.title</source>
-        <translation>Select B30 Specialized KNearest Model</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="38"/>
+        <source>dependencies.knnModel</source>
+        <translation>KNearest model</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="62"/>
-        <source>phashDatabaseSelector.title</source>
-        <translation>Select Image PHash Database</translation>
+        <source>dependencies.b30KnnModel</source>
+        <translation>B30 KNearest model</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="74"/>
-        <source>imageSelector.title</source>
-        <translation>Select Image</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="86"/>
+        <source>dependencies.phashDatabase</source>
+        <translation>Image pHash database</translation>
     </message>
 </context>
 <context>

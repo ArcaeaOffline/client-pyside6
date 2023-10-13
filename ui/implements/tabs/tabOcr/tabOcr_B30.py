@@ -1,16 +1,20 @@
 import logging
 
 import cv2
+import numpy as np
 from arcaea_offline_ocr.b30.chieri.v4.ocr import ChieriBotV4Ocr
-from arcaea_offline_ocr.phash_db import ImagePHashDatabase
-from arcaea_offline_ocr.sift_db import SIFTDatabase
+from arcaea_offline_ocr.phash_db import ImagePhashDatabase
 from arcaea_offline_ocr.utils import imread_unicode
+from PIL import Image
 from PySide6.QtCore import Signal, Slot
-from PySide6.QtWidgets import QWidget
+from PySide6.QtWidgets import QFileDialog, QMessageBox, QWidget
 
 from ui.designer.tabs.tabOcr.tabOcr_B30_ui import Ui_TabOcr_B30
 from ui.extends.components.ocrQueue import OcrQueueModel
-from ui.extends.shared.cv2_utils import cv2BgrMatToQImage, qImageToCvMatBgr
+from ui.extends.ocr.dependencies import (
+    getCv2StatModelStatusText,
+    getPhashDatabaseStatusText,
+)
 from ui.extends.shared.language import LanguageChangeEventFilter
 from ui.extends.shared.settings import (
     B30_KNN_MODEL_FILE,
@@ -36,97 +40,119 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
         self.b30TypeComboBox.setCurrentIndex(0)
         self.b30TypeComboBox.setEnabled(False)
 
-        self.imageSelector.filesSelected.connect(self.imageSelected)
-        self.knnModelSelector.filesSelected.connect(self.knnModelSelected)
-        self.b30KnnModelSelector.filesSelected.connect(self.b30KnnModelSelected)
-        self.phashDatabaseSelector.filesSelected.connect(self.phashDatabaseSelected)
+        self.dependencies_knnModelSelector.filesSelected.connect(self.knnModelSelected)
+        self.dependencies_b30KnnModelSelector.filesSelected.connect(
+            self.b30KnnModelSelected
+        )
+        self.dependencies_phashDatabaseSelector.filesSelected.connect(
+            self.phashDatabaseSelected
+        )
 
-        self.imagePath = None  # for checking only
-        self.img = None
-        self.paddleFolder = None
-        self.paddle = None
         self.knnModel = None
         self.b30KnnModel = None
-        # self.siftDatabase = None
         self.phashDatabase = None
 
         self.ocr = None
 
-        self.tryPrepareOcr.connect(self.prepareOcr)
-
         logger.info("Applying settings...")
-        self.knnModelSelector.connectSettings(KNN_MODEL_FILE)
-        self.b30KnnModelSelector.connectSettings(B30_KNN_MODEL_FILE)
-        self.phashDatabaseSelector.connectSettings(PHASH_DATABASE_FILE)
+        self.dependencies_knnModelSelector.connectSettings(KNN_MODEL_FILE)
+        self.dependencies_b30KnnModelSelector.connectSettings(B30_KNN_MODEL_FILE)
+        self.dependencies_phashDatabaseSelector.connectSettings(PHASH_DATABASE_FILE)
 
         self.ocrQueueModel = OcrQueueModel(self)
         self.ocrQueue.setModel(self.ocrQueueModel)
 
-    def imageSelected(self):
-        if selectedFiles := self.imageSelector.selectedFiles():
-            imagePath = selectedFiles[0]
-            self.imagePath = imagePath
-            self.img = imread_unicode(imagePath)
-            self.tryPrepareOcr.emit()
+    # def imageSelected(self):
+    #     if selectedFiles := self.imageSelector.selectedFiles():
+    #         imagePath = selectedFiles[0]
+    #         self.imagePath = imagePath
+    #         self.img = imread_unicode(imagePath)
+    #         self.tryPrepareOcr.emit()
 
     def knnModelSelected(self):
-        if selectedFiles := self.knnModelSelector.selectedFiles():
-            knnModelPath = selectedFiles[0]
-            self.knnModel = cv2.ml.KNearest.load(knnModelPath)
-            self.tryPrepareOcr.emit()
+        try:
+            filePath = self.dependencies_knnModelSelector.selectedFiles()[0]
+            self.knnModel = cv2.ml.KNearest.load(filePath)
+        except Exception:
+            self.knnModel = None
+            logger.exception("Error loading knn model:")
+        finally:
+            self.dependencies_knnModelStatusLabel.setText(
+                getCv2StatModelStatusText(self.knnModel)
+            )
 
     def b30KnnModelSelected(self):
-        if selectedFiles := self.b30KnnModelSelector.selectedFiles():
-            b30KnnModelPath = selectedFiles[0]
-            self.b30KnnModel = cv2.ml.KNearest.load(b30KnnModelPath)
-            self.tryPrepareOcr.emit()
+        try:
+            filePath = self.dependencies_b30KnnModelSelector.selectedFiles()[0]
+            self.b30KnnModel = cv2.ml.KNearest.load(filePath)
+        except Exception:
+            self.b30KnnModel = None
+            logger.exception("Error loading b30 knn model:")
+        finally:
+            self.dependencies_b30KnnModelStatusLabel.setText(
+                getCv2StatModelStatusText(self.b30KnnModel)
+            )
 
     def phashDatabaseSelected(self):
-        if selectedFiles := self.phashDatabaseSelector.selectedFiles():
-            phashDatabasePath = selectedFiles[0]
-            self.phashDatabase = ImagePHashDatabase(phashDatabasePath)
-            self.tryPrepareOcr.emit()
+        try:
+            filePath = self.dependencies_phashDatabaseSelector.selectedFiles()[0]
+            self.phashDatabase = ImagePhashDatabase(filePath)
+        except Exception:
+            self.phashDatabase = None
+            logger.exception("Error loading phash database:")
+        finally:
+            self.dependencies_phashDatabaseStatusLabel.setText(
+                getPhashDatabaseStatusText(self.phashDatabase)
+            )
 
-    def prepareOcr(self):
+    def checkDependencies(self):
         b30Type = self.b30TypeComboBox.currentData()
         if not b30Type:
+            return False
+        elif b30Type == "chieri_v4":
+            return (
+                self.knnModel is not None
+                and self.b30KnnModel is not None
+                and self.phashDatabase is not None
+            )
+        else:
+            return False
+
+    @Slot()
+    def on_ocr_addImageButton_clicked(self):
+        if not self.checkDependencies():
+            QMessageBox.critical(self, None, "Dependencies not configured.")
             return
 
-        if b30Type == "chieri_v4":
-            if (
-                not self.imagePath
-                or not self.knnModel
-                or not self.b30KnnModel
-                or not self.phashDatabase
-            ):
-                return
+        imagePath, _ = QFileDialog.getOpenFileName(
+            self, None, "", "Image Files (*.png *.jpg *.jpeg *.bmp *.webp);;*"
+        )
 
-            self.ocrQueueModel.clear()
+        if not imagePath:
+            return
 
-            ocr = ChieriBotV4Ocr(self.knnModel, self.b30KnnModel, self.phashDatabase)
-            ocr.set_factor(self.img)
-            self.ocr = ocr
+        self.ocrQueueModel.clear()
 
-            roi = ocr.rois
-            for component in roi.components(self.img):
-                qImage = cv2BgrMatToQImage(component.copy())
-                self.ocrQueueModel.addItem(qImage)
+        img = imread_unicode(imagePath, cv2.IMREAD_COLOR)
+        ocr = ChieriBotV4Ocr(self.knnModel, self.b30KnnModel, self.phashDatabase)
+        ocr.set_factor(img)
+        self.ocr = ocr
+
+        roi = ocr.rois
+        for component in roi.components(img):
+            qImage = Image.fromarray(component.copy()).toqimage()
+            self.ocrQueueModel.addItem(qImage)
         self.ocrQueue.resizeTableView()
 
     @Slot()
     def on_ocr_startButton_clicked(self):
-        if (
-            not self.imagePath
-            or not self.knnModel
-            or not self.b30KnnModel
-            or not self.phashDatabase
-        ):
+        if not self.ocr:
             return
 
         for row in range(self.ocrQueueModel.rowCount()):
             index = self.ocrQueueModel.index(row, 0)
             qImage = index.data(OcrQueueModel.ImageQImageRole)
-            cv2Mat = qImageToCvMatBgr(qImage)
+            cv2Mat = np.array(Image.fromqimage(qImage))
             runnable = ChieriV4OcrRunnable(self.ocr, cv2Mat)
             self.ocrQueueModel.setData(index, runnable, OcrQueueModel.OcrRunnableRole)
             self.ocrQueueModel.setData(

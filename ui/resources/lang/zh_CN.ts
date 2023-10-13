@@ -691,24 +691,24 @@
         <translation>B30 图片类型</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="34"/>
-        <source>knnModelSelector.title</source>
-        <translation>选择 KNearest 模型</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="32"/>
+        <source>dependencies.title</source>
+        <translation>OCR 依赖</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="46"/>
-        <source>b30KnnModelSelector.title</source>
-        <translation>选择 B30 特别版 KNearest 模型</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="38"/>
+        <source>dependencies.knnModel</source>
+        <translation>KNearest 模型</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="62"/>
-        <source>phashDatabaseSelector.title</source>
-        <translation>选择图像 PHash 数据库</translation>
+        <source>dependencies.b30KnnModel</source>
+        <translation>B30 KNearest 模型</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="74"/>
-        <source>imageSelector.title</source>
-        <translation>选择图片</translation>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_B30.ui" line="86"/>
+        <source>dependencies.phashDatabase</source>
+        <translation>图像 pHash 数据库</translation>
     </message>
 </context>
 <context>
