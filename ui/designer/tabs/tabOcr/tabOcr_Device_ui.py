@@ -76,6 +76,11 @@ class Ui_TabOcr_Device(object):
 
         self.options_roisStackedWidget = QStackedWidget(self.options_preciseControlWidget)
         self.options_roisStackedWidget.setObjectName(u"options_roisStackedWidget")
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.options_roisStackedWidget.sizePolicy().hasHeightForWidth())
+        self.options_roisStackedWidget.setSizePolicy(sizePolicy)
         self.page = QWidget()
         self.page.setObjectName(u"page")
         self.verticalLayout_2 = QVBoxLayout(self.page)
@@ -119,6 +124,8 @@ class Ui_TabOcr_Device(object):
 
         self.options_maskerStackedWidget = QStackedWidget(self.options_preciseControlWidget)
         self.options_maskerStackedWidget.setObjectName(u"options_maskerStackedWidget")
+        sizePolicy.setHeightForWidth(self.options_maskerStackedWidget.sizePolicy().hasHeightForWidth())
+        self.options_maskerStackedWidget.setSizePolicy(sizePolicy)
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
         self.verticalLayout_5 = QVBoxLayout(self.page_3)
@@ -209,11 +216,11 @@ class Ui_TabOcr_Device(object):
 
         self.ocrQueue = OcrQueue(TabOcr_Device)
         self.ocrQueue.setObjectName(u"ocrQueue")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.ocrQueue.sizePolicy().hasHeightForWidth())
-        self.ocrQueue.setSizePolicy(sizePolicy)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.ocrQueue.sizePolicy().hasHeightForWidth())
+        self.ocrQueue.setSizePolicy(sizePolicy1)
 
         self.verticalLayout_3.addWidget(self.ocrQueue)
 
