@@ -16,14 +16,13 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLineEdit,
-    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
-    QWidget)
+    QPushButton, QSizePolicy, QVBoxLayout, QWidget)
 
 class Ui_SongIdSelector(object):
     def setupUi(self, SongIdSelector):
         if not SongIdSelector.objectName():
             SongIdSelector.setObjectName(u"SongIdSelector")
-        SongIdSelector.resize(350, 250)
+        SongIdSelector.resize(350, 102)
         SongIdSelector.setWindowTitle(u"SongIdSelector")
         self.verticalLayout_2 = QVBoxLayout(SongIdSelector)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -33,10 +32,6 @@ class Ui_SongIdSelector(object):
         self.searchLineEdit.setClearButtonEnabled(True)
 
         self.verticalLayout_2.addWidget(self.searchLineEdit)
-
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_2.addItem(self.verticalSpacer)
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
