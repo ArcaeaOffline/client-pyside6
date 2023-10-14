@@ -23,6 +23,7 @@ class SongIdSelectorMode(IntEnum):
 
 class SongIdSelector(Ui_SongIdSelector, QWidget):
     valueChanged = Signal()
+    chartSelected = Signal(Chart)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -126,8 +127,7 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
         self.packComboBox.clear()
         packs = self.db.get_packs()
         for pack in packs:
-            isAppendPack = re.search(r"_append_.*$", pack.id)
-            if isAppendPack:
+            if isAppendPack := re.search(r"_append_.*$", pack.id):
                 basePackId = re.sub(r"_append_.*$", "", pack.id)
                 basePackName = self.db.get_pack(basePackId).name
                 packName = f"{basePackName} - {pack.name}"
@@ -146,8 +146,7 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
 
     def fillSongIdComboBox(self):
         self.songIdComboBox.clear()
-        packId = self.packComboBox.currentData()
-        if packId:
+        if packId := self.packComboBox.currentData():
             if self.mode == SongIdSelectorMode.SongId:
                 items = self.db.get_songs_by_pack_id(packId)
             elif self.mode == SongIdSelectorMode.Chart:
@@ -208,9 +207,10 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
             return False
 
     def selectChart(self, chart: Chart):
-        if not self.selectPack(chart.set):
-            return False
-        return self.selectSongId(chart.song_id)
+        packSelected = self.selectPack(chart.set)
+        songIdSelected = self.selectSongId(chart.song_id)
+        self.chartSelected.emit(chart)
+        return packSelected and songIdSelected
 
     @Slot(QModelIndex)
     def searchCompleterSetSelection(self, index: QModelIndex):

@@ -27,6 +27,7 @@ class ChartSelector(Ui_ChartSelector, QWidget):
 
         self.valueChanged.connect(self.updateResultLabel)
         self.songIdSelector.valueChanged.connect(self.updateRatingClassEnabled)
+        self.songIdSelector.chartSelected.connect(self.selectChart)
 
         self.songIdSelector.valueChanged.connect(self.valueChanged)
         self.ratingClassSelector.valueChanged.connect(self.valueChanged)
@@ -92,8 +93,7 @@ class ChartSelector(Ui_ChartSelector, QWidget):
 
     def updateRatingClassEnabled(self):
         ratingClasses = []
-        songId = self.songIdSelector.songId()
-        if songId:
+        if songId := self.songIdSelector.songId():
             if self.songIdSelector.mode == SongIdSelectorMode.Chart:
                 items = self.db.get_charts_by_song_id(songId)
             else:
@@ -106,9 +106,5 @@ class ChartSelector(Ui_ChartSelector, QWidget):
         self.songIdSelector.reset()
 
     def selectChart(self, chart: Chart):
-        if not self.songIdSelector.selectPack(chart.set):
-            return False
-        if not self.songIdSelector.selectSongId(chart.song_id):
-            return False
         self.ratingClassSelector.select(chart.rating_class)
-        return True
+        return self.ratingClassSelector.value() == chart.rating_class
