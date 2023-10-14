@@ -25,11 +25,27 @@ class TextSegmentDelegate(QStyledItemDelegate):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        # TODO: make this differ by index
-        self.baseXOffset = 0
-        self.baseYOffset = 0
+        self.baseXOffsets: dict[str, int] = {}
+        self.baseYOffsets: dict[str, int] = {}
 
         self.verticalAlign = TextSegmentDelegateVerticalAlign.Middle
+
+    def indexOffsetKey(self, index: QModelIndex):
+        return f"{index.row()},{index.column()}"
+
+    def setBaseXOffset(self, index: QModelIndex, offset: int):
+        key = self.indexOffsetKey(index)
+        if not offset:
+            self.baseXOffsets.pop(key, None)
+        else:
+            self.baseXOffsets[key] = offset
+
+    def setBaseYOffset(self, index: QModelIndex, offset: int):
+        key = self.indexOffsetKey(index)
+        if not offset:
+            self.baseYOffsets.pop(key, None)
+        else:
+            self.baseYOffsets[key] = offset
 
     def setVerticalAlign(self, align: Literal["top", "middle", "bottom"]):
         if not isinstance(align, str) and align not in ["top", "middle", "bottom"]:
@@ -60,12 +76,14 @@ class TextSegmentDelegate(QStyledItemDelegate):
     ]:
         return []
 
-    def sizeHint(self, option, index) -> QSize:
+    def textsSizeHint(self, option: QStyleOptionViewItem, index: QModelIndex) -> QSize:
         width = 0
-        height = self.VerticalPadding
+        height = 0
         fm: QFontMetrics = option.fontMetrics
-        for line in self.getTextSegments(index, option):
-            lineWidth = 4 * self.HorizontalPadding
+        segments = self.getTextSegments(index, option)
+        for i in range(len(segments)):
+            line = segments[i]
+            lineWidth = 2 * self.HorizontalPadding
             lineHeight = 0
             for textFrag in line:
                 font = textFrag.get(self.FontRole)
@@ -76,14 +94,30 @@ class TextSegmentDelegate(QStyledItemDelegate):
                 lineWidth += textWidth
                 lineHeight = max(lineHeight, textHeight)
             width = max(lineWidth, width)
-            height += lineHeight + self.VerticalPadding
+            height += lineHeight
+            if i != len(segments) - 1:
+                height += self.VerticalPadding
         return QSize(width, height)
 
+    def sizeHint(self, option: QStyleOptionViewItem, index: QModelIndex) -> QSize:
+        width = self.HorizontalPadding * 2
+        height = self.VerticalPadding * 2
+        textsSizeHint = self.textsSizeHint(option, index)
+        return QSize(textsSizeHint.width() + width, textsSizeHint.height() + height)
+
     def baseX(self, option: QStyleOptionViewItem, index: QModelIndex):
-        return option.rect.x() + self.HorizontalPadding + self.baseXOffset
+        return (
+            option.rect.x()
+            + self.HorizontalPadding
+            + self.baseXOffsets.get(self.indexOffsetKey(index), 0)
+        )
 
     def baseY(self, option: QStyleOptionViewItem, index: QModelIndex):
-        baseY = option.rect.y() + self.VerticalPadding + self.baseYOffset
+        baseY = (
+            option.rect.y()
+            + self.VerticalPadding
+            + self.baseYOffsets.get(self.indexOffsetKey(index), 0)
+        )
         if self.verticalAlign != TextSegmentDelegateVerticalAlign.Top:
             paintAreaSize: QSize = option.rect.size()
             delegateSize = self.sizeHint(option, index)
@@ -94,7 +128,11 @@ class TextSegmentDelegate(QStyledItemDelegate):
         return baseY
 
     def textMaxWidth(self, option: QStyleOptionViewItem, index: QModelIndex):
-        return option.rect.width() - (2 * self.HorizontalPadding) - self.baseXOffset
+        return (
+            option.rect.width()
+            - (2 * self.HorizontalPadding)
+            - self.baseXOffsets.get(self.indexOffsetKey(index), 0)
+        )
 
     def paint(
         self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex

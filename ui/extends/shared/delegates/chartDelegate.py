@@ -1,7 +1,7 @@
 from arcaea_offline.models import Chart, Difficulty, Song
 from arcaea_offline.utils.rating import rating_class_to_short_text, rating_class_to_text
 from PIL import Image
-from PySide6.QtCore import QModelIndex, Qt, Signal
+from PySide6.QtCore import QModelIndex, QRect, Qt, Signal
 from PySide6.QtGui import QColor, QPainter, QPixmap
 from PySide6.QtWidgets import (
     QFrame,
@@ -173,7 +173,9 @@ class ChartDelegate(TextSegmentDelegate):
 
     def sizeHint(self, option, index):
         size = super().sizeHint(option, index)
-        size.setWidth(size.width() + self.HorizontalPadding + size.height())
+        minWidth = size.height() + 2 * self.HorizontalPadding  # jacket size
+        width = size.width() + self.HorizontalPadding + size.height()
+        size.setWidth(max(minWidth, width))
         return size
 
     def paint(self, painter, option, index):
@@ -193,12 +195,13 @@ class ChartDelegate(TextSegmentDelegate):
             jacketPath = "__TEXT_ONLY__"
 
         if jacketPath == "__TEXT_ONLY__":
+            self.setBaseXOffset(index, 0)
             super().paint(painter, option, index)
             return
 
-        textSizeHint = super().sizeHint(option, index)
-        jacketSize = textSizeHint.height()
-        self.baseXOffset = self.HorizontalPadding + jacketSize
+        textsSizeHint = super().textsSizeHint(option, index)
+        jacketSize = textsSizeHint.height()
+        self.setBaseXOffset(index, self.HorizontalPadding + jacketSize)
 
         jacketSizeTuple = (jacketSize, jacketSize)
         if jacketPath:
@@ -214,11 +217,21 @@ class ChartDelegate(TextSegmentDelegate):
                 .toqpixmap()
             )
 
+        pixmapAvailableWidth = option.rect.width() - self.HorizontalPadding
+        pixmapAvailableHeight = option.rect.height()
+
+        if pixmapAvailableWidth < jacketSize or pixmapAvailableHeight < jacketSize:
+            cropRect = QRect(0, 0, pixmapAvailableWidth, pixmapAvailableHeight)
+            pixmap = pixmap.copy(cropRect)
+
         painter.save()
         painter.setRenderHint(QPainter.RenderHint.LosslessImageRendering, True)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing, True)
+        pixmapBaseY = self.baseY(option, index)
         painter.drawPixmap(
-            option.rect.x() + self.HorizontalPadding, self.baseY(option, index), pixmap
+            option.rect.x() + self.HorizontalPadding,
+            pixmapBaseY,
+            pixmap,
         )
         painter.restore()
         super().paint(painter, option, index)
