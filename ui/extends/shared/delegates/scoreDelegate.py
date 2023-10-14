@@ -1,5 +1,5 @@
 from arcaea_offline.calculate import calculate_score_range
-from arcaea_offline.models import Chart, Score
+from arcaea_offline.models import Chart, Score, ScoreBest
 from arcaea_offline.utils.rating import rating_class_to_text
 from arcaea_offline.utils.score import (
     clear_type_to_text,
@@ -78,18 +78,21 @@ class ScoreDelegate(TextSegmentDelegate):
         createGradeGradientWrapper(QColor("#5d1d35"), QColor("#9f3c55")),
     ]
 
-    def getScore(self, index: QModelIndex) -> Score | None:
+    def getScore(self, index: QModelIndex) -> Score | ScoreBest | None:
         return None
 
     def getChart(self, index: QModelIndex) -> Chart | None:
         return None
+
+    def isScoreInstance(self, index: QModelIndex) -> bool:
+        return isinstance(self.getScore(index), (Score, ScoreBest))
 
     def getScoreValidateOk(self, index: QModelIndex) -> bool | None:
         score = self.getScore(index)
         chart = self.getChart(index)
 
         if (
-            isinstance(score, Score)
+            self.isScoreInstance(index)
             and isinstance(chart, Chart)
             and chart.notes is not None
             and score.pure is not None
@@ -104,11 +107,11 @@ class ScoreDelegate(TextSegmentDelegate):
     def getTextSegments(self, index, option):
         score = self.getScore(index)
 
-        if not isinstance(score, Score):
+        if not self.isScoreInstance(index):
             return [
                 [
                     {
-                        self.TextRole: "Chart/Score Invalid",
+                        self.TextRole: "Score Invalid",
                         self.ColorRole: QColor("#ff0000"),
                     }
                 ]
@@ -199,7 +202,7 @@ class ScoreDelegate(TextSegmentDelegate):
         score = self.getScore(index)
         chart = self.getChart(index)
         if (
-            isinstance(score, Score)
+            self.isScoreInstance(index)
             and isinstance(chart, Chart)
             and self.paintWarningBackground(index)
         ):
@@ -239,7 +242,7 @@ class ScoreDelegate(TextSegmentDelegate):
         else:
             editor.setWindowTitle("-")
 
-        if isinstance(score, Score):
+        if self.isScoreInstance(index):
             editor.setText(score)
 
         editor.setValidateBeforeAccept(False)
@@ -260,7 +263,7 @@ class ScoreDelegate(TextSegmentDelegate):
         chart = self.getChart(index)
         if isinstance(chart, Chart):
             editor.setChart(chart)
-        if isinstance(score, Score):
+        if self.isScoreInstance(index):
             editor.setValue(score)
 
     def confirmSetModelData(self, editor: ScoreEditorDelegateWrapper):
