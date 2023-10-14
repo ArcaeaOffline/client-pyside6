@@ -27,7 +27,9 @@ class ChartSelector(Ui_ChartSelector, QWidget):
 
         self.valueChanged.connect(self.updateResultLabel)
         self.songIdSelector.valueChanged.connect(self.updateRatingClassEnabled)
-        self.songIdSelector.chartSelected.connect(self.selectChart)
+        self.songIdSelector.quickSearchActivated.connect(
+            self.__songIdSelectedQuickSearchActivated
+        )
 
         self.songIdSelector.valueChanged.connect(self.valueChanged)
         self.ratingClassSelector.valueChanged.connect(self.valueChanged)
@@ -86,7 +88,10 @@ class ChartSelector(Ui_ChartSelector, QWidget):
                 texts = [" | ".join(t) for t in texts]
                 text = f'{texts[0]}<br><font color="gray">{texts[1]}</font>'
             else:
-                text = f'No chart data<br><font color="gray">{chart.set} | {chart.song_id} | {chart.rating_class}</font>'
+                text = (
+                    "No chart data<br>"
+                    f'<font color="gray">{chart.set} | {chart.song_id} | {chart.rating_class}</font>'
+                )
             self.resultLabel.setText(text)
         else:
             self.resultLabel.setText("...")
@@ -106,5 +111,8 @@ class ChartSelector(Ui_ChartSelector, QWidget):
         self.songIdSelector.reset()
 
     def selectChart(self, chart: Chart):
+        self.songIdSelector.selectChart(chart)
         self.ratingClassSelector.select(chart.rating_class)
-        return self.ratingClassSelector.value() == chart.rating_class
+
+    def __songIdSelectedQuickSearchActivated(self, chart: Chart):
+        self.ratingClassSelector.select(chart.rating_class)

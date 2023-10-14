@@ -23,7 +23,7 @@ class SongIdSelectorMode(IntEnum):
 
 class SongIdSelector(Ui_SongIdSelector, QWidget):
     valueChanged = Signal()
-    chartSelected = Signal(Chart)
+    quickSearchActivated = Signal(Chart)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -209,13 +209,13 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
     def selectChart(self, chart: Chart):
         packSelected = self.selectPack(chart.set)
         songIdSelected = self.selectSongId(chart.song_id)
-        self.chartSelected.emit(chart)
         return packSelected and songIdSelected
 
     @Slot(QModelIndex)
     def searchCompleterSetSelection(self, index: QModelIndex):
-        chart = index.data(Qt.ItemDataRole.UserRole + 10)  # type: Chart
+        chart: Chart = index.data(Qt.ItemDataRole.UserRole + 10)
         self.selectChart(chart)
+        self.quickSearchActivated.emit(chart)
 
         self.searchLineEdit.clear()
         self.searchLineEdit.clearFocus()

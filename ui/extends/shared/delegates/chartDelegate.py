@@ -138,7 +138,7 @@ class ChartDelegate(TextSegmentDelegate):
             ratingClass = None
 
         ratingText = (
-            f"{rating_class_to_text(chart.rating_class)} {chartConstantString}"
+            f"{rating_class_to_text(ratingClass)} {chartConstantString}"
             if ratingClass is not None
             else "Unknown ?"
         )
