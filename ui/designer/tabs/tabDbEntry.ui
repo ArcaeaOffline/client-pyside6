@@ -24,6 +24,11 @@
        <string>tab.manage</string>
       </attribute>
      </widget>
+     <widget class="TabDb_ChartInfoEditor" name="tab_chartInfoEditor">
+      <attribute name="title">
+       <string>tab.chartInfoEditor</string>
+      </attribute>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -33,6 +38,12 @@
    <class>TabDb_Manage</class>
    <extends>QWidget</extends>
    <header>ui.implements.tabs.tabDb.tabDb_Manage</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabDb_ChartInfoEditor</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabDb.tabDb_ChartInfoEditor</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

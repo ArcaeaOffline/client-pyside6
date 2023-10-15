@@ -17,12 +17,12 @@
 <context>
     <name>ChartSelector</name>
     <message>
-        <location filename="../../designer/components/chartSelector.ui" line="26"/>
+        <location filename="../../designer/components/chartSelector.ui" line="20"/>
         <source>songIdSelector.title</source>
         <translation>Select a Song</translation>
     </message>
     <message>
-        <location filename="../../designer/components/chartSelector.ui" line="71"/>
+        <location filename="../../designer/components/chartSelector.ui" line="65"/>
         <source>resetButton</source>
         <translation>Reset</translation>
     </message>
@@ -542,14 +542,14 @@ validation</translation>
         <translation>Search...</translation>
     </message>
     <message>
-        <location filename="../../designer/components/songIdSelector.ui" line="54"/>
-        <location filename="../../designer/components/songIdSelector.ui" line="94"/>
+        <location filename="../../designer/components/songIdSelector.ui" line="41"/>
+        <location filename="../../designer/components/songIdSelector.ui" line="81"/>
         <source>previous</source>
         <translation>Previous</translation>
     </message>
     <message>
-        <location filename="../../designer/components/songIdSelector.ui" line="77"/>
-        <location filename="../../designer/components/songIdSelector.ui" line="117"/>
+        <location filename="../../designer/components/songIdSelector.ui" line="64"/>
+        <location filename="../../designer/components/songIdSelector.ui" line="104"/>
         <source>next</source>
         <translation>Next</translation>
     </message>
@@ -575,6 +575,11 @@ validation</translation>
         <translation>Manage</translation>
     </message>
     <message>
+        <location filename="../../designer/tabs/tabDbEntry.ui" line="29"/>
+        <source>tab.chartInfoEditor</source>
+        <translation>Chart Info Editor</translation>
+    </message>
+    <message>
         <location filename="../../implements/tabs/tabDbEntry.py" line="20"/>
         <source>tab.scoreTableViewer</source>
         <translation>Table [Score]</translation>
@@ -583,6 +588,60 @@ validation</translation>
         <location filename="../../implements/tabs/tabDbEntry.py" line="24"/>
         <source>tab.b30TableViewer</source>
         <translation>Table [B30]</translation>
+    </message>
+</context>
+<context>
+    <name>TabDb_ChartInfoEditor</name>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="20"/>
+        <source>editor.title</source>
+        <translation>Editor</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="32"/>
+        <source>editor.constant</source>
+        <translation>Constant</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="39"/>
+        <source>editor.notes</source>
+        <translation>Notes</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="168"/>
+        <source>editor.tip</source>
+        <translation>Tip</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="175"/>
+        <source>editor.tip.content</source>
+        <translation>Due to the special data structure,&lt;br&gt;please fill in 10 times of the constant value.&lt;br&gt;For example, Testify [BYD] is a 12.0,&lt;br&gt;then fill &quot;120&quot; instead of &quot;12.0&quot;.</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="213"/>
+        <source>editor.delete</source>
+        <translation>Delete</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="220"/>
+        <source>editor.commit</source>
+        <translation>Commit</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_ChartInfoEditor.py" line="167"/>
+        <location filename="../../implements/tabs/tabDb/tabDb_ChartInfoEditor.py" line="206"/>
+        <source>commit.chartNotSelected</source>
+        <translation>Please select a chart first.</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_ChartInfoEditor.py" line="176"/>
+        <source>commit.constantRequired</source>
+        <translation>Constant field is required.</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_ChartInfoEditor.py" line="217"/>
+        <source>deleteConfirm</source>
+        <translation>Are you sure to delete this chart data?</translation>
     </message>
 </context>
 <context>
@@ -783,28 +842,28 @@ validation</translation>
         <translation>Rois</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="128"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="134"/>
         <source>options.masker</source>
         <translation>Masker</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="138"/>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="145"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="144"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="151"/>
         <source>options.useCustom</source>
         <translation>Use custom options</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="203"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="215"/>
         <source>dependencies.title</source>
         <translation>OCR Dependencies</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="209"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="221"/>
         <source>dependencies.knnModel</source>
         <translation>KNearest model</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="246"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="258"/>
         <source>dependencies.phashDatabase</source>
         <translation>Image pHash database</translation>
     </message>
@@ -812,7 +871,7 @@ validation</translation>
 <context>
     <name>TabOverview</name>
     <message>
-        <location filename="../../implements/tabs/tabOverview.py" line="43"/>
+        <location filename="../../implements/tabs/tabOverview.py" line="44"/>
         <source>databaseDescribeLabel {} {} {} {} {} {}</source>
         <translation>There are {} packs, {} songs, {} difficulties, {} chart info ({} complete) and {} scores in database.</translation>
     </message>
@@ -911,23 +970,17 @@ validation</translation>
 <context>
     <name>TabTools_ChartRecommend</name>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="20"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="99"/>
         <source>constantRangeFromPlayRating</source>
         <translation>Chart Constant Range from Play Rating</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="118"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="20"/>
         <source>chartsByConstant</source>
         <translation>Charts by Constant</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="174"/>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="273"/>
-        <source>refreshButton</source>
-        <translation>Roll</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="197"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="245"/>
         <source>chartsRecommendFromPlayRating</source>
         <translation>Chart from Play Rating Based on Best Score</translation>
     </message>

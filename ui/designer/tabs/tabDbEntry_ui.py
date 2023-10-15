@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'tabDbEntry.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.0
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -18,6 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QSizePolicy, QTabWidget, QVBoxLayout,
     QWidget)
 
+from ui.implements.tabs.tabDb.tabDb_ChartInfoEditor import TabDb_ChartInfoEditor
 from ui.implements.tabs.tabDb.tabDb_Manage import TabDb_Manage
 
 class Ui_TabDbEntry(object):
@@ -33,6 +34,9 @@ class Ui_TabDbEntry(object):
         self.tab_manage = TabDb_Manage()
         self.tab_manage.setObjectName(u"tab_manage")
         self.tabWidget.addTab(self.tab_manage, "")
+        self.tab_chartInfoEditor = TabDb_ChartInfoEditor()
+        self.tab_chartInfoEditor.setObjectName(u"tab_chartInfoEditor")
+        self.tabWidget.addTab(self.tab_chartInfoEditor, "")
 
         self.verticalLayout.addWidget(self.tabWidget)
 
@@ -47,6 +51,7 @@ class Ui_TabDbEntry(object):
 
     def retranslateUi(self, TabDbEntry):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_manage), QCoreApplication.translate("TabDbEntry", u"tab.manage", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_chartInfoEditor), QCoreApplication.translate("TabDbEntry", u"tab.chartInfoEditor", None))
         pass
     # retranslateUi
 

@@ -17,12 +17,12 @@
 <context>
     <name>ChartSelector</name>
     <message>
-        <location filename="../../designer/components/chartSelector.ui" line="26"/>
+        <location filename="../../designer/components/chartSelector.ui" line="20"/>
         <source>songIdSelector.title</source>
         <translation>选择一首歌曲</translation>
     </message>
     <message>
-        <location filename="../../designer/components/chartSelector.ui" line="71"/>
+        <location filename="../../designer/components/chartSelector.ui" line="65"/>
         <source>resetButton</source>
         <translation>重置</translation>
     </message>
@@ -541,14 +541,14 @@
         <translation>搜索……</translation>
     </message>
     <message>
-        <location filename="../../designer/components/songIdSelector.ui" line="54"/>
-        <location filename="../../designer/components/songIdSelector.ui" line="94"/>
+        <location filename="../../designer/components/songIdSelector.ui" line="41"/>
+        <location filename="../../designer/components/songIdSelector.ui" line="81"/>
         <source>previous</source>
         <translation>上一个</translation>
     </message>
     <message>
-        <location filename="../../designer/components/songIdSelector.ui" line="77"/>
-        <location filename="../../designer/components/songIdSelector.ui" line="117"/>
+        <location filename="../../designer/components/songIdSelector.ui" line="64"/>
+        <location filename="../../designer/components/songIdSelector.ui" line="104"/>
         <source>next</source>
         <translation>下一个</translation>
     </message>
@@ -574,6 +574,11 @@
         <translation>管理</translation>
     </message>
     <message>
+        <location filename="../../designer/tabs/tabDbEntry.ui" line="29"/>
+        <source>tab.chartInfoEditor</source>
+        <translation>谱面信息编辑器</translation>
+    </message>
+    <message>
         <location filename="../../implements/tabs/tabDbEntry.py" line="20"/>
         <source>tab.scoreTableViewer</source>
         <translation>表 [分数]</translation>
@@ -582,6 +587,60 @@
         <location filename="../../implements/tabs/tabDbEntry.py" line="24"/>
         <source>tab.b30TableViewer</source>
         <translation>表 [B30]</translation>
+    </message>
+</context>
+<context>
+    <name>TabDb_ChartInfoEditor</name>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="20"/>
+        <source>editor.title</source>
+        <translation>编辑器</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="32"/>
+        <source>editor.constant</source>
+        <translation>定数</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="39"/>
+        <source>editor.notes</source>
+        <translation>note 数</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="168"/>
+        <source>editor.tip</source>
+        <translation>提示</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="175"/>
+        <source>editor.tip.content</source>
+        <translation>由于特殊的数据结构，请在编辑&lt;br&gt;定数时填入原数值的 10 倍。&lt;br&gt;举例：Testify [BYD] 的定数是 12.0，&lt;br&gt;则填入 120，而非 12.0。</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="213"/>
+        <source>editor.delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_ChartInfoEditor.ui" line="220"/>
+        <source>editor.commit</source>
+        <translation>提交</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_ChartInfoEditor.py" line="167"/>
+        <location filename="../../implements/tabs/tabDb/tabDb_ChartInfoEditor.py" line="206"/>
+        <source>commit.chartNotSelected</source>
+        <translation>请先选择一个谱面</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_ChartInfoEditor.py" line="176"/>
+        <source>commit.constantRequired</source>
+        <translation>定数字段为必填项</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_ChartInfoEditor.py" line="217"/>
+        <source>deleteConfirm</source>
+        <translation>确定删除该谱面数据吗？</translation>
     </message>
 </context>
 <context>
@@ -782,28 +841,28 @@
         <translation>定位器</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="128"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="134"/>
         <source>options.masker</source>
         <translation>遮罩器</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="138"/>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="145"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="144"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="151"/>
         <source>options.useCustom</source>
         <translation>使用自定义设置</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="203"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="215"/>
         <source>dependencies.title</source>
         <translation>OCR 依赖</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="209"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="221"/>
         <source>dependencies.knnModel</source>
         <translation>KNearest 模型</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="246"/>
+        <location filename="../../designer/tabs/tabOcr/tabOcr_Device.ui" line="258"/>
         <source>dependencies.phashDatabase</source>
         <translation>图像 pHash 数据库</translation>
     </message>
@@ -811,7 +870,7 @@
 <context>
     <name>TabOverview</name>
     <message>
-        <location filename="../../implements/tabs/tabOverview.py" line="43"/>
+        <location filename="../../implements/tabs/tabOverview.py" line="44"/>
         <source>databaseDescribeLabel {} {} {} {} {} {}</source>
         <translation>数据库中有 {} 个曲包，{} 首歌曲，{} 个难度，{} 个谱面信息（{} 个完整），{} 个分数记录。</translation>
     </message>
@@ -910,23 +969,17 @@
 <context>
     <name>TabTools_ChartRecommend</name>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="20"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="99"/>
         <source>constantRangeFromPlayRating</source>
         <translation>由单曲 PTT 逆算谱面定数范围</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="118"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="20"/>
         <source>chartsByConstant</source>
         <translation>按定数查谱</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="174"/>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="273"/>
-        <source>refreshButton</source>
-        <translation>换一批</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="197"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="245"/>
         <source>chartsRecommendFromPlayRating</source>
         <translation>由单曲 PTT 结合最好成绩推荐谱面</translation>
     </message>
