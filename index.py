@@ -6,7 +6,7 @@ from pathlib import Path
 
 from arcaea_offline.database import Database
 from PySide6.QtCore import QCoreApplication, QLocale
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QFontDatabase, QIcon
 from PySide6.QtWidgets import QApplication, QDialog, QMessageBox
 
 import ui.resources.resources_rc
@@ -50,6 +50,8 @@ if __name__ == "__main__":
         QLocale(Settings().language()) if Settings().language() else QLocale.system()
     )
     changeAppLanguage(locale)
+
+    QFontDatabase.addApplicationFont(":/fonts/GeosansLight.ttf")
 
     databaseChecker = DatabaseChecker()
     databaseChecker.setWindowIcon(QIcon(":/images/icon.png"))
