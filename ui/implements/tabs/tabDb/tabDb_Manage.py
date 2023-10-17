@@ -5,6 +5,7 @@ import zipfile
 
 from arcaea_offline.database import Database
 from arcaea_offline.external.arcaea import (
+    ArcaeaOnlineParser,
     PacklistParser,
     SonglistDifficultiesParser,
     SonglistParser,
@@ -174,6 +175,31 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
             QMessageBox.information(self, None, "OK")
         except Exception as e:
             logging.exception("import st3 error")
+            QMessageBox.critical(
+                self, "Import Error", "\n".join(traceback.format_exception(e))
+            )
+
+    @Slot()
+    def on_importOnlineButton_clicked(self):
+        apiResultFile, filter = QFileDialog.getOpenFileName(
+            self, "Select API result JSON file"
+        )
+
+        if not apiResultFile:
+            return
+
+        try:
+            db = Database()
+            parser = ArcaeaOnlineParser(apiResultFile)
+            logger.info(
+                f"Got {len(parser.parse())} items from {apiResultFile}, writing into database..."
+            )
+            with db.sessionmaker() as session:
+                parser.write_database(session)
+                session.commit()
+            QMessageBox.information(self, None, "OK")
+        except Exception as e:
+            logging.exception("import Arcaea Online error")
             QMessageBox.critical(
                 self, "Import Error", "\n".join(traceback.format_exception(e))
             )

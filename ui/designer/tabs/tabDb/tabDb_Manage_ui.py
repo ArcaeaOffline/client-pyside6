@@ -52,17 +52,17 @@ class Ui_TabDb_Manage(object):
         self.line.setFrameShape(QFrame.HLine)
         self.line.setFrameShadow(QFrame.Sunken)
 
-        self.formLayout.setWidget(6, QFormLayout.SpanningRole, self.line)
+        self.formLayout.setWidget(7, QFormLayout.SpanningRole, self.line)
 
         self.exportScoresButton = QPushButton(TabDb_Manage)
         self.exportScoresButton.setObjectName(u"exportScoresButton")
 
-        self.formLayout.setWidget(7, QFormLayout.LabelRole, self.exportScoresButton)
+        self.formLayout.setWidget(8, QFormLayout.LabelRole, self.exportScoresButton)
 
         self.label_3 = QLabel(TabDb_Manage)
         self.label_3.setObjectName(u"label_3")
 
-        self.formLayout.setWidget(7, QFormLayout.FieldRole, self.label_3)
+        self.formLayout.setWidget(8, QFormLayout.FieldRole, self.label_3)
 
         self.line_2 = QFrame(TabDb_Manage)
         self.line_2.setObjectName(u"line_2")
@@ -94,12 +94,12 @@ class Ui_TabDb_Manage(object):
         self.exportArcsongJsonButton = QPushButton(TabDb_Manage)
         self.exportArcsongJsonButton.setObjectName(u"exportArcsongJsonButton")
 
-        self.formLayout.setWidget(8, QFormLayout.LabelRole, self.exportArcsongJsonButton)
+        self.formLayout.setWidget(9, QFormLayout.LabelRole, self.exportArcsongJsonButton)
 
         self.label_6 = QLabel(TabDb_Manage)
         self.label_6.setObjectName(u"label_6")
 
-        self.formLayout.setWidget(8, QFormLayout.FieldRole, self.label_6)
+        self.formLayout.setWidget(9, QFormLayout.FieldRole, self.label_6)
 
         self.importApkButton = QPushButton(TabDb_Manage)
         self.importApkButton.setObjectName(u"importApkButton")
@@ -110,6 +110,16 @@ class Ui_TabDb_Manage(object):
         self.label_7.setObjectName(u"label_7")
 
         self.formLayout.setWidget(4, QFormLayout.FieldRole, self.label_7)
+
+        self.importOnlineButton = QPushButton(TabDb_Manage)
+        self.importOnlineButton.setObjectName(u"importOnlineButton")
+
+        self.formLayout.setWidget(6, QFormLayout.LabelRole, self.importOnlineButton)
+
+        self.label_8 = QLabel(TabDb_Manage)
+        self.label_8.setObjectName(u"label_8")
+
+        self.formLayout.setWidget(6, QFormLayout.FieldRole, self.label_8)
 
 
         self.retranslateUi(TabDb_Manage)
@@ -132,6 +142,8 @@ class Ui_TabDb_Manage(object):
         self.label_6.setText(QCoreApplication.translate("TabDb_Manage", u"exportArcsongJson.description", None))
         self.importApkButton.setText(QCoreApplication.translate("TabDb_Manage", u"importApkButton", None))
         self.label_7.setText(QCoreApplication.translate("TabDb_Manage", u"importApk.description", None))
+        self.importOnlineButton.setText(QCoreApplication.translate("TabDb_Manage", u"importOnlineButton", None))
+        self.label_8.setText(QCoreApplication.translate("TabDb_Manage", u"importOnline.description", None))
         pass
     # retranslateUi
 

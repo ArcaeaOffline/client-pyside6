@@ -102,22 +102,22 @@
 <context>
     <name>DbScoreTableModel</name>
     <message>
-        <location filename="../../extends/shared/models/tables/score.py" line="22"/>
+        <location filename="../../extends/shared/models/tables/score.py" line="28"/>
         <source>horizontalHeader.id</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="../../extends/shared/models/tables/score.py" line="23"/>
+        <location filename="../../extends/shared/models/tables/score.py" line="29"/>
         <source>horizontalHeader.chart</source>
         <translation>Chart</translation>
     </message>
     <message>
-        <location filename="../../extends/shared/models/tables/score.py" line="24"/>
+        <location filename="../../extends/shared/models/tables/score.py" line="30"/>
         <source>horizontalHeader.score</source>
         <translation>Score</translation>
     </message>
     <message>
-        <location filename="../../extends/shared/models/tables/score.py" line="25"/>
+        <location filename="../../extends/shared/models/tables/score.py" line="31"/>
         <source>horizontalHeader.potential</source>
         <translation>Potential</translation>
     </message>
@@ -659,12 +659,12 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="37"/>
         <source>importSt3Button</source>
-        <translation>Import Score Database</translation>
+        <translation>Import from Game Save</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="44"/>
         <source>importSt3.description</source>
-        <translation>Import your local score database</translation>
+        <translation>Import scores from your game save</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="58"/>
@@ -709,12 +709,22 @@ validation</translation>
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="121"/>
         <source>importApkButton</source>
-        <translation>Import APK</translation>
+        <translation>Import from APK</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="128"/>
         <source>importApk.description</source>
         <translation>Import packlist and songlist from .apk file</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="135"/>
+        <source>importOnlineButton</source>
+        <translation>Import from Arcaea Online</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="142"/>
+        <source>importOnline.description</source>
+        <translation>Import scores from the result of Arcaea Online API</translation>
     </message>
 </context>
 <context>
@@ -871,7 +881,7 @@ validation</translation>
 <context>
     <name>TabOverview</name>
     <message>
-        <location filename="../../implements/tabs/tabOverview.py" line="44"/>
+        <location filename="../../implements/tabs/tabOverview.py" line="43"/>
         <source>databaseDescribeLabel {} {} {} {} {} {}</source>
         <translation>There are {} packs, {} songs, {} difficulties, {} chart info ({} complete) and {} scores in database.</translation>
     </message>

@@ -102,22 +102,22 @@
 <context>
     <name>DbScoreTableModel</name>
     <message>
-        <location filename="../../extends/shared/models/tables/score.py" line="22"/>
+        <location filename="../../extends/shared/models/tables/score.py" line="28"/>
         <source>horizontalHeader.id</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="../../extends/shared/models/tables/score.py" line="23"/>
+        <location filename="../../extends/shared/models/tables/score.py" line="29"/>
         <source>horizontalHeader.chart</source>
         <translation>谱面</translation>
     </message>
     <message>
-        <location filename="../../extends/shared/models/tables/score.py" line="24"/>
+        <location filename="../../extends/shared/models/tables/score.py" line="30"/>
         <source>horizontalHeader.score</source>
         <translation>分数</translation>
     </message>
     <message>
-        <location filename="../../extends/shared/models/tables/score.py" line="25"/>
+        <location filename="../../extends/shared/models/tables/score.py" line="31"/>
         <source>horizontalHeader.potential</source>
         <translation>单曲 PTT</translation>
     </message>
@@ -658,7 +658,7 @@
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="37"/>
         <source>importSt3Button</source>
-        <translation>导入本地存档数据库</translation>
+        <translation>导入本地存档</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="44"/>
@@ -708,12 +708,22 @@
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="121"/>
         <source>importApkButton</source>
-        <translation>导入 APK</translation>
+        <translation>从 APK 导入</translation>
     </message>
     <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="128"/>
         <source>importApk.description</source>
         <translation>从 .apk 文件导入 packlist 和 songlist</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="135"/>
+        <source>importOnlineButton</source>
+        <translation>从 Arcaea Online 导入</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="142"/>
+        <source>importOnline.description</source>
+        <translation>从 Arcaea Online 的 API 结果导入分数</translation>
     </message>
 </context>
 <context>
@@ -870,7 +880,7 @@
 <context>
     <name>TabOverview</name>
     <message>
-        <location filename="../../implements/tabs/tabOverview.py" line="44"/>
+        <location filename="../../implements/tabs/tabOverview.py" line="43"/>
         <source>databaseDescribeLabel {} {} {} {} {} {}</source>
         <translation>数据库中有 {} 个曲包，{} 首歌曲，{} 个难度，{} 个谱面信息（{} 个完整），{} 个分数记录。</translation>
     </message>
