@@ -1,5 +1,4 @@
-from arcaea_offline.models import Score
-from PySide6.QtCore import QModelIndex, Qt, Slot
+from PySide6.QtCore import Qt, Slot
 from PySide6.QtGui import QColor, QPalette
 from PySide6.QtWidgets import QMessageBox
 
@@ -16,6 +15,12 @@ from ui.implements.components.dbTableViewer import DbTableViewer
 class TableChartDelegate(ChartDelegate):
     def getChart(self, index):
         return index.data(DbScoreTableModel.ChartRole)
+
+    def getSong(self, index):
+        return index.data(DbScoreTableModel.SongRole)
+
+    def getDifficulty(self, index):
+        return index.data(DbScoreTableModel.DifficultyRole)
 
 
 class TableScoreDelegate(ScoreDelegate):
@@ -49,6 +54,7 @@ class DbScoreTableViewer(DbTableViewer):
         highlightColor.setAlpha(25)
         tableViewPalette.setColor(QPalette.ColorRole.Highlight, highlightColor)
         self.tableView.setPalette(tableViewPalette)
+        self.tableModel.rowsInserted.connect(self.resizeTableView)
         self.tableModel.dataChanged.connect(self.resizeTableView)
 
         self.fillSortComboBox()

@@ -1,8 +1,8 @@
 import logging
 
-from arcaea_offline.calculate import calculate_play_rating
-from arcaea_offline.models import Chart, Score
+from arcaea_offline.models import Chart, Difficulty, Score, ScoreCalculated, Song
 from PySide6.QtCore import QCoreApplication, QModelIndex, QSortFilterProxyModel, Qt
+from sqlalchemy import select
 
 from .base import DbTableModel
 
@@ -14,6 +14,8 @@ class DbScoreTableModel(DbTableModel):
     ChartRole = Qt.ItemDataRole.UserRole + 11
     ScoreRole = Qt.ItemDataRole.UserRole + 12
     PttRole = Qt.ItemDataRole.UserRole + 13
+    SongRole = Qt.ItemDataRole.UserRole + 14
+    DifficultyRole = Qt.ItemDataRole.UserRole + 15
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -31,80 +33,72 @@ class DbScoreTableModel(DbTableModel):
         ]
 
     def syncDb(self):
-        newScores = self._db.get_scores()
-        newScores = sorted(newScores, key=lambda x: x.id)
-        newCharts = []
-        for score in newScores:
-            dbChart = self._db.get_chart(score.song_id, score.rating_class)
-            newCharts.append(
-                dbChart
-                if isinstance(dbChart, Chart)
-                else Chart(
-                    song_id=score.song_id,
-                    rating_class=score.rating_class,
-                    title=score.song_id,
-                    set="unknown",
+        self.beginResetModel()
+        self.beginRemoveRows(QModelIndex(), 0, self.rowCount())
+        self.__items.clear()
+        self.endRemoveRows()
+        self.endResetModel()
+
+        with self._db.sessionmaker() as session:
+            stmt = (
+                select(Score, Chart, Song, Difficulty, ScoreCalculated.potential)
+                .join(
+                    ScoreCalculated,
+                    (Score.id == ScoreCalculated.id),
+                    isouter=True,
+                )
+                .join(
+                    Chart,
+                    (Score.song_id == Chart.song_id)
+                    & (Score.rating_class == Chart.rating_class),
+                    isouter=True,
+                )
+                .join(
+                    Song,
+                    (Score.song_id == Song.id),
+                    isouter=True,
+                )
+                .join(
+                    Difficulty,
+                    (Score.song_id == Difficulty.song_id)
+                    & (Score.rating_class == Difficulty.rating_class),
+                    isouter=True,
                 )
             )
-        newPtts = []
-        for chart, score in zip(newCharts, newScores):
-            if (
-                isinstance(chart, Chart)
-                and chart.constant is not None
-                and isinstance(score, Score)
-            ):
-                newPtts.append(calculate_play_rating(chart.constant, score.score))
-            else:
-                newPtts.append(None)
+            results = session.execute(stmt).all()
 
-        newScoreIds = [score.id for score in newScores]
-        oldScoreIds = [item[self.ScoreRole].id for item in self.__items]
+            self.beginInsertRows(QModelIndex(), 0, len(results) - 1)
+            for result in results:
+                score, chart, song, difficulty, potential = result
 
-        deleteIds = list(set(oldScoreIds) - set(newScoreIds))
-        newIds = list(set(newScoreIds) - set(oldScoreIds))
-        deleteRowIndexes = [oldScoreIds.index(deleteId) for deleteId in deleteIds]
+                if chart:
+                    chartInModel = chart
+                elif song and difficulty:
+                    chartInModel = Chart(
+                        song_id=song.id,
+                        rating_class=difficulty.rating_class,
+                        title=difficulty.title or song.title,
+                        set=song.set,
+                    )
+                else:
+                    chartInModel = Chart(
+                        song_id=score.song_id,
+                        rating_class=score.rating_class,
+                        title=score.song_id,
+                        set="unknown",
+                    )
 
-        # first delete rows
-        for deleteRowIndex in sorted(deleteRowIndexes, reverse=True):
-            self.beginRemoveRows(QModelIndex(), deleteRowIndex, deleteRowIndex)
-            self.__items.pop(deleteRowIndex)
-            self.endRemoveRows()
-
-        # now update existing datas
-        for oldItem, newChart, newScore, newPtt in zip(
-            self.__items, newCharts, newScores, newPtts
-        ):
-            oldItem[self.IdRole] = newScore.id
-            oldItem[self.ChartRole] = newChart
-            oldItem[self.ScoreRole] = newScore
-            oldItem[self.PttRole] = newPtt
-
-        # finally insert new rows
-        for newId in newIds:
-            insertRowIndex = self.rowCount()
-            itemListIndex = newScoreIds.index(newId)
-            score = newScores[itemListIndex]
-            chart = newCharts[itemListIndex]
-            ptt = newPtts[itemListIndex]
-            self.beginInsertRows(QModelIndex(), insertRowIndex, insertRowIndex)
-            self.__items.append(
-                {
-                    self.IdRole: score.id,
-                    self.ChartRole: chart,
-                    self.ScoreRole: score,
-                    self.PttRole: ptt,
-                }
-            )
+                self.__items.append(
+                    {
+                        self.IdRole: score.id,
+                        self.ScoreRole: score,
+                        self.ChartRole: chartInModel,
+                        self.SongRole: song,
+                        self.DifficultyRole: difficulty,
+                        self.PttRole: potential,
+                    }
+                )
             self.endInsertRows()
-
-        # trigger view update
-        topLeft = self.index(0, 0)
-        bottomRight = self.index(self.rowCount() - 1, self.columnCount() - 1)
-        self.dataChanged.emit(
-            topLeft,
-            bottomRight,
-            [Qt.ItemDataRole.DisplayRole, self.IdRole, self.ChartRole, self.ScoreRole],
-        )
 
     def rowCount(self, *args):
         return len(self.__items)
@@ -116,8 +110,12 @@ class DbScoreTableModel(DbTableModel):
                 self.IdRole,
             ]:
                 return self.__items[index.row()][self.IdRole]
-            elif index.column() == 1 and role == self.ChartRole:
-                return self.__items[index.row()][self.ChartRole]
+            elif index.column() == 1 and role in [
+                self.ChartRole,
+                self.SongRole,
+                self.DifficultyRole,
+            ]:
+                return self.__items[index.row()][role]
             elif index.column() == 2 and role in [self.ChartRole, self.ScoreRole]:
                 return self.__items[index.row()][role]
             elif index.column() == 3:
@@ -185,7 +183,7 @@ class DbScoreTableSortFilterProxyModel(QSortFilterProxyModel):
     Sort_C2_ScoreRole = Qt.ItemDataRole.UserRole + 75
     Sort_C2_TimeRole = Qt.ItemDataRole.UserRole + 76
 
-    def lessThan(self, sourceLeft, sourceRight) -> bool:
+    def lessThan(self, sourceLeft: QModelIndex, sourceRight: QModelIndex) -> bool:
         if sourceLeft.column() != sourceRight.column():
             return
 
