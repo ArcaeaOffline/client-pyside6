@@ -1,8 +1,12 @@
+import logging
+
 from arcaea_offline.calculate import calculate_play_rating
 from arcaea_offline.models import Chart, Score
 from PySide6.QtCore import QCoreApplication, QModelIndex, QSortFilterProxyModel, Qt
 
 from .base import DbTableModel
+
+logger = logging.getLogger(__name__)
 
 
 class DbScoreTableModel(DbTableModel):
@@ -147,11 +151,12 @@ class DbScoreTableModel(DbTableModel):
             return False
 
         try:
-            self._db.delete_score(self.__items[row][self.IdRole])
+            self._db.delete_score(self.__items[row][self.ScoreRole])
             if syncDb:
                 self.syncDb()
             return True
         except Exception:
+            logger.exception(f"Table[Score]: Cannot remove row {row}")
             return False
 
     def removeRow(self, row: int, parent=...):
