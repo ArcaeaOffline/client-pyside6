@@ -48,7 +48,7 @@ class TabDb_ChartInfoEditor(Ui_TabDb_ChartInfoEditor, QWidget):
         self.chartSelector.setSongIdSelectorMode(SongIdSelectorMode.SongId)
         self.chartSelector.valueChanged.connect(self.chartSelectorValueChanged)
 
-        databaseUpdateSignals.songDataUpdated.connect(self.updateChartInfoAbsentModel)
+        databaseUpdateSignals.chartInfoUpdated.connect(self.updateChartInfoAbsentModel)
         self.updateChartInfoAbsentModel()
 
         self.commitButton.clicked.connect(self.commitChartInfo)
@@ -193,7 +193,7 @@ class TabDb_ChartInfoEditor(Ui_TabDb_ChartInfoEditor, QWidget):
         with self.db.sessionmaker() as session:
             session.merge(chartInfo)
             session.commit()
-        databaseUpdateSignals.songDataUpdated.emit()
+        databaseUpdateSignals.chartInfoUpdated.emit()
 
     def deleteChartInfo(self):
         chart = self.chartSelector.value()
@@ -223,4 +223,4 @@ class TabDb_ChartInfoEditor(Ui_TabDb_ChartInfoEditor, QWidget):
                 with self.db.sessionmaker() as session:
                     session.delete(chartInfo)
                     session.commit()
-                databaseUpdateSignals.songDataUpdated.emit()
+                databaseUpdateSignals.chartInfoUpdated.emit()

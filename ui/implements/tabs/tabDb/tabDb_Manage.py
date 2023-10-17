@@ -46,7 +46,7 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
             with db.sessionmaker() as session:
                 parser.write_database(session)
                 session.commit()
-                databaseUpdateSignals.songDataUpdated.emit()
+                databaseUpdateSignals.chartInfoUpdated.emit()
             QMessageBox.information(self, None, "OK")
         except Exception as e:
             logging.exception("Sync arcsong.db error")
@@ -62,7 +62,7 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
         with db.sessionmaker() as session:
             parser.write_database(session)
             session.commit()
-            databaseUpdateSignals.songDataUpdated.emit()
+            databaseUpdateSignals.songAddOrDelete.emit()
         itemNum = len([item for item in parser.parse() if isinstance(item, instance)])
         logger.info(f"updated {itemNum} {logName} from {path}")
         return itemNum

@@ -35,10 +35,11 @@ class ChartSelector(Ui_ChartSelector, QWidget):
         self.ratingClassSelector.valueChanged.connect(self.valueChanged)
 
         # handle `songIdSelector.updateDatabase` by this component
-        databaseUpdateSignals.songDataUpdated.disconnect(
+        databaseUpdateSignals.songAddOrDelete.disconnect(
             self.songIdSelector.updateDatabase
         )
-        databaseUpdateSignals.songDataUpdated.connect(self.updateDatabase)
+        databaseUpdateSignals.songAddOrDelete.connect(self.updateDatabase)
+        databaseUpdateSignals.chartInfoUpdated.connect(self.updateResultLabel)
 
     def setSongIdSelectorMode(self, mode: SongIdSelectorMode):
         self.songIdSelector.setMode(mode)

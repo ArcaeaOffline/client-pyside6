@@ -12,7 +12,8 @@ def create_engine(_url: str | QUrl, pool: Type[Pool] = NullPool) -> Engine:
 
 
 class DatabaseUpdateSignals(QObject):
-    songDataUpdated = Signal()
+    songAddOrDelete = Signal()
+    chartInfoUpdated = Signal()
 
 
 databaseUpdateSignals = DatabaseUpdateSignals()
