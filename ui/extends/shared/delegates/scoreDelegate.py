@@ -95,6 +95,7 @@ class ScoreDelegate(TextSegmentDelegate):
             self.isScoreInstance(index)
             and isinstance(chart, Chart)
             and chart.notes is not None
+            and chart.notes != 0
             and score.pure is not None
             and score.far is not None
         ):
