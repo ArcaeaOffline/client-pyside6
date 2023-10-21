@@ -1,6 +1,5 @@
 import logging
 
-from arcaea_offline.calculate import calculate_play_rating
 from arcaea_offline.calculate.world_step import (
     AmaneBelowExPartnerBonus,
     AwakenedEtoPartnerBonus,
@@ -15,14 +14,22 @@ from arcaea_offline.calculate.world_step import (
     calculate_step,
     calculate_step_original,
 )
-from arcaea_offline.models import Chart, Score
-from PySide6.QtCore import QEasingCurve, QObject, QSize, Qt, QTimeLine
-from PySide6.QtGui import QIcon, QPainter, QPaintEvent, QPixmap
+from PySide6.QtCore import (
+    QCoreApplication,
+    QEasingCurve,
+    QObject,
+    QSize,
+    QTimeLine,
+    Signal,
+)
+from PySide6.QtGui import QIcon, QPixmap
 from PySide6.QtWidgets import (
     QAbstractButton,
     QButtonGroup,
+    QDialog,
     QGraphicsColorizeEffect,
-    QLabel,
+    QPushButton,
+    QVBoxLayout,
     QWidget,
 )
 
@@ -30,24 +37,11 @@ from ui.designer.tabs.tabTools.tabTools_StepCalculator_ui import (
     Ui_TabTools_StepCalculator,
 )
 from ui.extends.shared.language import LanguageChangeEventFilter
-from ui.implements.components.chartAndScoreInput import ChartAndScoreInput
+from ui.implements.components.chartSelector import ChartSelector
+from ui.implements.components.playRatingCalculator import PlayRatingCalculator
 from ui.implements.components.songIdSelector import SongIdSelectorMode
 
 logger = logging.getLogger(__name__)
-
-
-class MapTypeListWidgetWidget(QLabel):
-    def paintEvent(self, e: QPaintEvent) -> None:
-        size = self.size()
-        painter = QPainter(self)
-        scaledPixmap = self.pixmap().scaled(
-            size,
-            Qt.AspectRatioMode.KeepAspectRatio,
-            Qt.TransformationMode.SmoothTransformation,
-        )
-        x = (size.width() - scaledPixmap.width()) / 2
-        y = (size.height() - scaledPixmap.height()) / 2
-        painter.drawPixmap(x, y, scaledPixmap)
 
 
 class ButtonGrayscaleEffectApplier(QObject):
@@ -79,11 +73,56 @@ class ButtonGrayscaleEffectApplier(QObject):
         target.setGraphicsEffect(effect)
 
 
-class ChartAndScoreInputDialog(ChartAndScoreInput):
+class PlayRatingCalculatorDialog(QDialog):
+    accepted = Signal()
+
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowFlag(Qt.WindowType.Dialog, True)
-        self.setSongIdSelectorMode(SongIdSelectorMode.Chart)
+
+        self.verticalLayout = QVBoxLayout(self)
+
+        self.chartSelector = ChartSelector(self)
+        self.chartSelector.setSongIdSelectorMode(SongIdSelectorMode.Chart)
+        self.verticalLayout.addWidget(self.chartSelector)
+
+        self.playRatingCalculator = PlayRatingCalculator(self)
+        self.verticalLayout.addWidget(self.playRatingCalculator)
+
+        self.acceptButton = QPushButton(self)
+        self.acceptButton.setText(
+            # fmt: off
+            QCoreApplication.translate("StepCalculator", "playRatingCalculatorDialog.acceptButton")
+            # fmt: on
+        )
+        self.acceptButton.setEnabled(False)
+        self.verticalLayout.addWidget(self.acceptButton)
+
+        self.chartSelector.valueChanged.connect(self.updatePlayRatingCalculator)
+        self.playRatingCalculator.arcaeaScoreLineEdit.textChanged.connect(
+            self.updateAcceptButton
+        )
+        self.acceptButton.clicked.connect(self.accepted)
+
+    def updatePlayRatingCalculator(self):
+        chart = self.chartSelector.value()
+        if chart is None:
+            self.playRatingCalculator.setConstant(None)
+        else:
+            self.playRatingCalculator.setConstant(chart.constant)
+        self.updateAcceptButton()
+
+    def updateAcceptButton(self):
+        if self.playRatingCalculator.result is None:
+            self.acceptButton.setEnabled(False)
+        else:
+            self.acceptButton.setEnabled(True)
+
+    def reset(self):
+        self.chartSelector.resetButton.click()
+        self.playRatingCalculator.arcaeaScoreLineEdit.clear()
+
+    def value(self):
+        return self.playRatingCalculator.result
 
 
 class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
@@ -203,23 +242,18 @@ class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
         )
         self.partnerSkillPresetButton_maya.clicked.connect(self.applyPartnerPreset)
 
-    def openChartAndScoreInputDialog(self):
-        dialog = ChartAndScoreInputDialog(self)
-        dialog.scoreCommited.connect(
-            lambda: self.setPlayResultFromChartAndScoreInput(dialog)
-        )
-        dialog.show()
+        self.playRatingCalculatorDialog = PlayRatingCalculatorDialog(self)
+        self.playRatingCalculatorDialog.accepted.connect(self.set_toStep_PlayRating)
 
-    def setPlayResultFromChartAndScoreInput(self, dialog: ChartAndScoreInputDialog):
-        if score := dialog.score():
-            chart = dialog.chart()
-            self.calculate_toStep_playResultSpinBox.setValue(
-                float(calculate_play_rating(chart.constant, score.score))
-            )
-            dialog.close()
-            dialog.deleteLater()
-        else:
-            return
+    def openChartAndScoreInputDialog(self):
+        self.playRatingCalculatorDialog.reset()
+        self.playRatingCalculatorDialog.show()
+
+    def set_toStep_PlayRating(self):
+        result = self.playRatingCalculatorDialog.value()
+        if result is not None:
+            self.calculate_toStep_playResultSpinBox.setValue(result)
+            self.playRatingCalculatorDialog.close()
 
     def applyPartnerPreset(self):
         if not self.sender():
@@ -307,7 +341,8 @@ class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
             step = calculate_step(
                 playResult, partner_bonus=partnerBonus, step_booster=stepBooster
             )
-            self.calculate_toStep_resultLabel.setText(f"{step}<br>({stepOriginal})")
+            self.calculate_toStep_resultLabel.setText(str(step))
+            self.calculate_toStep_detailedResultLabel.setText(str(stepOriginal))
         except Exception:
             if self.detailedLogOutputCheckBox.isChecked():
                 logger.exception("Cannot calculate toStep")
@@ -315,16 +350,14 @@ class TabTools_StepCalculator(Ui_TabTools_StepCalculator, QWidget):
 
         # fromStep
         try:
-            self.calculate_fromStep_resultLabel.setText(
-                str(
-                    calculate_play_rating_from_step(
-                        self.calculate_fromStep_targetStepSpinBox.value(),
-                        self.partnerStepValueSpinBox.value(),
-                        partner_bonus=partnerBonus,
-                        step_booster=stepBooster,
-                    )
-                )
+            fromStepResult = calculate_play_rating_from_step(
+                self.calculate_fromStep_targetStepSpinBox.value(),
+                self.partnerStepValueSpinBox.value(),
+                partner_bonus=partnerBonus,
+                step_booster=stepBooster,
             )
+            self.calculate_fromStep_resultLabel.setText(str(round(fromStepResult, 2)))
+            self.calculate_fromStep_detailedResultLabel.setText(str(fromStepResult))
         except Exception:
             if self.detailedLogOutputCheckBox.isChecked():
                 logger.exception("Cannot calculate fromStep")

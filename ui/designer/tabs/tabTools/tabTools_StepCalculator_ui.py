@@ -137,7 +137,7 @@ class Ui_TabTools_StepCalculator(object):
         self.legacyPlayPlus_x125fragRadioButton = QRadioButton(self.legacyPlayPlus_useFragmentsGroupBox)
         self.legacyPlayPlus_x125fragRadioButton.setObjectName(u"legacyPlayPlus_x125fragRadioButton")
         self.legacyPlayPlus_x125fragRadioButton.setText(u"x1.25\n"
-"125")
+"250")
 
         self.horizontalLayout_3.addWidget(self.legacyPlayPlus_x125fragRadioButton)
 
@@ -288,6 +288,11 @@ class Ui_TabTools_StepCalculator(object):
         self.formLayout_2 = QFormLayout(self.groupBox)
         self.formLayout_2.setObjectName(u"formLayout_2")
         self.formLayout_2.setLabelAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_2 = QLabel(self.groupBox)
+        self.label_2.setObjectName(u"label_2")
+
+        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.label_2)
+
         self.calculate_toStep_playResultSpinBox = QDoubleSpinBox(self.groupBox)
         self.calculate_toStep_playResultSpinBox.setObjectName(u"calculate_toStep_playResultSpinBox")
         sizePolicy2.setHeightForWidth(self.calculate_toStep_playResultSpinBox.sizePolicy().hasHeightForWidth())
@@ -298,10 +303,10 @@ class Ui_TabTools_StepCalculator(object):
 
         self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.calculate_toStep_playResultSpinBox)
 
-        self.label_2 = QLabel(self.groupBox)
-        self.label_2.setObjectName(u"label_2")
+        self.calculate_toStep_calculatePlayResultFromScoreButton = QPushButton(self.groupBox)
+        self.calculate_toStep_calculatePlayResultFromScoreButton.setObjectName(u"calculate_toStep_calculatePlayResultFromScoreButton")
 
-        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.label_2)
+        self.formLayout_2.setWidget(1, QFormLayout.FieldRole, self.calculate_toStep_calculatePlayResultFromScoreButton)
 
         self.label_7 = QLabel(self.groupBox)
         self.label_7.setObjectName(u"label_7")
@@ -310,18 +315,28 @@ class Ui_TabTools_StepCalculator(object):
 
         self.formLayout_2.setWidget(2, QFormLayout.LabelRole, self.label_7)
 
+        self.verticalLayout_9 = QVBoxLayout()
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.calculate_toStep_resultLabel = QLabel(self.groupBox)
         self.calculate_toStep_resultLabel.setObjectName(u"calculate_toStep_resultLabel")
-        sizePolicy4.setHeightForWidth(self.calculate_toStep_resultLabel.sizePolicy().hasHeightForWidth())
-        self.calculate_toStep_resultLabel.setSizePolicy(sizePolicy4)
         self.calculate_toStep_resultLabel.setText(u"...")
+        self.calculate_toStep_resultLabel.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
 
-        self.formLayout_2.setWidget(2, QFormLayout.FieldRole, self.calculate_toStep_resultLabel)
+        self.verticalLayout_9.addWidget(self.calculate_toStep_resultLabel)
 
-        self.calculate_toStep_calculatePlayResultFromScoreButton = QPushButton(self.groupBox)
-        self.calculate_toStep_calculatePlayResultFromScoreButton.setObjectName(u"calculate_toStep_calculatePlayResultFromScoreButton")
+        self.calculate_toStep_detailedResultLabel = QLabel(self.groupBox)
+        self.calculate_toStep_detailedResultLabel.setObjectName(u"calculate_toStep_detailedResultLabel")
+        font = QFont()
+        font.setPointSize(8)
+        self.calculate_toStep_detailedResultLabel.setFont(font)
+        self.calculate_toStep_detailedResultLabel.setStyleSheet(u"QLabel { color: gray; }")
+        self.calculate_toStep_detailedResultLabel.setText(u"...")
+        self.calculate_toStep_detailedResultLabel.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
 
-        self.formLayout_2.setWidget(1, QFormLayout.FieldRole, self.calculate_toStep_calculatePlayResultFromScoreButton)
+        self.verticalLayout_9.addWidget(self.calculate_toStep_detailedResultLabel)
+
+
+        self.formLayout_2.setLayout(2, QFormLayout.FieldRole, self.verticalLayout_9)
 
 
         self.horizontalLayout_4.addWidget(self.groupBox)
@@ -350,13 +365,26 @@ class Ui_TabTools_StepCalculator(object):
 
         self.formLayout_3.setWidget(1, QFormLayout.LabelRole, self.label_9)
 
+        self.verticalLayout_10 = QVBoxLayout()
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.calculate_fromStep_resultLabel = QLabel(self.groupBox_2)
         self.calculate_fromStep_resultLabel.setObjectName(u"calculate_fromStep_resultLabel")
-        sizePolicy4.setHeightForWidth(self.calculate_fromStep_resultLabel.sizePolicy().hasHeightForWidth())
-        self.calculate_fromStep_resultLabel.setSizePolicy(sizePolicy4)
         self.calculate_fromStep_resultLabel.setText(u"...")
+        self.calculate_fromStep_resultLabel.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
 
-        self.formLayout_3.setWidget(1, QFormLayout.FieldRole, self.calculate_fromStep_resultLabel)
+        self.verticalLayout_10.addWidget(self.calculate_fromStep_resultLabel)
+
+        self.calculate_fromStep_detailedResultLabel = QLabel(self.groupBox_2)
+        self.calculate_fromStep_detailedResultLabel.setObjectName(u"calculate_fromStep_detailedResultLabel")
+        self.calculate_fromStep_detailedResultLabel.setFont(font)
+        self.calculate_fromStep_detailedResultLabel.setStyleSheet(u"QLabel { color: gray; }")
+        self.calculate_fromStep_detailedResultLabel.setText(u"...")
+        self.calculate_fromStep_detailedResultLabel.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+
+        self.verticalLayout_10.addWidget(self.calculate_fromStep_detailedResultLabel)
+
+
+        self.formLayout_3.setLayout(1, QFormLayout.FieldRole, self.verticalLayout_10)
 
 
         self.horizontalLayout_4.addWidget(self.groupBox_2)
@@ -394,8 +422,8 @@ class Ui_TabTools_StepCalculator(object):
         self.partnerSkillPresetButton_maya.setText(QCoreApplication.translate("TabTools_StepCalculator", u"partner.skill.presets.maya", None))
         self.groupBox.setTitle(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.toStep", None))
         self.label_2.setText(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.toStep.playResultLabel", None))
-        self.label_7.setText(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.toStep.resultLabel", None))
         self.calculate_toStep_calculatePlayResultFromScoreButton.setText(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.toStep.calculatePlayResultFromScoreButton", None))
+        self.label_7.setText(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.toStep.resultLabel", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.fromStep", None))
         self.label_4.setText(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.fromStep.targetStepLabel", None))
         self.label_9.setText(QCoreApplication.translate("TabTools_StepCalculator", u"calculate.fromStep.resultLabel", None))
