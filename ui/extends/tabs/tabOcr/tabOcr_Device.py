@@ -7,6 +7,7 @@ import exif
 from arcaea_offline.database import Database
 from arcaea_offline.models import Chart, Score
 from arcaea_offline.utils.partner import KanaeDayNight, kanae_day_night
+from arcaea_offline_ocr.crop import CropBlackEdges
 from arcaea_offline_ocr.device import DeviceOcr, DeviceOcrResult
 from arcaea_offline_ocr.device.rois import (
     DeviceRois,
@@ -43,6 +44,7 @@ class TabDeviceOcrRunnable(OcrRunnable):
     def run(self):
         try:
             img = imread_unicode(self.imagePath, cv2.IMREAD_COLOR)
+            img = CropBlackEdges.crop(img, cv2.COLOR_BGR2GRAY)
             if isinstance(self.rois, type) and issubclass(self.rois, DeviceRoisAuto):
                 rois = self.rois(img.shape[1], img.shape[0])
             else:
