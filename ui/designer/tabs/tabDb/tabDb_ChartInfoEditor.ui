@@ -258,6 +258,13 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>listView</tabstop>
+  <tabstop>constantLineEdit</tabstop>
+  <tabstop>notesLineEdit</tabstop>
+  <tabstop>commitButton</tabstop>
+  <tabstop>deleteButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -179,6 +179,10 @@ class Ui_TabDb_ChartInfoEditor(object):
 
         self.gridLayout.addWidget(self.listView, 1, 0, 1, 1)
 
+        QWidget.setTabOrder(self.listView, self.constantLineEdit)
+        QWidget.setTabOrder(self.constantLineEdit, self.notesLineEdit)
+        QWidget.setTabOrder(self.notesLineEdit, self.commitButton)
+        QWidget.setTabOrder(self.commitButton, self.deleteButton)
 
         self.retranslateUi(TabDb_ChartInfoEditor)
 
