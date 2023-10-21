@@ -1,3 +1,4 @@
+import csv
 import json
 import logging
 import traceback
@@ -13,6 +14,7 @@ from arcaea_offline.external.arcaea import (
 )
 from arcaea_offline.external.arcaea.common import ArcaeaParser
 from arcaea_offline.external.arcsong import ArcsongDbParser
+from arcaea_offline.external.smartrte import SmartRteB30CsvConverter
 from arcaea_offline.models import Difficulty, Pack, Song
 from PySide6.QtCore import QDir, Slot
 from PySide6.QtWidgets import QFileDialog, QMessageBox, QWidget
@@ -232,3 +234,27 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
         )
         with open(exportLocation, "w", encoding="utf-8") as f:
             f.write(content)
+
+    @Slot()
+    def on_exportSmartRteB30Button_clicked(self):
+        try:
+            with Database().sessionmaker() as session:
+                converter = SmartRteB30CsvConverter(session)
+                csvRows = converter.rows()
+
+            exportLocation, _filter = QFileDialog.getSaveFileName(
+                self,
+                "Export CSV file",
+                QDir.current().filePath("smartrte_scores.csv"),
+                "CSV (*.csv);;*",
+            )
+            with open(exportLocation, "w", encoding="utf-8", newline="") as f:
+                csvWriter = csv.writer(f)
+                csvWriter.writerows(csvRows)
+
+            QMessageBox.information(self, None, "OK")
+        except Exception as e:
+            logging.exception("Export SmartRTE csv error:")
+            QMessageBox.critical(
+                self, "Export Error", "\n".join(traceback.format_exception(e))
+            )

@@ -121,6 +121,18 @@ class Ui_TabDb_Manage(object):
 
         self.formLayout.setWidget(6, QFormLayout.FieldRole, self.label_8)
 
+        self.exportSmartRteB30Button = QPushButton(TabDb_Manage)
+        self.exportSmartRteB30Button.setObjectName(u"exportSmartRteB30Button")
+
+        self.formLayout.setWidget(10, QFormLayout.LabelRole, self.exportSmartRteB30Button)
+
+        self.label_9 = QLabel(TabDb_Manage)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setOpenExternalLinks(True)
+        self.label_9.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse)
+
+        self.formLayout.setWidget(10, QFormLayout.FieldRole, self.label_9)
+
 
         self.retranslateUi(TabDb_Manage)
 
@@ -144,6 +156,8 @@ class Ui_TabDb_Manage(object):
         self.label_7.setText(QCoreApplication.translate("TabDb_Manage", u"importApk.description", None))
         self.importOnlineButton.setText(QCoreApplication.translate("TabDb_Manage", u"importOnlineButton", None))
         self.label_8.setText(QCoreApplication.translate("TabDb_Manage", u"importOnline.description", None))
+        self.exportSmartRteB30Button.setText(QCoreApplication.translate("TabDb_Manage", u"exportSmartRteB30Button", None))
+        self.label_9.setText(QCoreApplication.translate("TabDb_Manage", u"exportSmartRteB30.description", None))
         pass
     # retranslateUi
 

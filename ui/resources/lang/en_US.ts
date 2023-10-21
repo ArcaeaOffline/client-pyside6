@@ -726,6 +726,16 @@ validation</translation>
         <source>importOnline.description</source>
         <translation>Import scores from the result of Arcaea Online API</translation>
     </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="149"/>
+        <source>exportSmartRteB30Button</source>
+        <translation>Export Scores (CSV, SmartRTE B30)</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="156"/>
+        <source>exportSmartRteB30.description</source>
+        <translation>Export all your scores to &lt;a href=&quot;https://smartrte.github.io/b30gen.html&quot;&gt;smartrte.github.io&lt;/a&gt; compatible CSV file</translation>
+    </message>
 </context>
 <context>
     <name>TabOcrDisabled</name>

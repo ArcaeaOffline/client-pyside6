@@ -725,6 +725,16 @@
         <source>importOnline.description</source>
         <translation>从 Arcaea Online 的 API 结果导入分数</translation>
     </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="149"/>
+        <source>exportSmartRteB30Button</source>
+        <translation>导出分数（CSV，SmartRTE B30）</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="156"/>
+        <source>exportSmartRteB30.description</source>
+        <translation>将所有分数导出为兼容 &lt;a href=&quot;https://smartrte.github.io/b30gen.html&quot;&gt;smartrte.github.io&lt;/a&gt; 的 CSV 文件</translation>
+    </message>
 </context>
 <context>
     <name>TabOcrDisabled</name>
