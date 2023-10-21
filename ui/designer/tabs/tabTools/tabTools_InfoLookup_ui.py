@@ -16,9 +16,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
-    QGroupBox, QHBoxLayout, QLabel, QLineEdit,
-    QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
+    QGroupBox, QHBoxLayout, QLabel, QSizePolicy,
+    QVBoxLayout, QWidget)
 
+from ui.implements.components.playRatingCalculator import PlayRatingCalculator
 from ui.implements.components.ratingClassSelector import RatingClassSelector
 from ui.implements.components.songIdSelector import SongIdSelector
 
@@ -502,34 +503,12 @@ class Ui_TabTools_InfoLookup(object):
 
         self.groupBox_6 = QGroupBox(TabTools_InfoLookup)
         self.groupBox_6.setObjectName(u"groupBox_6")
-        self.horizontalLayout_5 = QHBoxLayout(self.groupBox_6)
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.playRatingCalculateScoreLineEdit = QLineEdit(self.groupBox_6)
-        self.playRatingCalculateScoreLineEdit.setObjectName(u"playRatingCalculateScoreLineEdit")
-        self.playRatingCalculateScoreLineEdit.setMinimumSize(QSize(100, 0))
-        self.playRatingCalculateScoreLineEdit.setMaximumSize(QSize(150, 16777215))
-        self.playRatingCalculateScoreLineEdit.setInputMask(u"B9'999'999;_")
+        self.verticalLayout_2 = QVBoxLayout(self.groupBox_6)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.playRatingCalculator = PlayRatingCalculator(self.groupBox_6)
+        self.playRatingCalculator.setObjectName(u"playRatingCalculator")
 
-        self.horizontalLayout_5.addWidget(self.playRatingCalculateScoreLineEdit)
-
-        self.label = QLabel(self.groupBox_6)
-        self.label.setObjectName(u"label")
-        self.label.setText(u">")
-
-        self.horizontalLayout_5.addWidget(self.label)
-
-        self.playRatingCalculateResultLabel = QLabel(self.groupBox_6)
-        self.playRatingCalculateResultLabel.setObjectName(u"playRatingCalculateResultLabel")
-        font = QFont()
-        font.setBold(True)
-        self.playRatingCalculateResultLabel.setFont(font)
-        self.playRatingCalculateResultLabel.setText(u"...")
-
-        self.horizontalLayout_5.addWidget(self.playRatingCalculateResultLabel)
-
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_5.addItem(self.horizontalSpacer)
+        self.verticalLayout_2.addWidget(self.playRatingCalculator)
 
 
         self.verticalLayout.addWidget(self.groupBox_6)
