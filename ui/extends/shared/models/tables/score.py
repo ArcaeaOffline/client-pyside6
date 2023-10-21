@@ -131,7 +131,7 @@ class DbScoreTableModel(DbTableModel):
             return False
 
         if index.column() == 2 and isinstance(value, Score) and role == self.ScoreRole:
-            self._db.update_score(self.__items[index.row()][self.IdRole], value)
+            self._db.update_score(value)
             self.syncDb()
             return True
 
