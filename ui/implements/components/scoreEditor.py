@@ -302,7 +302,7 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
 
         if score.score is None:
             flags |= ScoreValidateResult.ScoreIncomplete
-        elif score.pure is None or score.far is None:
+        elif score.pure is None or score.far is None or score.lost is None:
             flags |= ScoreValidateResult.ScoreIncompleteForValidate
         elif self.__chart.notes is not None:
             score_range = calculate_score_range(
