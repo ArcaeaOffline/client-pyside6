@@ -2,11 +2,11 @@ import logging
 
 from arcaea_offline.calculate import calculate_constants_from_play_rating
 from arcaea_offline.database import Database
-from arcaea_offline.models import Chart, ScoreBest
+from arcaea_offline.models import Chart, Score
 from arcaea_offline.utils.rating import rating_class_to_text
-from arcaea_offline.utils.score import score_to_grade_text
-from PySide6.QtCore import Slot
-from PySide6.QtWidgets import QWidget
+from PySide6.QtCore import QModelIndex, Qt, Slot
+from PySide6.QtGui import QColor, QPalette
+from PySide6.QtWidgets import QDialog, QLabel, QVBoxLayout, QWidget
 
 from ui.designer.tabs.tabTools.tabTools_ChartRecommend_ui import (
     Ui_TabTools_ChartRecommend,
@@ -17,16 +17,37 @@ from ui.extends.tabs.tabTools.tabTools_ChartRecommend import (
     CustomChartDelegate,
     CustomScoreBestDelegate,
 )
+from ui.implements.components.playRatingCalculator import PlayRatingCalculator
 
 logger = logging.getLogger(__name__)
 
 
-def chartToText(chart: Chart):
-    return f"{chart.artist} - {chart.title}<br>({chart.song_id}) {rating_class_to_text(chart.rating_class)}"
+class QuickPlayRatingCalculatorDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
 
+        self.verticalLayout = QVBoxLayout(self)
 
-def scoreBestToText(score: ScoreBest):
-    return f"{score_to_grade_text(score.score)} {score.score} > {score.potential:.4f}"
+        self.chartLabel = QLabel(self)
+        self.verticalLayout.addWidget(self.chartLabel)
+
+        self.playRatingCalculator = PlayRatingCalculator(self)
+        self.verticalLayout.addWidget(self.playRatingCalculator)
+
+        self.setMinimumWidth(400)
+
+        self.playRatingCalculator.arcaeaScoreLineEdit.setFocus(
+            Qt.FocusReason.PopupFocusReason
+        )
+
+    def setChart(self, chart: Chart):
+        self.chartLabel.setText(
+            f"{chart.title} {rating_class_to_text(chart.rating_class)} {chart.constant / 10}"
+        )
+        self.playRatingCalculator.setConstant(chart.constant)
+
+    def setScore(self, score: Score):
+        self.playRatingCalculator.arcaeaScoreLineEdit.setText(str(score))
 
 
 class TabTools_ChartRecommend(Ui_TabTools_ChartRecommend, QWidget):
@@ -60,6 +81,13 @@ class TabTools_ChartRecommend(Ui_TabTools_ChartRecommend, QWidget):
         )
         self.chartsRecommendFromPlayRating_boundsSpinBox.valueChanged.connect(
             self.updateChartsRecommendFromPlayRating
+        )
+
+        self.chartsByConstant_modelView.doubleClicked.connect(
+            self.openQuickPlayRatingCalculator_chartsByConstant
+        )
+        self.chartsRecommendFromPlayRating_modelView.doubleClicked.connect(
+            self.openQuickPlayRatingCalculator_chartsRecommendFromPlayRating
         )
 
     @Slot(float)
@@ -120,3 +148,26 @@ class TabTools_ChartRecommend(Ui_TabTools_ChartRecommend, QWidget):
         self.chartsRecommendFromPlayRatingModel.setChartAndScore(charts, scores)
         self.chartsRecommendFromPlayRating_modelView.resizeRowsToContents()
         self.chartsRecommendFromPlayRating_modelView.resizeColumnsToContents()
+
+    @Slot(QModelIndex)
+    def openQuickPlayRatingCalculator_chartsByConstant(self, index: QModelIndex):
+        dialog = QuickPlayRatingCalculatorDialog(self)
+        chart = index.data(ChartsModel.ChartRole)
+        dialog.setChart(chart)
+        dialog.show()
+
+    @Slot(QModelIndex)
+    def openQuickPlayRatingCalculator_chartsRecommendFromPlayRating(
+        self, index: QModelIndex
+    ):
+        dialog = QuickPlayRatingCalculatorDialog(self)
+
+        row = index.row()
+        chartIndex = self.chartsRecommendFromPlayRatingModel.item(row, 0)
+        scoreIndex = self.chartsRecommendFromPlayRatingModel.item(row, 1)
+
+        chart = chartIndex.data(ChartsWithScoreBestModel.ChartRole)
+        score: Score = scoreIndex.data(ChartsWithScoreBestModel.ScoreBestRole)
+        dialog.setChart(chart)
+        dialog.setScore(score.score)
+        dialog.show()

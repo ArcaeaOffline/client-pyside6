@@ -68,6 +68,7 @@ class Ui_TabTools_ChartRecommend(object):
         self.chartsByConstant_modelView.setMinimumSize(QSize(150, 0))
         self.chartsByConstant_modelView.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.chartsByConstant_modelView.setSelectionMode(QAbstractItemView.NoSelection)
+        self.chartsByConstant_modelView.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.chartsByConstant_modelView.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
         self.chartsByConstant_modelView.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
 
@@ -228,7 +229,7 @@ class Ui_TabTools_ChartRecommend(object):
         self.chartsRecommendFromPlayRating_modelView.setSizePolicy(sizePolicy2)
         self.chartsRecommendFromPlayRating_modelView.setMinimumSize(QSize(200, 0))
         self.chartsRecommendFromPlayRating_modelView.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.chartsRecommendFromPlayRating_modelView.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.chartsRecommendFromPlayRating_modelView.setSelectionMode(QAbstractItemView.NoSelection)
         self.chartsRecommendFromPlayRating_modelView.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.chartsRecommendFromPlayRating_modelView.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
         self.chartsRecommendFromPlayRating_modelView.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
