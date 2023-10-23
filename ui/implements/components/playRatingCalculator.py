@@ -39,14 +39,12 @@ class PlayRatingCalculator(QWidget):
             return None
 
         score = self.arcaeaScoreLineEdit.score()
-        if score is None:
-            return None
-
-        return calculate_play_rating(self.constant, score)
+        return None if score is None else calculate_play_rating(self.constant, score)
 
     def updateResultLabel(self):
         result = self.result
-        self.resultLabel.setText(str(result) if result is not None else "...")
+        self.resultLabel.setText(str(round(result, 3)) if result is not None else "...")
+        self.resultLabel.setToolTip(str(result))
 
     def on_copyButton_clicked(self):
         result = self.result
@@ -68,6 +66,7 @@ class PlayRatingCalculator(QWidget):
         self.resultLabel.setSizePolicy(
             QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred
         )
+        self.resultLabel.setMinimumWidth(100)
         self.horizontalLayout.addWidget(self.resultLabel)
 
         self.horizontalSpacer = QSpacerItem(
