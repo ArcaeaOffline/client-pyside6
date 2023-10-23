@@ -31,6 +31,9 @@ class AndrealExecuteRunnable(QRunnable):
                 encoding="utf-8",
             )
             result = subp.stdout
+            if subp.returncode != 0:
+                logger.error("AndrealImageGenerator Error: ")
+                logger.error(result)
             b64Result = [s for s in result.split("\n") if s]
             imageBytes = base64.b64decode(
                 re.sub(r"data:image/.*;base64,", "", b64Result[-1])
