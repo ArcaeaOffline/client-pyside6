@@ -56,7 +56,7 @@ commands = [
     ],  # en_US
 ]
 if no_obsolete:
-    commands = [command.extend(["-no-obsolete"]) for command in commands]
+    commands = [command + ["-no-obsolete"] for command in commands]
 
 for command in commands:
     subprocess.run(command)
