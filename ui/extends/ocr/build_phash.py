@@ -7,7 +7,7 @@ import numpy as np
 from arcaea_offline_ocr.phash_db import phash_opencv
 
 
-def preprocess_char_icon(img_gray: cv2.Mat):
+def preprocess_char_icon(img_gray: np.ndarray):
     h, w = img_gray.shape[:2]
     img = cv2.fillPoly(
         img_gray,
@@ -23,7 +23,7 @@ def preprocess_char_icon(img_gray: cv2.Mat):
 
 
 def build_image_phash_database(
-    images: list[cv2.Mat],
+    images: list[np.ndarray],
     labels: list[str],
     *,
     hash_size: int = 16,
