@@ -1002,6 +1002,16 @@ validation</translation>
         <translation>Generate</translation>
     </message>
     <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="335"/>
+        <source>sourceCode</source>
+        <translation>Source code</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="342"/>
+        <source>&lt;a href=&quot;https://github.com/283375/AndrealImageGenerator&quot;&gt;283375/AndrealImageGenerator&lt;/a&gt;&lt;br&gt;(forked from &lt;a href=&quot;https://github.com/Awbugl/AndrealImageGenerator&quot;&gt;Awbugl/AndrealImageGenerator&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="138"/>
         <source>imageWhatIsThisDialog.description</source>
         <translation>Generate image of...&lt;ul&gt;&lt;li&gt;/a - the most recent score&lt;/li&gt;&lt;li&gt;/a b30 - best30 image&lt;/li&gt;&lt;li&gt;/a info - best score of the selected chart&lt;/li&gt;&lt;/ul&gt;</translation>

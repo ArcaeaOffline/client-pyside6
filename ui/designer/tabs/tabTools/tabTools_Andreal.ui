@@ -329,6 +329,36 @@
      </item>
     </layout>
    </item>
+   <item row="9" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>sourceCode</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="1">
+    <widget class="QLabel" name="label_7">
+     <property name="text">
+      <string>&lt;a href=&quot;https://github.com/283375/AndrealImageGenerator&quot;&gt;283375/AndrealImageGenerator&lt;/a&gt;&lt;br&gt;(forked from &lt;a href=&quot;https://github.com/Awbugl/AndrealImageGenerator&quot;&gt;Awbugl/AndrealImageGenerator&lt;/a&gt;)</string>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0" colspan="2">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
   </layout>
  </widget>
  <customwidgets>

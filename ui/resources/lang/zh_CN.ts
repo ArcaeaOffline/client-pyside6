@@ -1001,6 +1001,16 @@
         <translation>生成</translation>
     </message>
     <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="335"/>
+        <source>sourceCode</source>
+        <translation>源代码</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="342"/>
+        <source>&lt;a href=&quot;https://github.com/283375/AndrealImageGenerator&quot;&gt;283375/AndrealImageGenerator&lt;/a&gt;&lt;br&gt;(forked from &lt;a href=&quot;https://github.com/Awbugl/AndrealImageGenerator&quot;&gt;Awbugl/AndrealImageGenerator&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="138"/>
         <source>imageWhatIsThisDialog.description</source>
         <translation>生成……&lt;ul&gt;&lt;li&gt;/a - 最近一次成绩&lt;/li&gt;&lt;li&gt;/a b30 - /a b30&lt;/li&gt;&lt;li&gt;/a info - 所选谱面的最好成绩&lt;/li&gt;&lt;/ul&gt;</translation>

@@ -220,6 +220,21 @@ class Ui_TabTools_Andreal(object):
 
         self.formLayout.setLayout(7, QFormLayout.SpanningRole, self.horizontalLayout_5)
 
+        self.label_4 = QLabel(TabTools_Andreal)
+        self.label_4.setObjectName(u"label_4")
+
+        self.formLayout.setWidget(9, QFormLayout.LabelRole, self.label_4)
+
+        self.label_7 = QLabel(TabTools_Andreal)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setOpenExternalLinks(True)
+
+        self.formLayout.setWidget(9, QFormLayout.FieldRole, self.label_7)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.formLayout.setItem(8, QFormLayout.SpanningRole, self.verticalSpacer)
+
 
         self.retranslateUi(TabTools_Andreal)
         self.imageFormat_jpgRadioButton.toggled.connect(self.jpgQualityHolderWidget.setEnabled)
@@ -241,6 +256,8 @@ class Ui_TabTools_Andreal(object):
         self.exportJsonButton.setText(QCoreApplication.translate("TabTools_Andreal", u"exportJsonButton", None))
         self.generatePreviewButton.setText(QCoreApplication.translate("TabTools_Andreal", u"generatePreviewButton", None))
         self.generateImageButton.setText(QCoreApplication.translate("TabTools_Andreal", u"generateImageButton", None))
+        self.label_4.setText(QCoreApplication.translate("TabTools_Andreal", u"sourceCode", None))
+        self.label_7.setText(QCoreApplication.translate("TabTools_Andreal", u"<a href=\"https://github.com/283375/AndrealImageGenerator\">283375/AndrealImageGenerator</a><br>(forked from <a href=\"https://github.com/Awbugl/AndrealImageGenerator\">Awbugl/AndrealImageGenerator</a>)", None))
         pass
     # retranslateUi
 
