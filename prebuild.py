@@ -1,70 +1,87 @@
 import os
+import platform
+import subprocess
 from importlib import metadata
 from pathlib import Path
 
-# fill VERSION file
-versionFile = Path("ui/resources/VERSION")
-assert versionFile.exists()
 
-versionTexts = []
+def getGitDesc():
+    gitDescribe = subprocess.run(
+        ["git", "describe", "--tags", "--long"],
+        capture_output=True,
+        encoding="utf-8",
+    )
+    if gitDescribe.returncode == 0:
+        return gitDescribe.stdout.replace("\n", "")
 
-projectVersionText = "arcaea-offline-pyside-ui\n"
-gitDescribe = os.popen("git describe --tags --long")
-gitDescribeContent = gitDescribe.read().replace("\n", "")
-if gitDescribe.close() is None:
-    projectVersionText += f"{gitDescribeContent}"
-else:
-    gitRevParse = os.popen("git rev-parse --short HEAD")
-    gitRevParseContent = gitRevParse.read().replace("\n", "")
-    projectVersionText += f"commit {gitRevParseContent}"
-    gitRevParse.close()
-projectVersionText += "\n"
+    # describe failed, try rev-parse
+    gitRevParse = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"],
+        capture_output=True,
+        encoding="utf-8",
+    )
+    if gitRevParse.returncode == 0:
+        return f"commit {gitRevParse.stdout}".replace("\n", "")
 
-versionTexts.append(projectVersionText)
-
-
-# detect pip
-pipName = None
-possiblePipNames = ["pip3", "pip"]
-for possiblePipName in possiblePipNames:
-    result = os.popen(possiblePipName).read()
-    if (
-        "<command> [options]" in result
-        and "install" in result
-        and "--upgrade" in result
-    ):
-        pipName = possiblePipName
-        break
+    return "version/commit unknown"
 
 
-# if possiblePipName:
-#     pipFreezeLines = os.popen(f"{possiblePipName} freeze").read().split("\n")
-#     text = [
-#         pipFreezeResult
-#         for pipFreezeResult in pipFreezeLines
-#         if (
-#             "arcaea-offline" in pipFreezeResult
-#             or "PySide6" in pipFreezeResult
-#             or "exif" in pipFreezeResult
-#             or "opencv-python" in pipFreezeResult
-#             or "SQLAlchemy" in pipFreezeResult
-#         )
-#     ]
-#     versionTexts.append("\n".join(text))
+def getBuildToolsVer():
+    texts = []
+    possibleBuildTools = ["Nuitka", "pyinstaller"]
+    for possibleBuildTool in possibleBuildTools:
+        try:
+            version = metadata.version(possibleBuildTool)
+            texts.append(f"{possibleBuildTool}=={version}")
+        except metadata.PackageNotFoundError:
+            texts.append(f"{possibleBuildTool} not installed")
+    return ", ".join(texts)
 
-importLibTexts = [
-    f"{module}=={metadata.version(module)}"
-    for module in [
-        "arcaea-offline",
-        "arcaea-offline-ocr",
-        "exif",
-        "opencv-python",
-        "PySide6",
-        "SQLAlchemy",
-        "SQLAlchemy-Utils",
+
+def writeVersionFile():
+    versionFile = Path("ui/resources/VERSION")
+    assert versionFile.exists()
+
+    versionText = (
+        "arcaea-offline-pyside-ui\n{gitDesc}\n{buildToolsVer}\n\n"
+        "{pythonVer}\n\n"
+        "{depsVer}\n"
+    )
+
+    gitDesc = getGitDesc()
+    buildToolsVer = getBuildToolsVer()
+
+    pythonVer = f"{platform.python_implementation()} {platform.python_version()} ({platform.python_build()[0]})"
+
+    importLibTexts = [
+        f"{module}=={metadata.version(module)}"
+        for module in sorted(
+            [
+                "arcaea-offline",
+                "arcaea-offline-ocr",
+                "exif",
+                "numpy",
+                "opencv-python",
+                "Pillow",
+                "PySide6",
+                "SQLAlchemy",
+                "SQLAlchemy-Utils",
+                "Whoosh",
+            ],
+            key=lambda s: s.lower(),
+        )
     ]
-]
-versionTexts.append("\n".join(importLibTexts))
+    importLibText = "\n".join(importLibTexts)
 
-with versionFile.open("w", encoding="utf-8") as vf:
-    vf.write("\n".join(versionTexts))
+    with versionFile.open("w", encoding="utf-8") as vf:
+        vf.write(
+            versionText.format(
+                gitDesc=gitDesc,
+                buildToolsVer=buildToolsVer,
+                pythonVer=pythonVer,
+                depsVer=importLibText,
+            )
+        )
+
+
+writeVersionFile()
