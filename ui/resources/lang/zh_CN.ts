@@ -54,37 +54,41 @@
     <name>DatabaseChecker</name>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="23"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="162"/>
         <source>dbPathLabel</source>
         <translation>数据库路径</translation>
     </message>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="33"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="165"/>
         <source>dbFilenameLabel</source>
         <translation>数据库文件名</translation>
     </message>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="64"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="168"/>
         <source>confirmDbPathButton</source>
         <translation>确认</translation>
     </message>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="117"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="177"/>
         <source>dbVersionLabel</source>
         <translation>数据库版本</translation>
     </message>
     <message>
+        <location filename="../../startup/databaseChecker.ui" line="131"/>
+        <source>dbReInitLabel</source>
+        <translation>重新初始化数据库</translation>
+    </message>
+    <message>
+        <location filename="../../startup/databaseChecker.ui" line="138"/>
+        <source>dbReInitButton</source>
+        <translation>重新初始化</translation>
+    </message>
+    <message>
         <location filename="../../startup/databaseChecker.ui" line="93"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="171"/>
         <source>dbCheckConnLabel</source>
         <translation>数据库连接</translation>
     </message>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="110"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="174"/>
         <source>continueButton</source>
         <translation>继续</translation>
     </message>
@@ -305,7 +309,7 @@
 <context>
     <name>PotentialCalculator</name>
     <message>
-        <location filename="../../implements/components/playRatingCalculator.py" line="83"/>
+        <location filename="../../implements/components/playRatingCalculator.py" line="85"/>
         <source>copyButton</source>
         <translation>复制</translation>
     </message>
@@ -1005,7 +1009,7 @@
 <context>
     <name>TabTools_ChartRecommend</name>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="99"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="102"/>
         <source>constantRangeFromPlayRating</source>
         <translation>由单曲 PTT 逆算谱面定数范围</translation>
     </message>
@@ -1015,7 +1019,7 @@
         <translation>按定数查谱</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="245"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="248"/>
         <source>chartsRecommendFromPlayRating</source>
         <translation>由单曲 PTT 结合最好成绩推荐谱面</translation>
     </message>

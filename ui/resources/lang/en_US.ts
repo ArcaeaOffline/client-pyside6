@@ -54,37 +54,41 @@
     <name>DatabaseChecker</name>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="23"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="162"/>
         <source>dbPathLabel</source>
         <translation>Database path</translation>
     </message>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="33"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="165"/>
         <source>dbFilenameLabel</source>
         <translation>Database filename</translation>
     </message>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="64"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="168"/>
         <source>confirmDbPathButton</source>
         <translation>Confirm</translation>
     </message>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="117"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="177"/>
         <source>dbVersionLabel</source>
         <translation>Database version</translation>
     </message>
     <message>
+        <location filename="../../startup/databaseChecker.ui" line="131"/>
+        <source>dbReInitLabel</source>
+        <translation>Re-initialize database</translation>
+    </message>
+    <message>
+        <location filename="../../startup/databaseChecker.ui" line="138"/>
+        <source>dbReInitButton</source>
+        <translation>Re-initialize</translation>
+    </message>
+    <message>
         <location filename="../../startup/databaseChecker.ui" line="93"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="171"/>
         <source>dbCheckConnLabel</source>
         <translation>Database connection</translation>
     </message>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="110"/>
-        <location filename="../../startup/databaseChecker_ui.py" line="174"/>
         <source>continueButton</source>
         <translation>Continue</translation>
     </message>
@@ -306,7 +310,7 @@ validation</translation>
 <context>
     <name>PotentialCalculator</name>
     <message>
-        <location filename="../../implements/components/playRatingCalculator.py" line="83"/>
+        <location filename="../../implements/components/playRatingCalculator.py" line="85"/>
         <source>copyButton</source>
         <translation>Copy</translation>
     </message>
@@ -1006,7 +1010,7 @@ validation</translation>
 <context>
     <name>TabTools_ChartRecommend</name>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="99"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="102"/>
         <source>constantRangeFromPlayRating</source>
         <translation>Chart Constant Range from Play Rating</translation>
     </message>
@@ -1016,7 +1020,7 @@ validation</translation>
         <translation>Charts by Constant</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="245"/>
+        <location filename="../../designer/tabs/tabTools/tabTools_ChartRecommend.ui" line="248"/>
         <source>chartsRecommendFromPlayRating</source>
         <translation>Chart from Play Rating Based on Best Score</translation>
     </message>

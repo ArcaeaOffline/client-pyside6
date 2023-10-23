@@ -125,6 +125,20 @@
      </property>
     </widget>
    </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>dbReInitLabel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QPushButton" name="dbReInitButton">
+     <property name="text">
+      <string>dbReInitButton</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>

@@ -139,5 +139,10 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
         self.updateLabels()
 
     @Slot()
+    def on_dbReInitButton_clicked(self):
+        Database().init(checkfirst=True)
+        QMessageBox.information(self, None, "OK")
+
+    @Slot()
     def on_continueButton_clicked(self):
         self.accept()
