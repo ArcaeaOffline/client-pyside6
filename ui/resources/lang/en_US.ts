@@ -304,6 +304,14 @@ validation</translation>
     </message>
 </context>
 <context>
+    <name>PotentialCalculator</name>
+    <message>
+        <location filename="../../implements/components/playRatingCalculator.py" line="83"/>
+        <source>copyButton</source>
+        <translation>Copy</translation>
+    </message>
+</context>
+<context>
     <name>ResettableItem</name>
     <message>
         <location filename="../../designer/components/settings/resettableItem.ui" line="32"/>
@@ -552,6 +560,14 @@ validation</translation>
         <location filename="../../designer/components/songIdSelector.ui" line="104"/>
         <source>next</source>
         <translation>Next</translation>
+    </message>
+</context>
+<context>
+    <name>StepCalculator</name>
+    <message>
+        <location filename="../../implements/tabs/tabTools/tabTools_StepCalculator.py" line="96"/>
+        <source>playRatingCalculatorDialog.acceptButton</source>
+        <translation>Accept</translation>
     </message>
 </context>
 <context>

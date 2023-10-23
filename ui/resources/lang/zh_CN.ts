@@ -303,6 +303,14 @@
     </message>
 </context>
 <context>
+    <name>PotentialCalculator</name>
+    <message>
+        <location filename="../../implements/components/playRatingCalculator.py" line="83"/>
+        <source>copyButton</source>
+        <translation>复制</translation>
+    </message>
+</context>
+<context>
     <name>ResettableItem</name>
     <message>
         <location filename="../../designer/components/settings/resettableItem.ui" line="32"/>
@@ -551,6 +559,14 @@
         <location filename="../../designer/components/songIdSelector.ui" line="104"/>
         <source>next</source>
         <translation>下一个</translation>
+    </message>
+</context>
+<context>
+    <name>StepCalculator</name>
+    <message>
+        <location filename="../../implements/tabs/tabTools/tabTools_StepCalculator.py" line="96"/>
+        <source>playRatingCalculatorDialog.acceptButton</source>
+        <translation>确定</translation>
     </message>
 </context>
 <context>
