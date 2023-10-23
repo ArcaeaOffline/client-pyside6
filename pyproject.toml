@@ -28,6 +28,7 @@ classifiers = [
 force-exclude = '''
 (
   ui/designer
+  | .*_ui.py
   | .*_rc.py
 )
 '''
@@ -35,7 +36,7 @@ force-exclude = '''
 [tool.isort]
 profile = "black"
 extend_skip = ["ui/designer"]
-extend_skip_glob = ["*_rc.py"]
+extend_skip_glob = ["*_ui.py", "*_rc.py"]
 
 [tool.pyright]
 ignore = ["**/__debug*.*"]
