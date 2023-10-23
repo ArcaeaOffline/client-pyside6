@@ -1,5 +1,5 @@
 import argparse
-import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -32,23 +32,31 @@ assert startup.exists()
 no_obsolete = args.no_obsolete
 
 commands = [
-    (
-        "pyside6-lupdate"
-        " -extensions py,ui"
-        f" {designer.absolute()} {extends.absolute()} {implements.absolute()} {startup.absolute()}"
-        f" -ts {str((output_dir_path / 'zh_CN.ts').absolute())}"
-    ),  # zh_CN
-    (
-        "pyside6-lupdate"
-        " -extensions py,ui"
-        f" {designer.absolute()} {extends.absolute()} {implements.absolute()} {startup.absolute()}"
-        f" -ts {str((output_dir_path / 'en_US.ts').absolute())}"
-    ),  # en_US
+    [
+        "pyside6-lupdate",
+        "-extensions",
+        "py,ui",
+        str(designer.absolute()),
+        str(extends.absolute()),
+        str(implements.absolute()),
+        str(startup.absolute()),
+        "-ts",
+        str((output_dir_path / "zh_CN.ts").absolute()),
+    ],  # zh_CN
+    [
+        "pyside6-lupdate",
+        "-extensions",
+        "py,ui",
+        str(designer.absolute()),
+        str(extends.absolute()),
+        str(implements.absolute()),
+        str(startup.absolute()),
+        "-ts",
+        str((output_dir_path / "en_US.ts").absolute()),
+    ],  # en_US
 ]
 if no_obsolete:
-    commands = [f"{command} -no-obsolete" for command in commands]
+    commands = [command.extend(["-no-obsolete"]) for command in commands]
 
 for command in commands:
-    print(f"Executing '{command}'")
-    output = os.popen(command).read()
-    print(output)
+    subprocess.run(command)
