@@ -1,6 +1,5 @@
 from arcaea_offline.models import Chart, Score, ScoreBest
 from PySide6.QtCore import QCoreApplication, QModelIndex, QSortFilterProxyModel, Qt
-from sqlalchemy import select
 
 from .base import DbTableModel
 
@@ -18,49 +17,44 @@ class DbB30TableModel(DbTableModel):
     def retranslateHeaders(self):
         self._horizontalHeaders = [
             # fmt: off
-            QCoreApplication.translate("DB30TableModel", "horizontalHeader.id"),
-            QCoreApplication.translate("DB30TableModel", "horizontalHeader.chart"),
-            QCoreApplication.translate("DB30TableModel", "horizontalHeader.score"),
-            QCoreApplication.translate("DB30TableModel", "horizontalHeader.potential"),
+            QCoreApplication.translate("DbB30TableModel", "horizontalHeader.id"),
+            QCoreApplication.translate("DbB30TableModel", "horizontalHeader.chart"),
+            QCoreApplication.translate("DbB30TableModel", "horizontalHeader.score"),
+            QCoreApplication.translate("DbB30TableModel", "horizontalHeader.potential"),
             # fmt: on
         ]
 
     def syncDb(self):
+        self.beginResetModel()
+        self.beginRemoveRows(QModelIndex(), 0, self.rowCount())
         self.__items.clear()
+        self.endRemoveRows()
+        self.endResetModel()
 
         with self._db.sessionmaker() as session:
-            results = list(
-                session.scalars(
-                    select(ScoreBest).order_by(ScoreBest.potential.desc()).limit(40)
+            results = (
+                session.query(ScoreBest, Chart)
+                .join(
+                    Chart,
+                    (ScoreBest.song_id == Chart.song_id)
+                    & (ScoreBest.rating_class == Chart.rating_class),
                 )
+                .order_by(ScoreBest.potential)
+                .limit(50)
+                .all()
             )
 
-        songIds = [r.id for r in results]
-        ptts = [r.potential for r in results]
-
-        for scoreId, ptt in zip(songIds, ptts):
-            score = self._db.get_score(scoreId)
-            chart = self._db.get_chart(score.song_id, score.rating_class)
-
-            self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
-            self.__items.append(
-                {
-                    self.IdRole: score.id,
-                    self.ChartRole: chart,
-                    self.ScoreRole: score,
-                    self.PttRole: ptt,
-                }
-            )
+            self.beginInsertRows(QModelIndex(), 0, len(results) - 1)
+            for scoreBest, chart in results:
+                self.__items.append(
+                    {
+                        self.IdRole: scoreBest.id,
+                        self.ChartRole: chart,
+                        self.ScoreRole: scoreBest,
+                        self.PttRole: scoreBest.potential,
+                    }
+                )
             self.endInsertRows()
-
-        # trigger view update
-        topLeft = self.index(0, 0)
-        bottomRight = self.index(self.rowCount() - 1, self.columnCount() - 1)
-        self.dataChanged.emit(
-            topLeft,
-            bottomRight,
-            [Qt.ItemDataRole.DisplayRole, self.IdRole, self.ChartRole, self.ScoreRole],
-        )
 
     def rowCount(self, *args):
         return len(self.__items)
@@ -117,30 +111,35 @@ class DbB30TableSortFilterProxyModel(QSortFilterProxyModel):
             return super().headerData(section, orientation, role)
         return section + 1
 
-    def lessThan(self, source_left, source_right) -> bool:
-        if source_left.column() != source_right.column():
+    def lessThan(self, sourceLeft: QModelIndex, sourceRight: QModelIndex) -> bool:
+        if sourceLeft.column() != sourceRight.column():
             return
 
-        column = source_left.column()
+        column = sourceLeft.column()
         if column == 0:
-            return source_left.data(DbB30TableModel.IdRole) < source_right.data(
+            return sourceLeft.data(DbB30TableModel.IdRole) < sourceRight.data(
                 DbB30TableModel.IdRole
             )
         elif column == 2:
-            score_left = source_left.data(DbB30TableModel.ScoreRole)
-            score_right = source_right.data(DbB30TableModel.ScoreRole)
-            if isinstance(score_left, Score) and isinstance(score_right, Score):
+            scoreLeft = sourceLeft.data(DbB30TableModel.ScoreRole)
+            scoreRight = sourceRight.data(DbB30TableModel.ScoreRole)
+            if isinstance(scoreLeft, Score) and isinstance(scoreRight, Score):
                 if self.sortRole() == self.Sort_C2_ScoreRole:
-                    return score_left.score < score_right.score
+                    return scoreLeft.score < scoreRight.score
                 elif self.sortRole() == self.Sort_C2_TimeRole:
-                    if score_left.date and score_right.date:
-                        return score_left.date < score_right.date
-                    elif score_left.date:
+                    if scoreLeft.date and scoreRight.date:
+                        return scoreLeft.date < scoreRight.date
+                    elif scoreLeft.date:
                         return False
                     else:
                         return True
         elif column == 3:
-            return source_left.data(DbB30TableModel.PttRole) < source_right.data(
-                DbB30TableModel.PttRole
-            )
-        return super().lessThan(source_left, source_right)
+            pttLeft = sourceLeft.data(DbB30TableModel.PttRole)
+            pttRight = sourceRight.data(DbB30TableModel.PttRole)
+            if pttLeft and pttRight:
+                return pttLeft < pttRight
+            elif pttLeft:
+                return False
+            else:
+                return True
+        return super().lessThan(sourceLeft, sourceRight)

@@ -28,29 +28,6 @@
     </message>
 </context>
 <context>
-    <name>DB30TableModel</name>
-    <message>
-        <location filename="../../extends/shared/models/tables/b30.py" line="21"/>
-        <source>horizontalHeader.id</source>
-        <translation>ID</translation>
-    </message>
-    <message>
-        <location filename="../../extends/shared/models/tables/b30.py" line="22"/>
-        <source>horizontalHeader.chart</source>
-        <translation>Chart</translation>
-    </message>
-    <message>
-        <location filename="../../extends/shared/models/tables/b30.py" line="23"/>
-        <source>horizontalHeader.score</source>
-        <translation>Score</translation>
-    </message>
-    <message>
-        <location filename="../../extends/shared/models/tables/b30.py" line="24"/>
-        <source>horizontalHeader.potential</source>
-        <translation>Potential</translation>
-    </message>
-</context>
-<context>
     <name>DatabaseChecker</name>
     <message>
         <location filename="../../startup/databaseChecker.ui" line="23"/>
@@ -101,6 +78,29 @@
         <location filename="../../startup/databaseChecker.py" line="133"/>
         <source>dialog.confirmNewDatabase</source>
         <translation>Database file does not exist. Create now?</translation>
+    </message>
+</context>
+<context>
+    <name>DbB30TableModel</name>
+    <message>
+        <location filename="../../extends/shared/models/tables/b30.py" line="20"/>
+        <source>horizontalHeader.id</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <location filename="../../extends/shared/models/tables/b30.py" line="21"/>
+        <source>horizontalHeader.chart</source>
+        <translation>Chart</translation>
+    </message>
+    <message>
+        <location filename="../../extends/shared/models/tables/b30.py" line="22"/>
+        <source>horizontalHeader.score</source>
+        <translation>Score</translation>
+    </message>
+    <message>
+        <location filename="../../extends/shared/models/tables/b30.py" line="23"/>
+        <source>horizontalHeader.potential</source>
+        <translation>Potential</translation>
     </message>
 </context>
 <context>
