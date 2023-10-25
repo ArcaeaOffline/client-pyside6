@@ -6,31 +6,31 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
+    <width>600</width>
     <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string notr="true">TabDb_RemoveDuplicateScores</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="1">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QGroupBox" name="groupBox_2">
-       <property name="title">
-        <string>scan.title</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QCheckBox" name="scan_option_scoreCheckBox">
-          <property name="text">
-           <string>scan.option.score</string>
-          </property>
-         </widget>
-        </item>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>scan.title</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QCheckBox" name="scan_option_scoreCheckBox">
+            <property name="text">
+             <string>scan.option.score</string>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="QCheckBox" name="scan_option_pureCheckBox">
             <property name="text">
@@ -52,155 +52,235 @@
             </property>
            </widget>
           </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="scan_option_maxRecallCheckBox">
-          <property name="text">
-           <string notr="true">MAX RECALL</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QCheckBox" name="scan_option_clearTypeCheckBox">
+           <widget class="QCheckBox" name="scan_option_maxRecallCheckBox">
             <property name="text">
-             <string>scan.option.clearType</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="scan_option_modifierCheckBox">
-            <property name="text">
-             <string>scan.option.modifier</string>
+             <string notr="true">MAX RECALL</string>
             </property>
            </widget>
           </item>
          </layout>
         </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QPushButton" name="scan_scanButton">
+         <widget class="QCheckBox" name="scan_option_dateCheckBox">
           <property name="text">
-           <string>scan.scanButton</string>
+           <string>scan.option.date</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_option_modifierCheckBox">
+          <property name="text">
+           <string>scan.option.modifier</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_option_clearTypeCheckBox">
+          <property name="text">
+           <string>scan.option.clearType</string>
           </property>
          </widget>
         </item>
        </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="groupBox">
-       <property name="title">
-        <string>quickSelect.title</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>quickSelect.keepSingleLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="quickSelect_timeComboBox"/>
-        </item>
-        <item>
-         <widget class="QComboBox" name="quickSelect_ColumnComboBox"/>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>91</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QPushButton" name="quickSelect_selectButton">
-          <property name="text">
-           <string>quickSelect.selectButton</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="1" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="collapseAllButton">
-       <property name="text">
-        <string>collapseAllButton</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="expandAllButton">
-       <property name="text">
-        <string>expandAllButton</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="resetModelButton">
-       <property name="text">
-        <string>resetModelButton</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="0" column="0">
-    <widget class="QTreeView" name="treeView">
-     <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
-     </property>
-     <property name="selectionMode">
-      <enum>QAbstractItemView::NoSelection</enum>
-     </property>
-     <property name="verticalScrollMode">
-      <enum>QAbstractItemView::ScrollPerPixel</enum>
-     </property>
+      </item>
+      <item>
+       <widget class="QPushButton" name="scan_scanButton">
+        <property name="text">
+         <string>scan.scanButton</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QPushButton" name="deleteSelectedButton">
-     <property name="font">
-      <font>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton { color: red };</string>
-     </property>
-     <property name="text">
-      <string>deleteSelectedButton</string>
-     </property>
-    </widget>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QTreeView" name="treeView">
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::NoSelection</enum>
+       </property>
+       <property name="verticalScrollMode">
+        <enum>QAbstractItemView::ScrollPerPixel</enum>
+       </property>
+       <property name="headerHidden">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>quickSelect.title</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>quickSelect.description</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="quickSelect_comboBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="quickSelect_selectButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>quickSelect.selectButton</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QPushButton" name="deselectAllButton">
+            <property name="text">
+             <string>deselectAllButton</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="reverseSelectionButton">
+            <property name="text">
+             <string>reverseSelectionButton</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="collapseAllButton">
+            <property name="text">
+             <string>collapseAllButton</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="expandAllButton">
+            <property name="text">
+             <string>expandAllButton</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="resetModelButton">
+            <property name="text">
+             <string>resetModelButton</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="deleteSelectionButton">
+            <property name="font">
+             <font>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { color: red };</string>
+            </property>
+            <property name="text">
+             <string>deleteSelectionButton</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>scan_option_scoreCheckBox</tabstop>
+  <tabstop>scan_option_pureCheckBox</tabstop>
+  <tabstop>scan_option_farCheckBox</tabstop>
+  <tabstop>scan_option_lostCheckBox</tabstop>
+  <tabstop>scan_option_maxRecallCheckBox</tabstop>
+  <tabstop>scan_option_dateCheckBox</tabstop>
+  <tabstop>scan_option_modifierCheckBox</tabstop>
+  <tabstop>scan_option_clearTypeCheckBox</tabstop>
+  <tabstop>scan_scanButton</tabstop>
+  <tabstop>treeView</tabstop>
+  <tabstop>quickSelect_comboBox</tabstop>
+  <tabstop>quickSelect_selectButton</tabstop>
+  <tabstop>deselectAllButton</tabstop>
+  <tabstop>reverseSelectionButton</tabstop>
+  <tabstop>collapseAllButton</tabstop>
+  <tabstop>expandAllButton</tabstop>
+  <tabstop>resetModelButton</tabstop>
+  <tabstop>deleteSelectionButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

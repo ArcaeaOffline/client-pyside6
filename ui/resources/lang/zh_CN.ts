@@ -599,6 +599,11 @@
         <translation>谱面信息编辑器</translation>
     </message>
     <message>
+        <location filename="../../designer/tabs/tabDbEntry.ui" line="34"/>
+        <source>tab.removeDuplicateScores</source>
+        <translation>移除重复分数</translation>
+    </message>
+    <message>
         <location filename="../../implements/tabs/tabDbEntry.py" line="20"/>
         <source>tab.scoreTableViewer</source>
         <translation>表 [分数]</translation>
@@ -757,6 +762,109 @@
     </message>
 </context>
 <context>
+    <name>TabDb_RemoveDuplicateScores</name>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="20"/>
+        <source>scan.title</source>
+        <translation>扫描选项</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="30"/>
+        <source>scan.option.score</source>
+        <translation>分数</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="71"/>
+        <source>scan.option.date</source>
+        <translation>时间</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="78"/>
+        <source>scan.option.modifier</source>
+        <translation>Modifier</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="85"/>
+        <source>scan.option.clearType</source>
+        <translation>Clear Type</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="94"/>
+        <source>scan.scanButton</source>
+        <translation>扫描</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="124"/>
+        <source>quickSelect.title</source>
+        <translation>快速选择</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="130"/>
+        <source>quickSelect.description</source>
+        <translation>仅保留第一个&lt;br&gt;符合以下条件的分数：</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="166"/>
+        <source>quickSelect.selectButton</source>
+        <translation>选择</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="182"/>
+        <source>deselectAllButton</source>
+        <translation>清空选择</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="189"/>
+        <source>reverseSelectionButton</source>
+        <translation>反选</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="209"/>
+        <source>collapseAllButton</source>
+        <translation>折叠所有</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="216"/>
+        <source>expandAllButton</source>
+        <translation>展开所有</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="223"/>
+        <source>resetModelButton</source>
+        <translation>重置模型</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="251"/>
+        <source>deleteSelectionButton</source>
+        <translation>删除已选分数</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="142"/>
+        <source>quickSelectComboBox.idEarlier</source>
+        <translation>ID 更早</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="148"/>
+        <source>quickSelectComboBox.dateEarlier</source>
+        <translation>时间更早</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="154"/>
+        <source>quickSelectComboBox.columnsIntegral</source>
+        <translation>数据更完整</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="279"/>
+        <source>deleteSelectionDialog.content {}</source>
+        <translation>将从数据库中删除 {} 个分数。此操作无法撤销！&lt;br&gt;确认吗？</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="301"/>
+        <source>scan_noColumnsDialog.content</source>
+        <translation>还未选择任何字段！确定继续吗？</translation>
+    </message>
+</context>
+<context>
     <name>TabOcrDisabled</name>
     <message>
         <location filename="../../designer/tabs/tabOcrDisabled.ui" line="81"/>
@@ -910,7 +1018,7 @@
 <context>
     <name>TabOverview</name>
     <message>
-        <location filename="../../implements/tabs/tabOverview.py" line="43"/>
+        <location filename="../../implements/tabs/tabOverview.py" line="56"/>
         <source>databaseDescribeLabel {} {} {} {} {} {}</source>
         <translation>数据库中有 {} 个曲包，{} 首歌曲，{} 个难度，{} 个谱面信息（{} 个完整），{} 个分数记录。</translation>
     </message>
@@ -1004,11 +1112,6 @@
         <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="335"/>
         <source>sourceCode</source>
         <translation>源代码</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="342"/>
-        <source>&lt;a href=&quot;https://github.com/283375/AndrealImageGenerator&quot;&gt;283375/AndrealImageGenerator&lt;/a&gt;&lt;br&gt;(forked from &lt;a href=&quot;https://github.com/Awbugl/AndrealImageGenerator&quot;&gt;Awbugl/AndrealImageGenerator&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="138"/>

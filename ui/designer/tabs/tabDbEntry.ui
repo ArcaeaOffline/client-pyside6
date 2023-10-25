@@ -29,6 +29,11 @@
        <string>tab.chartInfoEditor</string>
       </attribute>
      </widget>
+     <widget class="TabDb_RemoveDuplicateScores" name="tab_removeDuplicateScores">
+      <attribute name="title">
+       <string>tab.removeDuplicateScores</string>
+      </attribute>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -44,6 +49,12 @@
    <class>TabDb_ChartInfoEditor</class>
    <extends>QWidget</extends>
    <header>ui.implements.tabs.tabDb.tabDb_ChartInfoEditor</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabDb_RemoveDuplicateScores</class>
+   <extends>QWidget</extends>
+   <header>ui.implements.tabs.tabDb.tabDb_RemoveDuplicateScores</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

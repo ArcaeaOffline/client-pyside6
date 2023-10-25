@@ -600,6 +600,11 @@ validation</translation>
         <translation>Chart Info Editor</translation>
     </message>
     <message>
+        <location filename="../../designer/tabs/tabDbEntry.ui" line="34"/>
+        <source>tab.removeDuplicateScores</source>
+        <translation>Remove Duplicate Scores</translation>
+    </message>
+    <message>
         <location filename="../../implements/tabs/tabDbEntry.py" line="20"/>
         <source>tab.scoreTableViewer</source>
         <translation>Table [Score]</translation>
@@ -758,6 +763,109 @@ validation</translation>
     </message>
 </context>
 <context>
+    <name>TabDb_RemoveDuplicateScores</name>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="20"/>
+        <source>scan.title</source>
+        <translation>Scan Options</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="30"/>
+        <source>scan.option.score</source>
+        <translation>Score</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="71"/>
+        <source>scan.option.date</source>
+        <translation>Date</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="78"/>
+        <source>scan.option.modifier</source>
+        <translation>Modifier</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="85"/>
+        <source>scan.option.clearType</source>
+        <translation>Clear Type</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="94"/>
+        <source>scan.scanButton</source>
+        <translation>Scan</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="124"/>
+        <source>quickSelect.title</source>
+        <translation>Quick Select</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="130"/>
+        <source>quickSelect.description</source>
+        <translation>Keep the first score item&lt;br&gt;that matches:</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="166"/>
+        <source>quickSelect.selectButton</source>
+        <translation>Select</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="182"/>
+        <source>deselectAllButton</source>
+        <translation>Clear Selection</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="189"/>
+        <source>reverseSelectionButton</source>
+        <translation>Reverse Selection</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="209"/>
+        <source>collapseAllButton</source>
+        <translation>Collapse All Groups</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="216"/>
+        <source>expandAllButton</source>
+        <translation>Expand All Groups</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="223"/>
+        <source>resetModelButton</source>
+        <translation>Reset Model</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_RemoveDuplicateScores.ui" line="251"/>
+        <source>deleteSelectionButton</source>
+        <translation>Delete Selected Scores</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="142"/>
+        <source>quickSelectComboBox.idEarlier</source>
+        <translation>Earlier ID</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="148"/>
+        <source>quickSelectComboBox.dateEarlier</source>
+        <translation>Earlier date</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="154"/>
+        <source>quickSelectComboBox.columnsIntegral</source>
+        <translation>More complete data</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="279"/>
+        <source>deleteSelectionDialog.content {}</source>
+        <translation>Deleting {} scores from database, this cannot be undone!&lt;br&gt;Confirm?</translation>
+    </message>
+    <message>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="301"/>
+        <source>scan_noColumnsDialog.content</source>
+        <translation>You haven&apos;t selected any column! Are you sure to continue?</translation>
+    </message>
+</context>
+<context>
     <name>TabOcrDisabled</name>
     <message>
         <location filename="../../designer/tabs/tabOcrDisabled.ui" line="81"/>
@@ -911,7 +1019,7 @@ validation</translation>
 <context>
     <name>TabOverview</name>
     <message>
-        <location filename="../../implements/tabs/tabOverview.py" line="43"/>
+        <location filename="../../implements/tabs/tabOverview.py" line="56"/>
         <source>databaseDescribeLabel {} {} {} {} {} {}</source>
         <translation>There are {} packs, {} songs, {} difficulties, {} chart info ({} complete) and {} scores in database.</translation>
     </message>
@@ -1005,11 +1113,6 @@ validation</translation>
         <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="335"/>
         <source>sourceCode</source>
         <translation>Source code</translation>
-    </message>
-    <message>
-        <location filename="../../designer/tabs/tabTools/tabTools_Andreal.ui" line="342"/>
-        <source>&lt;a href=&quot;https://github.com/283375/AndrealImageGenerator&quot;&gt;283375/AndrealImageGenerator&lt;/a&gt;&lt;br&gt;(forked from &lt;a href=&quot;https://github.com/Awbugl/AndrealImageGenerator&quot;&gt;Awbugl/AndrealImageGenerator&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../implements/tabs/tabTools/tabTools_Andreal.py" line="138"/>

@@ -20,6 +20,7 @@ from PySide6.QtWidgets import (QApplication, QSizePolicy, QTabWidget, QVBoxLayou
 
 from ui.implements.tabs.tabDb.tabDb_ChartInfoEditor import TabDb_ChartInfoEditor
 from ui.implements.tabs.tabDb.tabDb_Manage import TabDb_Manage
+from ui.implements.tabs.tabDb.tabDb_RemoveDuplicateScores import TabDb_RemoveDuplicateScores
 
 class Ui_TabDbEntry(object):
     def setupUi(self, TabDbEntry):
@@ -37,6 +38,9 @@ class Ui_TabDbEntry(object):
         self.tab_chartInfoEditor = TabDb_ChartInfoEditor()
         self.tab_chartInfoEditor.setObjectName(u"tab_chartInfoEditor")
         self.tabWidget.addTab(self.tab_chartInfoEditor, "")
+        self.tab_removeDuplicateScores = TabDb_RemoveDuplicateScores()
+        self.tab_removeDuplicateScores.setObjectName(u"tab_removeDuplicateScores")
+        self.tabWidget.addTab(self.tab_removeDuplicateScores, "")
 
         self.verticalLayout.addWidget(self.tabWidget)
 
@@ -52,6 +56,7 @@ class Ui_TabDbEntry(object):
     def retranslateUi(self, TabDbEntry):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_manage), QCoreApplication.translate("TabDbEntry", u"tab.manage", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_chartInfoEditor), QCoreApplication.translate("TabDbEntry", u"tab.chartInfoEditor", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_removeDuplicateScores), QCoreApplication.translate("TabDbEntry", u"tab.removeDuplicateScores", None))
         pass
     # retranslateUi
 
