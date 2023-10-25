@@ -28,17 +28,21 @@ class RemoveDuplicateScoresModel(QStandardItemModel):
         chart = (
             session.query(Chart)
             .where((Chart.song_id == songId) & (Chart.rating_class == ratingClass))
-            .one()
+            .first()
         )
-        song = session.query(Song).where(Song.id == songId).one()
+        song = session.query(Song).where(Song.id == songId).first()
         difficulty = (
             session.query(Difficulty)
             .where(
                 (Difficulty.song_id == songId)
                 & (Difficulty.rating_class == ratingClass)
             )
-            .one()
+            .first()
         )
+
+        if chart is None and song is None and difficulty is None:
+            chart = Chart(song_id=songId, rating_class=ratingClass, set="unknown")
+
         item.setData(chart, self.ChartRole)
         item.setData(song, self.SongRole)
         item.setData(difficulty, self.DifficultyRole)
