@@ -5,12 +5,12 @@ from arcaea_offline.database import Database
 from arcaea_offline.models import Chart, Score
 from arcaea_offline.utils.rating import rating_class_to_text
 from PySide6.QtCore import QModelIndex, Qt, Slot
-from PySide6.QtGui import QColor, QPalette
 from PySide6.QtWidgets import QDialog, QLabel, QVBoxLayout, QWidget
 
 from ui.designer.tabs.tabTools.tabTools_ChartRecommend_ui import (
     Ui_TabTools_ChartRecommend,
 )
+from ui.extends.shared.language import LanguageChangeEventFilter
 from ui.extends.tabs.tabTools.tabTools_ChartRecommend import (
     ChartsModel,
     ChartsWithScoreBestModel,
@@ -54,6 +54,9 @@ class TabTools_ChartRecommend(Ui_TabTools_ChartRecommend, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+
+        self.languageChangeEventFilter = LanguageChangeEventFilter(self)
+        self.installEventFilter(self.languageChangeEventFilter)
 
         self.db = Database()
 
