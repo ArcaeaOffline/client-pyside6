@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
     databaseChecker = DatabaseChecker()
     databaseChecker.setWindowIcon(QIcon(":/images/icon.png"))
-    databaseCheckResult = databaseChecker.confirmDb()
+    databaseCheckResult = databaseChecker.confirmDb() if Settings().databaseUrl() else 0
 
     if not databaseCheckResult & DatabaseCheckerResult.Initted:
         result = databaseChecker.exec()
