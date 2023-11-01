@@ -10,8 +10,8 @@ description = "No description."
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-  "arcaea-offline==0.1.0",
-  "arcaea-offline-ocr==0.1.0",
+  "arcaea-offline==0.2.1",
+  "arcaea-offline-ocr==0.0.97",
   "exif==1.6.0",
   "PySide6==6.5.2",
 ]
