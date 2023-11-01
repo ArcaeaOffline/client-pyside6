@@ -1,0 +1,35 @@
+name: Build UI from latest `arcaea-offline-*` dependencies
+run-name: ${{ github.actor }} started a build request.
+on: [workflow_dispatch]
+jobs:
+  build-windows:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # install dependencies
+      - run: 'pip install -r requirements.txt'
+      - run: 'pip uninstall arcaea-offline arcaea-offline-ocr -y'
+      - run: 'pip install git+https://github.com/283375/arcaea-offline'
+      - run: 'pip install git+https://github.com/283375/arcaea-offline-ocr'
+      - run: 'pip install nuitka imageio'
+      - name: Install UPX
+        uses: crazy-max/ghaction-upx@v3
+        with:
+          install-only: true
+
+      # release builtin files
+      - run: 'pyside6-lrelease.exe .\ui\resources\lang\en_US.ts .\ui\resources\lang\zh_CN.ts'
+      - run: 'python prebuild.py'
+      - run: 'pyside6-rcc.exe .\ui\resources\resources.qrc -o .\ui\resources\resources_rc.py'
+
+      # build
+      - run: 'python -m nuitka --plugin-enable=upx --enable-plugin=pyside6 --assume-yes-for-downloads --windows-icon-from-ico=./ui/resources/images/icon.png --standalone --onefile index.py'
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build-windows
+          path: index.exe

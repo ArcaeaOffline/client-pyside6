@@ -1,20 +1,18 @@
-name: '[Windows] Build from latest arcaea-offline-* dependencies'
+name: Build UI
 run-name: ${{ github.actor }} started a build request.
 on: [workflow_dispatch]
 jobs:
-  build-ui:
+  build-windows:
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+          cache: 'pip'
 
       # install dependencies
       - run: 'pip install -r requirements.txt'
-      - run: 'pip uninstall arcaea-offline arcaea-offline-ocr -y'
-      - run: 'pip install git+https://github.com/283375/arcaea-offline'
-      - run: 'pip install git+https://github.com/283375/arcaea-offline-ocr'
       - run: 'pip install nuitka imageio'
       - name: Install UPX
         uses: crazy-max/ghaction-upx@v3
@@ -31,5 +29,5 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: index.exe
+          name: build-windows
           path: index.exe
