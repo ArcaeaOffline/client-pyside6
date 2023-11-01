@@ -40,7 +40,6 @@ def getBuildToolsVer():
 
 def writeVersionFile():
     versionFile = Path("ui/resources/VERSION")
-    assert versionFile.exists()
 
     versionText = (
         "arcaea-offline-pyside-ui\n{gitDesc}\n{buildToolsVer}\n\n"
