@@ -48,6 +48,8 @@ class SlidingDirection(IntEnum):
 
 
 class SlidingStackedWidget(QStackedWidget):
+    slidingDirection = SlidingDirection
+
     animationFinished = Signal()
 
     def __init__(self, parent=None):
@@ -58,9 +60,11 @@ class SlidingStackedWidget(QStackedWidget):
         self.animationEasingCurve = QEasingCurve.Type.OutQuart
         self.animationCurrentIndex = 0
         self.animationNextIndex = 0
-        self.wrap = False
         self.animationCurrentPoint = QPoint(0, 0)
         self.animationRunning = False
+
+        self.wrap = False
+        self.opacityAnimation = False
 
     def setVertical(self, vertical: bool):
         self.vertical = vertical
@@ -73,6 +77,9 @@ class SlidingStackedWidget(QStackedWidget):
 
     def setWrap(self, wrap: bool):
         self.wrap = wrap
+
+    def setOpacityAnimation(self, value: bool):
+        self.opacityAnimation = value
 
     def slideInNext(self) -> bool:
         currentIndex = self.currentIndex()
@@ -166,16 +173,6 @@ class SlidingStackedWidget(QStackedWidget):
             QPoint(offsetX + currentPoint.x(), offsetY + currentPoint.y())
         )
 
-        currentWidgetOpacityEffect = QGraphicsOpacityEffect()
-        currentWidgetOpacityEffectAnimation = self.widgetOpacityAnimation(
-            currentIndex, currentWidgetOpacityEffect, 1, 0
-        )
-
-        nextWidgetOpacityEffect = QGraphicsOpacityEffect()
-        nextWidgetOpacityEffect.setOpacity(0)
-        nextWidgetOpacityEffectAnimation = self.widgetOpacityAnimation(
-            nextIndex, nextWidgetOpacityEffect, 0, 1
-        )
         nextWidgetAnimation = self.widgetPosAnimation(nextIndex)
         nextWidgetAnimation.setStartValue(
             QPoint(-offsetX + nextPoint.x(), offsetY + nextPoint.y())
@@ -185,8 +182,21 @@ class SlidingStackedWidget(QStackedWidget):
         animationGroup = QParallelAnimationGroup(self)
         animationGroup.addAnimation(currentWidgetAnimation)
         animationGroup.addAnimation(nextWidgetAnimation)
-        animationGroup.addAnimation(currentWidgetOpacityEffectAnimation)
-        animationGroup.addAnimation(nextWidgetOpacityEffectAnimation)
+
+        if self.opacityAnimation:
+            currentWidgetOpacityEffect = QGraphicsOpacityEffect()
+            currentWidgetOpacityEffectAnimation = self.widgetOpacityAnimation(
+                currentIndex, currentWidgetOpacityEffect, 1, 0
+            )
+
+            nextWidgetOpacityEffect = QGraphicsOpacityEffect()
+            nextWidgetOpacityEffect.setOpacity(0)
+            nextWidgetOpacityEffectAnimation = self.widgetOpacityAnimation(
+                nextIndex, nextWidgetOpacityEffect, 0, 1
+            )
+
+            animationGroup.addAnimation(currentWidgetOpacityEffectAnimation)
+            animationGroup.addAnimation(nextWidgetOpacityEffectAnimation)
 
         animationGroup.finished.connect(self.animationDoneSlot)
         self.animationNextIndex = nextIndex

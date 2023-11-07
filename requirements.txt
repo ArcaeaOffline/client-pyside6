@@ -2,3 +2,4 @@ arcaea-offline==0.1.0
 arcaea-offline-ocr==0.1.0
 exif==1.6.0
 PySide6==6.5.2
+typing-extensions==4.8.0
