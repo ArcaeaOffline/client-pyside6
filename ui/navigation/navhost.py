@@ -24,11 +24,23 @@ class NavHost(QObject):
         super().__init__(parent)
 
         self.__navItems: list[NavItem] = []
+        self.__cachedNavItems: list[NavItem] = []
         self.__currentNavItem: NavItem = None
+
+    def __flushCachedNavItems(self):
+        navItems = set(self.__navItems)
+
+        for item in self.__navItems:
+            parts = item.id.split(".")
+            for i in range(1, len(parts)):
+                parentItemId = ".".join(parts[:i])
+                navItems.add(NavItem(id=parentItemId))
+
+        self.__cachedNavItems = list(navItems)
 
     @property
     def navItems(self) -> list[NavItem]:
-        return self.__navItems
+        return self.__cachedNavItems
 
     @property
     def currentNavItem(self) -> NavItem:
@@ -101,6 +113,7 @@ class NavHost(QObject):
 
     def registerNavItem(self, item: NavItem):
         self.__navItems.append(item)
+        self.__flushCachedNavItems()
         self.navItemsChanged.emit()
 
     def navigate(self, navItemId: str):

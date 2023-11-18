@@ -12,3 +12,6 @@ class NavItem:
 
     def text(self):
         return QCoreApplication.translate("NavItem", f"{self.id}.title")
+
+    def __hash__(self):
+        return hash(self.id)

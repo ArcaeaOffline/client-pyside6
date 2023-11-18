@@ -1,4 +1,4 @@
-from PySide6.QtCore import QModelIndex, Qt, Slot
+from PySide6.QtCore import QModelIndex, Qt, Signal, Slot
 from PySide6.QtGui import QFont, QIcon, QKeySequence, QShortcut
 from PySide6.QtWidgets import (
     QListWidget,
@@ -8,7 +8,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from ui.navigation.navhost import NavItem, navHost
+from ui.navigation.navhost import NavHost, NavItem, navHost
 from ui.widgets.slidingstackedwidget import SlidingStackedWidget
 
 
@@ -69,18 +69,14 @@ class NavigationWidget(QWidget):
 
 
 class NavigationSideBar(QWidget):
-    def __init__(self, parent=None):
+    navItemActivated = Signal(NavItem)
+
+    def __init__(self, parent=None, navHost=navHost):
         super().__init__(parent)
 
-        self.navHost = navHost
-
-        navHost.navItemsChanged.connect(self.reloadNavWidget)
-        navHost.activated.connect(self.navItemActivated)
-
+        self.navHost = None
         self.navigateUpKeyboardShortcut = QShortcut(
-            QKeySequence(Qt.Modifier.ALT | Qt.Key.Key_Left),
-            self,
-            self.navHost.navigateUp,
+            QKeySequence(Qt.Modifier.ALT | Qt.Key.Key_Left), self, lambda: True
         )
 
         self.verticalLayout = QVBoxLayout(self)
@@ -88,7 +84,6 @@ class NavigationSideBar(QWidget):
         self.navigateUpButton = QPushButton(QIcon(":/icons/back.svg"), "")
         self.navigateUpButton.setFlat(True)
         self.navigateUpButton.setFixedHeight(20)
-        self.navigateUpButton.clicked.connect(self.navHost.navigateUp)
         self.verticalLayout.addWidget(self.navigateUpButton)
 
         self.slidingStackedWidget = SlidingStackedWidget(self)
@@ -101,11 +96,29 @@ class NavigationSideBar(QWidget):
         navItemListWidget.activated.connect(self.navItemListWidgetActivatedProxy)
         self.slidingStackedWidget.addWidget(navItemListWidget)
 
+        self.setNavHost(navHost)
         self.reloadNavWidget()
+
+    def setNavHost(self, navHost: NavHost):
+        if self.navHost is not None:
+            self.navHost.navItemsChanged.disconnect(self.reloadNavWidget)
+            self.navHost.activated.disconnect(self.navItemChanged)
+            self.navigateUpKeyboardShortcut.activated.disconnect(
+                self.navHost.navigateUp
+            )
+            self.navigateUpButton.clicked.disconnect(self.navHost.navigateUp)
+
+        self.navHost = navHost
+
+        self.navHost.navItemsChanged.connect(self.reloadNavWidget)
+        self.navHost.activated.connect(self.navItemChanged)
+        self.navigateUpKeyboardShortcut.activated.connect(self.navHost.navigateUp)
+        self.navigateUpButton.clicked.connect(self.navHost.navigateUp)
 
     @Slot(QModelIndex)
     def navItemListWidgetActivatedProxy(self, index: QModelIndex):
         self.navHost.navigate(index.data(NavItemListWidget.NavItemRole).id)
+        self.navItemActivated.emit(index.data(NavItemListWidget.NavItemRole))
 
     def fillNavItemListWidget(
         self, currentNavItem: NavItem, listWidget: NavItemListWidget
@@ -123,10 +136,10 @@ class NavigationSideBar(QWidget):
         self.fillNavItemListWidget(
             self.navHost.currentNavItem, self.slidingStackedWidget.widget(0)
         )
-        self.navItemActivated(self.navHost.currentNavItem, self.navHost.currentNavItem)
+        self.navItemChanged(self.navHost.currentNavItem, self.navHost.currentNavItem)
 
     @Slot(NavItem, NavItem)
-    def navItemActivated(self, oldNavItem: NavItem, newNavItem: NavItem):
+    def navItemChanged(self, oldNavItem: NavItem, newNavItem: NavItem):
         # update navigateUpButton text
         if newNavItemParent := self.navHost.getNavItemRelatives(newNavItem.id).parent:
             self.navigateUpButton.setText(newNavItemParent.text())
