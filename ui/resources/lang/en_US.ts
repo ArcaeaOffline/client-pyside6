@@ -672,92 +672,117 @@ validation</translation>
 <context>
     <name>TabDb_Manage</name>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="23"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="78"/>
         <source>syncArcSongDbButton</source>
         <translation>Sync arcsong.db</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="30"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="85"/>
         <source>syncArcSongDb.description</source>
         <translation>Update chart info</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="37"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="98"/>
+        <source>importScoreGroup</source>
+        <translation>Import Score</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="105"/>
         <source>importSt3Button</source>
-        <translation>Import from Game Save</translation>
+        <translation>Game Save Database</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="44"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="112"/>
         <source>importSt3.description</source>
-        <translation>Import scores from your game save</translation>
+        <translation>Import scores from your game save database</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="58"/>
-        <source>exportScoresButton</source>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="139"/>
+        <source>exportScoreGroup</source>
         <translation>Export Scores</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="65"/>
-        <source>exportScores.description</source>
-        <translation>Export all your scores to a JSON file</translation>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="146"/>
+        <source>exportScoresButton</source>
+        <translation>D.E.F. V2</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="79"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="153"/>
+        <source>exportScores.description</source>
+        <translation>Export all your scores in &lt;i&gt;Arcaea Offline Data Exchange Format V2&lt;/i&gt; formed JSON file</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="186"/>
+        <source>miscGroup</source>
+        <translation>Miscellaneous</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="23"/>
         <source>importPacklistButton</source>
         <translation>Import packlist</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="86"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="37"/>
         <source>importSonglistButton</source>
         <translation>Import songlist</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="93"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="30"/>
         <source>importPacklist.description</source>
         <translation>Import packlist file</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="100"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="44"/>
         <source>importSonglist.description</source>
         <translation>Import songlist file</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="107"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="193"/>
         <source>exportArcsongJsonButton</source>
         <translation>Export arcsong.json</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="114"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="200"/>
         <source>exportArcsongJson.description</source>
-        <translation>Export arcsong.json file</translation>
+        <translation>Export arcsong.json file based on the information in database</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="121"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="51"/>
         <source>importApkButton</source>
         <translation>Import from APK</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="128"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="213"/>
+        <source>packSongInfoGroup</source>
+        <translation>Pack/Song Info</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="58"/>
         <source>importApk.description</source>
         <translation>Import packlist and songlist from .apk file</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="135"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="71"/>
+        <source>chartInfoGroup</source>
+        <translation>Chart Info</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="119"/>
         <source>importOnlineButton</source>
-        <translation>Import from Arcaea Online</translation>
+        <translation>Arcaea Online</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="142"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="126"/>
         <source>importOnline.description</source>
-        <translation>Import scores from the result of Arcaea Online API</translation>
+        <translation>Import scores from the Arcaea Online API result</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="149"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="160"/>
         <source>exportSmartRteB30Button</source>
-        <translation>Export Scores (CSV, SmartRTE B30)</translation>
+        <translation>SmartRTE B30</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="156"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="167"/>
         <source>exportSmartRteB30.description</source>
         <translation>Export all your scores to &lt;a href=&quot;https://smartrte.github.io/b30gen.html&quot;&gt;smartrte.github.io&lt;/a&gt; compatible CSV file</translation>
     </message>
@@ -840,27 +865,27 @@ validation</translation>
         <translation>Delete Selected Scores</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="142"/>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="158"/>
         <source>quickSelectComboBox.idEarlier</source>
         <translation>Earlier ID</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="148"/>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="164"/>
         <source>quickSelectComboBox.dateEarlier</source>
         <translation>Earlier date</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="154"/>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="170"/>
         <source>quickSelectComboBox.columnsIntegral</source>
         <translation>More complete data</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="279"/>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="295"/>
         <source>deleteSelectionDialog.content {}</source>
         <translation>Deleting {} scores from database, this cannot be undone!&lt;br&gt;Confirm?</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="301"/>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="317"/>
         <source>scan_noColumnsDialog.content</source>
         <translation>You haven&apos;t selected any column! Are you sure to continue?</translation>
     </message>

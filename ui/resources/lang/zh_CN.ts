@@ -671,92 +671,117 @@
 <context>
     <name>TabDb_Manage</name>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="23"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="78"/>
         <source>syncArcSongDbButton</source>
         <translation>同步 arcsong.db</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="30"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="85"/>
         <source>syncArcSongDb.description</source>
         <translation>更新谱面信息</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="37"/>
-        <source>importSt3Button</source>
-        <translation>导入本地存档</translation>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="98"/>
+        <source>importScoreGroup</source>
+        <translation>导入分数</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="44"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="105"/>
+        <source>importSt3Button</source>
+        <translation>存档文件</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="112"/>
         <source>importSt3.description</source>
         <translation>遏卡抑五年，天降飞龙，姿容极度美艳。白衣仙女以妙法擒之，与之相恋。&lt;br&gt;来年，恶人携联结万邦之力来袭，仙女龙妃以根源之术，呼唤神通叁式之威，退敌千里，永护宝库安宁。</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="58"/>
-        <source>exportScoresButton</source>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="139"/>
+        <source>exportScoreGroup</source>
         <translation>导出分数</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="65"/>
-        <source>exportScores.description</source>
-        <translation>将所有分数导出为 JSON 文件</translation>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="146"/>
+        <source>exportScoresButton</source>
+        <translation>数据交换格式 V2</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="79"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="153"/>
+        <source>exportScores.description</source>
+        <translation>将所有分数导出为 &lt;i&gt;Arcaea Offline 数据交换格式 V2&lt;/i&gt; JSON 文件</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="186"/>
+        <source>miscGroup</source>
+        <translation>杂项</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="23"/>
         <source>importPacklistButton</source>
         <translation>导入 packlist</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="86"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="37"/>
         <source>importSonglistButton</source>
         <translation>导入 songlist</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="93"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="30"/>
         <source>importPacklist.description</source>
         <translation>导入 packlist 文件</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="100"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="44"/>
         <source>importSonglist.description</source>
         <translation>导入 songlist 文件</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="107"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="193"/>
         <source>exportArcsongJsonButton</source>
         <translation>导出 arcsong.json</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="114"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="200"/>
         <source>exportArcsongJson.description</source>
-        <translation>导出 arcsong.json 文件</translation>
+        <translation>基于数据库信息导出 arcsong.json 文件</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="121"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="51"/>
         <source>importApkButton</source>
         <translation>从 APK 导入</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="128"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="213"/>
+        <source>packSongInfoGroup</source>
+        <translation>曲包、歌曲信息</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="58"/>
         <source>importApk.description</source>
         <translation>从 .apk 文件导入 packlist 和 songlist</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="135"/>
-        <source>importOnlineButton</source>
-        <translation>从 Arcaea Online 导入</translation>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="71"/>
+        <source>chartInfoGroup</source>
+        <translation>谱面信息</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="142"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="119"/>
+        <source>importOnlineButton</source>
+        <translation>Arcaea Online</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="126"/>
         <source>importOnline.description</source>
         <translation>从 Arcaea Online 的 API 结果导入分数</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="149"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="160"/>
         <source>exportSmartRteB30Button</source>
-        <translation>导出分数（CSV，SmartRTE B30）</translation>
+        <translation>SmartRTE B30</translation>
     </message>
     <message>
-        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="156"/>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="167"/>
         <source>exportSmartRteB30.description</source>
         <translation>将所有分数导出为兼容 &lt;a href=&quot;https://smartrte.github.io/b30gen.html&quot;&gt;smartrte.github.io&lt;/a&gt; 的 CSV 文件</translation>
     </message>
@@ -839,27 +864,27 @@
         <translation>删除已选分数</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="142"/>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="158"/>
         <source>quickSelectComboBox.idEarlier</source>
         <translation>ID 更早</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="148"/>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="164"/>
         <source>quickSelectComboBox.dateEarlier</source>
         <translation>时间更早</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="154"/>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="170"/>
         <source>quickSelectComboBox.columnsIntegral</source>
         <translation>数据更完整</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="279"/>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="295"/>
         <source>deleteSelectionDialog.content {}</source>
         <translation>将从数据库中删除 {} 个分数。此操作无法撤销！&lt;br&gt;确认吗？</translation>
     </message>
     <message>
-        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="301"/>
+        <location filename="../../implements/tabs/tabDb/tabDb_RemoveDuplicateScores.py" line="317"/>
         <source>scan_noColumnsDialog.content</source>
         <translation>还未选择任何字段！确定继续吗？</translation>
     </message>
