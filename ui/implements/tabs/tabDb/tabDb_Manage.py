@@ -16,7 +16,7 @@ from arcaea_offline.external.arcaea.common import ArcaeaParser
 from arcaea_offline.external.arcsong import ArcsongDbParser
 from arcaea_offline.external.smartrte import SmartRteB30CsvConverter
 from arcaea_offline.models import Difficulty, Pack, Song
-from PySide6.QtCore import QDir, Slot
+from PySide6.QtCore import QDateTime, QDir, Slot
 from PySide6.QtWidgets import QFileDialog, QMessageBox, QWidget
 
 from ui.designer.tabs.tabDb.tabDb_Manage_ui import Ui_TabDb_Manage
@@ -208,14 +208,14 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
 
     @Slot()
     def on_exportScoresButton_clicked(self):
-        scores = Database().export_scores()
-        version = Database().version()
+        scores = Database().export_scores_def_v2()
+        timestamp = QDateTime.currentMSecsSinceEpoch()
         content = json.dumps(scores, ensure_ascii=False)
 
         exportLocation, _filter = QFileDialog.getSaveFileName(
             self,
             "Save your scores to...",
-            QDir.current().filePath(f"arcaea-offline-scores-v{version}.json"),
+            QDir.current().filePath(f"arcaea-offline-def-v2-scores-{timestamp}.json"),
             "JSON (*.json);;*",
         )
         with open(exportLocation, "w", encoding="utf-8") as f:
