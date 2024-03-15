@@ -717,6 +717,16 @@ validation</translation>
         <translation>Miscellaneous</translation>
     </message>
     <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="284"/>
+        <source>syncChartInfoDbButton</source>
+        <translation>Sync Chart Info Database</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="291"/>
+        <source>syncChartInfoDb.description</source>
+        <translation>Update chart info</translation>
+    </message>
+    <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="23"/>
         <source>importPacklistButton</source>
         <translation>Import packlist</translation>

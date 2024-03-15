@@ -14,6 +14,7 @@ from arcaea_offline.external.arcaea import (
 )
 from arcaea_offline.external.arcaea.common import ArcaeaParser
 from arcaea_offline.external.arcsong import ArcsongDbParser
+from arcaea_offline.external.chart_info_db import ChartInfoDbParser
 from arcaea_offline.external.smartrte import SmartRteB30CsvConverter
 from arcaea_offline.models import Difficulty, Pack, Song
 from PySide6.QtCore import QDateTime, QDir, Slot
@@ -53,6 +54,29 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
             QMessageBox.information(self, None, "OK")
         except Exception as e:
             logging.exception("Sync arcsong.db error")
+            QMessageBox.critical(
+                self, "Sync Error", "\n".join(traceback.format_exception(e))
+            )
+
+    @Slot()
+    def on_syncChartInfoDbButton_clicked(self):
+        dbFile, filter = QFileDialog.getOpenFileName(
+            self, None, "", "DB File (*.db);;*"
+        )
+
+        if not dbFile:
+            return
+
+        try:
+            db = Database()
+            parser = ChartInfoDbParser(dbFile)
+            with db.sessionmaker() as session:
+                parser.write_database(session)
+                session.commit()
+                databaseUpdateSignals.chartInfoUpdated.emit()
+            QMessageBox.information(self, None, "OK")
+        except Exception as e:
+            logging.exception("Sync chart info database error")
             QMessageBox.critical(
                 self, "Sync Error", "\n".join(traceback.format_exception(e))
             )

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>580</width>
-    <height>521</height>
+    <height>551</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -86,7 +86,7 @@
      </property>
     </widget>
    </item>
-   <item row="8" column="0" colspan="2">
+   <item row="9" column="0" colspan="2">
     <widget class="QLabel" name="label_12">
      <property name="font">
       <font>
@@ -99,35 +99,35 @@
      </property>
     </widget>
    </item>
-   <item row="9" column="0">
+   <item row="10" column="0">
     <widget class="QPushButton" name="importSt3Button">
      <property name="text">
       <string>importSt3Button</string>
      </property>
     </widget>
    </item>
-   <item row="9" column="1">
+   <item row="10" column="1">
     <widget class="QLabel" name="label_2">
      <property name="text">
       <string>importSt3.description</string>
      </property>
     </widget>
    </item>
-   <item row="10" column="0">
+   <item row="11" column="0">
     <widget class="QPushButton" name="importOnlineButton">
      <property name="text">
       <string>importOnlineButton</string>
      </property>
     </widget>
    </item>
-   <item row="10" column="1">
+   <item row="11" column="1">
     <widget class="QLabel" name="label_8">
      <property name="text">
       <string>importOnline.description</string>
      </property>
     </widget>
    </item>
-   <item row="12" column="0" colspan="2">
+   <item row="13" column="0" colspan="2">
     <widget class="QLabel" name="label_13">
      <property name="font">
       <font>
@@ -140,28 +140,28 @@
      </property>
     </widget>
    </item>
-   <item row="13" column="0">
+   <item row="14" column="0">
     <widget class="QPushButton" name="exportScoresButton">
      <property name="text">
       <string>exportScoresButton</string>
      </property>
     </widget>
    </item>
-   <item row="13" column="1">
+   <item row="14" column="1">
     <widget class="QLabel" name="label_3">
      <property name="text">
       <string>exportScores.description</string>
      </property>
     </widget>
    </item>
-   <item row="14" column="0">
+   <item row="15" column="0">
     <widget class="QPushButton" name="exportSmartRteB30Button">
      <property name="text">
       <string>exportSmartRteB30Button</string>
      </property>
     </widget>
    </item>
-   <item row="14" column="1">
+   <item row="15" column="1">
     <widget class="QLabel" name="label_9">
      <property name="text">
       <string>exportSmartRteB30.description</string>
@@ -174,7 +174,7 @@
      </property>
     </widget>
    </item>
-   <item row="16" column="0" colspan="2">
+   <item row="17" column="0" colspan="2">
     <widget class="QLabel" name="label_14">
      <property name="font">
       <font>
@@ -187,14 +187,14 @@
      </property>
     </widget>
    </item>
-   <item row="17" column="0">
+   <item row="18" column="0">
     <widget class="QPushButton" name="exportArcsongJsonButton">
      <property name="text">
       <string>exportArcsongJsonButton</string>
      </property>
     </widget>
    </item>
-   <item row="17" column="1">
+   <item row="18" column="1">
     <widget class="QLabel" name="label_6">
      <property name="text">
       <string>exportArcsongJson.description</string>
@@ -230,7 +230,7 @@
      </property>
     </spacer>
    </item>
-   <item row="7" column="0">
+   <item row="8" column="0">
     <spacer name="verticalSpacer_2">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -246,7 +246,7 @@
      </property>
     </spacer>
    </item>
-   <item row="11" column="0">
+   <item row="12" column="0">
     <spacer name="verticalSpacer_3">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -262,7 +262,7 @@
      </property>
     </spacer>
    </item>
-   <item row="15" column="0">
+   <item row="16" column="0">
     <spacer name="verticalSpacer_4">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -277,6 +277,20 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item row="7" column="0">
+    <widget class="QPushButton" name="syncChartInfoDbButton">
+     <property name="text">
+      <string>syncChartInfoDbButton</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
+    <widget class="QLabel" name="label_15">
+     <property name="text">
+      <string>syncChartInfoDb.description</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

@@ -716,6 +716,16 @@
         <translation>杂项</translation>
     </message>
     <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="284"/>
+        <source>syncChartInfoDbButton</source>
+        <translation>同步谱面信息数据库</translation>
+    </message>
+    <message>
+        <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="291"/>
+        <source>syncChartInfoDb.description</source>
+        <translation>更新谱面信息</translation>
+    </message>
+    <message>
         <location filename="../../designer/tabs/tabDb/tabDb_Manage.ui" line="23"/>
         <source>importPacklistButton</source>
         <translation>导入 packlist</translation>

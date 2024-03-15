@@ -22,7 +22,7 @@ class Ui_TabDb_Manage(object):
     def setupUi(self, TabDb_Manage):
         if not TabDb_Manage.objectName():
             TabDb_Manage.setObjectName(u"TabDb_Manage")
-        TabDb_Manage.resize(580, 521)
+        TabDb_Manage.resize(580, 551)
         TabDb_Manage.setWindowTitle(u"TabDb_Manage")
         self.formLayout = QFormLayout(TabDb_Manage)
         self.formLayout.setObjectName(u"formLayout")
@@ -80,71 +80,71 @@ class Ui_TabDb_Manage(object):
         self.label_12.setObjectName(u"label_12")
         self.label_12.setFont(font)
 
-        self.formLayout.setWidget(8, QFormLayout.SpanningRole, self.label_12)
+        self.formLayout.setWidget(9, QFormLayout.SpanningRole, self.label_12)
 
         self.importSt3Button = QPushButton(TabDb_Manage)
         self.importSt3Button.setObjectName(u"importSt3Button")
 
-        self.formLayout.setWidget(9, QFormLayout.LabelRole, self.importSt3Button)
+        self.formLayout.setWidget(10, QFormLayout.LabelRole, self.importSt3Button)
 
         self.label_2 = QLabel(TabDb_Manage)
         self.label_2.setObjectName(u"label_2")
 
-        self.formLayout.setWidget(9, QFormLayout.FieldRole, self.label_2)
+        self.formLayout.setWidget(10, QFormLayout.FieldRole, self.label_2)
 
         self.importOnlineButton = QPushButton(TabDb_Manage)
         self.importOnlineButton.setObjectName(u"importOnlineButton")
 
-        self.formLayout.setWidget(10, QFormLayout.LabelRole, self.importOnlineButton)
+        self.formLayout.setWidget(11, QFormLayout.LabelRole, self.importOnlineButton)
 
         self.label_8 = QLabel(TabDb_Manage)
         self.label_8.setObjectName(u"label_8")
 
-        self.formLayout.setWidget(10, QFormLayout.FieldRole, self.label_8)
+        self.formLayout.setWidget(11, QFormLayout.FieldRole, self.label_8)
 
         self.label_13 = QLabel(TabDb_Manage)
         self.label_13.setObjectName(u"label_13")
         self.label_13.setFont(font)
 
-        self.formLayout.setWidget(12, QFormLayout.SpanningRole, self.label_13)
+        self.formLayout.setWidget(13, QFormLayout.SpanningRole, self.label_13)
 
         self.exportScoresButton = QPushButton(TabDb_Manage)
         self.exportScoresButton.setObjectName(u"exportScoresButton")
 
-        self.formLayout.setWidget(13, QFormLayout.LabelRole, self.exportScoresButton)
+        self.formLayout.setWidget(14, QFormLayout.LabelRole, self.exportScoresButton)
 
         self.label_3 = QLabel(TabDb_Manage)
         self.label_3.setObjectName(u"label_3")
 
-        self.formLayout.setWidget(13, QFormLayout.FieldRole, self.label_3)
+        self.formLayout.setWidget(14, QFormLayout.FieldRole, self.label_3)
 
         self.exportSmartRteB30Button = QPushButton(TabDb_Manage)
         self.exportSmartRteB30Button.setObjectName(u"exportSmartRteB30Button")
 
-        self.formLayout.setWidget(14, QFormLayout.LabelRole, self.exportSmartRteB30Button)
+        self.formLayout.setWidget(15, QFormLayout.LabelRole, self.exportSmartRteB30Button)
 
         self.label_9 = QLabel(TabDb_Manage)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setOpenExternalLinks(True)
         self.label_9.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse)
 
-        self.formLayout.setWidget(14, QFormLayout.FieldRole, self.label_9)
+        self.formLayout.setWidget(15, QFormLayout.FieldRole, self.label_9)
 
         self.label_14 = QLabel(TabDb_Manage)
         self.label_14.setObjectName(u"label_14")
         self.label_14.setFont(font)
 
-        self.formLayout.setWidget(16, QFormLayout.SpanningRole, self.label_14)
+        self.formLayout.setWidget(17, QFormLayout.SpanningRole, self.label_14)
 
         self.exportArcsongJsonButton = QPushButton(TabDb_Manage)
         self.exportArcsongJsonButton.setObjectName(u"exportArcsongJsonButton")
 
-        self.formLayout.setWidget(17, QFormLayout.LabelRole, self.exportArcsongJsonButton)
+        self.formLayout.setWidget(18, QFormLayout.LabelRole, self.exportArcsongJsonButton)
 
         self.label_6 = QLabel(TabDb_Manage)
         self.label_6.setObjectName(u"label_6")
 
-        self.formLayout.setWidget(17, QFormLayout.FieldRole, self.label_6)
+        self.formLayout.setWidget(18, QFormLayout.FieldRole, self.label_6)
 
         self.label_10 = QLabel(TabDb_Manage)
         self.label_10.setObjectName(u"label_10")
@@ -158,15 +158,25 @@ class Ui_TabDb_Manage(object):
 
         self.verticalSpacer_2 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
-        self.formLayout.setItem(7, QFormLayout.LabelRole, self.verticalSpacer_2)
+        self.formLayout.setItem(8, QFormLayout.LabelRole, self.verticalSpacer_2)
 
         self.verticalSpacer_3 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
-        self.formLayout.setItem(11, QFormLayout.LabelRole, self.verticalSpacer_3)
+        self.formLayout.setItem(12, QFormLayout.LabelRole, self.verticalSpacer_3)
 
         self.verticalSpacer_4 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
-        self.formLayout.setItem(15, QFormLayout.LabelRole, self.verticalSpacer_4)
+        self.formLayout.setItem(16, QFormLayout.LabelRole, self.verticalSpacer_4)
+
+        self.syncChartInfoDbButton = QPushButton(TabDb_Manage)
+        self.syncChartInfoDbButton.setObjectName(u"syncChartInfoDbButton")
+
+        self.formLayout.setWidget(7, QFormLayout.LabelRole, self.syncChartInfoDbButton)
+
+        self.label_15 = QLabel(TabDb_Manage)
+        self.label_15.setObjectName(u"label_15")
+
+        self.formLayout.setWidget(7, QFormLayout.FieldRole, self.label_15)
 
 
         self.retranslateUi(TabDb_Manage)
@@ -198,5 +208,7 @@ class Ui_TabDb_Manage(object):
         self.exportArcsongJsonButton.setText(QCoreApplication.translate("TabDb_Manage", u"exportArcsongJsonButton", None))
         self.label_6.setText(QCoreApplication.translate("TabDb_Manage", u"exportArcsongJson.description", None))
         self.label_10.setText(QCoreApplication.translate("TabDb_Manage", u"packSongInfoGroup", None))
+        self.syncChartInfoDbButton.setText(QCoreApplication.translate("TabDb_Manage", u"syncChartInfoDbButton", None))
+        self.label_15.setText(QCoreApplication.translate("TabDb_Manage", u"syncChartInfoDb.description", None))
         pass
     # retranslateUi
