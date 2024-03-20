@@ -82,6 +82,7 @@ class ChartDelegate(TextSegmentDelegate):
         QColor("#809955"),
         QColor("#702d60"),
         QColor("#710f25"),
+        QColor("#8b77a4"),
     ]
     ChartInvalidBackgroundColor = QColor("#e6a23c")
 

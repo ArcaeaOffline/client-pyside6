@@ -41,16 +41,30 @@ class RatingClassSelector(QWidget):
         self.bydButton.setAutoExclusive(False)
         self.preferredLayout.addWidget(self.bydButton)
 
-        self.buttons = [self.pstButton, self.prsButton, self.ftrButton, self.bydButton]
+        self.etrButton = RatingClassRadioButton(self)
+        self.etrButton.setObjectName("etrButton")
+        self.etrButton.setText("ETERNAL")
+        self.etrButton.setAutoExclusive(False)
+        self.preferredLayout.addWidget(self.etrButton)
+
+        self.buttons = [
+            self.pstButton,
+            self.prsButton,
+            self.ftrButton,
+            self.bydButton,
+            self.etrButton,
+        ]
         self.pstButton.setColors(QColor("#399bb2"), QColor("#f0f8fa"))
         self.prsButton.setColors(QColor("#809955"), QColor("#f7f9f4"))
         self.ftrButton.setColors(QColor("#702d60"), QColor("#f7ebf4"))
         self.bydButton.setColors(QColor("#710f25"), QColor("#f9ced8"))
+        self.etrButton.setColors(QColor("#4f2c7a"), QColor("#e4daf1"))
 
         self.pstButton.clicked.connect(self.select)
         self.prsButton.clicked.connect(self.select)
         self.ftrButton.clicked.connect(self.select)
         self.bydButton.clicked.connect(self.select)
+        self.etrButton.clicked.connect(self.select)
         self.reset()
         self.setButtonsEnabled([])
 
