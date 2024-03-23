@@ -3,7 +3,7 @@ import traceback
 from enum import IntEnum
 
 from arcaea_offline.database import Database
-from PySide6.QtCore import QCoreApplication, QDir, QFileInfo, Qt, QUrl, Slot
+from PySide6.QtCore import QCoreApplication, QDir, QFileInfo, QSysInfo, Qt, QUrl, Slot
 from PySide6.QtWidgets import QDialog, QMessageBox
 
 from ui.extends.shared.database import create_engine
@@ -59,8 +59,13 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
         return QUrl.fromLocalFile(self.dbFileInfo().filePath())
 
     def dbSqliteUrl(self):
-        # dbSqliteUrl.setScheme("sqlite")
-        return QUrl(self.dbFileUrl().toString().replace("file://", "sqlite://"))
+        kernelType = QSysInfo.kernelType()
+        # the slash count varies depending on the kernel
+        # https://docs.sqlalchemy.org/en/20/core/engines.html#sqlite
+        if kernelType == "winnt":
+            return QUrl(self.dbFileUrl().toString().replace("file://", "sqlite://"))
+        else:
+            return QUrl(self.dbFileUrl().toString().replace("file://", "sqlite:///"))
 
     def confirmDb(self) -> DatabaseCheckerResult:
         flags = 0x000
