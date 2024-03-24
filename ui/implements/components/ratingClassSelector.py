@@ -1,3 +1,4 @@
+import logging
 from typing import Type
 
 from PySide6.QtCore import Signal
@@ -5,6 +6,8 @@ from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QHBoxLayout, QSizePolicy, QVBoxLayout, QWidget
 
 from ui.implements.components.ratingClassRadioButton import RatingClassRadioButton
+
+logger = logging.getLogger(__name__)
 
 
 class RatingClassSelector(QWidget):
@@ -120,9 +123,10 @@ class RatingClassSelector(QWidget):
 
         if ratingClass is None or isinstance(ratingClass, bool):
             button = self.sender()
-        elif ratingClass in range(4):
+        elif ratingClass in range(len(self.buttons)):
             button = self.buttons[ratingClass]
         else:
+            logger.debug(f"Cannot select {ratingClass=}, condition check failed")
             return
 
         if not button.isEnabled():
