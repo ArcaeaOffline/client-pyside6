@@ -10,6 +10,7 @@ __all__ = [
     "KNN_MODEL_FILE",
     "B30_KNN_MODEL_FILE",
     "PHASH_DATABASE_FILE",
+    "SCORE_DATE_SOURCE",
     "ANDREAL_FOLDER",
     "ANDREAL_EXECUTABLE",
     "Settings",
@@ -23,6 +24,7 @@ DATABASE_URL = "DatabaseUrl"
 KNN_MODEL_FILE = "Ocr/KnnModelFile"
 B30_KNN_MODEL_FILE = "Ocr/B30KnnModelFile"
 PHASH_DATABASE_FILE = "Ocr/PHashDatabaseFile"
+SCORE_DATE_SOURCE = "Ocr/DateSource"
 
 ANDREAL_FOLDER = "Andreal/AndrealFolder"
 ANDREAL_EXECUTABLE = "Andreal/AndrealExecutable"
@@ -91,6 +93,15 @@ class Settings(QSettings, metaclass=QObjectSingleton):
 
     def resetPHashDatabaseFile(self):
         self._resetStrItem(PHASH_DATABASE_FILE)
+
+    def scoreDateSource(self):
+        return self._strItem(SCORE_DATE_SOURCE)
+
+    def setScoreDateSource(self, value: str):
+        self._setStrItem(SCORE_DATE_SOURCE, value)
+
+    def resetScoreDateSource(self):
+        self._resetStrItem(SCORE_DATE_SOURCE)
 
     def andrealFolder(self):
         return self._strItem(ANDREAL_FOLDER)

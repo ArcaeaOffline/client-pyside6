@@ -70,12 +70,12 @@
         <translation>Continue</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="117"/>
+        <location filename="../../startup/databaseChecker.py" line="122"/>
         <source>dialog.tryInitExistingDatabase</source>
         <translation>The existing database doesn&apos;t seem to be initialized properly, try initialize again?</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="133"/>
+        <location filename="../../startup/databaseChecker.py" line="138"/>
         <source>dialog.confirmNewDatabase</source>
         <translation>Database file does not exist. Create now?</translation>
     </message>
@@ -224,85 +224,118 @@
     </message>
     <message>
         <location filename="../../designer/components/ocrQueue.ui" line="28"/>
-        <source>iccOptionsGroupBox</source>
-        <translation>ICC Profile Options</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="34"/>
-        <source>icc.useQt</source>
-        <translation>Use Qt</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="41"/>
-        <source>icc.usePIL</source>
-        <translation>Use PIL</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="51"/>
-        <source>icc.tryFix</source>
-        <translation>Try fix</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="61"/>
         <source>queue.addImageButton</source>
         <translation>Add Image</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="71"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="38"/>
         <source>queue.removeSelected</source>
         <translation>Remove Selected</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="81"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="48"/>
         <source>queue.removeAll</source>
         <translation>Remove All</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="101"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="68"/>
+        <source>queue.optionsButton</source>
+        <translation>Options</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueue.ui" line="75"/>
         <source>queue.startOcrButton</source>
         <translation>Start OCR</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="153"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="127"/>
         <source>results</source>
         <translation>Results</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="162"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="136"/>
         <source>results.acceptSelectedButton</source>
         <translation>Accept Selected</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="169"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="143"/>
         <source>results.acceptAllButton</source>
         <translation>Accept All</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="189"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="163"/>
         <source>results.ignoreValidate</source>
         <translation>Ignore
 validation</translation>
     </message>
 </context>
 <context>
+    <name>OcrQueueOptionsDialog</name>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="14"/>
+        <source>OCR Options</source>
+        <translation>OCR Options</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="22"/>
+        <source>iccOptionsGroupBox</source>
+        <translation>ICC Profile Options</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="28"/>
+        <source>icc.useQt</source>
+        <translation>Use Qt</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="35"/>
+        <source>icc.usePIL</source>
+        <translation>Use PIL</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="45"/>
+        <source>icc.tryFix</source>
+        <translation>Try fix</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="55"/>
+        <source>dateOptionsGroupBox</source>
+        <translation>Date Source</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="64"/>
+        <source>date.readFromExif</source>
+        <translation>Read from image EXIF</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="74"/>
+        <source>date.useCreationDate</source>
+        <translation>File creation time</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="84"/>
+        <source>date.useModifyDate</source>
+        <translation>File last modification time</translation>
+    </message>
+</context>
+<context>
     <name>OcrTableModel</name>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="347"/>
+        <location filename="../../extends/components/ocrQueue.py" line="348"/>
         <source>horizontalHeader.title.select</source>
         <translation>Select</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="348"/>
+        <location filename="../../extends/components/ocrQueue.py" line="351"/>
         <source>horizontalHeader.title.imagePreview</source>
         <translation>Image Preview</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="349"/>
+        <location filename="../../extends/components/ocrQueue.py" line="352"/>
         <source>horizontalHeader.title.chart</source>
         <translation>Chart</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="350"/>
+        <location filename="../../extends/components/ocrQueue.py" line="353"/>
         <source>horizontalHeader.title.score</source>
         <translation>Score</translation>
     </message>

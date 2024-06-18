@@ -23,39 +23,6 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QGroupBox" name="groupBox">
-          <property name="title">
-           <string>iccOptionsGroupBox</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout">
-           <item>
-            <widget class="QRadioButton" name="iccUseQtRadioButton">
-             <property name="text">
-              <string>icc.useQt</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="iccUsePILRadioButton">
-             <property name="text">
-              <string>icc.usePIL</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="iccTryFixRadioButton">
-             <property name="text">
-              <string>icc.tryFix</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
          <widget class="QPushButton" name="ocr_addImageButton">
           <property name="text">
            <string>queue.addImageButton</string>
@@ -94,6 +61,13 @@
            </size>
           </property>
          </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="optionsDialogButton">
+          <property name="text">
+           <string>queue.optionsButton</string>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QPushButton" name="ocr_startButton">

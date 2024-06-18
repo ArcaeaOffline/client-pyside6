@@ -2,7 +2,7 @@ from typing import Optional
 
 from PySide6.QtCore import Qt, QTimer, Slot
 from PySide6.QtGui import QColor, QPalette
-from PySide6.QtWidgets import QButtonGroup, QWidget
+from PySide6.QtWidgets import QWidget
 
 from ui.designer.components.ocrQueue_ui import Ui_OcrQueue
 from ui.extends.components.ocrQueue import (
@@ -13,6 +13,7 @@ from ui.extends.components.ocrQueue import (
     OcrScoreDelegate,
 )
 from ui.extends.shared.language import LanguageChangeEventFilter
+from ui.implements.components.ocrQueueOptionsDialog import OcrQueueOptionsDialog
 
 
 class OcrQueue(Ui_OcrQueue, QWidget):
@@ -25,6 +26,9 @@ class OcrQueue(Ui_OcrQueue, QWidget):
 
         self.__model: Optional[OcrQueueModel] = None
         self.__tableProxyModel: Optional[OcrQueueTableProxyModel] = None
+
+        self.optionsDialog = OcrQueueOptionsDialog(self)
+        self.optionsDialog.iccOptionsChanged.connect(self.setIccOption)
 
         self.__firstResizeDone = False
         self.resizeTimer = QTimer(self)
@@ -40,13 +44,6 @@ class OcrQueue(Ui_OcrQueue, QWidget):
         highlightColor.setAlpha(25)
         tableViewPalette.setColor(QPalette.ColorRole.Highlight, highlightColor)
         self.tableView.setPalette(tableViewPalette)
-
-        self.iccOptionButtonGroup = QButtonGroup(self)
-        self.iccOptionButtonGroup.buttonToggled.connect(self.updateIccOption)
-        self.iccOptionButtonGroup.addButton(self.iccUseQtRadioButton, 0)
-        self.iccOptionButtonGroup.addButton(self.iccUsePILRadioButton, 1)
-        self.iccOptionButtonGroup.addButton(self.iccTryFixRadioButton, 2)
-        self.updateIccOption()
 
         self.statusLabelClearTimer = QTimer(self)
         self.statusLabelClearTimer.setSingleShot(True)
@@ -93,9 +90,10 @@ class OcrQueue(Ui_OcrQueue, QWidget):
         self.ocr_acceptAllButton.setEnabled(__bool)
         self.ocr_ignoreValidateCheckBox.setEnabled(__bool)
 
-    def updateIccOption(self):
+    @Slot(int)
+    def setIccOption(self, option):
         if self.model():
-            self.model().iccOption = self.iccOptionButtonGroup.checkedId()
+            self.model().iccOption = option
 
     def showStatusMessage(self, message: str):
         self.statusLabel.setText(message)
@@ -130,6 +128,10 @@ class OcrQueue(Ui_OcrQueue, QWidget):
 
     def modelReseted(self):
         self.progressBar.setMaximum(0)
+
+    @Slot()
+    def on_optionsDialogButton_clicked(self):
+        self.optionsDialog.exec()
 
     @Slot()
     def on_ocr_removeSelectedButton_clicked(self):

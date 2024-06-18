@@ -21,6 +21,7 @@ from PySide6.QtCore import QDateTime, QFileInfo
 
 from ui.extends.components.ocrQueue import OcrRunnable
 from ui.extends.shared.data import Data
+from ui.extends.shared.settings import Settings
 
 logger = logging.getLogger(__name__)
 
@@ -67,8 +68,14 @@ def getImageDate(imagePath: str) -> QDateTime:
         if exifImage.has_exif and exifImage.get("datetime_original"):
             datetimeStr = exifImage.get("datetime_original")
             datetime = QDateTime.fromString(datetimeStr, "yyyy:MM:dd hh:mm:ss")
+
     if not isinstance(datetime, QDateTime):
-        datetime = QFileInfo(imagePath).birthTime()
+        dateSource = Settings().scoreDateSource()
+        if dateSource == "lastModified":
+            datetime = QFileInfo(imagePath).lastModified()
+        else:
+            datetime = QFileInfo(imagePath).birthTime()
+
     return datetime
 
 

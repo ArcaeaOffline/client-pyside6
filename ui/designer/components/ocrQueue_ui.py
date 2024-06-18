@@ -17,8 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QGroupBox,
     QHBoxLayout, QHeaderView, QLabel, QProgressBar,
-    QPushButton, QRadioButton, QSizePolicy, QSpacerItem,
-    QTableView, QVBoxLayout, QWidget)
+    QPushButton, QSizePolicy, QSpacerItem, QTableView,
+    QVBoxLayout, QWidget)
 
 class Ui_OcrQueue(object):
     def setupUi(self, OcrQueue):
@@ -34,29 +34,6 @@ class Ui_OcrQueue(object):
         self.groupBox_3.setObjectName(u"groupBox_3")
         self.verticalLayout_2 = QVBoxLayout(self.groupBox_3)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.groupBox = QGroupBox(self.groupBox_3)
-        self.groupBox.setObjectName(u"groupBox")
-        self.verticalLayout = QVBoxLayout(self.groupBox)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.iccUseQtRadioButton = QRadioButton(self.groupBox)
-        self.iccUseQtRadioButton.setObjectName(u"iccUseQtRadioButton")
-
-        self.verticalLayout.addWidget(self.iccUseQtRadioButton)
-
-        self.iccUsePILRadioButton = QRadioButton(self.groupBox)
-        self.iccUsePILRadioButton.setObjectName(u"iccUsePILRadioButton")
-        self.iccUsePILRadioButton.setChecked(True)
-
-        self.verticalLayout.addWidget(self.iccUsePILRadioButton)
-
-        self.iccTryFixRadioButton = QRadioButton(self.groupBox)
-        self.iccTryFixRadioButton.setObjectName(u"iccTryFixRadioButton")
-
-        self.verticalLayout.addWidget(self.iccTryFixRadioButton)
-
-
-        self.verticalLayout_2.addWidget(self.groupBox)
-
         self.ocr_addImageButton = QPushButton(self.groupBox_3)
         self.ocr_addImageButton.setObjectName(u"ocr_addImageButton")
 
@@ -77,6 +54,11 @@ class Ui_OcrQueue(object):
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_2.addItem(self.verticalSpacer)
+
+        self.optionsDialogButton = QPushButton(self.groupBox_3)
+        self.optionsDialogButton.setObjectName(u"optionsDialogButton")
+
+        self.verticalLayout_2.addWidget(self.optionsDialogButton)
 
         self.ocr_startButton = QPushButton(self.groupBox_3)
         self.ocr_startButton.setObjectName(u"ocr_startButton")
@@ -154,13 +136,10 @@ class Ui_OcrQueue(object):
 
     def retranslateUi(self, OcrQueue):
         self.groupBox_3.setTitle(QCoreApplication.translate("OcrQueue", u"queue.title", None))
-        self.groupBox.setTitle(QCoreApplication.translate("OcrQueue", u"iccOptionsGroupBox", None))
-        self.iccUseQtRadioButton.setText(QCoreApplication.translate("OcrQueue", u"icc.useQt", None))
-        self.iccUsePILRadioButton.setText(QCoreApplication.translate("OcrQueue", u"icc.usePIL", None))
-        self.iccTryFixRadioButton.setText(QCoreApplication.translate("OcrQueue", u"icc.tryFix", None))
         self.ocr_addImageButton.setText(QCoreApplication.translate("OcrQueue", u"queue.addImageButton", None))
         self.ocr_removeSelectedButton.setText(QCoreApplication.translate("OcrQueue", u"queue.removeSelected", None))
         self.ocr_removeAllButton.setText(QCoreApplication.translate("OcrQueue", u"queue.removeAll", None))
+        self.optionsDialogButton.setText(QCoreApplication.translate("OcrQueue", u"queue.optionsButton", None))
         self.ocr_startButton.setText(QCoreApplication.translate("OcrQueue", u"queue.startOcrButton", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("OcrQueue", u"results", None))
         self.ocr_acceptSelectedButton.setText(QCoreApplication.translate("OcrQueue", u"results.acceptSelectedButton", None))
@@ -169,4 +148,3 @@ class Ui_OcrQueue(object):
         self.statusLabel.setText("")
         pass
     # retranslateUi
-

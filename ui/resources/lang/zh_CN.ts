@@ -70,12 +70,12 @@
         <translation>继续</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="117"/>
+        <location filename="../../startup/databaseChecker.py" line="122"/>
         <source>dialog.tryInitExistingDatabase</source>
         <translation>现有的数据库似乎没有正确初始化，是否尝试再次初始化？</translation>
     </message>
     <message>
-        <location filename="../../startup/databaseChecker.py" line="133"/>
+        <location filename="../../startup/databaseChecker.py" line="138"/>
         <source>dialog.confirmNewDatabase</source>
         <translation>数据库文件不存在，是否创建？</translation>
     </message>
@@ -224,84 +224,117 @@
     </message>
     <message>
         <location filename="../../designer/components/ocrQueue.ui" line="28"/>
-        <source>iccOptionsGroupBox</source>
-        <translation>ICC 文件选项</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="34"/>
-        <source>icc.useQt</source>
-        <translation>使用 Qt</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="41"/>
-        <source>icc.usePIL</source>
-        <translation>使用 PIL</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="51"/>
-        <source>icc.tryFix</source>
-        <translation>尝试修复</translation>
-    </message>
-    <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="61"/>
         <source>queue.addImageButton</source>
         <translation>添加图像文件</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="71"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="38"/>
         <source>queue.removeSelected</source>
         <translation>移除选中</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="81"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="48"/>
         <source>queue.removeAll</source>
         <translation>移除所有</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="101"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="68"/>
+        <source>queue.optionsButton</source>
+        <translation>选项</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueue.ui" line="75"/>
         <source>queue.startOcrButton</source>
         <translation>开始 OCR</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="153"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="127"/>
         <source>results</source>
         <translation>结果</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="162"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="136"/>
         <source>results.acceptSelectedButton</source>
         <translation>提交选中</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="169"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="143"/>
         <source>results.acceptAllButton</source>
         <translation>提交所有</translation>
     </message>
     <message>
-        <location filename="../../designer/components/ocrQueue.ui" line="189"/>
+        <location filename="../../designer/components/ocrQueue.ui" line="163"/>
         <source>results.ignoreValidate</source>
         <translation>忽略验证</translation>
     </message>
 </context>
 <context>
+    <name>OcrQueueOptionsDialog</name>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="14"/>
+        <source>OCR Options</source>
+        <translation>OCR 选项</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="22"/>
+        <source>iccOptionsGroupBox</source>
+        <translation>ICC 文件选项</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="28"/>
+        <source>icc.useQt</source>
+        <translation>使用 Qt</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="35"/>
+        <source>icc.usePIL</source>
+        <translation>使用 PIL</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="45"/>
+        <source>icc.tryFix</source>
+        <translation>尝试修复</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="55"/>
+        <source>dateOptionsGroupBox</source>
+        <translation>日期来源</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="64"/>
+        <source>date.readFromExif</source>
+        <translation>从 EXIF 读取</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="74"/>
+        <source>date.useCreationDate</source>
+        <translation>文件创建时间</translation>
+    </message>
+    <message>
+        <location filename="../../designer/components/ocrQueueOptionsDialog.ui" line="84"/>
+        <source>date.useModifyDate</source>
+        <translation>文件最后修改时间</translation>
+    </message>
+</context>
+<context>
     <name>OcrTableModel</name>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="347"/>
+        <location filename="../../extends/components/ocrQueue.py" line="348"/>
         <source>horizontalHeader.title.select</source>
         <translation>选择</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="348"/>
+        <location filename="../../extends/components/ocrQueue.py" line="351"/>
         <source>horizontalHeader.title.imagePreview</source>
         <translation>图像预览</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="349"/>
+        <location filename="../../extends/components/ocrQueue.py" line="352"/>
         <source>horizontalHeader.title.chart</source>
         <translation>谱面</translation>
     </message>
     <message>
-        <location filename="../../extends/components/ocrQueue.py" line="350"/>
+        <location filename="../../extends/components/ocrQueue.py" line="353"/>
         <source>horizontalHeader.title.score</source>
         <translation>分数</translation>
     </message>

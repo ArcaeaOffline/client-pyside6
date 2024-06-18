@@ -150,6 +150,7 @@ class OcrQueueModel(QAbstractListModel):
 
     @iccOption.setter
     def iccOption(self, opt: IccOption):
+        logger.debug(f"ICC option changed to {opt}")
         self.__iccOption = opt
 
     @overload
@@ -344,8 +345,12 @@ class OcrQueueTableProxyModel(QAbstractTableModel):
     def retranslateHeaders(self):
         self.__horizontalHeaders = [
             # fmt: off
-            QCoreApplication.translate("OcrTableModel", "horizontalHeader.title.select"),
-            QCoreApplication.translate("OcrTableModel", "horizontalHeader.title.imagePreview"),
+            QCoreApplication.translate(
+                "OcrTableModel", "horizontalHeader.title.select"
+            ),
+            QCoreApplication.translate(
+                "OcrTableModel", "horizontalHeader.title.imagePreview"
+            ),
             QCoreApplication.translate("OcrTableModel", "horizontalHeader.title.chart"),
             QCoreApplication.translate("OcrTableModel", "horizontalHeader.title.score"),
             # fmt: on
