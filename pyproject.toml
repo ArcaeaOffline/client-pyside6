@@ -11,7 +11,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
   "arcaea-offline==0.2.2",
-  "arcaea-offline-ocr==0.0.98",
+  "arcaea-offline-ocr==0.0.99",
   "exif==1.6.0",
   "PySide6==6.5.2",
 ]
