@@ -1,40 +1,65 @@
-name: Build UI from latest `arcaea-offline-*` dependencies
+name: Build Executable from latest `arcaea-offline-*` dependencies
 run-name: ${{ github.actor }} started a build request.
 
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+  discussions: write
+
 jobs:
-  build-windows:
-    runs-on: windows-2022
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: "pip"
 
       # install dependencies
       - run: "pip install -r requirements.txt"
       - run: "pip uninstall arcaea-offline arcaea-offline-ocr -y"
       - run: "pip install git+https://github.com/283375/arcaea-offline"
       - run: "pip install git+https://github.com/283375/arcaea-offline-ocr"
-      - run: "pip install nuitka imageio"
+      - run: "pip install imageio"
       - name: Install UPX
         uses: crazy-max/ghaction-upx@v3
         with:
           install-only: true
 
-      # release builtin files
-      - run: 'pyside6-lrelease.exe .\ui\resources\lang\en_US.ts .\ui\resources\lang\zh_CN.ts'
-      - run: "python prebuild.py"
-      - run: 'pyside6-rcc.exe .\ui\resources\resources.qrc -o .\ui\resources\resources_rc.py'
+      - name: Release builtin files
+        run: |
+          pyside6-lrelease ui/resources/lang/en_US.ts ui/resources/lang/zh_CN.ts
+          python prebuild.py
+          pyside6-rcc ui/resources/resources.qrc -o ui/resources/resources_rc.py
 
-      # build
-      - run: "python -m nuitka --plugin-enable=upx --enable-plugin=pyside6 --assume-yes-for-downloads --windows-icon-from-ico=./ui/resources/images/icon.png --standalone --onefile index.py"
-
-      - uses: actions/upload-artifact@v3
+      - name: Build Executable
+        uses: Nuitka/Nuitka-Action@main
         with:
-          name: build-windows
-          path: index.exe
+          nuitka-version: main
+          script-name: index.py
+          standalone: true
+          onefile: true
+          enable-plugins: pyside6,upx
+          windows-icon-from-ico: ui/resources/images/icon.png
+          linux-icon: ui/resources/images/icon.png
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ runner.os }} Build
+          path: |
+            build/*.exe
+            build/*.bin
+            build/*.app/**/*

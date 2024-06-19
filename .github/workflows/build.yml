@@ -1,4 +1,4 @@
-name: Build UI
+name: Build Executable
 run-name: ${{ github.actor }} started a build request.
 
 on:
@@ -12,32 +12,59 @@ permissions:
   discussions: write
 
 jobs:
-  build-windows:
-    runs-on: windows-2022
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
 
-      # install dependencies
-      - run: "pip install -r requirements.txt"
-      - run: "pip install nuitka imageio"
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install imageio
+
       - name: Install UPX
         uses: crazy-max/ghaction-upx@v3
         with:
           install-only: true
 
-      # release builtin files
-      - run: 'pyside6-lrelease.exe .\ui\resources\lang\en_US.ts .\ui\resources\lang\zh_CN.ts'
-      - run: "python prebuild.py"
-      - run: 'pyside6-rcc.exe .\ui\resources\resources.qrc -o .\ui\resources\resources_rc.py'
+      - name: Release builtin files
+        run: |
+          pyside6-lrelease ui/resources/lang/en_US.ts ui/resources/lang/zh_CN.ts
+          python prebuild.py
+          pyside6-rcc ui/resources/resources.qrc -o ui/resources/resources_rc.py
 
-      # build
-      - run: "python -m nuitka --plugin-enable=upx --enable-plugin=pyside6 --assume-yes-for-downloads --windows-icon-from-ico=./ui/resources/images/icon.png --standalone --onefile index.py"
+      - name: Build Executable
+        uses: Nuitka/Nuitka-Action@main
+        with:
+          nuitka-version: main
+          script-name: index.py
+          standalone: true
+          onefile: true
+          enable-plugins: pyside6,upx
+          windows-icon-from-ico: ui/resources/images/icon.png
+          linux-icon: ui/resources/images/icon.png
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ runner.os }} Build
+          path: |
+            build/*.exe
+            build/*.bin
+            build/*.app/**/*
 
       - name: Draft a release
         uses: softprops/action-gh-release@v2
@@ -46,4 +73,6 @@ jobs:
           draft: true
           generate_release_notes: true
           files: |
-            index.exe
+            build/*.exe
+            build/*.bin
+            build/*.app/**/*
