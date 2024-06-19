@@ -39,7 +39,7 @@ class DbB30TableModel(DbTableModel):
                     (ScoreBest.song_id == Chart.song_id)
                     & (ScoreBest.rating_class == Chart.rating_class),
                 )
-                .order_by(ScoreBest.potential)
+                .order_by(ScoreBest.potential.desc())
                 .limit(50)
                 .all()
             )
