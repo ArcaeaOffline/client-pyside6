@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "arcaea-offline-pyside-ui"
-version = "0.3.8"
+version = "0.3.9"
 authors = [{ name = "283375", email = "log_283375@163.com" }]
 description = "No description."
 readme = "README.md"
