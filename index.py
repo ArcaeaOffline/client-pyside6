@@ -9,9 +9,9 @@ from PySide6.QtCore import QCoreApplication, QLocale
 from PySide6.QtGui import QFontDatabase, QIcon
 from PySide6.QtWidgets import QApplication, QDialog, QMessageBox
 
-import ui.resources.resources_rc
+import ui.resources.resources_rc  # noqa: F401
+from core.settings import SettingsKeys, settings
 from ui.extends.shared.language import changeAppLanguage
-from ui.extends.shared.settings import Settings
 from ui.implements.mainwindow import MainWindow
 from ui.startup.databaseChecker import DatabaseChecker, DatabaseCheckerResult
 
@@ -59,16 +59,19 @@ if __name__ == "__main__":
     rootLogger.addHandler(rootLoggerStdOutHandler)
 
     app = QApplication(sys.argv)
-    locale = (
-        QLocale(Settings().language()) if Settings().language() else QLocale.system()
-    )
+    settingsLanguage = settings.stringValue(SettingsKeys.General.Language)
+    locale = QLocale(settingsLanguage) if settingsLanguage else QLocale.system()
     changeAppLanguage(locale)
 
     QFontDatabase.addApplicationFont(":/fonts/GeosansLight.ttf")
 
     databaseChecker = DatabaseChecker()
     databaseChecker.setWindowIcon(QIcon(":/images/icon.png"))
-    databaseCheckResult = databaseChecker.confirmDb() if Settings().databaseUrl() else 0
+    databaseCheckResult = (
+        databaseChecker.confirmDb()
+        if settings.stringValue(SettingsKeys.General.DatabaseUrl)
+        else 0
+    )
 
     if not databaseCheckResult & DatabaseCheckerResult.Initted:
         result = databaseChecker.exec()

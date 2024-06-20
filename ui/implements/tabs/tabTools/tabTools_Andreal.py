@@ -11,9 +11,9 @@ from PySide6.QtCore import QCoreApplication, QDir, QFileInfo, Qt, Slot
 from PySide6.QtGui import QGuiApplication, QImage, QPainter, QPaintEvent, QPixmap
 from PySide6.QtWidgets import QButtonGroup, QFileDialog, QLabel, QMessageBox, QWidget
 
+from core.settings import SettingsKeys
 from ui.designer.tabs.tabTools.tabTools_Andreal_ui import Ui_TabTools_Andreal
 from ui.extends.shared.language import LanguageChangeEventFilter
-from ui.extends.shared.settings import ANDREAL_EXECUTABLE, ANDREAL_FOLDER
 from ui.extends.tabs.tabTools.tabTools_Andreal import AndrealHelper
 from ui.implements.components.chartSelector import ChartSelector
 from ui.implements.components.songIdSelector import SongIdSelectorMode
@@ -80,8 +80,8 @@ class TabTools_Andreal(Ui_TabTools_Andreal, QWidget):
         self.andrealFolderSelector.filesSelected.connect(self.setHelperPaths)
         self.andrealExecutableSelector.filesSelected.connect(self.setHelperPaths)
 
-        self.andrealFolderSelector.connectSettings(ANDREAL_FOLDER)
-        self.andrealExecutableSelector.connectSettings(ANDREAL_EXECUTABLE)
+        self.andrealFolderSelector.connectSettings(SettingsKeys.Andreal.Folder)
+        self.andrealExecutableSelector.connectSettings(SettingsKeys.Andreal.Executable)
 
         self.generatePreviewButton.clicked.connect(self.requestPreview)
         self.generateImageButton.clicked.connect(self.requestGenerate)
@@ -134,10 +134,8 @@ class TabTools_Andreal(Ui_TabTools_Andreal, QWidget):
         QMessageBox.information(
             self,
             None,
-            # fmt: off
             QCoreApplication.translate("TabTools_Andreal", "imageWhatIsThisDialog.description"),
-            # fmt: on
-        )
+        )  # fmt: skip
 
     def imageFormat(self):
         buttonId = self.imageFormatButtonGroup.checkedId()

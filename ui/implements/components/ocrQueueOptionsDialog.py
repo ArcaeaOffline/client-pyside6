@@ -1,8 +1,8 @@
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QButtonGroup, QDialog
 
+from core.settings import SettingsKeys, SettingsValues, settings
 from ui.designer.components.ocrQueueOptionsDialog_ui import Ui_OcrQueueOptionsDialog
-from ui.extends.shared.settings import Settings
 
 
 class OcrQueueOptionsDialog(QDialog, Ui_OcrQueueOptionsDialog):
@@ -29,13 +29,12 @@ class OcrQueueOptionsDialog(QDialog, Ui_OcrQueueOptionsDialog):
             self.on_scoreDateSourceButtonGroup_buttonClicked
         )
 
-        self.settings = Settings()
-        self.settings.updated.connect(self.syncCheckboxesFromSettings)
+        settings.updated.connect(self.syncCheckboxesFromSettings)
         self.syncCheckboxesFromSettings()
 
     def syncCheckboxesFromSettings(self):
-        scoreDateSource = self.settings.scoreDateSource()
-        if scoreDateSource == "lastModified":
+        scoreDateSource = settings.stringValue(SettingsKeys.Ocr.DateSource)
+        if scoreDateSource == SettingsValues.Ocr.DateSource.FileLastModified:
             self.dateUseModifyDateRadioButton.setChecked(True)
         else:
             self.dateUseCreationDateRadioButton.setChecked(True)
@@ -43,6 +42,8 @@ class OcrQueueOptionsDialog(QDialog, Ui_OcrQueueOptionsDialog):
     def on_scoreDateSourceButtonGroup_buttonClicked(self, button):
         buttonId = self.scoreDateSourceButtonGroup.id(button)
         if buttonId == 1:
-            self.settings.setScoreDateSource("lastModified")
+            value = SettingsValues.Ocr.DateSource.FileLastModified
         else:
-            self.settings.setScoreDateSource("birthTime")
+            value = SettingsValues.Ocr.DateSource.FileCreated
+
+        settings.setValue(SettingsKeys.Ocr.DateSource, value)
