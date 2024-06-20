@@ -9,6 +9,7 @@ from PIL import Image
 from PySide6.QtCore import Signal, Slot
 from PySide6.QtWidgets import QFileDialog, QMessageBox, QWidget
 
+from core.settings import SettingsKeys
 from ui.designer.tabs.tabOcr.tabOcr_B30_ui import Ui_TabOcr_B30
 from ui.extends.components.ocrQueue import OcrQueueModel
 from ui.extends.ocr.dependencies import (
@@ -16,11 +17,6 @@ from ui.extends.ocr.dependencies import (
     getPhashDatabaseStatusText,
 )
 from ui.extends.shared.language import LanguageChangeEventFilter
-from ui.extends.shared.settings import (
-    B30_KNN_MODEL_FILE,
-    KNN_MODEL_FILE,
-    PHASH_DATABASE_FILE,
-)
 from ui.extends.tabs.tabOcr.tabOcr_B30 import ChieriV4OcrRunnable, b30ResultToScore
 
 logger = logging.getLogger(__name__)
@@ -55,9 +51,15 @@ class TabOcr_B30(Ui_TabOcr_B30, QWidget):
         self.ocr = None
 
         logger.info("Applying settings...")
-        self.dependencies_knnModelSelector.connectSettings(KNN_MODEL_FILE)
-        self.dependencies_b30KnnModelSelector.connectSettings(B30_KNN_MODEL_FILE)
-        self.dependencies_phashDatabaseSelector.connectSettings(PHASH_DATABASE_FILE)
+        self.dependencies_knnModelSelector.connectSettings(
+            SettingsKeys.Ocr.KnnModelFile
+        )
+        self.dependencies_b30KnnModelSelector.connectSettings(
+            SettingsKeys.Ocr.B30KnnModelFile
+        )
+        self.dependencies_phashDatabaseSelector.connectSettings(
+            SettingsKeys.Ocr.PhashDatabaseFile
+        )
 
         self.ocrQueueModel = OcrQueueModel(self)
         self.ocrQueue.setModel(self.ocrQueueModel)

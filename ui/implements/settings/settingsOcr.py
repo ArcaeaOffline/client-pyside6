@@ -1,6 +1,7 @@
 from PySide6.QtCore import QCoreApplication
 from PySide6.QtWidgets import QLabel, QPushButton
 
+from core.settings import SettingsKeys, settings
 from ui.implements.components.fileSelector import FileSelector
 from ui.implements.settings.settingsBaseWidget import SettingsBaseWidget
 
@@ -11,8 +12,8 @@ class SettingsOcr(SettingsBaseWidget):
 
         self.setupUi(self)
 
-        if self.settings.knnModelFile():
-            self.knnModelFileValueWidget.selectFile(self.settings.knnModelFile())
+        if knnModelFile := settings.stringValue(SettingsKeys.Ocr.KnnModelFile):
+            self.knnModelFileValueWidget.selectFile(knnModelFile)
         self.knnModelFileValueWidget.filesSelected.connect(self.setKnnModelFile)
         self.knnModelFileResetButton.clicked.connect(self.resetKnnModelFile)
         self.insertItem(
@@ -22,8 +23,8 @@ class SettingsOcr(SettingsBaseWidget):
             self.knnModelFileResetButton,
         )
 
-        if self.settings.b30KnnModelFile():
-            self.b30KnnModelFileValueWidget.selectFile(self.settings.b30KnnModelFile())
+        if b30KnnModelFile := settings.stringValue(SettingsKeys.Ocr.B30KnnModelFile):
+            self.b30KnnModelFileValueWidget.selectFile(b30KnnModelFile)
         self.b30KnnModelFileValueWidget.filesSelected.connect(self.setB30KnnModelFile)
         self.b30KnnModelFileResetButton.clicked.connect(self.resetB30KnnModelFile)
         self.insertItem(
@@ -33,10 +34,10 @@ class SettingsOcr(SettingsBaseWidget):
             self.b30KnnModelFileResetButton,
         )
 
-        if self.settings.phashDatabaseFile():
-            self.phashDatabaseFileValueWidget.selectFile(
-                self.settings.phashDatabaseFile()
-            )
+        if phashDatabaseFile := settings.stringValue(
+            SettingsKeys.Ocr.PhashDatabaseFile
+        ):
+            self.phashDatabaseFileValueWidget.selectFile(phashDatabaseFile)
         self.phashDatabaseFileValueWidget.filesSelected.connect(
             self.setPHashDatabaseFile
         )
@@ -52,31 +53,31 @@ class SettingsOcr(SettingsBaseWidget):
         selectedFile = self.knnModelFileValueWidget.selectedFiles()
         if selectedFile and selectedFile[0]:
             file = selectedFile[0]
-            self.settings.setKnnModelFile(file)
+            settings.setValue(SettingsKeys.Ocr.KnnModelFile, file)
 
     def resetKnnModelFile(self):
         self.knnModelFileValueWidget.reset()
-        self.settings.resetKnnModelFile()
+        settings.setValue(SettingsKeys.Ocr.KnnModelFile, None)
 
     def setB30KnnModelFile(self):
         selectedFile = self.b30KnnModelFileValueWidget.selectedFiles()
         if selectedFile and selectedFile[0]:
             file = selectedFile[0]
-            self.settings.setB30KnnModelFile(file)
+            settings.setValue(SettingsKeys.Ocr.B30KnnModelFile, file)
 
     def resetB30KnnModelFile(self):
         self.b30KnnModelFileValueWidget.reset()
-        self.settings.resetB30KnnModelFile()
+        settings.setValue(SettingsKeys.Ocr.B30KnnModelFile, None)
 
     def setPHashDatabaseFile(self):
         selectedFile = self.phashDatabaseFileValueWidget.selectedFiles()
         if selectedFile and selectedFile[0]:
             file = selectedFile[0]
-            self.settings.setPHashDatabaseFile(file)
+            settings.setValue(SettingsKeys.Ocr.PhashDatabaseFile, file)
 
     def resetPHashDatabaseFile(self):
         self.phashDatabaseFileValueWidget.reset()
-        self.settings.resetPHashDatabaseFile()
+        settings.setValue(SettingsKeys.Ocr.PhashDatabaseFile, None)
 
     def setupUi(self, *args):
         self.knnModelFileLabel = QLabel(self)

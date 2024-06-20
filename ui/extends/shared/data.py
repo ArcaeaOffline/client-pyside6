@@ -7,7 +7,7 @@ from typing import Literal, Optional, overload
 from arcaea_offline.models import Chart, Difficulty, Song
 from PySide6.QtCore import QFile
 
-from .singleton import Singleton
+from core.singleton import Singleton
 
 TPartnerModifier = dict[str, Literal[0, 1, 2]]
 
@@ -48,14 +48,12 @@ class Data(metaclass=Singleton):
         return self.dataPath / "Arcaea"
 
     @overload
-    def getJacketPath(self, chart: Chart, /) -> Path | None:
-        ...
+    def getJacketPath(self, chart: Chart, /) -> Path | None: ...
 
     @overload
     def getJacketPath(
         self, song: Song, difficulty: Optional[Difficulty] = None, /
-    ) -> Path | None:
-        ...
+    ) -> Path | None: ...
 
     def getJacketPath(self, *args) -> Path | None:
         if isinstance(args[0], Chart):

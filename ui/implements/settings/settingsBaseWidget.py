@@ -1,15 +1,15 @@
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QLabel, QPushButton, QWidget
 
+from core.settings import settings
 from ui.designer.settings.settingsBaseWidget_ui import Ui_SettingsBaseWidget
 from ui.extends.shared.language import LanguageChangeEventFilter
-from ui.extends.shared.settings import Settings
 
 
 class SettingsBaseWidget(Ui_SettingsBaseWidget, QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.settings = Settings()
+        self.settings = settings
 
         self.languageChangeEventFilter = LanguageChangeEventFilter(self)
         self.installEventFilter(self.languageChangeEventFilter)

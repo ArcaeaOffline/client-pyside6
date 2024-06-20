@@ -2,9 +2,9 @@ from PySide6.QtCore import QDir, QFileInfo, Qt, Signal, Slot
 from PySide6.QtGui import QDragEnterEvent, QDragLeaveEvent, QDropEvent
 from PySide6.QtWidgets import QFileDialog, QWidget
 
+from core.settings import settings
 from ui.designer.components.fileSelector_ui import Ui_FileSelector
 from ui.extends.shared.language import LanguageChangeEventFilter
-from ui.extends.shared.settings import Settings
 
 
 class FileSelector(Ui_FileSelector, QWidget):
@@ -122,13 +122,13 @@ class FileSelector(Ui_FileSelector, QWidget):
         if self.__selectedFiles:
             return
 
-        if value := Settings().value(self.settingsKey):
+        if value := settings.value(self.settingsKey):
             self.selectFile(value)
 
-        Settings().updated.connect(self.settingsUpdated)
+        settings.updated.connect(self.settingsUpdated)
 
     def disconnectSettings(self):
-        Settings().updated.disconnect(self.settingsUpdated)
+        settings.updated.disconnect(self.settingsUpdated)
         self.settingsKey = None
 
     def settingsUpdated(self, key: str):
@@ -139,4 +139,4 @@ class FileSelector(Ui_FileSelector, QWidget):
         if self.__selectedFiles:
             return
 
-        self.selectFile(Settings().value(self.settingsKey))
+        self.selectFile(settings.value(self.settingsKey))
