@@ -43,9 +43,9 @@ if __name__ == "__main__":
     hms = now.strftime("%H%M%S")
 
     rootLoggerFormatter = logging.Formatter(
-        "[%(asctime)s/%(levelname)s]%(name)s: %(message)s",
+        "[%(asctime)s/%(levelname)s] %(name)s (%(tag)s): %(message)s",
         "%m-%d %H:%M:%S",
-        style="%",
+        defaults={"tag": "/"},
     )
     rootLoggerFileHandler = logging.FileHandler(
         str(logFolder / f"arcaea-offline-pyside-ui-{ymd}-{hms}_debug.log"),
