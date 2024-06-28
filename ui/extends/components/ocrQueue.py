@@ -140,7 +140,11 @@ class OcrQueueModel(QAbstractListModel):
             return True
         else:
             logger.warning(
-                f"{repr(self)} setData at row {index.row()} with role {role} and value {value} rejected."
+                "%r setData at row %d with role %d and value %s rejected!",
+                self,
+                index.row(),
+                role,
+                value,
             )
             return False
 
@@ -150,7 +154,7 @@ class OcrQueueModel(QAbstractListModel):
 
     @iccOption.setter
     def iccOption(self, opt: IccOption):
-        logger.debug(f"ICC option changed to {opt}")
+        logger.debug("ICC option changed to %s", opt)
         self.__iccOption = opt
 
     @overload
@@ -159,8 +163,7 @@ class OcrQueueModel(QAbstractListModel):
         image: str,
         runnable: OcrRunnable = None,
         process_func: Callable[[Optional[str], QImage, Any], Score] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def addItem(
@@ -168,8 +171,7 @@ class OcrQueueModel(QAbstractListModel):
         image: QImage,
         runnable: OcrRunnable = None,
         process_func: Callable[[Optional[str], QImage, Any], Score] = None,
-    ):
-        ...
+    ): ...
 
     def addItem(
         self,
@@ -179,7 +181,7 @@ class OcrQueueModel(QAbstractListModel):
     ):
         if isinstance(image, str):
             if image in self.imagePaths or not QFileInfo(image).exists():
-                logger.warning(f"Attempting to add an invalid file {image}")
+                logger.warning("Attempting to add an invalid file %s", image)
                 return
             imagePath = image
             if self.iccOption == IccOption.TryFix:
@@ -223,7 +225,7 @@ class OcrQueueModel(QAbstractListModel):
         index = self.index(row, 0)
         imagePath: str = index.data(self.ImagePathRole)
         qImage: QImage = index.data(self.ImageQImageRole)
-        logger.debug(f"update request: {result}@row{row}")
+        logger.debug("update request: %r@row%d", result, row)
         processOcrResultFunc = index.data(self.ProcessOcrResultFuncRole)
 
         chart, scoreInsert = processOcrResultFunc(imagePath, qImage, result)
@@ -294,8 +296,8 @@ class OcrQueueModel(QAbstractListModel):
             self.__items.pop(row)
             self.endRemoveRows()
             return
-        except Exception as e:
-            logger.exception(f"Error accepting {repr(item)}")
+        except Exception:
+            logger.exception("Error accepting %r", item)
             return
 
     def acceptItems(self, __rows: list[int], ignoreValidate: bool = False):

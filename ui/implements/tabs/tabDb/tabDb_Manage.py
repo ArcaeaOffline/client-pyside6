@@ -91,7 +91,7 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
             session.commit()
             databaseUpdateSignals.songAddOrDelete.emit()
         itemNum = len([item for item in parser.parse() if isinstance(item, instance)])
-        logger.info(f"updated {itemNum} {logName} from {path}")
+        logger.info("updated %d %s from %s", itemNum, logName, path)
         return itemNum
 
     def importPacklist(self, packlistPath):
@@ -161,7 +161,7 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
             return
 
         try:
-            logger.info(f"Importing {apkFile}")
+            logger.info("Importing %s", apkFile)
 
             with zipfile.ZipFile(apkFile) as zf:
                 packlistPath = zipfile.Path(zf) / "assets" / "songs" / "packlist"
@@ -193,7 +193,9 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
             db = Database()
             parser = St3ScoreParser(dbFile)
             logger.info(
-                f"Got {len(parser.parse())} items from {dbFile}, writing into database..."
+                "Got %d items from %s, writing into database...",
+                len(parser.parse()),
+                dbFile,
             )
             with db.sessionmaker() as session:
                 parser.write_database(session)
@@ -218,7 +220,9 @@ class TabDb_Manage(Ui_TabDb_Manage, QWidget):
             db = Database()
             parser = ArcaeaOnlineParser(apiResultFile)
             logger.info(
-                f"Got {len(parser.parse())} items from {apiResultFile}, writing into database..."
+                "Got %d items from %s, writing into database...",
+                len(parser.parse()),
+                apiResultFile,
             )
             with db.sessionmaker() as session:
                 parser.write_database(session)
