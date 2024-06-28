@@ -1,6 +1,4 @@
-import sys
-
-from PySide6.QtCore import QCoreApplication, QDir, QLocale, QProcess
+from PySide6.QtCore import QCoreApplication, QDir, QLocale
 from PySide6.QtWidgets import (
     QApplication,
     QCheckBox,
@@ -10,8 +8,8 @@ from PySide6.QtWidgets import (
     QPushButton,
 )
 
+from core.settings import SettingsKeys, settings
 from ui.extends.shared.language import changeAppLanguage, localeToCode, localeToFullName
-from ui.extends.shared.settings import DATABASE_URL, LANGUAGE
 from ui.implements.settings.settingsBaseWidget import SettingsBaseWidget
 
 
@@ -33,8 +31,8 @@ class SettingsGeneral(SettingsBaseWidget):
         self.languageFollowSystemCheckBox.toggled.connect(
             self.changeLanguageFollowSystem
         )
-        if self.settings.language():
-            locale = QLocale(self.settings.language())
+        if language := settings.stringValue(SettingsKeys.General.Language):
+            locale = QLocale(language)
             index = self.languageValueWidget.findData(locale)
             if index > -1:
                 self.languageValueWidget.setCurrentIndex(index)
@@ -51,7 +49,7 @@ class SettingsGeneral(SettingsBaseWidget):
         self.insertItem(
             "dbUrl",
             self.dbUrlLabel,
-            QLabel(self.settings.databaseUrl()),
+            QLabel(settings.stringValue(SettingsKeys.General.DatabaseUrl)),
             self.dbUrlResetButton,
         )
 
@@ -59,13 +57,13 @@ class SettingsGeneral(SettingsBaseWidget):
         locale = self.languageValueWidget.currentData()
         if locale:
             changeAppLanguage(locale)
-            self.settings.setLanguage(localeToCode(locale))
+            settings.setValue(SettingsKeys.General.Language, localeToCode(locale))
 
     def changeLanguageFollowSystem(self):
         followSystem = self.languageFollowSystemCheckBox.isChecked()
         self.languageValueWidget.setCurrentIndex(-1)
         if followSystem:
-            self.settings.remove(LANGUAGE)
+            settings.remove(SettingsKeys.General.Language)
             changeAppLanguage(QLocale.system())
             self.languageValueWidget.setEnabled(False)
         else:
@@ -80,7 +78,7 @@ class SettingsGeneral(SettingsBaseWidget):
             QMessageBox.StandardButton.No,
         )
         if userConfirm == QMessageBox.StandardButton.Yes:
-            self.settings.remove(DATABASE_URL)
+            settings.remove(SettingsKeys.General.DatabaseUrl)
             QApplication.instance().quit()
 
     def setupUi(self, *args):
@@ -99,10 +97,10 @@ class SettingsGeneral(SettingsBaseWidget):
 
         # fmt: off
         self.setTitle(QCoreApplication.translate("Settings", "general.title"))
-        
+
         self.languageLabel.setText(QCoreApplication.translate("Settings", "general.language.label"))
         self.languageFollowSystemCheckBox.setText(QCoreApplication.translate("Settings", "general.language.followSystem"))
-        
+
         self.dbUrlLabel.setText(QCoreApplication.translate("Settings", "general.dbUrl.label"))
         self.dbUrlResetButton.setText(QCoreApplication.translate("Settings", "resetButton"))
         # fmt: on

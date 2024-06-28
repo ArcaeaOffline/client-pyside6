@@ -163,19 +163,15 @@ class TabDb_ChartInfoEditor(Ui_TabDb_ChartInfoEditor, QWidget):
             QMessageBox.critical(
                 self,
                 None,
-                # fmt: off
                 QCoreApplication.translate("TabDb_ChartInfoEditor", "commit.chartNotSelected"),
-                # fmt: on
-            )
+            )  # fmt: skip
             return
         if not self.constantLineEdit.hasAcceptableInput():
             QMessageBox.critical(
                 self,
                 None,
-                # fmt: off
                 QCoreApplication.translate("TabDb_ChartInfoEditor", "commit.constantRequired"),
-                # fmt: on
-            )
+            )  # fmt: skip
             return
 
         constant = int(self.constantLineEdit.text())
@@ -202,10 +198,8 @@ class TabDb_ChartInfoEditor(Ui_TabDb_ChartInfoEditor, QWidget):
             QMessageBox.critical(
                 self,
                 None,
-                # fmt: off
                 QCoreApplication.translate("TabDb_ChartInfoEditor", "commit.chartNotSelected"),
-                # fmt: on
-            )
+            )  # fmt: skip
             return
 
         chartInfo = self.db.get_chart_info(chart.song_id, chart.rating_class)
@@ -213,12 +207,10 @@ class TabDb_ChartInfoEditor(Ui_TabDb_ChartInfoEditor, QWidget):
             result = QMessageBox.warning(
                 self,
                 None,
-                # fmt: off
                 QCoreApplication.translate("TabDb_ChartInfoEditor", "deleteConfirm"),
-                # fmt: on
                 QMessageBox.StandardButton.Yes,
                 QMessageBox.StandardButton.No,
-            )
+            )  # fmt: skip
             if result == QMessageBox.StandardButton.Yes:
                 with self.db.sessionmaker() as session:
                     session.delete(chartInfo)

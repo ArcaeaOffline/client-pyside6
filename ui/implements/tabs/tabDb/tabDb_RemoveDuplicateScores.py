@@ -154,23 +154,17 @@ class TabDb_RemoveDuplicateScores(Ui_TabDb_RemoveDuplicateScores, QWidget):
         self.treeView.setItemDelegateForColumn(1, self.treeViewProxyDelegate)
 
         self.quickSelect_comboBox.addItem(
-            # fmt: off
             QCoreApplication.translate("TabDb_RemoveDuplicateScores", "quickSelectComboBox.idEarlier"),
-            # fmt: on
             QuickSelectComboBoxValues.ID_EARLIER
-        )
+        )  # fmt: skip
         self.quickSelect_comboBox.addItem(
-            # fmt: off
             QCoreApplication.translate("TabDb_RemoveDuplicateScores", "quickSelectComboBox.dateEarlier"),
-            # fmt: on
             QuickSelectComboBoxValues.DATE_EARLIER
-        )
+        )  # fmt: skip
         self.quickSelect_comboBox.addItem(
-            # fmt: off
             QCoreApplication.translate("TabDb_RemoveDuplicateScores", "quickSelectComboBox.columnsIntegral"),
-            # fmt: on
             QuickSelectComboBoxValues.COLUMNS_INTEGRAL
-        )
+        )  # fmt: skip
 
     def getQueryColumns(self):
         columns: list[InstrumentedAttribute] = [Score.song_id, Score.rating_class]
@@ -291,12 +285,12 @@ class TabDb_RemoveDuplicateScores(Ui_TabDb_RemoveDuplicateScores, QWidget):
         confirm = QMessageBox.warning(
             self,
             None,
-            # fmt: off
-            QCoreApplication.translate("TabDb_RemoveDuplicateScores", "deleteSelectionDialog.content {}").format(len(selectedScores)),
-            # fmt: on
+            QCoreApplication.translate(
+                "TabDb_RemoveDuplicateScores", "deleteSelectionDialog.content {}"
+            ).format(len(selectedScores)),
             QMessageBox.StandardButton.Yes,
             QMessageBox.StandardButton.No,
-        )
+        )  # fmt: skip
         if confirm != QMessageBox.StandardButton.Yes:
             return
 
@@ -310,12 +304,11 @@ class TabDb_RemoveDuplicateScores(Ui_TabDb_RemoveDuplicateScores, QWidget):
     @Slot()
     def on_scan_scanButton_clicked(self):
         if len(self.getQueryColumns()) <= 2:
+            message = QCoreApplication.translate("TabDb_RemoveDuplicateScores", "scan_noColumnsDialog.content")  # fmt: skip
             result = QMessageBox.warning(
                 self,
                 None,
-                # fmt: off
-                QCoreApplication.translate("TabDb_RemoveDuplicateScores", "scan_noColumnsDialog.content"),
-                # fmt: on
+                message,
                 QMessageBox.StandardButton.Yes,
                 QMessageBox.StandardButton.No,
             )

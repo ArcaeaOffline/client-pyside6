@@ -41,7 +41,7 @@ class AndrealExecuteRunnable(QRunnable):
             self.signals.completed.emit(self.jsonPath, imageBytes)
         except Exception as e:
             imageBytes = None
-            logger.exception(f"{self.__class__.__name__} error")
+            logger.exception("%s error", self.__class__.__name__)
             self.signals.error.emit(self.jsonPath, str(e))
         finally:
             os.unlink(self.jsonPath)
@@ -84,7 +84,10 @@ class AndrealHelper(QObject):
 
     def request(self, jsonPath: str, arguments: list[str]):
         logger.debug(
-            f"{self.__class__.__name__} received request {jsonPath=} {arguments=}"
+            "%s received request jsonPath=%r arguments=%r",
+            self.__class__.__name__,
+            jsonPath,
+            arguments,
         )
         runnable = AndrealExecuteRunnable(self.andrealExecutable, jsonPath, arguments)
         runnable.signals.error.connect(self.error)

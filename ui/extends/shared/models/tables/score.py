@@ -24,13 +24,11 @@ class DbScoreTableModel(DbTableModel):
 
     def retranslateHeaders(self):
         self._horizontalHeaders = [
-            # fmt: off
             QCoreApplication.translate("DbScoreTableModel", "horizontalHeader.id"),
             QCoreApplication.translate("DbScoreTableModel", "horizontalHeader.chart"),
             QCoreApplication.translate("DbScoreTableModel", "horizontalHeader.score"),
             QCoreApplication.translate("DbScoreTableModel", "horizontalHeader.potential"),
-            # fmt: on
-        ]
+        ]  # fmt: skip
 
     def syncDb(self):
         self.beginResetModel()
@@ -154,7 +152,7 @@ class DbScoreTableModel(DbTableModel):
                 self.syncDb()
             return True
         except Exception:
-            logger.exception(f"Table[Score]: Cannot remove row {row}")
+            logger.exception("Table[Score]: Cannot remove row %s", row)
             return False
 
     def removeRow(self, row: int, parent=...):

@@ -50,6 +50,4 @@ class TabOverview(Ui_TabOverview, QWidget):
 
     def retranslateUi(self, *args):
         super().retranslateUi(self)
-        # fmt: off
-        self.describeFormatString = QCoreApplication.translate("TabOverview", "databaseDescribeLabel {} {} {} {} {} {}")
-        # fmt: on
+        self.describeFormatString = QCoreApplication.translate("TabOverview", "databaseDescribeLabel {} {} {} {} {} {}")  # fmt: skip

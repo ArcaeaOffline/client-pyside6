@@ -2,7 +2,7 @@ from PySide6.QtCore import Slot
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QGraphicsColorizeEffect, QRadioButton
 
-from ui.extends.shared.color import mix_color
+from core.color import mixColor
 
 STYLESHEET = """
 QRadioButton {{
@@ -40,7 +40,7 @@ class RatingClassRadioButton(QRadioButton):
     def setColors(self, dark_color: QColor, text_color: QColor):
         self._dark_color = dark_color
         self._text_color = text_color
-        self._mid_color = mix_color(dark_color, text_color, 0.616)
+        self._mid_color = mixColor(dark_color, text_color, 0.616)
         self.updateEffects()
 
     def isColorsSet(self) -> bool:

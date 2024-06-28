@@ -19,9 +19,9 @@ from arcaea_offline_ocr.phash_db import ImagePhashDatabase
 from arcaea_offline_ocr.utils import imread_unicode
 from PySide6.QtCore import QDateTime, QFileInfo
 
+from core.settings import SettingsKeys, SettingsValues, settings
 from ui.extends.components.ocrQueue import OcrRunnable
 from ui.extends.shared.data import Data
-from ui.extends.shared.settings import Settings
 
 logger = logging.getLogger(__name__)
 
@@ -70,8 +70,8 @@ def getImageDate(imagePath: str) -> QDateTime:
             datetime = QDateTime.fromString(datetimeStr, "yyyy:MM:dd hh:mm:ss")
 
     if not isinstance(datetime, QDateTime):
-        dateSource = Settings().scoreDateSource()
-        if dateSource == "lastModified":
+        dateSource = settings.stringValue(SettingsKeys.Ocr.DateSource)
+        if dateSource == SettingsValues.Ocr.DateSource.FileLastModified:
             datetime = QFileInfo(imagePath).lastModified()
         else:
             datetime = QFileInfo(imagePath).birthTime()

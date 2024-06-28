@@ -1,6 +1,7 @@
 from PySide6.QtCore import QCoreApplication
 from PySide6.QtWidgets import QLabel, QPushButton
 
+from core.settings import SettingsKeys, settings
 from ui.implements.components.fileSelector import FileSelector
 from ui.implements.settings.settingsBaseWidget import SettingsBaseWidget
 
@@ -14,8 +15,8 @@ class SettingsAndreal(SettingsBaseWidget):
         self.andrealFolderValueWidget.setMode(
             self.andrealFolderValueWidget.getExistingDirectory
         )
-        if self.settings.andrealFolder():
-            self.andrealFolderValueWidget.selectFile(self.settings.andrealFolder())
+        if andrealFolder := settings.stringValue(SettingsKeys.Andreal.Folder):
+            self.andrealFolderValueWidget.selectFile(andrealFolder)
         self.andrealFolderValueWidget.filesSelected.connect(self.setAndrealFolder)
         self.andrealFolderResetButton.clicked.connect(self.resetAndrealFolder)
         self.insertItem(
@@ -25,10 +26,8 @@ class SettingsAndreal(SettingsBaseWidget):
             self.andrealFolderResetButton,
         )
 
-        if self.settings.andrealExecutable():
-            self.andrealExecutableValueWidget.selectFile(
-                self.settings.andrealExecutable()
-            )
+        if andrealExecutable := settings.stringValue(SettingsKeys.Andreal.Executable):
+            self.andrealExecutableValueWidget.selectFile(andrealExecutable)
         self.andrealExecutableValueWidget.filesSelected.connect(
             self.setAndrealExecutable
         )
@@ -44,21 +43,21 @@ class SettingsAndreal(SettingsBaseWidget):
         selectedFile = self.andrealFolderValueWidget.selectedFiles()
         if selectedFile and selectedFile[0]:
             file = selectedFile[0]
-            self.settings.setAndrealFolder(file)
+            settings.setValue(SettingsKeys.Andreal.Folder, file)
 
     def resetAndrealFolder(self):
         self.andrealFolderValueWidget.reset()
-        self.settings.resetAndrealFolder()
+        settings.setValue(SettingsKeys.Andreal.Folder, None)
 
     def setAndrealExecutable(self):
         selectedFile = self.andrealExecutableValueWidget.selectedFiles()
         if selectedFile and selectedFile[0]:
             file = selectedFile[0]
-            self.settings.setAndrealExecutable(file)
+            settings.setValue(SettingsKeys.Andreal.Executable, file)
 
     def resetAndrealExecutable(self):
         self.andrealExecutableValueWidget.reset()
-        self.settings.resetAndrealExecutable()
+        settings.setValue(SettingsKeys.Andreal.Executable, None)
 
     def setupUi(self, *args):
         self.andrealFolderLabel = QLabel(self)

@@ -6,8 +6,8 @@ from arcaea_offline.database import Database
 from PySide6.QtCore import QCoreApplication, QDir, QFileInfo, QSysInfo, Qt, QUrl, Slot
 from PySide6.QtWidgets import QDialog, QMessageBox
 
+from core.settings import SettingsKeys, settings
 from ui.extends.shared.database import create_engine
-from ui.extends.shared.settings import Settings
 
 from .databaseChecker_ui import Ui_DatabaseChecker
 
@@ -29,8 +29,7 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
         self.dbDirSelector.setMode(self.dbDirSelector.getExistingDirectory)
 
         self.confirmDbByExistingSettings = False
-        self.settings = Settings(self)
-        if dbUrlString := self.settings.databaseUrl():
+        if dbUrlString := settings.stringValue(SettingsKeys.General.DatabaseUrl):
             dbFileUrl = QUrl(dbUrlString.replace("sqlite://", "file://"))
             dbFileInfo = QFileInfo(dbFileUrl.toLocalFile())
             if dbFileInfo.exists():
@@ -44,6 +43,9 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
         else:
             self.dbDirSelector.selectFile(QDir.currentPath())
             self.dbFilenameLineEdit.setText("arcaea_offline.db")
+
+    def writeDatabaseUrlToSettings(self, databaseUrl: str):
+        settings.setValue(SettingsKeys.General.DatabaseUrl, databaseUrl)
 
     def dbPath(self):
         return QDir(self.dbDirSelector.selectedFiles()[0])
@@ -79,7 +81,7 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
         db = Database(create_engine(dbSqliteUrl))
         if db.check_init():
             flags |= DatabaseCheckerResult.Initted
-            self.settings.setDatabaseUrl(self.dbSqliteUrl().toString())
+            self.writeDatabaseUrlToSettings(self.dbSqliteUrl().toString())
 
         return flags
 
@@ -108,20 +110,18 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
     @Slot()
     def on_confirmDbPathButton_clicked(self):
         dbSqliteUrl = self.dbSqliteUrl()
-        self.settings.setDatabaseUrl(dbSqliteUrl.toString())
+        self.writeDatabaseUrlToSettings(dbSqliteUrl.toString())
 
         result = self.confirmDb()
         if result & DatabaseCheckerResult.Initted:
             if not self.confirmDbByExistingSettings:
-                self.settings.setDatabaseUrl(dbSqliteUrl.toString())
+                self.writeDatabaseUrlToSettings(dbSqliteUrl.toString())
         elif result & DatabaseCheckerResult.FileExist:
             confirm_try_init = QMessageBox.question(
                 self,
                 None,
-                # fmt: off
                 QCoreApplication.translate("DatabaseChecker", "dialog.tryInitExistingDatabase"),
-                # fmt: on
-            )
+            )  # fmt: skip
             if confirm_try_init == QMessageBox.StandardButton.Yes:
                 try:
                     Database().init(checkfirst=True)
@@ -134,10 +134,8 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
             confirm_new_database = QMessageBox.question(
                 self,
                 None,
-                # fmt: off
                 QCoreApplication.translate("DatabaseChecker", "dialog.confirmNewDatabase"),
-                # fmt: on
-            )
+            )  # fmt: skip
             if confirm_new_database == QMessageBox.StandardButton.Yes:
                 db = Database(create_engine(dbSqliteUrl))
                 db.init()

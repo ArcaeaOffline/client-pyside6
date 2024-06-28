@@ -14,5 +14,5 @@ class Singleton(type, Generic[T]):
         return cls._instance
 
 
-class QObjectSingleton(type(QObject), Singleton):
+class QSingleton(type(QObject), Singleton):
     pass

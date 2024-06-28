@@ -192,7 +192,7 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
             self.fillSongIdComboBox()
             return True
         else:
-            logger.warning(f'Attempting to select an unknown pack "{packId}"')
+            logger.warning("Attempting to select an unknown pack [%s]", packId)
             return False
 
     def selectSongId(self, songId: str) -> bool:
@@ -202,7 +202,8 @@ class SongIdSelector(Ui_SongIdSelector, QWidget):
             return True
         else:
             logger.warning(
-                f'Attempting to select an unknown song "{songId}", maybe try selecting a pack first?'
+                "Attempting to select an unknown song [%s], maybe try selecting a pack first?",
+                songId,
             )
             return False
 

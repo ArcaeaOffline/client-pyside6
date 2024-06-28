@@ -11,10 +11,10 @@ from arcaea_offline_ocr.phash_db import ImagePhashDatabase
 from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QApplication, QFileDialog, QMessageBox, QWidget
 
+from core.settings import SettingsKeys
 from ui.designer.tabs.tabOcr.tabOcr_Device_ui import Ui_TabOcr_Device
 from ui.extends.components.ocrQueue import OcrQueueModel
 from ui.extends.shared.language import LanguageChangeEventFilter
-from ui.extends.shared.settings import KNN_MODEL_FILE, PHASH_DATABASE_FILE
 from ui.extends.tabs.tabOcr.tabOcr_Device import ScoreConverter, TabDeviceOcrRunnable
 
 logger = logging.getLogger(__name__)
@@ -54,8 +54,12 @@ class TabOcr_Device(Ui_TabOcr_Device, QWidget):
         )
 
         logger.info("Applying settings...")
-        self.dependencies_knnModelSelector.connectSettings(KNN_MODEL_FILE)
-        self.dependencies_phashDatabaseSelector.connectSettings(PHASH_DATABASE_FILE)
+        self.dependencies_knnModelSelector.connectSettings(
+            SettingsKeys.Ocr.KnnModelFile
+        )
+        self.dependencies_phashDatabaseSelector.connectSettings(
+            SettingsKeys.Ocr.PhashDatabaseFile
+        )
 
         self.options_usePresetCheckBox.setChecked(True)
         self.options_usePresetCheckBox.setEnabled(False)
