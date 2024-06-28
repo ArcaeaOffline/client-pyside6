@@ -90,10 +90,8 @@ class PlayRatingCalculatorDialog(QDialog):
 
         self.acceptButton = QPushButton(self)
         self.acceptButton.setText(
-            # fmt: off
             QCoreApplication.translate("StepCalculator", "playRatingCalculatorDialog.acceptButton")
-            # fmt: on
-        )
+        )  # fmt: skip
         self.acceptButton.setEnabled(False)
         self.verticalLayout.addWidget(self.acceptButton)
 
