@@ -6,9 +6,9 @@ from arcaea_offline_ocr.b30.chieri.v4.ocr import ChieriBotV4Ocr
 from arcaea_offline_ocr.b30.shared import B30OcrResultItem
 from PySide6.QtGui import QImage
 
-logger = logging.getLogger(__name__)
-
 from ui.extends.components.ocrQueue import OcrRunnable
+
+logger = logging.getLogger(__name__)
 
 
 class ChieriV4OcrRunnable(OcrRunnable):

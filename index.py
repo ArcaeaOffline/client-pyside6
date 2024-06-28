@@ -18,16 +18,12 @@ from ui.startup.databaseChecker import DatabaseChecker, DatabaseCheckerResult
 rootLogger = logging.getLogger("root")
 rootLogger.setLevel(logging.DEBUG)
 
-rootLoggerFormatter = logging.Formatter(
-    "[{levelname}]{asctime}|{name}: {msg}", "%m-%d %H:%M:%S", "{"
-)
-
 
 def handle_exception(exc_type, exc_value, exc_traceback):
-    if issubclass(exc_type, KeyboardInterrupt):
-        sys.__excepthook__(exc_type, exc_value, exc_traceback)
-        return
+    sys.__excepthook__(exc_type, exc_value, exc_traceback)
 
+    if issubclass(exc_type, KeyboardInterrupt):
+        return
     rootLogger.critical(
         "Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback)
     )
@@ -46,6 +42,11 @@ if __name__ == "__main__":
     ymd = now.strftime("%Y%m%d")
     hms = now.strftime("%H%M%S")
 
+    rootLoggerFormatter = logging.Formatter(
+        "[%(asctime)s/%(levelname)s]%(name)s: %(message)s",
+        "%m-%d %H:%M:%S",
+        style="%",
+    )
     rootLoggerFileHandler = logging.FileHandler(
         str(logFolder / f"arcaea-offline-pyside-ui-{ymd}-{hms}_debug.log"),
         encoding="utf-8",

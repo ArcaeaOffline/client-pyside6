@@ -126,7 +126,7 @@ class RatingClassSelector(QWidget):
         elif ratingClass in range(len(self.buttons)):
             button = self.buttons[ratingClass]
         else:
-            logger.debug(f"Cannot select {ratingClass=}, condition check failed")
+            logger.debug("Cannot select ratingClass=%s, condition check failed", ratingClass)
             return
 
         if not button.isEnabled():
