@@ -16,13 +16,11 @@ class DbB30TableModel(DbTableModel):
 
     def retranslateHeaders(self):
         self._horizontalHeaders = [
-            # fmt: off
             QCoreApplication.translate("DbB30TableModel", "horizontalHeader.id"),
             QCoreApplication.translate("DbB30TableModel", "horizontalHeader.chart"),
             QCoreApplication.translate("DbB30TableModel", "horizontalHeader.score"),
             QCoreApplication.translate("DbB30TableModel", "horizontalHeader.potential"),
-            # fmt: on
-        ]
+        ]  # fmt: skip
 
     def syncDb(self):
         self.beginResetModel()

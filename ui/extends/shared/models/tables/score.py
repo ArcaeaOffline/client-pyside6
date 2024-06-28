@@ -24,15 +24,11 @@ class DbScoreTableModel(DbTableModel):
 
     def retranslateHeaders(self):
         self._horizontalHeaders = [
-            # fmt: off
             QCoreApplication.translate("DbScoreTableModel", "horizontalHeader.id"),
             QCoreApplication.translate("DbScoreTableModel", "horizontalHeader.chart"),
             QCoreApplication.translate("DbScoreTableModel", "horizontalHeader.score"),
-            QCoreApplication.translate(
-                "DbScoreTableModel", "horizontalHeader.potential"
-            ),
-            # fmt: on
-        ]
+            QCoreApplication.translate("DbScoreTableModel", "horizontalHeader.potential"),
+        ]  # fmt: skip
 
     def syncDb(self):
         self.beginResetModel()

@@ -5,7 +5,6 @@ from typing import Any, Callable, Optional, overload
 from arcaea_offline.calculate import calculate_score_range
 from arcaea_offline.database import Database
 from arcaea_offline.models import Chart, Score
-from arcaea_offline_ocr.b30.shared import B30OcrResultItem
 from arcaea_offline_ocr.device.common import DeviceOcrResult
 from PIL import Image
 from PIL.ImageQt import ImageQt
@@ -346,17 +345,11 @@ class OcrQueueTableProxyModel(QAbstractTableModel):
 
     def retranslateHeaders(self):
         self.__horizontalHeaders = [
-            # fmt: off
-            QCoreApplication.translate(
-                "OcrTableModel", "horizontalHeader.title.select"
-            ),
-            QCoreApplication.translate(
-                "OcrTableModel", "horizontalHeader.title.imagePreview"
-            ),
+            QCoreApplication.translate("OcrTableModel", "horizontalHeader.title.select"),
+            QCoreApplication.translate("OcrTableModel", "horizontalHeader.title.imagePreview"),
             QCoreApplication.translate("OcrTableModel", "horizontalHeader.title.chart"),
             QCoreApplication.translate("OcrTableModel", "horizontalHeader.title.score"),
-            # fmt: on
-        ]
+        ]  # fmt: skip
 
     def sourceModel(self) -> OcrQueueModel:
         return self.__sourceModel

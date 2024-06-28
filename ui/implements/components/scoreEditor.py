@@ -61,30 +61,22 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
 
     VALIDATION_ITEMS_TEXT = [
         [
-            # fmt: off
             lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.chartIncomplete.title"),
             lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.chartIncomplete.text"),
-            # fmt: on
         ],
         [
-            # fmt: off
             lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.scoreMismatch.title"),
             lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.scoreMismatch.text"),
-            # fmt: on
         ],
         [
-            # fmt: off
             lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.emptyScore.title"),
             lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.emptyScore.text"),
-            # fmt: on
         ],
         [
-            # fmt: off
             lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.scoreIncompleteForValidate.title"),
             lambda: QCoreApplication.translate("ScoreEditor", "confirmDialog.scoreIncompleteForValidate.text"),
-            # fmt: on,
         ],
-    ]
+    ]  # fmt: skip
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -208,20 +200,16 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
         if validate & ScoreValidateResult.ChartNotSet:
             self.__triggerMessageBox(
                 "critical",
-                # fmt: off
                 QCoreApplication.translate("ScoreEditor", "confirmDialog.chartNotSet.title"),
                 QCoreApplication.translate("ScoreEditor", "confirmDialog.chartNotSet.text"),
-                # fmt: on
-            )
+            )  # fmt: skip
             return False
         if validate & ScoreValidateResult.ScoreIncomplete:
             self.__triggerMessageBox(
                 "critical",
-                # fmt: off
                 QCoreApplication.translate("ScoreEditor", "confirmDialog.scoreIncomplete.title"),
                 QCoreApplication.translate("ScoreEditor", "confirmDialog.scoreIncomplete.text"),
-                # fmt: on
-            )
+            )  # fmt: skip
             return False
 
         # since validate may have multiple results
@@ -347,10 +335,8 @@ class ScoreEditor(Ui_ScoreEditor, QWidget):
             )
         if validate & ScoreValidateResult.ScoreIncompleteForValidate:
             texts.append(
-                # fmt: off
                 QCoreApplication.translate("ScoreEditor", "validate.scoreIncompleteForValidate")
-                # fmt: on
-            )
+            )  # fmt: skip
 
         if not texts:
             texts.append(

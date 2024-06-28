@@ -131,11 +131,8 @@ class TabTools_Andreal(Ui_TabTools_Andreal, QWidget):
 
     @Slot()
     def on_imageTypeWhatIsThisButton_clicked(self):
-        QMessageBox.information(
-            self,
-            None,
-            QCoreApplication.translate("TabTools_Andreal", "imageWhatIsThisDialog.description"),
-        )  # fmt: skip
+        message = QCoreApplication.translate("TabTools_Andreal", "imageWhatIsThisDialog.description")  # fmt: skip
+        QMessageBox.information(self, None, message)
 
     def imageFormat(self):
         buttonId = self.imageFormatButtonGroup.checkedId()
