@@ -1,4 +1,3 @@
-black == 23.7.0
-isort == 5.12.0
-imageio==2.31.4
-Nuitka==1.8.4
+ruff
+imageio
+Nuitka~=2.7.6
