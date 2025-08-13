@@ -1,22 +1,17 @@
 import logging
 import traceback
-from enum import IntEnum
+from pathlib import Path
 
 from arcaea_offline.database import Database
 from PySide6.QtCore import QCoreApplication, QDir, QFileInfo, QSysInfo, Qt, QUrl, Slot
 from PySide6.QtWidgets import QDialog, QMessageBox
 
+from core.database import DatabaseInitCheckResult, check_db_init, create_engine
 from core.settings import SettingsKeys, settings
-from ui.extends.shared.database import create_engine
 
 from .databaseChecker_ui import Ui_DatabaseChecker
 
 logger = logging.getLogger(__name__)
-
-
-class DatabaseCheckerResult(IntEnum):
-    FileExist = 0x001
-    Initted = 0x002
 
 
 class DatabaseChecker(Ui_DatabaseChecker, QDialog):
@@ -69,21 +64,11 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
         else:
             return QUrl(self.dbFileUrl().toString().replace("file://", "sqlite:///"))
 
-    def confirmDb(self) -> DatabaseCheckerResult:
-        flags = 0x000
-
+    def confirmDb(self) -> DatabaseInitCheckResult:
         dbFileInfo = self.dbFileInfo()
-        dbSqliteUrl = self.dbSqliteUrl()
-        if not dbFileInfo.exists():
-            return flags
+        dbPath = Path(dbFileInfo.absoluteFilePath())
 
-        flags |= DatabaseCheckerResult.FileExist
-        db = Database(create_engine(dbSqliteUrl))
-        if db.check_init():
-            flags |= DatabaseCheckerResult.Initted
-            self.writeDatabaseUrlToSettings(self.dbSqliteUrl().toString())
-
-        return flags
+        return check_db_init(dbPath)
 
     def updateLabels(self):
         result = self.confirmDb()
@@ -102,7 +87,7 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
             self.dbVersionLabel.setText("-")
             self.dbCheckConnLabel.setText(
                 f'<font color="red">Error: {e}</font>'
-                if result & DatabaseCheckerResult.FileExist
+                if result & DatabaseInitCheckResult.FILE_EXISTS
                 else "-"
             )
             self.continueButton.setEnabled(False)
@@ -113,10 +98,10 @@ class DatabaseChecker(Ui_DatabaseChecker, QDialog):
         self.writeDatabaseUrlToSettings(dbSqliteUrl.toString())
 
         result = self.confirmDb()
-        if result & DatabaseCheckerResult.Initted:
+        if result & DatabaseInitCheckResult.INITIALIZED:
             if not self.confirmDbByExistingSettings:
                 self.writeDatabaseUrlToSettings(dbSqliteUrl.toString())
-        elif result & DatabaseCheckerResult.FileExist:
+        elif result & DatabaseInitCheckResult.FILE_EXISTS:
             confirm_try_init = QMessageBox.question(
                 self,
                 None,

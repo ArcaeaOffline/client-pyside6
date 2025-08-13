@@ -13,7 +13,7 @@ import ui.resources.resources_rc  # noqa: F401
 from core.settings import SettingsKeys, settings
 from ui.extends.shared.language import changeAppLanguage
 from ui.implements.mainwindow import MainWindow
-from ui.startup.databaseChecker import DatabaseChecker, DatabaseCheckerResult
+from ui.startup.databaseChecker import DatabaseChecker, DatabaseInitCheckResult
 
 rootLogger = logging.getLogger("root")
 rootLogger.setLevel(logging.DEBUG)
@@ -71,10 +71,10 @@ if __name__ == "__main__":
     databaseCheckResult = (
         databaseChecker.confirmDb()
         if settings.stringValue(SettingsKeys.General.DatabaseUrl)
-        else 0
+        else DatabaseInitCheckResult.NONE
     )
 
-    if not databaseCheckResult & DatabaseCheckerResult.Initted:
+    if not databaseCheckResult & DatabaseInitCheckResult.INITIALIZED:
         result = databaseChecker.exec()
 
         if result == QDialog.DialogCode.Accepted:
