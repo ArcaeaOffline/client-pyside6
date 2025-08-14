@@ -1,0 +1,6 @@
+module Components
+internal SelectorBase SelectorBase.qml
+DirectorySelector 1.0 DirectorySelector.qml
+FileSelector 1.0 FileSelector.qml
+
+SectionTitle 1.0 SectionTitle.qml
