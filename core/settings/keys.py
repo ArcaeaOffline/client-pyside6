@@ -4,7 +4,8 @@ from enum import StrEnum
 
 class _General(StrEnum):
     Language = "Language"
-    DatabaseUrl = "DatabaseUrl"
+    DatabaseType = "DatabaseType"
+    DatabaseConn = "DatabaseConn"
 
 
 class _Ocr(StrEnum):

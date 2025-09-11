@@ -1,4 +1,10 @@
 from dataclasses import dataclass
+from enum import StrEnum
+
+
+class GeneralDatabaseType(StrEnum):
+    FILE = "file"
+    URL = "url"
 
 
 @dataclass(frozen=True)

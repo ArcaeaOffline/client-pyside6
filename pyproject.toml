@@ -51,6 +51,7 @@ ignore = [
   "N806", # non-lowercase-variable-in-function
   "N815", # mixed-case-variable-in-class-scope
   "N816", # mixed-case-variable-in-global-scope
+  "N999", # invalid-module-name
 ]
 
 [tool.pyright]

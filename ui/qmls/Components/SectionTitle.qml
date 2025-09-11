@@ -8,6 +8,6 @@ Label {
     anchors.topMargin: 7
     anchors.bottomMargin: 10
 
-    font.pointSize: 12
+    font.pointSize: 14
     font.bold: true
 }
