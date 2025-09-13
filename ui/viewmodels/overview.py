@@ -1,5 +1,7 @@
-from PySide6.QtCore import Property, QObject, Signal
+from PySide6.QtCore import Property, QObject, Signal, Slot
 from PySide6.QtQml import QmlElement
+
+from core.database import Database
 
 from .common import VM_QML_IMPORT_NAME
 
@@ -11,11 +13,22 @@ QML_IMPORT_MINOR_VERSION = 0
 @QmlElement
 class OverviewViewModel(QObject):
     _void = Signal()
+    b30Changed = Signal()
 
     def __init__(self):
         super().__init__()
 
-    def get_b30(self):
-        return 0
+        self._b30 = -1.0
+        self.reload()
 
-    b30 = Property(float, get_b30, None, notify=_void)
+    @Slot()
+    def reload(self):
+        conn = Database()
+        b30 = conn.b30
+        self._b30 = b30 if b30 is not None else -1.0
+        self.b30Changed.emit()
+
+    def getB30(self):
+        return self._b30
+
+    b30 = Property(float, getB30, None, notify=b30Changed)
