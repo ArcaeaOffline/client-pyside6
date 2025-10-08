@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
 
 RowLayout {
@@ -42,7 +43,7 @@ RowLayout {
                 }
             }
 
-            Text {
+            Label {
                 anchors.margins: 5
                 anchors.fill: parent
 

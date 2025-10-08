@@ -24,12 +24,12 @@ Page {
 
         // implicitHeight: valueText.implicitHeight
 
-        Text {
+        Label {
             text: parent.label
             Layout.alignment: Qt.AlignBaseline
         }
 
-        Text {
+        Label {
             id: valueText
 
             text: parent.value
