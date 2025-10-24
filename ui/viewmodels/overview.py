@@ -3,9 +3,7 @@ from PySide6.QtQml import QmlElement
 
 from core.database import Database
 
-from .common import VM_QML_IMPORT_NAME
-
-QML_IMPORT_NAME = VM_QML_IMPORT_NAME
+QML_IMPORT_NAME = "internal.ui.vm"
 QML_IMPORT_MAJOR_VERSION = 1
 QML_IMPORT_MINOR_VERSION = 0
 
@@ -28,7 +26,6 @@ class OverviewViewModel(QObject):
         self._b30 = b30 if b30 is not None else -1.0
         self.b30Changed.emit()
 
-    def getB30(self):
+    @Property(float, fset=None)
+    def b30(self):
         return self._b30
-
-    b30 = Property(float, getB30, None, notify=b30Changed)

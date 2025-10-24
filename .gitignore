@@ -1,6 +1,9 @@
 __debug*
 .vscode/
 
+# QML type cache
+internal/
+
 arcaea_offline.db
 arcaea_offline.ini
 /data

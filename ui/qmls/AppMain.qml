@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -31,6 +32,7 @@ RowLayout {
         focus: true
 
         delegate: Item {
+            id: navListItem
             required property int index
             required property string label
             width: parent.width
@@ -39,7 +41,7 @@ RowLayout {
             MouseArea {
                 anchors.fill: parent
                 onClicked: () => {
-                    navListView.currentIndex = index;
+                    navListView.currentIndex = navListItem.index;
                 }
             }
 

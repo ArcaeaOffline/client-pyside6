@@ -56,3 +56,15 @@ ignore = [
 
 [tool.pyright]
 ignore = ["**/__debug*.*"]
+
+[tool.pyside6-project]
+files = [
+  "app.py",
+  "ui/qmls/App.qml",
+  "ui/qmls/AppMain.qml",
+
+  "ui/viewmodels/overview.py",
+  "ui/qmls/Overview.qml",
+
+  "ui/qmls/404.qml",
+]

@@ -6,14 +6,11 @@ import internal.ui.vm 1.0
 
 Page {
     id: root
-    property var b30: vm.b30
+
+    property alias b30: vm.b30
 
     OverviewViewModel {
         id: vm
-
-        onB30Changed: {
-            root.b30 = vm.b30;
-        }
     }
 
     component Display: RowLayout {
