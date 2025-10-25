@@ -1,3 +1,0 @@
-ruff
-imageio
-Nuitka~=2.7.6

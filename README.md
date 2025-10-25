@@ -1,5 +1,7 @@
 # Arcaea Offline PySide UI
 
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+
 GUI for both [283375/arcaea-offline](https://github.com/283375/arcaea-offline) and [ArcaeaOffline/core-ocr](https://github.com/ArcaeaOffline/core-ocr).
 
 ## Prerequisites
