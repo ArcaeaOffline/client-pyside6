@@ -27,8 +27,7 @@ ColumnLayout {
     function displayBool(value): string {
         if (value === undefined)
             return '-';
-        // TODO: color success & error
-        return value ? `<font color="lightgreen">Yes</font>` : `<font color="lightpink">No</font>`;
+        return value ? `<font color="${appTheme.success}">Yes</font>` : `<font color="${appTheme.error}">No</font>`;
     }
 
     component LabelLabel: Label {
