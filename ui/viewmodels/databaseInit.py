@@ -1,8 +1,8 @@
 import dataclasses
-import logging
 from enum import StrEnum
 from pathlib import Path
 
+import structlog
 from arcaea_offline.models import (
     CalculatedPotential,
     Chart,
@@ -29,7 +29,8 @@ from core.settings.values import GeneralDatabaseType
 
 from .common import VM_QML_IMPORT_NAME
 
-logger = logging.getLogger(__name__)
+logger: structlog.stdlib.BoundLogger = structlog.get_logger()
+
 
 QML_IMPORT_NAME = VM_QML_IMPORT_NAME
 QML_IMPORT_MAJOR_VERSION = 1

@@ -1,7 +1,7 @@
-import logging
 import sys
 from pathlib import Path
 
+import structlog
 from PySide6.QtCore import QCoreApplication, QObject, Qt, QUrl
 from PySide6.QtGui import QGuiApplication, QIcon
 from PySide6.QtQml import QQmlApplicationEngine
@@ -14,12 +14,8 @@ from ui.viewmodels import overview  # noqa: F401
 CURRENT_DIRECTORY = Path(__file__).resolve().parent
 DEFAULT_FONTS = ["微软雅黑", "Microsoft YaHei UI", "Microsoft YaHei", "Segoe UI"]
 
-logger = logging.getLogger(__name__)
-logging.basicConfig(
-    level=logging.INFO,
-    format="[%(asctime)s][%(levelname)s] %(message)s",
-    datefmt="%H:%M:%S",
-)
+
+logger: structlog.stdlib.BoundLogger = structlog.get_logger()
 
 
 def main() -> None:
