@@ -7,6 +7,10 @@ RowLayout {
     id: layout
     spacing: 5
 
+    SystemPalette {
+        id: systemPalette
+    }
+
     ListModel {
         id: navListModel
 
@@ -35,6 +39,9 @@ RowLayout {
             id: navListItem
             required property int index
             required property string label
+
+            property bool isActive: navListView.currentIndex === index
+
             width: parent.width
             height: 30
 
@@ -50,14 +57,29 @@ RowLayout {
                 anchors.fill: parent
 
                 text: parent.label
-            }
-        }
+                color: parent.isActive ? systemPalette.highlightedText : systemPalette.text
+                z: 10
 
-        highlight: Rectangle {
-            width: parent.width
-            height: 30
-            color: "#FFFF88"
-            y: ListView.view.currentItem.y
+                Behavior on color {
+                    ColorAnimation {
+                        duration: 150
+                    }
+                }
+            }
+
+            Rectangle {
+                width: parent.isActive ? parent.width : 0
+                Behavior on width {
+                    NumberAnimation {
+                        easing.type: Easing.OutQuad
+                        duration: 200
+                    }
+                }
+
+                height: parent.height
+                color: systemPalette.highlight
+                z: 1
+            }
         }
     }
 
