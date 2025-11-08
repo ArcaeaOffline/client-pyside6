@@ -1,6 +1,7 @@
 from pathlib import Path
 
-from sqlalchemy import text
+from arcaea_offline.models import CalculatedPotential
+from sqlalchemy import select
 from sqlalchemy.orm import sessionmaker
 
 from core.settings import SettingsKeys, settings
@@ -17,13 +18,14 @@ class Database:
         if not db_path:
             raise ValueError("DatabaseConn is empty")
 
-        self.engine = create_engine(db_path_to_sqlite_url(Path(db_path)))
+        db_path = Path(db_path)
+        if not db_path.exists():
+            raise FileNotFoundError(f"{db_path} does not exist")
+
+        self.engine = create_engine(db_path_to_sqlite_url(db_path))
         self.sessionmaker = sessionmaker(bind=self.engine)
 
     @property
     def b30(self) -> float | None:
         with self.sessionmaker() as session:
-            result = session.execute(
-                text("SELECT b30 FROM calculated_potential")
-            ).fetchone()
-            return result[0] if result else None
+            return session.scalar(select(CalculatedPotential.b30))
