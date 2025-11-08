@@ -4,17 +4,17 @@ from typing import overload
 
 import structlog
 from PySide6.QtCore import Property, QObject, QResource, Qt, Signal
-from PySide6.QtGui import QColor, QGuiApplication, QPalette
+from PySide6.QtGui import QGuiApplication, QPalette
 
 from .material3 import Material3DynamicThemeImpl, Material3ThemeImpl
 from .qml import ThemeQmlExposer
-from .shared import ThemeImpl, ThemeInfo, _TCustomPalette, _TScheme
+from .shared import ThemeImpl, ThemeInfo, TThemeInfoCacheKey, _TCustomPalette, _TScheme
 
 QML_IMPORT_NAME = "internal.ui.theme"
 QML_IMPORT_MAJOR_VERSION = 1
 QML_IMPORT_MINOR_VERSION = 0
 
-_THEME_CACHES: dict[ThemeInfo, ThemeImpl] = {}
+_THEME_CACHES: dict[TThemeInfoCacheKey, ThemeImpl] = {}
 
 logger: structlog.stdlib.BoundLogger = structlog.get_logger()
 
@@ -27,30 +27,18 @@ class ThemeManager(QObject):
         super().__init__(parent)
 
         self._qPalette = QPalette()
-        self._customPalette: _TCustomPalette = {
-            "primary": QColor.fromString("#616161"),
-            "success": QColor.fromString("#616161"),
-            "error": QColor.fromString("#616161"),
-        }
+        self._customPalette: _TCustomPalette = ThemeImpl.DEFAULT_CUSTOM_PALETTE
 
-        self._lastThemeInfo = ThemeInfo(
-            series="material3",
-            name="default",
-            scheme=self.getCurrentScheme(),
-        )
+        self._lastThemeInfo = ThemeImpl().info
         self._qmlExposer = ThemeQmlExposer(themeImpl=ThemeImpl())
 
-        self._cacheMaterial3Theme(themeName="default", scheme="light")
-        self._cacheMaterial3Theme(themeName="default", scheme="dark")
-        self._cacheMaterial3Theme(themeName="tempest", scheme="light")
-        self._cacheMaterial3Theme(themeName="tempest", scheme="dark")
+        self._cacheMaterial3DynamicTheme(themeId="default")
+        self._cacheMaterial3DynamicTheme(themeId="tempest")
 
-        self._cacheMaterial3DynamicTheme(themeName="default", scheme="light")
-        self._cacheMaterial3DynamicTheme(themeName="default", scheme="dark")
-        self._cacheMaterial3DynamicTheme(themeName="tempest", scheme="light")
-        self._cacheMaterial3DynamicTheme(themeName="tempest", scheme="dark")
+        self._cacheMaterial3DynamicTheme(themeId="devilun")
+        self._cacheMaterial3DynamicTheme(themeId="kupya")
 
-        self.setTheme("material3-dynamic", "default")
+        self.setTheme("material3-dynamic", "devilun")
 
     def getCurrentScheme(self) -> _TScheme:
         qApp: QGuiApplication = QGuiApplication.instance()  # pyright: ignore[reportAssignmentType]
@@ -60,52 +48,47 @@ class ThemeManager(QObject):
             else "light"
         )
 
-    def getMaterial3Theme(self, themeName: str, scheme: _TScheme) -> Material3ThemeImpl:
-        themeDataResource = QResource(f":/themes/{themeName}.json")
-        if not themeDataResource.isValid():
-            raise ValueError(f"Material3 theme {themeName!r} not found")
+    def _loadQResourceJson(self, resourcePath: str):
+        resource = QResource(resourcePath)
+        if not resource.isValid():
+            raise ValueError(f"Resource {resourcePath!r} invalid")
 
-        themeData = json.loads(
-            themeDataResource.uncompressedData().data().decode("utf-8")
-        )
+        return json.loads(resource.uncompressedData().data().decode("utf-8"))
 
+    def getMaterial3Theme(self, themeId: str, scheme: _TScheme) -> Material3ThemeImpl:
+        themeData = self._loadQResourceJson(f":/themes/m3_{themeId}.json")
         return Material3ThemeImpl(themeData=themeData, scheme=scheme)
 
     def getMaterial3DynamicTheme(
-        self, themeName: str, scheme: _TScheme
+        self, themeId: str, scheme: _TScheme
     ) -> Material3DynamicThemeImpl:
-        themeDataResource = QResource(f":/themes/{themeName}.json")
-        if not themeDataResource.isValid():
-            raise ValueError(f"Material3 theme {themeName!r} not found")
-
-        themeData = json.loads(
-            themeDataResource.uncompressedData().data().decode("utf-8")
-        )
-
-        return Material3DynamicThemeImpl(
-            sourceColorHex=themeData["seed"],
-            scheme=scheme,
-            name=themeName,
-        )
+        themeData = self._loadQResourceJson(f":/themes/m3-dynamic_{themeId}.json")
+        return Material3DynamicThemeImpl(themeData=themeData, scheme=scheme)
 
     def _cacheTheme(self, *, themeImpl: ThemeImpl):
-        _THEME_CACHES[themeImpl.info] = themeImpl
+        _THEME_CACHES[themeImpl.info.cacheKey()] = themeImpl
         logger.debug("Theme %r cached", themeImpl.info)
 
-    def _getCachedTheme(self, *, themeInfo: ThemeInfo):
-        cachedTheme = _THEME_CACHES.get(themeInfo)
+    def _getCachedTheme(self, *, key: TThemeInfoCacheKey):
+        cachedTheme = _THEME_CACHES.get(key)
         if cachedTheme is None:
-            raise KeyError(f"Theme {themeInfo!r} not cached")
+            raise KeyError(f"Theme {key!r} not cached")
         return cachedTheme
 
-    def _cacheMaterial3Theme(self, *, themeName: str, scheme: _TScheme):
+    def _cacheMaterial3Theme(self, *, themeId: str):
         self._cacheTheme(
-            themeImpl=self.getMaterial3Theme(themeName=themeName, scheme=scheme),
+            themeImpl=self.getMaterial3Theme(themeId=themeId, scheme="light"),
+        )
+        self._cacheTheme(
+            themeImpl=self.getMaterial3Theme(themeId=themeId, scheme="dark"),
         )
 
-    def _cacheMaterial3DynamicTheme(self, *, themeName: str, scheme: _TScheme):
+    def _cacheMaterial3DynamicTheme(self, *, themeId: str):
         self._cacheTheme(
-            themeImpl=self.getMaterial3DynamicTheme(themeName=themeName, scheme=scheme)
+            themeImpl=self.getMaterial3DynamicTheme(themeId=themeId, scheme="light")
+        )
+        self._cacheTheme(
+            themeImpl=self.getMaterial3DynamicTheme(themeId=themeId, scheme="dark")
         )
 
     @overload
@@ -113,29 +96,29 @@ class ThemeManager(QObject):
 
     @overload
     def setTheme(
-        self, themeSeries: str, themeName: str, scheme: _TScheme | None = None, /
+        self, themeSeries: str, themeId: str, scheme: _TScheme | None = None, /
     ): ...
 
     def setTheme(self, *args, **kwargs):
         if "themeInfo" in kwargs:
-            themeInfo = kwargs["themeInfo"]
+            cacheKey = kwargs["themeInfo"].cacheKey()
         elif 2 <= len(args) <= 3:
             themeSeries = args[0]
-            themeName = args[1]
+            themeId = args[1]
             schemeArg = args[2] if len(args) > 2 else None
             scheme = schemeArg or self.getCurrentScheme()
 
-            themeInfo = ThemeInfo(series=themeSeries, name=themeName, scheme=scheme)
+            cacheKey: TThemeInfoCacheKey = (themeSeries, themeId, scheme)
         else:
             raise TypeError("Invalid setTheme() call")
 
-        logger.debug("Preparing to set theme %r", themeInfo)
+        logger.debug("Preparing to set theme %r", cacheKey)
 
-        cachedTheme = self._getCachedTheme(themeInfo=themeInfo)
+        cachedTheme = self._getCachedTheme(key=cacheKey)
 
         self._qPalette = cachedTheme.qPalette
         self._customPalette = cachedTheme.customPalette
-        self._lastThemeInfo = themeInfo
+        self._lastThemeInfo = cachedTheme.info
         self._qmlExposer.themeImpl = cachedTheme
 
         self.themeChanged.emit()

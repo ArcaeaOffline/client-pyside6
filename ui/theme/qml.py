@@ -35,3 +35,11 @@ class ThemeQmlExposer(QObject):
     @Property(QColor, notify=themeChanged)
     def error(self):
         return self._themeImpl.customPalette["error"]
+
+    @Property(QColor, notify=themeChanged)
+    def toolTipBase(self):
+        return self._themeImpl.customPalette["toolTipBase"]
+
+    @Property(QColor, notify=themeChanged)
+    def toolTipText(self):
+        return self._themeImpl.customPalette["toolTipText"]

@@ -20,7 +20,9 @@
     <file>lang/zh_CN.qm</file>
     <file>lang/en_US.qm</file>
 
-    <file>themes/default.json</file>
-    <file>themes/tempest.json</file>
+    <file>themes/m3-dynamic_default.json</file>
+    <file>themes/m3-dynamic_tempest.json</file>
+    <file>themes/m3-dynamic_devilun.json</file>
+    <file>themes/m3-dynamic_kupya.json</file>
   </qresource>
 </RCC>

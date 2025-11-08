@@ -1,0 +1,10 @@
+{
+  "id": "kupya",
+  "name": "Kupya",
+  "colors": {
+    "primary": "#ffeb9e"
+  },
+  "options": {
+    "forceScheme": "light"
+  }
+}

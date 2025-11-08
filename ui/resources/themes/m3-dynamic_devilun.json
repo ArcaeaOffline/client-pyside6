@@ -1,0 +1,11 @@
+{
+  "id": "devilun",
+  "name": "Devilun",
+  "colors": {
+    "primary": "#d1779d",
+    "secondary": "#85a9a5"
+  },
+  "options": {
+    "forceScheme": "dark"
+  }
+}

@@ -1,5 +1,3 @@
-from typing import TypedDict
-
 from materialyoucolor.blend import Blend
 from materialyoucolor.dynamiccolor.contrast_curve import ContrastCurve
 from materialyoucolor.dynamiccolor.dynamic_color import DynamicColor, FromPaletteOptions
@@ -10,47 +8,11 @@ from materialyoucolor.scheme.scheme_tonal_spot import SchemeTonalSpot
 from PySide6.QtGui import QColor, QPalette
 
 from .shared import ThemeImpl, ThemeInfo, _TCustomPalette, _TScheme
-
-
-class _M3ThemeDataExtendedColorItem(TypedDict):
-    name: str
-    color: str
-    description: str
-    harmonized: bool
-
-
-_M3ThemeDataSchemes = TypedDict(
-    "_M3ThemeDataSchemes",
-    {
-        "light": dict[str, str],
-        "light-medium-contrast": dict[str, str],
-        "light-high-contrast": dict[str, str],
-        "dark": dict[str, str],
-        "dark-medium-contrast": dict[str, str],
-        "dark-high-contrast": dict[str, str],
-    },
+from .types import (
+    TMaterial3DynamicThemeData,
+    TMaterial3ThemeData,
+    TMaterial3ThemeDataExtendedColorItem,
 )
-
-_M3ThemeDataPalettes = TypedDict(
-    "_M3ThemeDataPalettes",
-    {
-        "primary": dict[str, str],
-        "secondary": dict[str, str],
-        "tertiary": dict[str, str],
-        "neutral": dict[str, str],
-        "neutral-variant": dict[str, str],
-    },
-)
-
-
-class _M3ThemeData(TypedDict):
-    name: str
-    description: str
-    seed: str
-    coreColors: dict[str, str]
-    extendedColors: list[_M3ThemeDataExtendedColorItem]
-    schemes: _M3ThemeDataSchemes
-    palettes: _M3ThemeDataPalettes
 
 
 def _hexToHct(hexColor: str) -> Hct:
@@ -87,7 +49,7 @@ class Material3ThemeImpl(ThemeImpl):
         QPalette.ColorRole.LinkVisited: "tertiaryContainer",
     }
 
-    def __init__(self, *, themeData: _M3ThemeData, scheme: _TScheme):
+    def __init__(self, *, themeData: TMaterial3ThemeData, scheme: _TScheme):
         self.themeData = themeData
         self.scheme: _TScheme = scheme
 
@@ -96,7 +58,7 @@ class Material3ThemeImpl(ThemeImpl):
 
     def _findExtendedColor(
         self, colorName: str
-    ) -> _M3ThemeDataExtendedColorItem | None:
+    ) -> TMaterial3ThemeDataExtendedColorItem | None:
         return next(
             (it for it in self.themeData["extendedColors"] if it["name"] == colorName),
             None,
@@ -106,6 +68,7 @@ class Material3ThemeImpl(ThemeImpl):
     def info(self):
         return ThemeInfo(
             series="material3",
+            id=self.themeData["id"],
             name=self.themeData["name"],
             scheme=self.scheme,
         )
@@ -137,6 +100,8 @@ class Material3ThemeImpl(ThemeImpl):
             "primary": _hctToQColor(primaryHct),
             "success": _hctToQColor(successHarmonizedHct),
             "error": QColor.fromString(self.themeData["schemes"][self.scheme]["error"]),
+            "toolTipBase": self.qPalette.color(QPalette.ColorRole.ToolTipBase),
+            "toolTipText": self.qPalette.color(QPalette.ColorRole.ToolTipText),
         }
 
 
@@ -169,20 +134,45 @@ class Material3DynamicThemeImpl(ThemeImpl):
         "success": "#00c555",
     }
 
-    def __init__(self, sourceColorHex: str, scheme: _TScheme, *, name: str):
+    def __init__(self, themeData: TMaterial3DynamicThemeData, scheme: _TScheme):
+        force_scheme = themeData["options"].get("forceScheme")
+        if force_scheme:
+            is_dark = force_scheme == "dark"
+        else:
+            is_dark = scheme == "dark"
+
+        # TODO: more elegant way?
+        self.preferredScheme: _TScheme = scheme  # for theme caching
+        self.actualScheme = "dark" if is_dark else "light"
+
+        self.themeId = themeData["id"]
+        self.themeName = themeData["name"]
+
         self.material3Scheme = SchemeTonalSpot(
-            _hexToHct(sourceColorHex),
-            is_dark=scheme == "dark",
+            _hexToHct(themeData["colors"]["primary"]),
+            is_dark=is_dark,
             contrast_level=0.0,
         )
-        self.name = name
+
+        secondary_color = themeData["colors"].get("secondary")
+        if secondary_color:
+            self.material3Scheme.secondary_palette = TonalPalette.from_hct(
+                _hexToHct(secondary_color)
+            )
+
+        tertiary_color = themeData["colors"].get("tertiary")
+        if tertiary_color:
+            self.material3Scheme.tertiary_palette = TonalPalette.from_hct(
+                _hexToHct(tertiary_color)
+            )
 
     @property
     def info(self):
         return ThemeInfo(
             series="material3-dynamic",
-            name=self.name,
-            scheme="dark" if self.material3Scheme.is_dark else "light",
+            id=self.themeId,
+            name=self.themeName,
+            scheme=self.preferredScheme,
         )
 
     @property
@@ -242,4 +232,6 @@ class Material3DynamicThemeImpl(ThemeImpl):
                 extendedPalettes["success"].get_hct(self.material3Scheme)
             ),
             "error": _hctToQColor(errorHct),
+            "toolTipBase": self.qPalette.color(QPalette.ColorRole.ToolTipBase),
+            "toolTipText": self.qPalette.color(QPalette.ColorRole.ToolTipText),
         }
