@@ -10,6 +10,20 @@
 
     <file>images/icon.png</file>
     <file>images/logo.png</file>
+    <file>images/grades/ex-plus.svg</file>
+    <file>images/grades/ex-plus-dark.svg</file>
+    <file>images/grades/ex.svg</file>
+    <file>images/grades/ex-dark.svg</file>
+    <file>images/grades/aa.svg</file>
+    <file>images/grades/aa-dark.svg</file>
+    <file>images/grades/a.svg</file>
+    <file>images/grades/a-dark.svg</file>
+    <file>images/grades/b.svg</file>
+    <file>images/grades/b-dark.svg</file>
+    <file>images/grades/c.svg</file>
+    <file>images/grades/c-dark.svg</file>
+    <file>images/grades/d.svg</file>
+    <file>images/grades/d-dark.svg</file>
     <file>images/jacket-placeholder.png</file>
     <file>images/stepCalculator/stamina.png</file>
     <file>images/stepCalculator/play.png</file>
