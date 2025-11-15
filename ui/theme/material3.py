@@ -135,7 +135,23 @@ class Material3DynamicThemeImpl(ThemeImpl):
     }
 
     EXTENDED_COLORS = {
-        "success": "#00c555",
+        "light": {
+            "success": "#00c555",
+            "past": "#5cbad3",
+            "present": "#829438",
+            "future": "#913a79",
+            "beyond": "#bf0d25",
+            "eternal": "#8b77a4",
+            "pure": "#f22ec6",
+            "far": "#ff9028",
+            "lost": "#ff0c43",
+        },
+        "dark": {
+            "present": "#B5C76F",
+            "future": "#C56DAC",
+            "beyond": "#F24058",
+            "eternal": "#D3B5F9",
+        },
     }
 
     def __init__(self, themeData: TMaterial3DynamicThemeData, scheme: _TScheme):
@@ -169,6 +185,13 @@ class Material3DynamicThemeImpl(ThemeImpl):
             self.material3Scheme.tertiary_palette = TonalPalette.from_hct(
                 _hexToHct(tertiary_color)
             )
+
+    def extendedColor(self, key: str) -> str:
+        preferred_color = self.EXTENDED_COLORS[self.actualScheme].get(key)
+        if preferred_color:
+            return preferred_color
+
+        return self.EXTENDED_COLORS["light"][key]
 
     @property
     def info(self):
@@ -204,7 +227,9 @@ class Material3DynamicThemeImpl(ThemeImpl):
         errorHct = MaterialDynamicColors.error.get_hct(self.material3Scheme)
 
         extendedPalettes: dict[str, DynamicColor] = {}
-        for colorName, colorHex in self.EXTENDED_COLORS.items():
+        extendedColors = ["success"]
+        for colorName in extendedColors:
+            colorHex = self.extendedColor(colorName)
             colorHct = _hexToHct(colorHex)
             colorHarmonized = Blend.harmonize(colorHct.to_int(), primaryHct.to_int())
 
@@ -232,6 +257,24 @@ class Material3DynamicThemeImpl(ThemeImpl):
                 )
             )
 
+        # arcaea colors
+        arcaeaColors: dict[str, Hct] = {}
+        arcaeaColorKeys = [
+            "past",
+            "present",
+            "future",
+            "beyond",
+            "eternal",
+            "pure",
+            "far",
+            "lost",
+        ]
+        for colorName in arcaeaColorKeys:
+            colorHex = self.extendedColor(colorName)
+            colorHct = _hexToHct(colorHex)
+            colorHarmonized = Blend.harmonize(colorHct.to_int(), primaryHct.to_int())
+            arcaeaColors[colorName] = Hct.from_int(colorHarmonized)
+
         return CustomPalette(
             primary=_hctToQColor(primaryHct),
             secondary=_hctToQColor(secondaryHct),
@@ -242,4 +285,12 @@ class Material3DynamicThemeImpl(ThemeImpl):
             error=_hctToQColor(errorHct),
             toolTipBase=self.qPalette.color(QPalette.ColorRole.ToolTipBase),
             toolTipText=self.qPalette.color(QPalette.ColorRole.ToolTipText),
+            past=_hctToQColor(arcaeaColors["past"]),
+            present=_hctToQColor(arcaeaColors["present"]),
+            future=_hctToQColor(arcaeaColors["future"]),
+            beyond=_hctToQColor(arcaeaColors["beyond"]),
+            eternal=_hctToQColor(arcaeaColors["eternal"]),
+            pure=_hctToQColor(arcaeaColors["pure"]),
+            far=_hctToQColor(arcaeaColors["far"]),
+            lost=_hctToQColor(arcaeaColors["lost"]),
         )

@@ -51,3 +51,35 @@ class ThemeQmlExposer(QObject):
     @Property(QColor, notify=themeChanged)
     def toolTipText(self):
         return self._themeImpl.customPalette.toolTipText
+
+    @Property(QColor, notify=themeChanged)
+    def past(self):
+        return self._themeImpl.customPalette.past
+
+    @Property(QColor, notify=themeChanged)
+    def present(self):
+        return self._themeImpl.customPalette.present
+
+    @Property(QColor, notify=themeChanged)
+    def future(self):
+        return self._themeImpl.customPalette.future
+
+    @Property(QColor, notify=themeChanged)
+    def beyond(self):
+        return self._themeImpl.customPalette.beyond
+
+    @Property(QColor, notify=themeChanged)
+    def eternal(self):
+        return self._themeImpl.customPalette.eternal
+
+    @Property(QColor, notify=themeChanged)
+    def pure(self):
+        return self._themeImpl.customPalette.pure
+
+    @Property(QColor, notify=themeChanged)
+    def far(self):
+        return self._themeImpl.customPalette.far
+
+    @Property(QColor, notify=themeChanged)
+    def lost(self):
+        return self._themeImpl.customPalette.lost
