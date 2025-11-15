@@ -29,6 +29,14 @@ class ThemeQmlExposer(QObject):
         return self._themeImpl.customPalette.primary
 
     @Property(QColor, notify=themeChanged)
+    def secondary(self):
+        return self._themeImpl.customPalette.secondary
+
+    @Property(QColor, notify=themeChanged)
+    def tertiary(self):
+        return self._themeImpl.customPalette.tertiary
+
+    @Property(QColor, notify=themeChanged)
     def success(self):
         return self._themeImpl.customPalette.success
 
