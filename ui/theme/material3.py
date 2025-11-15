@@ -7,7 +7,7 @@ from materialyoucolor.palettes.tonal_palette import TonalPalette
 from materialyoucolor.scheme.scheme_tonal_spot import SchemeTonalSpot
 from PySide6.QtGui import QColor, QPalette
 
-from .shared import ThemeImpl, ThemeInfo, _TCustomPalette, _TScheme
+from .shared import CustomPalette, ThemeImpl, ThemeInfo, _TScheme
 from .types import (
     TMaterial3DynamicThemeData,
     TMaterial3ThemeData,
@@ -84,7 +84,7 @@ class Material3ThemeImpl(ThemeImpl):
         return qPalette
 
     @property
-    def customPalette(self) -> _TCustomPalette:
+    def customPalette(self) -> CustomPalette:
         primaryHct = _hexToHct(self.themeData["schemes"][self.scheme]["primary"])
         secondaryHct = _hexToHct(self.themeData["schemes"][self.scheme]["secondary"])
         tertiaryHct = _hexToHct(self.themeData["schemes"][self.scheme]["tertiary"])
@@ -98,16 +98,15 @@ class Material3ThemeImpl(ThemeImpl):
             Blend.harmonize(successHct.to_int(), primaryHct.to_int())
         )
 
-        return {
-            **ThemeImpl.DEFAULT_CUSTOM_PALETTE,
-            "primary": _hctToQColor(primaryHct),
-            "secondary": _hctToQColor(secondaryHct),
-            "tertiary": _hctToQColor(tertiaryHct),
-            "success": _hctToQColor(successHarmonizedHct),
-            "error": QColor.fromString(self.themeData["schemes"][self.scheme]["error"]),
-            "toolTipBase": self.qPalette.color(QPalette.ColorRole.ToolTipBase),
-            "toolTipText": self.qPalette.color(QPalette.ColorRole.ToolTipText),
-        }
+        return CustomPalette(
+            primary=_hctToQColor(primaryHct),
+            secondary=_hctToQColor(secondaryHct),
+            tertiary=_hctToQColor(tertiaryHct),
+            success=_hctToQColor(successHarmonizedHct),
+            error=QColor.fromString(self.themeData["schemes"][self.scheme]["error"]),
+            toolTipBase=self.qPalette.color(QPalette.ColorRole.ToolTipBase),
+            toolTipText=self.qPalette.color(QPalette.ColorRole.ToolTipText),
+        )
 
 
 class Material3DynamicThemeImpl(ThemeImpl):
@@ -198,7 +197,7 @@ class Material3DynamicThemeImpl(ThemeImpl):
         return qPalette
 
     @property
-    def customPalette(self) -> _TCustomPalette:
+    def customPalette(self) -> CustomPalette:
         primaryHct = MaterialDynamicColors.primary.get_hct(self.material3Scheme)
         secondaryHct = MaterialDynamicColors.secondary.get_hct(self.material3Scheme)
         tertiaryHct = MaterialDynamicColors.tertiary.get_hct(self.material3Scheme)
@@ -211,16 +210,16 @@ class Material3DynamicThemeImpl(ThemeImpl):
 
             colorTonalPalette = TonalPalette.from_int(colorHarmonized)
 
-            colorSurfacePaletteOptions = DynamicColor.from_palette(
-                FromPaletteOptions(
-                    name=f"{colorName}_container",
-                    palette=lambda s: colorTonalPalette,
-                    tone=lambda s: 30 if s.is_dark else 90,
-                    is_background=True,
-                    background=lambda s: MaterialDynamicColors.highestSurface(s),
-                    contrast_curve=ContrastCurve(1, 1, 3, 4.5),
-                )
-            )
+            # colorSurfacePaletteOptions = DynamicColor.from_palette(
+            #     FromPaletteOptions(
+            #         name=f"{colorName}_container",
+            #         palette=lambda s: colorTonalPalette,
+            #         tone=lambda s: 30 if s.is_dark else 90,
+            #         is_background=True,
+            #         background=lambda s: MaterialDynamicColors.highestSurface(s),
+            #         contrast_curve=ContrastCurve(1, 1, 3, 4.5),
+            #     )
+            # )
 
             extendedPalettes[colorName] = DynamicColor.from_palette(
                 FromPaletteOptions(
@@ -233,15 +232,14 @@ class Material3DynamicThemeImpl(ThemeImpl):
                 )
             )
 
-        return {
-            **ThemeImpl.DEFAULT_CUSTOM_PALETTE,
-            "primary": _hctToQColor(primaryHct),
-            "secondary": _hctToQColor(secondaryHct),
-            "tertiary": _hctToQColor(tertiaryHct),
-            "success": _hctToQColor(
+        return CustomPalette(
+            primary=_hctToQColor(primaryHct),
+            secondary=_hctToQColor(secondaryHct),
+            tertiary=_hctToQColor(tertiaryHct),
+            success=_hctToQColor(
                 extendedPalettes["success"].get_hct(self.material3Scheme)
             ),
-            "error": _hctToQColor(errorHct),
-            "toolTipBase": self.qPalette.color(QPalette.ColorRole.ToolTipBase),
-            "toolTipText": self.qPalette.color(QPalette.ColorRole.ToolTipText),
-        }
+            error=_hctToQColor(errorHct),
+            toolTipBase=self.qPalette.color(QPalette.ColorRole.ToolTipBase),
+            toolTipText=self.qPalette.color(QPalette.ColorRole.ToolTipText),
+        )

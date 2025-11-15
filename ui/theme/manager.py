@@ -8,7 +8,7 @@ from PySide6.QtGui import QGuiApplication, QPalette
 
 from .material3 import Material3DynamicThemeImpl, Material3ThemeImpl
 from .qml import ThemeQmlExposer
-from .shared import ThemeImpl, ThemeInfo, TThemeInfoCacheKey, _TCustomPalette, _TScheme
+from .shared import CustomPalette, ThemeImpl, ThemeInfo, TThemeInfoCacheKey, _TScheme
 
 QML_IMPORT_NAME = "internal.ui.theme"
 QML_IMPORT_MAJOR_VERSION = 1
@@ -27,7 +27,7 @@ class ThemeManager(QObject):
         super().__init__(parent)
 
         self._qPalette = QPalette()
-        self._customPalette: _TCustomPalette = ThemeImpl.DEFAULT_CUSTOM_PALETTE
+        self._customPalette: CustomPalette = ThemeImpl.DEFAULT_CUSTOM_PALETTE
 
         self._lastThemeInfo = ThemeImpl().info
         self._qmlExposer = ThemeQmlExposer(themeImpl=ThemeImpl())
@@ -135,7 +135,7 @@ class ThemeManager(QObject):
         return self._qPalette
 
     @Property(dict, notify=themeChanged)
-    def customPalette(self) -> _TCustomPalette:
+    def customPalette(self) -> CustomPalette:
         return self._customPalette
 
     @Property(ThemeQmlExposer, notify=themeChanged)

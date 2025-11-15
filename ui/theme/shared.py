@@ -1,18 +1,19 @@
-from dataclasses import dataclass
-from typing import Literal, TypedDict
+from dataclasses import dataclass, field
+from typing import Literal
 
 from PySide6.QtGui import QColor, QPalette
 
 
-class _TCustomPalette(TypedDict):
-    primary: QColor
-    secondary: QColor
-    tertiary: QColor
-    success: QColor
-    error: QColor
+@dataclass(kw_only=True)
+class CustomPalette:
+    primary: QColor = field(default_factory=lambda: QColor.fromRgb(0x616161))
+    secondary: QColor = field(default_factory=lambda: QColor.fromRgb(0x616161))
+    tertiary: QColor = field(default_factory=lambda: QColor.fromRgb(0x616161))
+    success: QColor = field(default_factory=lambda: QColor.fromRgb(0x616161))
+    error: QColor = field(default_factory=lambda: QColor.fromRgb(0x616161))
 
-    toolTipBase: QColor
-    toolTipText: QColor
+    toolTipBase: QColor = field(default_factory=lambda: QColor.fromRgb(0x616161))
+    toolTipText: QColor = field(default_factory=lambda: QColor.fromRgb(0x616161))
 
 
 _TScheme = Literal["light", "dark"]
@@ -32,15 +33,7 @@ class ThemeInfo:
 
 
 class ThemeImpl:
-    DEFAULT_CUSTOM_PALETTE: _TCustomPalette = {
-        "primary": QColor.fromString("#616161"),
-        "secondary": QColor.fromString("#616161"),
-        "tertiary": QColor.fromString("#616161"),
-        "success": QColor.fromString("#616161"),
-        "error": QColor.fromString("#616161"),
-        "toolTipBase": QColor.fromString("#616161"),
-        "toolTipText": QColor.fromString("#616161"),
-    }
+    DEFAULT_CUSTOM_PALETTE: CustomPalette = CustomPalette()
 
     @property
     def info(self) -> ThemeInfo:
@@ -56,5 +49,5 @@ class ThemeImpl:
         return QPalette()
 
     @property
-    def customPalette(self) -> _TCustomPalette:
+    def customPalette(self) -> CustomPalette:
         return self.DEFAULT_CUSTOM_PALETTE  # pyright: ignore[reportReturnType]
