@@ -6,6 +6,8 @@ from PySide6.QtGui import QColor, QPalette
 
 class _TCustomPalette(TypedDict):
     primary: QColor
+    secondary: QColor
+    tertiary: QColor
     success: QColor
     error: QColor
 
@@ -32,6 +34,8 @@ class ThemeInfo:
 class ThemeImpl:
     DEFAULT_CUSTOM_PALETTE: _TCustomPalette = {
         "primary": QColor.fromString("#616161"),
+        "secondary": QColor.fromString("#616161"),
+        "tertiary": QColor.fromString("#616161"),
         "success": QColor.fromString("#616161"),
         "error": QColor.fromString("#616161"),
         "toolTipBase": QColor.fromString("#616161"),

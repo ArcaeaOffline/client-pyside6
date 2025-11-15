@@ -86,6 +86,8 @@ class Material3ThemeImpl(ThemeImpl):
     @property
     def customPalette(self) -> _TCustomPalette:
         primaryHct = _hexToHct(self.themeData["schemes"][self.scheme]["primary"])
+        secondaryHct = _hexToHct(self.themeData["schemes"][self.scheme]["secondary"])
+        tertiaryHct = _hexToHct(self.themeData["schemes"][self.scheme]["tertiary"])
 
         successColorItem = self._findExtendedColor("Success")
         if successColorItem is None:
@@ -97,7 +99,10 @@ class Material3ThemeImpl(ThemeImpl):
         )
 
         return {
+            **ThemeImpl.DEFAULT_CUSTOM_PALETTE,
             "primary": _hctToQColor(primaryHct),
+            "secondary": _hctToQColor(secondaryHct),
+            "tertiary": _hctToQColor(tertiaryHct),
             "success": _hctToQColor(successHarmonizedHct),
             "error": QColor.fromString(self.themeData["schemes"][self.scheme]["error"]),
             "toolTipBase": self.qPalette.color(QPalette.ColorRole.ToolTipBase),
@@ -195,6 +200,8 @@ class Material3DynamicThemeImpl(ThemeImpl):
     @property
     def customPalette(self) -> _TCustomPalette:
         primaryHct = MaterialDynamicColors.primary.get_hct(self.material3Scheme)
+        secondaryHct = MaterialDynamicColors.secondary.get_hct(self.material3Scheme)
+        tertiaryHct = MaterialDynamicColors.tertiary.get_hct(self.material3Scheme)
         errorHct = MaterialDynamicColors.error.get_hct(self.material3Scheme)
 
         extendedPalettes: dict[str, DynamicColor] = {}
@@ -227,7 +234,10 @@ class Material3DynamicThemeImpl(ThemeImpl):
             )
 
         return {
+            **ThemeImpl.DEFAULT_CUSTOM_PALETTE,
             "primary": _hctToQColor(primaryHct),
+            "secondary": _hctToQColor(secondaryHct),
+            "tertiary": _hctToQColor(tertiaryHct),
             "success": _hctToQColor(
                 extendedPalettes["success"].get_hct(self.material3Scheme)
             ),
