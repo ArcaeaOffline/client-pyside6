@@ -75,6 +75,8 @@ files = [
   "ui/qmls/App.qml",
   "ui/qmls/AppMain.qml",
 
+  "ui/qmls/Components/PlayResultDelegate.qml",
+
   "ui/viewmodels/overview.py",
   "ui/qmls/Overview.qml",
 
